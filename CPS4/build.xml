@@ -1,0 +1,53 @@
+<project name="bridge" default="compile" basedir=".">
+	<description>
+       Fichier de construction pour l'exemple Bridge
+    </description>
+	<!-- set global properties for this build -->
+	<property name="src" location="src" />
+	<property name="build" location="build" />
+
+	<!-- METTRE ICI LE NOM DU BINOME -->
+	<property name="nom1" value="Bunel" />
+	<property name="nom2" value="Coquart" />
+
+	<target name="init">
+		<!-- Create the time stamp -->
+		<tstamp />
+		<!-- Create the build directory structure used by compile -->
+		<mkdir dir="${build}" />
+	</target>
+
+	<target name="compile" depends="init" description="compile the source ">
+		<!-- Compile the java code from ${src} into ${build} -->
+		<javac debug="true" srcdir="${src}" excludes="" destdir="${build}" />
+	</target>
+
+	<target name="run1" depends="compile" description="run application in release mode">
+		<echo>================ Run Object Main ================</echo>
+		<java classname="bridge.main.BridgeSimulatorMain1" classpath="${build}">
+		</java>
+	</target>
+
+	<target name="run2" depends="compile" description="run application in test mode">
+		<echo>================ Run Object Main ================</echo>
+		<java classname="bridge.main.BridgeSimulatorMain2" classpath="${build}">
+		</java>
+	</target>
+
+	<target name="dist" depends="init,clean" description="Generer la distribution">
+		<!-- tout mettre dans l'archive -->
+		<jar jarfile="../TME4-Bridge-${nom1}-${nom2}-${DSTAMP}.jar" basedir="." />
+	</target>
+
+	<target name="clean" description="clean up">
+		<echo>================ Removing temporary files... ================</echo>
+		<delete verbose="true">
+			<!-- Remove all *~ files -->
+			<fileset dir="${basedir}" defaultexcludes="no">
+				<include name="**/*~" />
+			</fileset>
+		</delete>
+		<echo>================ Removing build directory ================</echo>
+		<delete dir="${build}" />
+	</target>
+</project>
