@@ -4,20 +4,17 @@ import bridge.services.BridgeService;
 import bridge.services.CarSensorClientService;
 import bridge.services.SensorData;
 
-public class Bridge implements 
-	/* provide */
-	CarSensorClientService,
-	BridgeService {
-	
+public class Bridge implements
+/* provide */
+CarSensorClientService, BridgeService {
+
 	private int nbInCars;
 	private int nbOutCars;
 	private int limit;
-		
+
 	public Bridge() {
 		// do nothing
 	}
-	
-
 
 	@Override
 	public int getLimit() {
@@ -44,7 +41,6 @@ public class Bridge implements
 		return nbInCars + nbOutCars;
 	}
 
-
 	@Override
 	public void init(int lim) {
 		limit = lim;
@@ -52,10 +48,9 @@ public class Bridge implements
 
 	@Override
 	public void init() {
-		init(200); // petit "bug" lié à l'inclusion des init par héritage en Java
+		init(200); // petit "bug" lié à l'inclusion des init par héritage en
+					// Java
 	}
-
-
 
 	@Override
 	public void enterIn() {
@@ -64,7 +59,9 @@ public class Bridge implements
 
 	@Override
 	public void leaveIn() {
-		nbInCars--;
+		// TODO
+		if (nbInCars > 0)
+			nbInCars--;
 	}
 
 	@Override
@@ -74,46 +71,48 @@ public class Bridge implements
 
 	@Override
 	public void leaveOut() {
-		nbOutCars--;
+		// TODO
+		if (nbOutCars > 0)
+			nbOutCars--;
 	}
 
 	@Override
 	public void enter() {
-		if(nbInCars>nbOutCars) {
-			nbOutCars++;
-		} else {
-			nbInCars++;
-		}
+		if (!isFull())
+			if (nbInCars > nbOutCars) {
+				enterOut();
+			} else {
+				enterIn();
+			}
 	}
 
 	@Override
 	public void leave() {
-		if(nbInCars>nbOutCars) {
-			nbInCars--;
-		} else {
-			nbOutCars--;
-		}
+		if (getNbCars() > 0)
+			if (nbInCars > nbOutCars) {
+				leaveIn();
+			} else {
+				leaveOut();
+			}
 	}
-
 
 	@Override
 	public void senseCar(SensorData data) {
-		if(data.getName().equals("InIsland")) {
+		if (data.getName().equals("InIsland")) {
 			System.out.println("Bridge : New car enters from island");
 			enterIn();
-		} else if(data.getName().equals("OutIsland")) {
+		} else if (data.getName().equals("OutIsland") && nbInCars > 0) {
 			System.out.println("Bridge : Car leaves to island");
 			leaveIn();
-		} else if(data.getName().equals("InMainland")) {
+		} else if (data.getName().equals("InMainland")) {
 			System.out.println("Bridge : New car enters from mainland");
 			enterOut();
-		} else if(data.getName().equals("OutMainland")) {
+		} else if (data.getName().equals("OutMainland") && nbOutCars > 0) {
 			System.out.println("Bridge : Car leaves to mainland");
 			leaveOut();
 		}
-		
-		System.out.println("Bridge : nbCars = "+getNbCars());
-	}
 
+		System.out.println("Bridge : nbCars = " + getNbCars());
+	}
 
 }
