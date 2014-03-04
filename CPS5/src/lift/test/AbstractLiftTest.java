@@ -54,6 +54,7 @@ public abstract class AbstractLiftTest {
 		return rep;
 	}
 
+	// Exercice 1
 	@Test
 	public void testInit() {
 		lift.init(0, 10);
@@ -193,6 +194,7 @@ public abstract class AbstractLiftTest {
 
 	// TODO : selectLevel
 
+	// Exercice 2
 	@Test
 	public void testPostInit() {
 		lift.init(0, 10);
@@ -215,7 +217,179 @@ public abstract class AbstractLiftTest {
 				&& lift.getLiftStatus() == LiftStatus.MOVING_UP);
 	}
 
-	// TODO : autre post condition
+	@Test
+	public void testStepMoveUp() {
+		lift.init(0, 10);
+		lift.closeDoor();
+		lift.selectLevel(1);
+		lift.doorAck();
+		lift.beginMoveUp();
+		int level = lift.getLevel();
+		lift.stepMoveUp();
+		Assert.assertTrue(checkInvariant() && lift.getLevel() == level + 1);
+	}
 
-	// TODO : exercice 3
+	@Test
+	public void testEndMoveUp() {
+		lift.init(0, 10);
+		lift.closeDoor();
+		lift.selectLevel(1);
+		lift.doorAck();
+		lift.beginMoveUp();
+		lift.stepMoveUp();
+		lift.endMoveUp();
+		Assert.assertTrue(checkInvariant()
+				&& lift.getLiftStatus() == LiftStatus.STOP_UP);
+	}
+
+	@Test
+	public void testBeginMoveDown() {
+		lift.init(0, 10);
+		lift.closeDoor();
+		lift.selectLevel(1);
+		lift.doorAck();
+		lift.selectLevel(0);
+		lift.beginMoveUp();
+		lift.stepMoveUp();
+		lift.endMoveUp();
+		lift.openDoor();
+		lift.doorAck();
+		lift.closeDoor();
+		lift.doorAck();
+		lift.beginMoveDown();
+		Assert.assertTrue(checkInvariant()
+				&& lift.getLiftStatus() == LiftStatus.MOVING_DOWN);
+	}
+
+	@Test
+	public void testStepMoveDown() {
+		lift.init(0, 10);
+		lift.closeDoor();
+		lift.selectLevel(1);
+		lift.doorAck();
+		lift.beginMoveUp();
+		lift.stepMoveUp();
+		lift.endMoveUp();
+		lift.openDoor();
+		lift.doorAck();
+		lift.closeDoor();
+		lift.selectLevel(0);
+		lift.doorAck();
+		lift.beginMoveDown();
+		int level = lift.getLevel();
+		lift.stepMoveDown();
+		Assert.assertTrue(checkInvariant() && lift.getLevel() == level - 1);
+	}
+
+	@Test
+	public void testEndMoveDown() {
+		lift.init(0, 10);
+		lift.closeDoor();
+		lift.selectLevel(1);
+		lift.doorAck();
+		lift.beginMoveUp();
+		lift.stepMoveUp();
+		lift.endMoveUp();
+		lift.openDoor();
+		lift.doorAck();
+		lift.closeDoor();
+		lift.selectLevel(0);
+		lift.doorAck();
+		lift.beginMoveDown();
+		lift.stepMoveDown();
+		lift.endMoveDown();
+		Assert.assertTrue(checkInvariant()
+				&& lift.getLiftStatus() == LiftStatus.STOP_DOWN);
+	}
+
+	@Test
+	public void testOpenDoorPost() {
+		lift.init(0, 10);
+		lift.closeDoor();
+		lift.doorAck();
+		lift.openDoor();
+		Assert.assertTrue(checkInvariant()
+				&& lift.getDoorStatus() == DoorStatus.OPENING);
+	}
+
+	@Test
+	public void testCloseDoorPost() {
+		lift.init(0, 10);
+		lift.closeDoor();
+		Assert.assertTrue(checkInvariant()
+				&& lift.getDoorStatus() == DoorStatus.CLOSING);
+	}
+
+	@Test
+	public void testDoorAckPost() {
+		lift.init(0, 10);
+		lift.closeDoor();
+		DoorStatus door = lift.getDoorStatus();
+		LiftStatus status = lift.getLiftStatus();
+		lift.doorAck();
+		boolean rep = false;
+		if (door == DoorStatus.OPENING)
+			rep = lift.getDoorStatus() == DoorStatus.OPENED;
+		else if (door == DoorStatus.CLOSING)
+			rep = lift.getDoorStatus() == DoorStatus.CLOSED;
+
+		if (status != LiftStatus.IDLE)
+			rep &= lift.getLiftStatus() == LiftStatus.IDLE;
+
+		Assert.assertTrue(checkInvariant() && rep);
+	}
+
+	// Exercice 3
+	@Test
+	public void testSedInBorne() {
+		lift.init(0, 10);
+		lift.closeDoor();
+		lift.selectLevel(3);
+		lift.doorAck();
+		lift.beginMoveUp();
+		lift.stepMoveUp();
+		lift.stepMoveUp();
+		lift.stepMoveUp();
+		lift.endMoveUp();
+		Assert.assertTrue(lift.getLevel() == 3);
+	}
+
+	@Test
+	public void testSedBorneMin() {
+		lift.init(0, 10);
+		lift.closeDoor();
+		lift.selectLevel(0);
+		lift.doorAck();
+		lift.openDoor();
+		Assert.assertTrue(lift.getLevel() == 0);
+	}
+
+	@Test
+	public void testSedBorneMax() {
+		lift.init(0, 10);
+		lift.closeDoor();
+		lift.selectLevel(10);
+		lift.doorAck();
+		lift.beginMoveUp();
+		for (int i = 0; i < 10; i++)
+			lift.stepMoveUp();
+		lift.endMoveUp();
+		Assert.assertTrue(lift.getLevel() == 10);
+	}
+
+	@Test
+	public void testSedBorneMiddle() {
+		lift.init(0, 10);
+		lift.closeDoor();
+		lift.selectLevel(5);
+		lift.doorAck();
+		lift.beginMoveUp();
+		for (int i = 0; i < 5; i++)
+			lift.stepMoveUp();
+		lift.endMoveUp();
+		Assert.assertTrue(lift.getLevel() == 5);
+	}
+
+	// TODO : exercice 3 hors borne
+
 }

@@ -32,12 +32,11 @@ public class LiftContract extends LiftDecorator {
 				throw new InvariantError(
 						"La porte n'est pas fermée pendant le déplacement");
 			}
-		}/* else if (getLiftStatus() == LiftStatus.IDLE) {
-			if (!(getDoorStatus() == DoorStatus.OPENED)) {
-				throw new InvariantError(
-						"La porte n'est pas ouverte pendant l'attente");
-			}
-		}*/
+		}/*
+		 * else if (getLiftStatus() == LiftStatus.IDLE) { if (!(getDoorStatus()
+		 * == DoorStatus.OPENED)) { throw new InvariantError(
+		 * "La porte n'est pas ouverte pendant l'attente"); } }
+		 */
 	}
 
 	@Override
@@ -440,7 +439,11 @@ public class LiftContract extends LiftDecorator {
 				}
 			}
 		} else {
+			// TODO
+
+			// TODO
 			if (!(getLiftStatus() == getLiftStatus_atPre)) {
+				// if (!(getLiftStatus() == LiftStatus.IDLE)) {
 				throw new PostconditionError(
 						"L'état de l'ascenseur n'aurait pas du changer");
 			}
