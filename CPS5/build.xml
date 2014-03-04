@@ -1,0 +1,95 @@
+<project name="bridge" default="compile" basedir=".">
+    <description>
+       Fichier de construction pour l'exemple Bridge
+    </description>
+  <!-- set global properties for this build -->
+  <property name="src" location="src"/>
+  <property name="build" location="build"/>
+  <property name="jars" location="jars"/>
+
+  <!-- METTRE ICI LE NOM DU BINOME -->
+  <property name="nom1" value="Coquart"/>
+  <property name="nom2" value="Bunel"/>
+
+  <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+    <mkdir dir="${build}"/>
+  </target>
+
+  <target name="compile" depends="init"
+        description="compile the source " >
+    <!-- Compile the java code from ${src} into ${build} -->
+    <javac debug="true" classpath="${jars}/junit.jar:${jars}/lift1.jar:${jars}/lift2.jar:${jars}/lift3.jar" srcdir="${src}" excludes="" destdir="${build}" />
+  </target>
+
+  <target name="test1" depends="compile"
+          description="test of first implementation">
+    <echo>================ Run first test ================</echo>
+    <junit printsummary="yes">
+      <classpath>
+        <pathelement location="${build}"/>
+        <pathelement location="${jars}/junit.jar"/>
+        <pathelement location="${jars}/lift1.jar"/>
+      </classpath>
+
+      <formatter type="plain"/>
+
+      <test name="lift.test.Lift1Test" outfile="report1"/>
+
+    </junit>
+  </target>
+
+  <target name="test2" depends="compile"
+          description="test of second implementation">
+    <echo>================ Run first test ================</echo>
+    <junit printsummary="yes">
+      <classpath>
+        <pathelement location="${build}"/>
+        <pathelement location="${jars}/junit.jar"/>
+        <pathelement location="${jars}/lift2.jar"/>
+      </classpath>
+
+      <formatter type="plain"/>
+
+      <test name="lift.test.Lift2Test" outfile="report2"/>
+
+    </junit>
+  </target>
+
+  <target name="test3" depends="compile"
+          description="test of third implementation">
+    <echo>================ Run first test ================</echo>
+    <junit printsummary="yes">
+      <classpath>
+        <pathelement location="${build}"/>
+        <pathelement location="${jars}/junit.jar"/>
+        <pathelement location="${jars}/lift3.jar"/>
+      </classpath>
+
+      <formatter type="plain"/>
+
+      <test name="lift.test.Lift3Test" outfile="report3"/>
+
+    </junit>
+  </target>
+
+  <target name="dist" depends="init,clean"
+        description="Generer la distribution" >
+    <!-- tout mettre dans l'archive -->
+    <jar basedir="." jarfile="../TME5-LiftModel-${nom1}-${nom2}-${DSTAMP}.jar"/>
+  </target>
+
+  <target name="clean"
+        description="clean up" >	
+	<echo>================ Removing temporary files... ================</echo>
+        <delete verbose="true"> <!-- Remove all *~ files -->
+	   <fileset dir="${basedir}" defaultexcludes="no">
+             <include name="**/*~"/>
+           </fileset>
+        </delete>
+        <echo>================ Removing build directory ================</echo>    
+	<delete dir="${build}"/>
+  </target>
+</project>
