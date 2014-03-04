@@ -1,0 +1,25 @@
+<project name="TME1-Composants" default="dist" basedir=".">
+    <description>
+        Fichier de construction (archivage) pour le TM1 de l'UE Composants
+    </description>
+  <!-- set global properties for this build -->
+  <property name="echo" location="echo"/>
+  <property name="remocar" location="remocar"/>
+  <!-- PROPRIETES CI-DESSOUS A MODIFIER -->
+  <property name="nom1" value="COQUART"/>
+  <property name="nom2" value="BUNEL"/>
+
+  <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+  </target>
+
+
+  <target name="dist" depends="init"
+          description="Generer la distribution" >
+    <!-- tout mettre dans l'archive -->
+    <jar jarfile="../TME1-Composants-${nom1}-${nom2}-${DSTAMP}.jar" basedir=".">
+    </jar>
+  </target>
+
+</project>

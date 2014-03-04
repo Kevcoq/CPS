@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="12.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <type>com.umlet.element.custom.Component</type>
+    <coordinates>
+      <x>50</x>
+      <y>100</y>
+      <w>200</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes> 
+'Agent</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>220</x>
+      <y>100</y>
+      <w>470</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=())
+EnvironmentFetchService</panel_attributes>
+    <additional_attributes>450;40;30;60</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.Component</type>
+    <coordinates>
+      <x>1170</x>
+      <y>580</y>
+      <w>200</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes> 
+'ComportementAgent</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>290</x>
+      <y>620</y>
+      <w>900</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=())
+ActionService</panel_attributes>
+    <additional_attributes>880;50;30;50</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1240</x>
+      <y>180</y>
+      <w>200</w>
+      <h>420</h>
+    </coordinates>
+    <panel_attributes>lt=())
+AgentRefListService</panel_attributes>
+    <additional_attributes>110;30;100;400</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.Component</type>
+    <coordinates>
+      <x>1190</x>
+      <y>100</y>
+      <w>200</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes> 
+'CapteurAgent</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>840</x>
+      <y>100</y>
+      <w>370</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=())
+EnvironmentFetchService</panel_attributes>
+    <additional_attributes>30;50;350;50</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.Component</type>
+    <coordinates>
+      <x>120</x>
+      <y>620</y>
+      <w>200</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes> 
+'Effecteur</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>230</x>
+      <y>160</y>
+      <w>520</w>
+      <h>480</h>
+    </coordinates>
+    <panel_attributes>lt=())
+EnvironmentEffectService</panel_attributes>
+    <additional_attributes>500;30;30;460</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.Component</type>
+    <coordinates>
+      <x>670</x>
+      <y>80</y>
+      <w>200</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes> 
+'Environnement</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>220</x>
+      <y>60</y>
+      <w>470</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=())
+EnvironmentRegisterService</panel_attributes>
+    <additional_attributes>450;40;30;50</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>220</x>
+      <y>150</y>
+      <w>470</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=())
+EnvironmentEffectService</panel_attributes>
+    <additional_attributes>450;40;30;60</additional_attributes>
+  </element>
+</diagram>

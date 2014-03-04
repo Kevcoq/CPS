@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="12.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <type>com.umlet.element.custom.Component</type>
+    <coordinates>
+      <x>240</x>
+      <y>360</y>
+      <w>200</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes> 
+'MalevaTest2
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.Component</type>
+    <coordinates>
+      <x>920</x>
+      <y>110</y>
+      <w>200</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes> 
+'darcula : Mechant</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.Component</type>
+    <coordinates>
+      <x>920</x>
+      <y>350</y>
+      <w>200</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes> 
+'darkvador : Mechant
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.Component</type>
+    <coordinates>
+      <x>920</x>
+      <y>620</y>
+      <w>200</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes> 
+'maya : Trouillard</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1570</x>
+      <y>100</y>
+      <w>50</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;[v]-(()-[^]&gt;</panel_attributes>
+    <additional_attributes>30;30;30;130</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>410</x>
+      <y>420</y>
+      <w>530</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>lt=())
+
+LCInitializeController
+LCConfigureAgentController
+LCStepperController</panel_attributes>
+    <additional_attributes>510;230;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>410</x>
+      <y>130</y>
+      <w>530</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>lt=())
+
+LCInitializeController
+LCConfigureAgentController
+LCStepperController</panel_attributes>
+    <additional_attributes>510;30;30;240</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>410</x>
+      <y>360</y>
+      <w>530</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>lt=())
+
+LCInitializeController
+LCConfigureAgentController
+LCStepperController</panel_attributes>
+    <additional_attributes>510;50;30;50</additional_attributes>
+  </element>
+</diagram>
