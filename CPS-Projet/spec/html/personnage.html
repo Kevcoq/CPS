@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+lang="en" xml:lang="en">
+<head>
+<title>personnage</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2014-03-17 11:41:55 CET"/>
+<meta name="author" content="COQUART KEVIN"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+
+<h1 class="title">personnage</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 Personnage </a>
+<ul>
+<li><a href="#sec-1.1">1.1 service : Personnage </a></li>
+<li><a href="#sec-1.2">1.2 types : String, int, boolean, Objet </a></li>
+<li><a href="#sec-1.3">1.3 observators : </a></li>
+<li><a href="#sec-1.4">1.4 Constructors : </a></li>
+<li><a href="#sec-1.5">1.5 Operators : </a></li>
+<li><a href="#sec-1.6">1.6 Observations : </a>
+<ul>
+<li><a href="#sec-1.6.1">1.6.1 [invariants] </a></li>
+<li><a href="#sec-1.6.2">1.6.2 [init] </a></li>
+<li><a href="#sec-1.6.3">1.6.3 [retrait-pdv] </a></li>
+<li><a href="#sec-1.6.4">1.6.4 [depot-pdv] </a></li>
+<li><a href="#sec-1.6.5">1.6.5 [retrait-argent] </a></li>
+<li><a href="#sec-1.6.6">1.6.6 [depot-argent] </a></li>
+<li><a href="#sec-1.6.7">1.6.7 [ramasser] </a></li>
+<li><a href="#sec-1.6.8">1.6.8 [jeter] </a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Personnage </h2>
+<div class="outline-text-2" id="text-1">
+
+
+</div>
+
+<div id="outline-container-1.1" class="outline-3">
+<h3 id="sec-1.1"><span class="section-number-3">1.1</span> service : Personnage </h3>
+<div class="outline-text-3" id="text-1.1">
+
+</div>
+
+</div>
+
+<div id="outline-container-1.2" class="outline-3">
+<h3 id="sec-1.2"><span class="section-number-3">1.2</span> types : String, int, boolean, Objet </h3>
+<div class="outline-text-3" id="text-1.2">
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1.3" class="outline-3">
+<h3 id="sec-1.3"><span class="section-number-3">1.3</span> observators : </h3>
+<div class="outline-text-3" id="text-1.3">
+
+<ul>
+<li id="sec-1.3.1">const nom : [Personnage] → String <br/>
+</li>
+<li id="sec-1.3.2">const largeur : [Personnage] → int <br/>
+</li>
+<li id="sec-1.3.3">const hauteur : [Personnage] → int <br/>
+</li>
+<li id="sec-1.3.4">const profondeur : [Personnage] → int <br/>
+</li>
+<li id="sec-1.3.5">const force : [Personnage] → int <br/>
+</li>
+<li id="sec-1.3.6">pointsDeVie : [Personnage] → int <br/>
+</li>
+<li id="sec-1.3.7">sommeArgent : [Personnage] → int <br/>
+</li>
+<li id="sec-1.3.8">estVaincu : [Personnage] → boolean <br/>
+</li>
+<li id="sec-1.3.9">estEquipe : [Personnage] → boolean <br/>
+</li>
+<li id="sec-1.3.10">laChoseEquipee : [Personnage] → Objet <br/>
+<ul>
+<li id="sec-1.3.10.1">pre laChoseEquipee(P) require estEquipe(P) <br/>
+
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-1.4" class="outline-3">
+<h3 id="sec-1.4"><span class="section-number-3">1.4</span> Constructors : </h3>
+<div class="outline-text-3" id="text-1.4">
+
+<ul>
+<li id="sec-1.4.1">init : String × int × int × int × int x int → [Personnage] <br/>
+<ul>
+<li id="sec-1.4.1.1">pre init(nom,largeur,hauteur,profondeur,force,pointsVie) require nom != "" ∧ largeur &gt; 0 ∧ hauteur &gt; 0 ∧ profondeur &gt; 0 ∧ 0 &lt; force &lt; pointsVie <br/>
+
+
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-1.5" class="outline-3">
+<h3 id="sec-1.5"><span class="section-number-3">1.5</span> Operators : </h3>
+<div class="outline-text-3" id="text-1.5">
+
+<ul>
+<li id="sec-1.5.1">retrait-pdv : [Personnage] × int → [Personnage] <br/>
+<ul>
+<li id="sec-1.5.1.1">pre retrait-pdv(P,s) require ¬estVaincu(P) ∧ s&gt;0 <br/>
+</li>
+</ul>
+</li>
+<li id="sec-1.5.2">depot-pdv : [Personnage] x int → [Personnage] <br/>
+<ul>
+<li id="sec-1.5.2.1">pre depot-pdv(P,s) require ¬estVaincu(P) ∧ s&gt;0 <br/>
+
+</li>
+</ul>
+</li>
+<li id="sec-1.5.3">retrait-argent : [Personnage] × int → [Personnage] <br/>
+<ul>
+<li id="sec-1.5.3.1">pre retrait-argent(P,s) require ¬estVaincu(P) ∧ s&gt;0 <br/>
+</li>
+</ul>
+</li>
+<li id="sec-1.5.4">depot-argent : [Personnage] × int → [Personnage] <br/>
+<ul>
+<li id="sec-1.5.4.1">pre retrait-argent(P,s) require ¬estVaincu(P) ∧ s&gt;0 <br/>
+
+</li>
+</ul>
+</li>
+<li id="sec-1.5.5">ramasser : [Personnage] × Objet → [Personnage] <br/>
+<ul>
+<li id="sec-1.5.5.1">pre ramasser(P,s) require ¬estVaincu(P) ∧ ¬estEquipe(P) <br/>
+</li>
+</ul>
+</li>
+<li id="sec-1.5.6">jeter : [Personnage]  → [Personnage] <br/>
+<ul>
+<li id="sec-1.5.6.1">pre jeter(P,s) require ¬estVaincu(P) ∧ estEquipe(P) <br/>
+
+
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-1.6" class="outline-3">
+<h3 id="sec-1.6"><span class="section-number-3">1.6</span> Observations : </h3>
+<div class="outline-text-3" id="text-1.6">
+
+
+</div>
+
+<div id="outline-container-1.6.1" class="outline-4">
+<h4 id="sec-1.6.1"><span class="section-number-4">1.6.1</span> [invariants] </h4>
+<div class="outline-text-4" id="text-1.6.1">
+
+<ul>
+<li id="sec-1.6.1.1">estVaincu(P) =(min) pointsDeVie(P) ≤ 0 <br/>
+
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-1.6.2" class="outline-4">
+<h4 id="sec-1.6.2"><span class="section-number-4">1.6.2</span> [init] </h4>
+<div class="outline-text-4" id="text-1.6.2">
+
+<ul>
+<li id="sec-1.6.2.1">nom(init(n,l,h,p,f,pv)) = n <br/>
+</li>
+<li id="sec-1.6.2.2">largeur(init(n,l,h,p,f,pv)) = l <br/>
+</li>
+<li id="sec-1.6.2.3">hauteur(init(n,l,h,p,f,pv)) = h <br/>
+</li>
+<li id="sec-1.6.2.4">profondeur(init(n,l,h,p,f,pv)) = p <br/>
+</li>
+<li id="sec-1.6.2.5">force(init(n,l,h,p,f,pv)) = f <br/>
+</li>
+<li id="sec-1.6.2.6">pointsDeVie(init(n,l,h,p,f,pv)) = pv <br/>
+</li>
+<li id="sec-1.6.2.7">sommeArgent(init(n,l,h,p,f,pv)) = 0 <br/>
+</li>
+<li id="sec-1.6.2.8">estEquipe(init(n,l,h,p,f,pv)) = false <br/>
+
+
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-1.6.3" class="outline-4">
+<h4 id="sec-1.6.3"><span class="section-number-4">1.6.3</span> [retrait-pdv] </h4>
+<div class="outline-text-4" id="text-1.6.3">
+
+<ul>
+<li id="sec-1.6.3.1">pointsDeVie(retrait-pdv(P,s)) = pointsDeVie(P) - s <br/>
+</li>
+<li id="sec-1.6.3.2">sommeArgent(retrait-pdv(P,s)) = sommeArgent(P) <br/>
+</li>
+<li id="sec-1.6.3.3">estEquipe(retrait-pdv(P,s)) = estEquipe(P) <br/>
+</li>
+<li id="sec-1.6.3.4">laChoseEquipee(retrait-pdv(P,s)) = laChoseEquipee(P) <br/>
+
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-1.6.4" class="outline-4">
+<h4 id="sec-1.6.4"><span class="section-number-4">1.6.4</span> [depot-pdv] </h4>
+<div class="outline-text-4" id="text-1.6.4">
+
+<ul>
+<li id="sec-1.6.4.1">pointsDeVie(depot-pdv(P,s)) = pointsDeVie(P) + s <br/>
+</li>
+<li id="sec-1.6.4.2">sommeArgent(depot-pdv(P,s)) = sommeArgent(P) <br/>
+</li>
+<li id="sec-1.6.4.3">estEquipe(depot-pdv(P,s)) = estEquipe(P) <br/>
+</li>
+<li id="sec-1.6.4.4">laChoseEquipee(depot-pdv(P,s)) = laChoseEquipee(P) <br/>
+
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-1.6.5" class="outline-4">
+<h4 id="sec-1.6.5"><span class="section-number-4">1.6.5</span> [retrait-argent] </h4>
+<div class="outline-text-4" id="text-1.6.5">
+
+<ul>
+<li id="sec-1.6.5.1">sommeArgent(retrait-argent(P,s)) = sommeArgent(P) - s <br/>
+</li>
+<li id="sec-1.6.5.2">pointsDeVie(retrait-argent(P,s)) = pointsDeVie(P) <br/>
+</li>
+<li id="sec-1.6.5.3">estEquipe(retrait-argent(P,s)) = estEquipe(P) <br/>
+</li>
+<li id="sec-1.6.5.4">laChoseEquipee(retrait-argent(P,s)) = laChoseEquipee(P) <br/>
+
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-1.6.6" class="outline-4">
+<h4 id="sec-1.6.6"><span class="section-number-4">1.6.6</span> [depot-argent] </h4>
+<div class="outline-text-4" id="text-1.6.6">
+
+<ul>
+<li id="sec-1.6.6.1">sommeArgent(depot-argent(P,s)) = sommeArgent(P) + s <br/>
+</li>
+<li id="sec-1.6.6.2">pointsDeVie(depot-argent(P,s)) = pointsDeVie(P) <br/>
+</li>
+<li id="sec-1.6.6.3">estEquipe(depot-argent(P,s)) = estEquipe(P) <br/>
+</li>
+<li id="sec-1.6.6.4">laChoseEquipee(depot-argent(P,s)) = laChoseEquipee(P) <br/>
+
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-1.6.7" class="outline-4">
+<h4 id="sec-1.6.7"><span class="section-number-4">1.6.7</span> [ramasser] </h4>
+<div class="outline-text-4" id="text-1.6.7">
+
+<ul>
+<li id="sec-1.6.7.1">estEquipe(ramasser(P,o)) = true <br/>
+</li>
+<li id="sec-1.6.7.2">laChoseEquipee(ramasser(P,o)) = o <br/>
+</li>
+<li id="sec-1.6.7.3">sommeArgent(ramasser(P,o)) = sommeArgent(P) <br/>
+</li>
+<li id="sec-1.6.7.4">pointsDeVie(ramasser(P,o)) = pointsDeVie(P) <br/>
+
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-1.6.8" class="outline-4">
+<h4 id="sec-1.6.8"><span class="section-number-4">1.6.8</span> [jeter] </h4>
+<div class="outline-text-4" id="text-1.6.8">
+
+<ul>
+<li id="sec-1.6.8.1">estEquipe(jeter(P,o)) = false <br/>
+</li>
+<li id="sec-1.6.8.2">sommeArgent(jeter(P,o)) = sommeArgent(P) <br/>
+</li>
+<li id="sec-1.6.8.3">pointsDeVie(jeter(P,o)) = pointsDeVie(P) <br/>
+
+
+
+
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble">
+<p class="author"> Author: COQUART KEVIN
+<a href="mailto:3000976@ari-31-303-10.infop6.jussieu.fr">&lt;3000976@ari-31-303-10.infop6.jussieu.fr&gt;</a>
+</p>
+<p class="date"> Date: 2014-03-17 11:41:55 CET</p>
+<p class="creator">HTML generated by org-mode 6.33x in emacs 23</p>
+</div>
+</div>
+</body>
+</html>

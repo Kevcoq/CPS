@@ -1,0 +1,94 @@
+* Personnage
+** service : Personnage
+** use : Objet
+** types : String, int, boolean
+
+
+** observators :
+**** const nom : [Personnage] → String
+**** const largeur : [Personnage] → int
+**** const hauteur : [Personnage] → int
+**** const profondeur : [Personnage] → int
+**** const force : [Personnage] → int
+**** pointsDeVie : [Personnage] → int
+**** sommeArgent : [Personnage] → int
+**** estVaincu : [Personnage] → boolean
+**** estEquipe : [Personnage] → boolean
+**** laChoseEquipee : [Personnage] → Objet
+***** pre laChoseEquipee(P) require estEquipe(P)
+
+** Constructors :
+**** init : String × int × int × int × int x int → [Personnage]
+***** pre init(nom,largeur,hauteur,profondeur,force,pointsVie) require nom ≠ "" ∧ largeur > 0 ∧ hauteur > 0 ∧ profondeur > 0 ∧ 0 < force < pointsVie
+
+
+** Operators :
+**** retrait-pdv : [Personnage] × int → [Personnage]
+***** pre retrait-pdv(P,s) require ¬estVaincu(P) ∧ s > 0
+**** depot-pdv : [Personnage] × int → [Personnage]
+***** pre depot-pdv(P,s) require ¬estVaincu(P) ∧ s > 0
+
+**** retrait-argent : [Personnage] × int → [Personnage]
+***** pre retrait-argent(P,s) require ¬estVaincu(P) ∧ s > 0
+**** depot-argent : [Personnage] × int → [Personnage]
+***** pre retrait-argent(P,s) require ¬estVaincu(P) ∧ s > 0
+
+**** ramasser : [Personnage] × Objet → [Personnage]
+***** pre ramasser(P,s) require ¬estVaincu(P) ∧ ¬estEquipe(P)
+**** jeter : [Personnage]  → [Personnage]
+***** pre jeter(P,s) require ¬estVaincu(P) ∧ estEquipe(P)
+
+
+** Observations :
+*** [invariants]
+**** estVaincu(P) =(min) pointsDeVie(P) ≤ 0
+
+*** [init]
+**** nom(init(n,l,h,p,f,pv)) = n
+**** largeur(init(n,l,h,p,f,pv)) = l
+**** hauteur(init(n,l,h,p,f,pv)) = h
+**** profondeur(init(n,l,h,p,f,pv)) = p
+**** force(init(n,l,h,p,f,pv)) = f
+**** pointsDeVie(init(n,l,h,p,f,pv)) = pv
+**** sommeArgent(init(n,l,h,p,f,pv)) = 0
+**** estEquipe(init(n,l,h,p,f,pv)) = false
+
+
+*** [retrait-pdv]
+**** pointsDeVie(retrait-pdv(P,s)) = pointsDeVie(P) - s
+**** sommeArgent(retrait-pdv(P,s)) = sommeArgent(P)
+**** estEquipe(retrait-pdv(P,s)) = estEquipe(P)
+**** laChoseEquipee(retrait-pdv(P,s)) = laChoseEquipee(P)
+
+*** [depot-pdv]
+**** pointsDeVie(depot-pdv(P,s)) = pointsDeVie(P) + s
+**** sommeArgent(depot-pdv(P,s)) = sommeArgent(P)
+**** estEquipe(depot-pdv(P,s)) = estEquipe(P)
+**** laChoseEquipee(depot-pdv(P,s)) = laChoseEquipee(P)
+
+*** [retrait-argent]
+**** sommeArgent(retrait-argent(P,s)) = sommeArgent(P) - s
+**** pointsDeVie(retrait-argent(P,s)) = pointsDeVie(P)
+**** estEquipe(retrait-argent(P,s)) = estEquipe(P)
+**** laChoseEquipee(retrait-argent(P,s)) = laChoseEquipee(P)
+
+*** [depot-argent]
+**** sommeArgent(depot-argent(P,s)) = sommeArgent(P) + s
+**** pointsDeVie(depot-argent(P,s)) = pointsDeVie(P)
+**** estEquipe(depot-argent(P,s)) = estEquipe(P)
+**** laChoseEquipee(depot-argent(P,s)) = laChoseEquipee(P)
+
+*** [ramasser]
+**** estEquipe(ramasser(P,o)) = true
+**** laChoseEquipee(ramasser(P,o)) = o
+**** sommeArgent(ramasser(P,o)) = sommeArgent(P)
+**** pointsDeVie(ramasser(P,o)) = pointsDeVie(P)
+
+*** [jeter]
+**** estEquipe(jeter(P,o)) = false
+**** sommeArgent(jeter(P,o)) = sommeArgent(P)
+**** pointsDeVie(jeter(P,o)) = pointsDeVie(P)
+
+
+ 
+      
