@@ -1,5 +1,6 @@
 package decorators;
 
+import services.ObjetService;
 import services.PersonnageService;
 
 public abstract class PersonnageDecorator implements PersonnageService {
@@ -41,13 +42,59 @@ public abstract class PersonnageDecorator implements PersonnageService {
 	}
 
 	@Override
-	public void init(String nom, int largeur, int hauteur, int force, int pdv) {
-		personnage.init(nom, largeur, hauteur, force, pdv);
+	public void init(String nom, int largeur, int hauteur, int profondeur,
+			int force, int pdv) {
+		personnage.init(nom, largeur, hauteur, profondeur, force, pdv);
 	}
 
 	@Override
-	public void retrait(int s) {
-		personnage.retrait(s);
+	public void retraitPdv(int s) {
+		personnage.retraitPdv(s);
+	}
+
+	@Override
+	public int profondeur() {
+		return personnage.profondeur();
+	}
+
+	@Override
+	public int sommeArgent() {
+		return personnage.sommeArgent();
+	}
+
+	@Override
+	public boolean estEquipe() {
+		return personnage.estEquipe();
+	}
+
+	@Override
+	public ObjetService laChoseEquipee() {
+		return personnage.laChoseEquipee();
+	}
+
+	@Override
+	public void depotPdv(int s) {
+		personnage.depotPdv(s);
+	}
+
+	@Override
+	public void retraitArgent(int s) {
+		personnage.retraitArgent(s);
+	}
+
+	@Override
+	public void depotArgent(int s) {
+		personnage.depotArgent(s);
+	}
+
+	@Override
+	public void ramasser(ObjetService o) {
+		personnage.ramasser(o);
+	}
+
+	@Override
+	public void jeter() {
+		personnage.jeter();
 	}
 
 }
