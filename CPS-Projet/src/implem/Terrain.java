@@ -2,7 +2,15 @@ package implem;
 
 import services.BlocService;
 import services.TerrainService;
+import enumeration.TYPE_Bloc;
+import enumeration.TYPE_Tresor;
 
+/**
+ * Implem du Terrain
+ * 
+ * @author Kevin & Quentin
+ * 
+ */
 public class Terrain implements TerrainService {
 	private int largeur;
 	private int hauteur;
@@ -34,8 +42,31 @@ public class Terrain implements TerrainService {
 		this.largeur = largeur;
 		this.hauteur = hauteur;
 		this.profondeur = profondeur;
-		// TODO
-		for(int i = 0; i < largeur; i++);
+
+		// On parcourt la map
+		for (int i = 0; i < largeur / Bloc.largeur; i++) {
+			for (int j = 0; j < hauteur / Bloc.hauteur; j++) {
+				for (int k = 0; k < profondeur / Bloc.profondeur; k++) {
+					// on creer un bloc
+					Bloc b = new Bloc();
+
+					if (Math.random() < 0.15) {
+						// on initialise le bloc en fosse
+						b.init(TYPE_Bloc.FOSSE);
+					} else if (Math.random() < 0.25) {
+						// on initialise le bloc en vide + tresor
+						TYPE_Tresor tresor[] = TYPE_Tresor.values();
+						b.init(TYPE_Bloc.VIDE,
+								tresor[(int) (Math.random() * tresor.length)]);
+					} else {
+						// on initialise le bloc en vide
+						b.init(TYPE_Bloc.VIDE);
+					}
+					// on ajoute le bloc a la map
+					map[i][j][k] = b;
+				}
+			}
+		}
 	}
 
 }

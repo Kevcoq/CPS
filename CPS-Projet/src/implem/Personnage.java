@@ -3,6 +3,12 @@ package implem;
 import services.ObjetService;
 import services.PersonnageService;
 
+/**
+ * Implem du Personnage
+ * 
+ * @author Kevin & Quentin
+ * 
+ */
 public class Personnage implements PersonnageService {
 
 	private String nom;
@@ -13,9 +19,6 @@ public class Personnage implements PersonnageService {
 	private int pdv;
 	private int argent;
 	private ObjetService obj;
-
-	public Personnage() {
-	}
 
 	@Override
 	public String nom() {

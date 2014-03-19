@@ -17,11 +17,11 @@
 **** init : TYPE_Bloc → [Bloc]
 
 ** Operators :
-**** ramasser-tresor : [Bloc] → Objet
-***** pre ramasser-tresor(B) require aTresor(B)
+**** ramasserTresor : [Bloc] → Objet
+***** pre ramasserTresor(B) require aTresor(B)
 
-**** deposer-tresor : [Bloc] × Objet → [Bloc]
-***** pre deposer-tresor(B,o) require ¬aTresor(B)
+**** deposerTresor : [Bloc] × Objet → [Bloc]
+***** pre deposerTresor(B,o) require ¬aTresor(B)
 
 
 ** Observations : 
@@ -30,23 +30,20 @@
 
 *** [init]
 **** largeur(init(b,t)) = 10
-**** largeur(init(b)) = 10
-
 **** hauteur(init(b,t)) = 10
-**** hauteur(init(b)) = 10
-
 **** profondeur(init(b,t)) = 10
-**** profondeur(init(b)) = 10
-
 **** typeBloc(init(b,t)) = b
-**** typeBloc(init(b)) = b
-
 **** typeTresor(init(b,t)) = t
+
+**** largeur(init(b)) = 10
+**** hauteur(init(b)) = 10
+**** profondeur(init(b)) = 10
+**** typeBloc(init(b)) = b
 **** typeTresor(init(b)) = TYPE_Tresor.RIEN
 
-*** [ramasser-tresor]
-**** typeTresor(ramasser-tresor(B)) = TYPE_Tresor.RIEN
+*** [ramasserTresor]
+**** typeTresor(ramasserTresor(B)) = TYPE_Tresor.RIEN
 
-*** [deposer-tresor]
-**** typeTresor(deposer-tresor(B,t)) = Objet::type(t)
+*** [deposerTresor]
+**** typeTresor(deposerTresor(B,t)) = Objet::type(t)
 

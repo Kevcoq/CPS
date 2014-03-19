@@ -3,6 +3,12 @@ package decorators;
 import services.ObjetService;
 import services.PersonnageService;
 
+/**
+ * Decorator de Personnage
+ * 
+ * @author Kevin & Quentin
+ * 
+ */
 public abstract class PersonnageDecorator implements PersonnageService {
 	private PersonnageService personnage;
 

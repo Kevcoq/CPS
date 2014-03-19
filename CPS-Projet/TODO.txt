@@ -1,0 +1,3 @@
+TERRAIN 	-> contrat pour les observeurs ?
+
+Continuer la spec

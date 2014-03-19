@@ -1,11 +1,11 @@
 package enumeration;
 
 /**
- * resultat
+ * Type des Bloc
  * 
  * @author Kevin & Quentin
  * 
  */
-public enum RESULTAT {
-	WIN, LOSE
+public enum TYPE_Bloc {
+	VIDE, FOSSE
 }

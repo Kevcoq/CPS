@@ -3,8 +3,19 @@ package decorators;
 import services.BlocService;
 import services.TerrainService;
 
+/**
+ * Decorator de Terrain
+ * 
+ * @author Kevin & Quentin
+ * 
+ */
 public abstract class TerrainDecorator implements TerrainService {
 	private TerrainService terrain;
+
+	public TerrainDecorator(TerrainService terrain) {
+		super();
+		this.terrain = terrain;
+	}
 
 	@Override
 	public int largeur() {
