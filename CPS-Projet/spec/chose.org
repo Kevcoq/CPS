@@ -1,0 +1,29 @@
+* Chose
+** service : Chose
+** types : int, boolean
+
+
+** observators :
+**** const bonus : [Chose] → int
+**** estPorte : [Chose] → boolean
+
+** Constructors :
+**** init : int → [Chose]
+
+** Operators :
+**** estRamasse : [Chose] → [Chose]
+***** pre estRamasse(C) require ¬estPorte(C)
+
+**** estJete : [Chose] → [Chose] 
+***** pre estJete(C) require estPorte(C)
+
+** Observations :
+*** [init]
+**** bonus(init(b)) = b
+**** estPorte(init(b)) = false
+
+*** [estRamasse]
+**** estPorte(estRamasse(C)) = true
+
+*** [estJete]
+**** estPorte(estJete(C)) = false

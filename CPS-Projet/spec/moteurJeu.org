@@ -1,0 +1,23 @@
+* MoteurJeu
+** service : MoteurJeu
+** use : GestionCombat
+** types : String, int, boolean, enum FIN {GAGNEE, PERDUE, NULLE}, enum COMMANDE { ... }
+
+** observators :
+**** const pasJeuMax : [MoteurJeu] → int
+**** pasJeuCourant : [MoteurJeu] → int
+**** estFini : [MoteurJeu] → boolean
+**** resultatFinal : [MoteurJeu] → FIN
+**** gestionCombat : [MoteurJeu] → GestionCombat
+
+** Constructors :
+**** init : int × int × int × int → [MoteurJeu]
+***** pre init(largeur, hauteur, profondeur, maxPas) require largeur > 0 ∧ hauteur > 0 ∧ profondeur > 0 ∧ maxPas > 0
+
+** Operators :
+**** pasJeu : [MoteurJeu] × COMMANDE × COMMANDE → [MoteurJeu]
+***** pre pasJeu(M, Calex, Cryan) require ¬estFini(M)
+
+**** pasJeu : [MoteurJeu] × String × COMMANDE → [MoteurJeu]
+***** pre pasJeu(M, nom, C) require ¬estFini(M) ∧ nom = ("Alex" ∨ "Ryan")
+

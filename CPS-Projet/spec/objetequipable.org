@@ -1,0 +1,8 @@
+* ObjetEquipable
+** service : ObjetEquipable
+** refine : Chose, Objet
+** types : String
+
+** Constructors :
+**** init : String × int → [ObjetEquipable]
+***** pre init(nom) require nom ≠ ""

@@ -1,6 +1,6 @@
 * Personnage
 ** service : Personnage
-** use : Objet
+** refine : Chose
 ** types : String, int, boolean
 
 
@@ -14,13 +14,13 @@
 **** sommeArgent : [Personnage] → int
 **** estVaincu : [Personnage] → boolean
 **** estEquipe : [Personnage] → boolean
-**** laChoseEquipee : [Personnage] → Objet
+**** laChoseEquipee : [Personnage] → Chose
 ***** pre laChoseEquipee(P) require estEquipe(P)
 
 ** Constructors :
 **** init : String × int × int × int × int x int → [Personnage]
 ***** pre init(nom,largeur,hauteur,profondeur,force,pointsVie) require nom ≠ "" ∧ largeur > 0 ∧ hauteur > 0 ∧ profondeur > 0 ∧ 0 < force < pointsVie
-
+****** le bonus du service Chose est un % de la force
 
 ** Operators :
 **** retraitPdv : [Personnage] × int → [Personnage]
@@ -33,10 +33,10 @@
 **** depotArgent : [Personnage] × int → [Personnage]
 ***** pre depotArgent(P,s) require ¬estVaincu(P) ∧ s > 0
 
-**** ramasser : [Personnage] × Objet → [Personnage]
-***** pre ramasser(P,o) require ¬estVaincu(P) ∧ ¬estEquipe(P)
+**** ramasser : [Personnage] × Chose → [Personnage]
+***** pre ramasser(P,o) require ¬estVaincu(P) ∧ ¬estEquipe(P) ∧ ¬estPorte(P)
 **** jeter : [Personnage]  → [Personnage]
-***** pre jeter(P) require ¬estVaincu(P) ∧ estEquipe(P)
+***** pre jeter(P) require ¬estVaincu(P) ∧ estEquipe(P) ∧ ¬estPorte(P)
 
 
 ** Observations :
@@ -79,10 +79,10 @@
 **** laChoseEquipee(depotArgent(P,s)) = laChoseEquipee(P)
 
 *** [ramasser]
-**** estEquipe(ramasser(P,o)) = true
-**** laChoseEquipee(ramasser(P,o)) = o
-**** sommeArgent(ramasser(P,o)) = sommeArgent(P)
-**** pointsDeVie(ramasser(P,o)) = pointsDeVie(P)
+**** estEquipe(ramasser(P,c)) = true
+**** laChoseEquipee(ramasser(P,c)) = c
+**** sommeArgent(ramasser(P,c)) = sommeArgent(P)
+**** pointsDeVie(ramasser(P,c)) = pointsDeVie(P)
 
 *** [jeter]
 **** estEquipe(jeter(P)) = false
