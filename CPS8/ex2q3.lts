@@ -1,0 +1,4 @@
+CH = (prepare -> pret -> Attendre),
+Attendre = (reveil -> CH).
+
+||Assemblage = (CH/{prepareA/prepare} || CH/{prepareB/prepare})\{pret, reveil}.

@@ -1,0 +1,7 @@
+CHA = (prepareA -> pret -> AttendreA),
+AttendreA = (reveil -> CHA).
+
+CHB = (prepareB -> pret -> AttendreB),
+AttendreB = (reveil -> CHB).
+
+||Assemblage = (CHA || CHB).

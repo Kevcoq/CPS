@@ -1,0 +1,6 @@
+Client = (call->wait->run->Client).
+Server = (request->service->reply->Server).
+
+
+
+||System = (Server || Client/{request/call, reply/wait}).

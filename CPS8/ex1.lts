@@ -1,0 +1,14 @@
+CAFE = (piece -> BOISSON),
+BOISSON = (the -> SERVI
+		| cafe -> SERVI),
+SERVI = (attraper-> CAFE).	
+
+
+EXPRESSO = (piece -> BOISSON
+			| piece -> PANNE),
+BOISSON = (the -> SERVI
+		| cafe -> SERVI
+		| the -> PANNE
+		| cafe -> PANNE),
+PANNE = (reparer -> EXPRESSO),
+SERVI = (attraper-> EXPRESSO).

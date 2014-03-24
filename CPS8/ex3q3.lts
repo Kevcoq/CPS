@@ -1,0 +1,19 @@
+Client = (call->wait->run->Client).
+
+const N = 3  // nb de clients
+range T = 1..N    // indices pour chaque client
+
+
+Service = (c[i].start->Service[i]),
+Service[i:T] = (c[i].deliver->c[i].end->Service).
+
+
+||Clients = (c[i:T]:(Client/{request/call,end/wait})).
+
+
+MServer = (c[i:T].request->MServer[i]),
+MServer[i:T] = (c[i].start -> MServer).
+//MServer[i:T] = (c[i].start->c[i].end->c[i].reply->MServer).
+
+
+||System = (MServer || Clients)\{c[i:T].start,c[i:T].end}.
