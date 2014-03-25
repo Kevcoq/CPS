@@ -1,6 +1,6 @@
 * Bloc
 ** service : Bloc
-** use : Objet
+** use : [[file:objet.org][Objet]]
 ** types : int, boolean, enum TYPE_Bloc {VIDE, FOSSE}, enum TYPE_Tresor {RIEN, DIXDOLLAR, CINQDOLLAR, CHAINEVELO, POUBELLEMETALLIQUE}
 
 ** observators :

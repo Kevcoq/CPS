@@ -1,14 +1,15 @@
 * MoteurJeu
 ** service : MoteurJeu
-** use : GestionCombat
-** types : String, int, boolean, enum FIN {GAGNEE, PERDUE, NULLE}, enum COMMANDE { ... }
-
+** use : [[file:gestionCombat.org][GestionCombat]]
+** types : String, int, boolean, enum FIN {GAGNEE, PERDUE, NULLE}, enum COMMANDE {RIEN, GAUCHE, DROITE, HAUT, BAS, SAUTER, FRAPPE, JETER, RAMASSER}
+   
 ** observators :
-**** const pasJeuMax : [MoteurJeu] → int
+**** const maxPasJeu : [MoteurJeu] → int
 **** pasJeuCourant : [MoteurJeu] → int
 **** estFini : [MoteurJeu] → boolean
 **** resultatFinal : [MoteurJeu] → FIN
-**** gestionCombat : [MoteurJeu] → GestionCombat
+***** pre resultatFinal(M) require estFini(M)
+**** combat : [MoteurJeu] → GestionCombat
 
 ** Constructors :
 **** init : int × int × int × int → [MoteurJeu]
@@ -16,8 +17,34 @@
 
 ** Operators :
 **** pasJeu : [MoteurJeu] × COMMANDE × COMMANDE → [MoteurJeu]
-***** pre pasJeu(M, Calex, Cryan) require ¬estFini(M)
+***** pre pasJeu(M, comAlex, comRyan) require ¬estFini(M) ∧ comAlex ∈ COMMANDE ∧ comRyan ∈ COMMANDE
 
 **** pasJeu : [MoteurJeu] × String × COMMANDE → [MoteurJeu]
-***** pre pasJeu(M, nom, C) require ¬estFini(M) ∧ nom = ("Alex" ∨ "Ryan")
+***** pre pasJeu(M, nom, com) require ¬estFini(M) ∧ nom = ("Alex" ∨ "Ryan") ∧ com ∈ COMMANDE
 
+
+
+
+** Observations :
+*** [invariants]
+**** 0 ⩽ pasJeuCourant(M) ⩽ maxPasJeu(M)
+**** estFini(M) =min (Personnage::estVaincu(GestionCombat::alex(combat(M))) ∧ Personnage::estVaincu(GestionCombat::ryan(combat(M)))) ∨ Personnage::estVaincu(GestionCombat::slick(combat(M))) ∨ pasJeuCourant(M)=maxPasJeu(M))
+**** resultatFinal(M) =min
+***** GAGNEE si Personnage::estVaincu(GestionCombat::slick(combat(M))) ∧ ¬(Personnage::estVaincu(GestionCombat::alex(combat(M))) ∧ Personnage::estVaincu(GestionCombat::ryan(combat(M))))
+***** PERDUE si ¬Personnage::estVaincu(GestionCombat::slick(combat(M))) ∧ (Personnage::estVaincu(GestionCombat::alex(combat(M))) ∧ Personnage::estVaincu(GestionCombat::ryan(combat(M))))
+***** NULLE sinon
+
+*** [init]
+**** maxPasJeu(init(l,h,p,m))=m
+**** pasJeuCourant(init(l,h,p,m))=0
+**** combat(init(l,h,p,m))=GestionCombat::init(l,h,p)
+
+*** [pasJeu]
+**** pasJeuCourant(pasJeu(M,cA,cR))=pasJeuCourant(M) +1
+**** combat(pasJeu(M,cA,cR))=GestionCombat::gerer(combat(M),Map<String,COMMANDE>)
+***** avec put("Alex", cA) ∧ put("Ryan", cR) ∧ ∀i [0...GestionCombat::mPerso(combat(M)).size()-2] put(name, RandomCmd)
+
+**** pasJeuCourant(pasJeu(M,n,c))=pasJeuCourant(M) +1
+**** combat(pasJeu(M,n,c))=
+***** si (n == "Alex") alors combat(pasJeu(M,c,RIEN))
+***** sinon combat(pasJeu(M,RIEN,c))

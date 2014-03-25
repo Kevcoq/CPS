@@ -7,7 +7,7 @@ lang="en" xml:lang="en">
 <title>personnage</title>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2014-03-17 11:41:55 CET"/>
+<meta name="generated" content="2014-03-25 14:25:43 CET"/>
 <meta name="author" content="COQUART KEVIN"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -80,20 +80,21 @@ lang="en" xml:lang="en">
 <li><a href="#sec-1">1 Personnage </a>
 <ul>
 <li><a href="#sec-1.1">1.1 service : Personnage </a></li>
-<li><a href="#sec-1.2">1.2 types : String, int, boolean, Objet </a></li>
-<li><a href="#sec-1.3">1.3 observators : </a></li>
-<li><a href="#sec-1.4">1.4 Constructors : </a></li>
-<li><a href="#sec-1.5">1.5 Operators : </a></li>
-<li><a href="#sec-1.6">1.6 Observations : </a>
+<li><a href="#sec-1.2">1.2 refine : Chose </a></li>
+<li><a href="#sec-1.3">1.3 types : String, int, boolean </a></li>
+<li><a href="#sec-1.4">1.4 observators : </a></li>
+<li><a href="#sec-1.5">1.5 Constructors : </a></li>
+<li><a href="#sec-1.6">1.6 Operators : </a></li>
+<li><a href="#sec-1.7">1.7 Observations : </a>
 <ul>
-<li><a href="#sec-1.6.1">1.6.1 [invariants] </a></li>
-<li><a href="#sec-1.6.2">1.6.2 [init] </a></li>
-<li><a href="#sec-1.6.3">1.6.3 [retrait-pdv] </a></li>
-<li><a href="#sec-1.6.4">1.6.4 [depot-pdv] </a></li>
-<li><a href="#sec-1.6.5">1.6.5 [retrait-argent] </a></li>
-<li><a href="#sec-1.6.6">1.6.6 [depot-argent] </a></li>
-<li><a href="#sec-1.6.7">1.6.7 [ramasser] </a></li>
-<li><a href="#sec-1.6.8">1.6.8 [jeter] </a></li>
+<li><a href="#sec-1.7.1">1.7.1 [invariants] </a></li>
+<li><a href="#sec-1.7.2">1.7.2 [init] </a></li>
+<li><a href="#sec-1.7.3">1.7.3 [retraitPdv] </a></li>
+<li><a href="#sec-1.7.4">1.7.4 [depotPdv] </a></li>
+<li><a href="#sec-1.7.5">1.7.5 [retraitArgent] </a></li>
+<li><a href="#sec-1.7.6">1.7.6 [depotArgent] </a></li>
+<li><a href="#sec-1.7.7">1.7.7 [ramasser] </a></li>
+<li><a href="#sec-1.7.8">1.7.8 [jeter] </a></li>
 </ul>
 </li>
 </ul>
@@ -118,59 +119,49 @@ lang="en" xml:lang="en">
 </div>
 
 <div id="outline-container-1.2" class="outline-3">
-<h3 id="sec-1.2"><span class="section-number-3">1.2</span> types : String, int, boolean, Objet </h3>
+<h3 id="sec-1.2"><span class="section-number-3">1.2</span> refine : <a href="#chose.org">Chose</a> </h3>
 <div class="outline-text-3" id="text-1.2">
-
-
 
 </div>
 
 </div>
 
 <div id="outline-container-1.3" class="outline-3">
-<h3 id="sec-1.3"><span class="section-number-3">1.3</span> observators : </h3>
+<h3 id="sec-1.3"><span class="section-number-3">1.3</span> types : String, int, boolean </h3>
 <div class="outline-text-3" id="text-1.3">
 
-<ul>
-<li id="sec-1.3.1">const nom : [Personnage] → String <br/>
-</li>
-<li id="sec-1.3.2">const largeur : [Personnage] → int <br/>
-</li>
-<li id="sec-1.3.3">const hauteur : [Personnage] → int <br/>
-</li>
-<li id="sec-1.3.4">const profondeur : [Personnage] → int <br/>
-</li>
-<li id="sec-1.3.5">const force : [Personnage] → int <br/>
-</li>
-<li id="sec-1.3.6">pointsDeVie : [Personnage] → int <br/>
-</li>
-<li id="sec-1.3.7">sommeArgent : [Personnage] → int <br/>
-</li>
-<li id="sec-1.3.8">estVaincu : [Personnage] → boolean <br/>
-</li>
-<li id="sec-1.3.9">estEquipe : [Personnage] → boolean <br/>
-</li>
-<li id="sec-1.3.10">laChoseEquipee : [Personnage] → Objet <br/>
-<ul>
-<li id="sec-1.3.10.1">pre laChoseEquipee(P) require estEquipe(P) <br/>
 
-</li>
-</ul>
-</li>
-</ul>
+
 </div>
 
 </div>
 
 <div id="outline-container-1.4" class="outline-3">
-<h3 id="sec-1.4"><span class="section-number-3">1.4</span> Constructors : </h3>
+<h3 id="sec-1.4"><span class="section-number-3">1.4</span> observators : </h3>
 <div class="outline-text-3" id="text-1.4">
 
 <ul>
-<li id="sec-1.4.1">init : String × int × int × int × int x int → [Personnage] <br/>
+<li id="sec-1.4.1">const nom : [Personnage] → String <br/>
+</li>
+<li id="sec-1.4.2">const largeur : [Personnage] → int <br/>
+</li>
+<li id="sec-1.4.3">const hauteur : [Personnage] → int <br/>
+</li>
+<li id="sec-1.4.4">const profondeur : [Personnage] → int <br/>
+</li>
+<li id="sec-1.4.5">const force : [Personnage] → int <br/>
+</li>
+<li id="sec-1.4.6">pointsDeVie : [Personnage] → int <br/>
+</li>
+<li id="sec-1.4.7">sommeArgent : [Personnage] → int <br/>
+</li>
+<li id="sec-1.4.8">estVaincu : [Personnage] → boolean <br/>
+</li>
+<li id="sec-1.4.9">estEquipe : [Personnage] → boolean <br/>
+</li>
+<li id="sec-1.4.10">laChoseEquipee : [Personnage] → Chose <br/>
 <ul>
-<li id="sec-1.4.1.1">pre init(nom,largeur,hauteur,profondeur,force,pointsVie) require nom != "" ∧ largeur &gt; 0 ∧ hauteur &gt; 0 ∧ profondeur &gt; 0 ∧ 0 &lt; force &lt; pointsVie <br/>
-
+<li id="sec-1.4.10.1">pre laChoseEquipee(P) require estEquipe(P) <br/>
 
 </li>
 </ul>
@@ -181,47 +172,18 @@ lang="en" xml:lang="en">
 </div>
 
 <div id="outline-container-1.5" class="outline-3">
-<h3 id="sec-1.5"><span class="section-number-3">1.5</span> Operators : </h3>
+<h3 id="sec-1.5"><span class="section-number-3">1.5</span> Constructors : </h3>
 <div class="outline-text-3" id="text-1.5">
 
 <ul>
-<li id="sec-1.5.1">retrait-pdv : [Personnage] × int → [Personnage] <br/>
+<li id="sec-1.5.1">init : String × int × int × int × int x int → [Personnage] <br/>
 <ul>
-<li id="sec-1.5.1.1">pre retrait-pdv(P,s) require ¬estVaincu(P) ∧ s&gt;0 <br/>
-</li>
-</ul>
-</li>
-<li id="sec-1.5.2">depot-pdv : [Personnage] x int → [Personnage] <br/>
+<li id="sec-1.5.1.1">pre init(nom,largeur,hauteur,profondeur,force,pointsVie) require nom ≠ "" ∧ largeur &gt; 0 ∧ hauteur &gt; 0 ∧ profondeur &gt; 0 ∧ 0 &lt; force &lt; pointsVie <br/>
 <ul>
-<li id="sec-1.5.2.1">pre depot-pdv(P,s) require ¬estVaincu(P) ∧ s&gt;0 <br/>
+<li id="sec-1.5.1.1.1">le bonus du service Chose est un % de la force <br/>
 
 </li>
 </ul>
-</li>
-<li id="sec-1.5.3">retrait-argent : [Personnage] × int → [Personnage] <br/>
-<ul>
-<li id="sec-1.5.3.1">pre retrait-argent(P,s) require ¬estVaincu(P) ∧ s&gt;0 <br/>
-</li>
-</ul>
-</li>
-<li id="sec-1.5.4">depot-argent : [Personnage] × int → [Personnage] <br/>
-<ul>
-<li id="sec-1.5.4.1">pre retrait-argent(P,s) require ¬estVaincu(P) ∧ s&gt;0 <br/>
-
-</li>
-</ul>
-</li>
-<li id="sec-1.5.5">ramasser : [Personnage] × Objet → [Personnage] <br/>
-<ul>
-<li id="sec-1.5.5.1">pre ramasser(P,s) require ¬estVaincu(P) ∧ ¬estEquipe(P) <br/>
-</li>
-</ul>
-</li>
-<li id="sec-1.5.6">jeter : [Personnage]  → [Personnage] <br/>
-<ul>
-<li id="sec-1.5.6.1">pre jeter(P,s) require ¬estVaincu(P) ∧ estEquipe(P) <br/>
-
-
 </li>
 </ul>
 </li>
@@ -231,18 +193,68 @@ lang="en" xml:lang="en">
 </div>
 
 <div id="outline-container-1.6" class="outline-3">
-<h3 id="sec-1.6"><span class="section-number-3">1.6</span> Observations : </h3>
+<h3 id="sec-1.6"><span class="section-number-3">1.6</span> Operators : </h3>
 <div class="outline-text-3" id="text-1.6">
 
+<ul>
+<li id="sec-1.6.1">retraitPdv : [Personnage] × int → [Personnage] <br/>
+<ul>
+<li id="sec-1.6.1.1">pre retraitPdv(P,s) require ¬estVaincu(P) ∧ s &gt; 0 <br/>
+</li>
+</ul>
+</li>
+<li id="sec-1.6.2">depotPdv : [Personnage] × int → [Personnage] <br/>
+<ul>
+<li id="sec-1.6.2.1">pre depotPdv(P,s) require ¬estVaincu(P) ∧ s &gt; 0 <br/>
+
+</li>
+</ul>
+</li>
+<li id="sec-1.6.3">retraitArgent : [Personnage] × int → [Personnage] <br/>
+<ul>
+<li id="sec-1.6.3.1">pre retraitArgent(P,s) require ¬estVaincu(P) ∧ s &gt; 0 ∧ s &lt; sommeArgent(P) <br/>
+</li>
+</ul>
+</li>
+<li id="sec-1.6.4">depotArgent : [Personnage] × int → [Personnage] <br/>
+<ul>
+<li id="sec-1.6.4.1">pre depotArgent(P,s) require ¬estVaincu(P) ∧ s &gt; 0 ∧ ¬estPorte(P) <br/>
+
+</li>
+</ul>
+</li>
+<li id="sec-1.6.5">ramasser : [Personnage] × Chose → [Personnage] <br/>
+<ul>
+<li id="sec-1.6.5.1">pre ramasser(P,o) require ¬estVaincu(P) ∧ ¬estEquipe(P) ∧ ¬estPorte(P) <br/>
+</li>
+</ul>
+</li>
+<li id="sec-1.6.6">jeter : [Personnage]  → [Personnage] <br/>
+<ul>
+<li id="sec-1.6.6.1">pre jeter(P) require ¬estVaincu(P) ∧ estEquipe(P) ∧ ¬estPorte(P) <br/>
+
+
+</li>
+</ul>
+</li>
+</ul>
+</div>
 
 </div>
 
-<div id="outline-container-1.6.1" class="outline-4">
-<h4 id="sec-1.6.1"><span class="section-number-4">1.6.1</span> [invariants] </h4>
-<div class="outline-text-4" id="text-1.6.1">
+<div id="outline-container-1.7" class="outline-3">
+<h3 id="sec-1.7"><span class="section-number-3">1.7</span> Observations : </h3>
+<div class="outline-text-3" id="text-1.7">
+
+
+</div>
+
+<div id="outline-container-1.7.1" class="outline-4">
+<h4 id="sec-1.7.1"><span class="section-number-4">1.7.1</span> [invariants] </h4>
+<div class="outline-text-4" id="text-1.7.1">
 
 <ul>
-<li id="sec-1.6.1.1">estVaincu(P) =(min) pointsDeVie(P) ≤ 0 <br/>
+<li id="sec-1.7.1.1">estVaincu(P) =(min) pointsDeVie(P) ≤ 0 <br/>
 
 </li>
 </ul>
@@ -250,26 +262,26 @@ lang="en" xml:lang="en">
 
 </div>
 
-<div id="outline-container-1.6.2" class="outline-4">
-<h4 id="sec-1.6.2"><span class="section-number-4">1.6.2</span> [init] </h4>
-<div class="outline-text-4" id="text-1.6.2">
+<div id="outline-container-1.7.2" class="outline-4">
+<h4 id="sec-1.7.2"><span class="section-number-4">1.7.2</span> [init] </h4>
+<div class="outline-text-4" id="text-1.7.2">
 
 <ul>
-<li id="sec-1.6.2.1">nom(init(n,l,h,p,f,pv)) = n <br/>
+<li id="sec-1.7.2.1">nom(init(n,l,h,p,f,pv)) = n <br/>
 </li>
-<li id="sec-1.6.2.2">largeur(init(n,l,h,p,f,pv)) = l <br/>
+<li id="sec-1.7.2.2">largeur(init(n,l,h,p,f,pv)) = l <br/>
 </li>
-<li id="sec-1.6.2.3">hauteur(init(n,l,h,p,f,pv)) = h <br/>
+<li id="sec-1.7.2.3">hauteur(init(n,l,h,p,f,pv)) = h <br/>
 </li>
-<li id="sec-1.6.2.4">profondeur(init(n,l,h,p,f,pv)) = p <br/>
+<li id="sec-1.7.2.4">profondeur(init(n,l,h,p,f,pv)) = p <br/>
 </li>
-<li id="sec-1.6.2.5">force(init(n,l,h,p,f,pv)) = f <br/>
+<li id="sec-1.7.2.5">force(init(n,l,h,p,f,pv)) = f <br/>
 </li>
-<li id="sec-1.6.2.6">pointsDeVie(init(n,l,h,p,f,pv)) = pv <br/>
+<li id="sec-1.7.2.6">pointsDeVie(init(n,l,h,p,f,pv)) = pv <br/>
 </li>
-<li id="sec-1.6.2.7">sommeArgent(init(n,l,h,p,f,pv)) = 0 <br/>
+<li id="sec-1.7.2.7">sommeArgent(init(n,l,h,p,f,pv)) = 0 <br/>
 </li>
-<li id="sec-1.6.2.8">estEquipe(init(n,l,h,p,f,pv)) = false <br/>
+<li id="sec-1.7.2.8">estEquipe(init(n,l,h,p,f,pv)) = false <br/>
 
 
 </li>
@@ -278,18 +290,18 @@ lang="en" xml:lang="en">
 
 </div>
 
-<div id="outline-container-1.6.3" class="outline-4">
-<h4 id="sec-1.6.3"><span class="section-number-4">1.6.3</span> [retrait-pdv] </h4>
-<div class="outline-text-4" id="text-1.6.3">
+<div id="outline-container-1.7.3" class="outline-4">
+<h4 id="sec-1.7.3"><span class="section-number-4">1.7.3</span> [retraitPdv] </h4>
+<div class="outline-text-4" id="text-1.7.3">
 
 <ul>
-<li id="sec-1.6.3.1">pointsDeVie(retrait-pdv(P,s)) = pointsDeVie(P) - s <br/>
+<li id="sec-1.7.3.1">pointsDeVie(retraitPdv(P,s)) = pointsDeVie(P) - s <br/>
 </li>
-<li id="sec-1.6.3.2">sommeArgent(retrait-pdv(P,s)) = sommeArgent(P) <br/>
+<li id="sec-1.7.3.2">sommeArgent(retraitPdv(P,s)) = sommeArgent(P) <br/>
 </li>
-<li id="sec-1.6.3.3">estEquipe(retrait-pdv(P,s)) = estEquipe(P) <br/>
+<li id="sec-1.7.3.3">estEquipe(retraitPdv(P,s)) = estEquipe(P) <br/>
 </li>
-<li id="sec-1.6.3.4">laChoseEquipee(retrait-pdv(P,s)) = laChoseEquipee(P) <br/>
+<li id="sec-1.7.3.4">laChoseEquipee(retraitPdv(P,s)) = laChoseEquipee(P) <br/>
 
 </li>
 </ul>
@@ -297,18 +309,18 @@ lang="en" xml:lang="en">
 
 </div>
 
-<div id="outline-container-1.6.4" class="outline-4">
-<h4 id="sec-1.6.4"><span class="section-number-4">1.6.4</span> [depot-pdv] </h4>
-<div class="outline-text-4" id="text-1.6.4">
+<div id="outline-container-1.7.4" class="outline-4">
+<h4 id="sec-1.7.4"><span class="section-number-4">1.7.4</span> [depotPdv] </h4>
+<div class="outline-text-4" id="text-1.7.4">
 
 <ul>
-<li id="sec-1.6.4.1">pointsDeVie(depot-pdv(P,s)) = pointsDeVie(P) + s <br/>
+<li id="sec-1.7.4.1">pointsDeVie(depotPdv(P,s)) = pointsDeVie(P) + s <br/>
 </li>
-<li id="sec-1.6.4.2">sommeArgent(depot-pdv(P,s)) = sommeArgent(P) <br/>
+<li id="sec-1.7.4.2">sommeArgent(depotPdv(P,s)) = sommeArgent(P) <br/>
 </li>
-<li id="sec-1.6.4.3">estEquipe(depot-pdv(P,s)) = estEquipe(P) <br/>
+<li id="sec-1.7.4.3">estEquipe(depotPdv(P,s)) = estEquipe(P) <br/>
 </li>
-<li id="sec-1.6.4.4">laChoseEquipee(depot-pdv(P,s)) = laChoseEquipee(P) <br/>
+<li id="sec-1.7.4.4">laChoseEquipee(depotPdv(P,s)) = laChoseEquipee(P) <br/>
 
 </li>
 </ul>
@@ -316,18 +328,18 @@ lang="en" xml:lang="en">
 
 </div>
 
-<div id="outline-container-1.6.5" class="outline-4">
-<h4 id="sec-1.6.5"><span class="section-number-4">1.6.5</span> [retrait-argent] </h4>
-<div class="outline-text-4" id="text-1.6.5">
+<div id="outline-container-1.7.5" class="outline-4">
+<h4 id="sec-1.7.5"><span class="section-number-4">1.7.5</span> [retraitArgent] </h4>
+<div class="outline-text-4" id="text-1.7.5">
 
 <ul>
-<li id="sec-1.6.5.1">sommeArgent(retrait-argent(P,s)) = sommeArgent(P) - s <br/>
+<li id="sec-1.7.5.1">sommeArgent(retraitArgent(P,s)) = sommeArgent(P) - s <br/>
 </li>
-<li id="sec-1.6.5.2">pointsDeVie(retrait-argent(P,s)) = pointsDeVie(P) <br/>
+<li id="sec-1.7.5.2">pointsDeVie(retraitArgent(P,s)) = pointsDeVie(P) <br/>
 </li>
-<li id="sec-1.6.5.3">estEquipe(retrait-argent(P,s)) = estEquipe(P) <br/>
+<li id="sec-1.7.5.3">estEquipe(retraitArgent(P,s)) = estEquipe(P) <br/>
 </li>
-<li id="sec-1.6.5.4">laChoseEquipee(retrait-argent(P,s)) = laChoseEquipee(P) <br/>
+<li id="sec-1.7.5.4">laChoseEquipee(retraitArgent(P,s)) = laChoseEquipee(P) <br/>
 
 </li>
 </ul>
@@ -335,18 +347,18 @@ lang="en" xml:lang="en">
 
 </div>
 
-<div id="outline-container-1.6.6" class="outline-4">
-<h4 id="sec-1.6.6"><span class="section-number-4">1.6.6</span> [depot-argent] </h4>
-<div class="outline-text-4" id="text-1.6.6">
+<div id="outline-container-1.7.6" class="outline-4">
+<h4 id="sec-1.7.6"><span class="section-number-4">1.7.6</span> [depotArgent] </h4>
+<div class="outline-text-4" id="text-1.7.6">
 
 <ul>
-<li id="sec-1.6.6.1">sommeArgent(depot-argent(P,s)) = sommeArgent(P) + s <br/>
+<li id="sec-1.7.6.1">sommeArgent(depotArgent(P,s)) = sommeArgent(P) + s <br/>
 </li>
-<li id="sec-1.6.6.2">pointsDeVie(depot-argent(P,s)) = pointsDeVie(P) <br/>
+<li id="sec-1.7.6.2">pointsDeVie(depotArgent(P,s)) = pointsDeVie(P) <br/>
 </li>
-<li id="sec-1.6.6.3">estEquipe(depot-argent(P,s)) = estEquipe(P) <br/>
+<li id="sec-1.7.6.3">estEquipe(depotArgent(P,s)) = estEquipe(P) <br/>
 </li>
-<li id="sec-1.6.6.4">laChoseEquipee(depot-argent(P,s)) = laChoseEquipee(P) <br/>
+<li id="sec-1.7.6.4">laChoseEquipee(depotArgent(P,s)) = laChoseEquipee(P) <br/>
 
 </li>
 </ul>
@@ -354,18 +366,18 @@ lang="en" xml:lang="en">
 
 </div>
 
-<div id="outline-container-1.6.7" class="outline-4">
-<h4 id="sec-1.6.7"><span class="section-number-4">1.6.7</span> [ramasser] </h4>
-<div class="outline-text-4" id="text-1.6.7">
+<div id="outline-container-1.7.7" class="outline-4">
+<h4 id="sec-1.7.7"><span class="section-number-4">1.7.7</span> [ramasser] </h4>
+<div class="outline-text-4" id="text-1.7.7">
 
 <ul>
-<li id="sec-1.6.7.1">estEquipe(ramasser(P,o)) = true <br/>
+<li id="sec-1.7.7.1">estEquipe(ramasser(P,c)) = true <br/>
 </li>
-<li id="sec-1.6.7.2">laChoseEquipee(ramasser(P,o)) = o <br/>
+<li id="sec-1.7.7.2">laChoseEquipee(ramasser(P,c)) = c <br/>
 </li>
-<li id="sec-1.6.7.3">sommeArgent(ramasser(P,o)) = sommeArgent(P) <br/>
+<li id="sec-1.7.7.3">sommeArgent(ramasser(P,c)) = sommeArgent(P) <br/>
 </li>
-<li id="sec-1.6.7.4">pointsDeVie(ramasser(P,o)) = pointsDeVie(P) <br/>
+<li id="sec-1.7.7.4">pointsDeVie(ramasser(P,c)) = pointsDeVie(P) <br/>
 
 </li>
 </ul>
@@ -373,16 +385,16 @@ lang="en" xml:lang="en">
 
 </div>
 
-<div id="outline-container-1.6.8" class="outline-4">
-<h4 id="sec-1.6.8"><span class="section-number-4">1.6.8</span> [jeter] </h4>
-<div class="outline-text-4" id="text-1.6.8">
+<div id="outline-container-1.7.8" class="outline-4">
+<h4 id="sec-1.7.8"><span class="section-number-4">1.7.8</span> [jeter] </h4>
+<div class="outline-text-4" id="text-1.7.8">
 
 <ul>
-<li id="sec-1.6.8.1">estEquipe(jeter(P,o)) = false <br/>
+<li id="sec-1.7.8.1">estEquipe(jeter(P)) = false <br/>
 </li>
-<li id="sec-1.6.8.2">sommeArgent(jeter(P,o)) = sommeArgent(P) <br/>
+<li id="sec-1.7.8.2">sommeArgent(jeter(P)) = sommeArgent(P) <br/>
 </li>
-<li id="sec-1.6.8.3">pointsDeVie(jeter(P,o)) = pointsDeVie(P) <br/>
+<li id="sec-1.7.8.3">pointsDeVie(jeter(P)) = pointsDeVie(P) <br/>
 
 
 
@@ -395,9 +407,9 @@ lang="en" xml:lang="en">
 </div>
 <div id="postamble">
 <p class="author"> Author: COQUART KEVIN
-<a href="mailto:3000976@ari-31-303-10.infop6.jussieu.fr">&lt;3000976@ari-31-303-10.infop6.jussieu.fr&gt;</a>
+<a href="mailto:3000976@ari-31-309-06.infop6.jussieu.fr">&lt;3000976@ari-31-309-06.infop6.jussieu.fr&gt;</a>
 </p>
-<p class="date"> Date: 2014-03-17 11:41:55 CET</p>
+<p class="date"> Date: 2014-03-25 14:25:43 CET</p>
 <p class="creator">HTML generated by org-mode 6.33x in emacs 23</p>
 </div>
 </div>

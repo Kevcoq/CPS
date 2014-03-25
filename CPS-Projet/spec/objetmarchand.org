@@ -1,6 +1,6 @@
 * ObjetMarchand
 ** service : ObjetMarchand
-** refine : Objet
+** refine : [[file:objet.org][Objet]]
 ** types : String, int, boolean
 
 

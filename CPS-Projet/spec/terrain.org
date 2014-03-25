@@ -1,6 +1,6 @@
 * Terrain
 ** service : Terrain
-** use : Bloc
+** use : [[file:bloc.org][Bloc]]
 ** types : int, Bloc[][][]
 
 

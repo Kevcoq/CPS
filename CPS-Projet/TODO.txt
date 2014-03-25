@@ -3,8 +3,8 @@ TERRAIN 	-> contrat pour les observeurs ? oui (a verifier)
 Continuer la spec
 
 
-personnage  -> estPorte pour l'objet ramasser / jeter ????????
-	    -> reprendre le code
+personnage  -> reprendre le code
 
-moteurJeu   -> spec definir les commandes
-	    -> finir la spec = observations
+gestionCombat -> jeter + position ???
+
+

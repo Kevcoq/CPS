@@ -1,6 +1,6 @@
 * ObjetEquipable
 ** service : ObjetEquipable
-** refine : Chose, Objet
+** refine : [[file:chose.org][Chose]], [[file:objet.org][Objet]]
 ** types : String
 
 ** Constructors :

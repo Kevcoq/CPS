@@ -1,7 +1,7 @@
 * Personnage
 ** service : Personnage
-** refine : Chose
-** types : String, int, boolean
+** refine : [[file:chose.org][Chose]]
+** types : String, int, boolean 
 
 
 ** observators :
@@ -31,7 +31,7 @@
 **** retraitArgent : [Personnage] × int → [Personnage]
 ***** pre retraitArgent(P,s) require ¬estVaincu(P) ∧ s > 0 ∧ s < sommeArgent(P)
 **** depotArgent : [Personnage] × int → [Personnage]
-***** pre depotArgent(P,s) require ¬estVaincu(P) ∧ s > 0
+***** pre depotArgent(P,s) require ¬estVaincu(P) ∧ s > 0 ∧ ¬estPorte(P)
 
 **** ramasser : [Personnage] × Chose → [Personnage]
 ***** pre ramasser(P,o) require ¬estVaincu(P) ∧ ¬estEquipe(P) ∧ ¬estPorte(P)

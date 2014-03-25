@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+lang="en" xml:lang="en">
+<head>
+<title>gestionCombat</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2014-03-25 16:27:51 CET"/>
+<meta name="author" content="COQUART KEVIN"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+
+<h1 class="title">gestionCombat</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 GestionCombat </a>
+<ul>
+<li><a href="#sec-1.1">1.1 service : GestionCombat </a></li>
+<li><a href="#sec-1.2">1.2 use : Terrain, Personnage </a></li>
+<li><a href="#sec-1.3">1.3 types : String, int, int[], boolean, Personnage[], Map&lt;String,Personnage&gt;, Map&lt;String,COMMANDE&gt;, enum COMMANDE {RIEN, GAUCHE, DROITE, HAUT, BAS, SAUTER, FRAPPE, JETER, RAMASSER} </a></li>
+<li><a href="#sec-1.4">1.4 observators : </a></li>
+<li><a href="#sec-1.5">1.5 Constructors : </a></li>
+<li><a href="#sec-1.6">1.6 Operators : </a></li>
+<li><a href="#sec-1.7">1.7 Observations : </a>
+<ul>
+<li><a href="#sec-1.7.1">1.7.1 [invariants] </a></li>
+<li><a href="#sec-1.7.2">1.7.2 [init] </a></li>
+<li><a href="#sec-1.7.3">1.7.3 [gerer] </a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> GestionCombat </h2>
+<div class="outline-text-2" id="text-1">
+
+
+</div>
+
+<div id="outline-container-1.1" class="outline-3">
+<h3 id="sec-1.1"><span class="section-number-3">1.1</span> service : GestionCombat </h3>
+<div class="outline-text-3" id="text-1.1">
+
+</div>
+
+</div>
+
+<div id="outline-container-1.2" class="outline-3">
+<h3 id="sec-1.2"><span class="section-number-3">1.2</span> use : <a href="terrain.html">Terrain,</a> <a href="personnage.html">Personnage</a> </h3>
+<div class="outline-text-3" id="text-1.2">
+
+</div>
+
+</div>
+
+<div id="outline-container-1.3" class="outline-3">
+<h3 id="sec-1.3"><span class="section-number-3">1.3</span> types : String, int, int[], boolean, Personnage[], Map&lt;String,Personnage&gt;, Map&lt;String,COMMANDE&gt;, enum COMMANDE {RIEN, GAUCHE, DROITE, HAUT, BAS, SAUTER, FRAPPE, JETER, RAMASSER} </h3>
+<div class="outline-text-3" id="text-1.3">
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1.4" class="outline-3">
+<h3 id="sec-1.4"><span class="section-number-3">1.4</span> observators : </h3>
+<div class="outline-text-3" id="text-1.4">
+
+<ul>
+<li id="sec-1.4.1">terrain : [GestionCombat] → Terrain <br/>
+
+</li>
+<li id="sec-1.4.2">mPerso : [GestionCombat] → Map&lt;String,Personnage&gt; <br/>
+
+</li>
+<li id="sec-1.4.3">estFrappe : [GestionCombat] × String → boolean <br/>
+<ul>
+<li id="sec-1.4.3.1">pre estFrappe(C,id) require id ∈ mPerso.keySet() <br/>
+
+</li>
+</ul>
+</li>
+<li id="sec-1.4.4">estGele : [GestionCombat] × String → boolean <br/>
+<ul>
+<li id="sec-1.4.4.1">pre estGele(C,id) require id ∈ mPerso.keySet() <br/>
+
+</li>
+</ul>
+</li>
+<li id="sec-1.4.5">cptGele : [GestionCombat] × String → int <br/>
+<ul>
+<li id="sec-1.4.5.1">pre cptGele(C,id) require id ∈ mPerso.keySet() ∧ estGele(C,id) <br/>
+
+</li>
+</ul>
+</li>
+<li id="sec-1.4.6">position : [GestionCombat] × String → int[]  // 0 → x ∧ 1 → y ∧ 2 → z <br/>
+<ul>
+<li id="sec-1.4.6.1">pre position(C,id) require id ∈ mPerso.keySet() <br/>
+
+</li>
+</ul>
+</li>
+<li id="sec-1.4.7">collisionGauche : [GestionCombat] × String × String → Personnage[] <br/>
+<ul>
+<li id="sec-1.4.7.1">pre collisionGauche(C,id1,id2) require  id1 ∈ mPerso.keySet() ∧ id2 ∈ mPerso.keySet() <br/>
+
+</li>
+</ul>
+</li>
+<li id="sec-1.4.8">collision : [GestionCombat] × String → Personnage[] <br/>
+<ul>
+<li id="sec-1.4.8.1">pre collision(C,id) require id ∈ mPerso.keySet() <br/>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-1.5" class="outline-3">
+<h3 id="sec-1.5"><span class="section-number-3">1.5</span> Constructors : </h3>
+<div class="outline-text-3" id="text-1.5">
+
+<ul>
+<li id="sec-1.5.1">init : int × int × int → [GestionCombat] <br/>
+
+
+
+
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-1.6" class="outline-3">
+<h3 id="sec-1.6"><span class="section-number-3">1.6</span> Operators : </h3>
+<div class="outline-text-3" id="text-1.6">
+
+<ul>
+<li id="sec-1.6.1">gerer : [GestionCombat] × Map&lt;String,COMMANDE&gt; → [GestionCombat] <br/>
+
+
+
+
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-1.7" class="outline-3">
+<h3 id="sec-1.7"><span class="section-number-3">1.7</span> Observations : </h3>
+<div class="outline-text-3" id="text-1.7">
+
+
+</div>
+
+<div id="outline-container-1.7.1" class="outline-4">
+<h4 id="sec-1.7.1"><span class="section-number-4">1.7.1</span> [invariants] </h4>
+<div class="outline-text-4" id="text-1.7.1">
+
+<ul>
+<li id="sec-1.7.1.1">collisionGauche(C,id1,id2) =min <br/>
+<ul>
+<li id="sec-1.7.1.1.1">dX = Personnage::largeur(mPerso.get(id1))/2 + Personnage::largeur(mPerso.get(id2))/2, <br/>
+</li>
+<li id="sec-1.7.1.1.2">dY = Personnage::profondeur(mPerso.get(id1))/2 + Personnage::profondeur(mPerso.get(id2))/2, <br/>
+</li>
+<li id="sec-1.7.1.1.3">dZ = Personnage::hauteur(mPerso.get(id1))/2 + Personnage::hauteur(mPerso.get(id2))/2, <br/>
+</li>
+<li id="sec-1.7.1.1.4">si ↓ alors [id1,id2] sinon [] <br/>
+<ul>
+<li id="sec-1.7.1.1.4.1">(-dX ⩽position(C,id2)[0.] - position(C,id1)[0.] ⩽ dX+1) <br/>
+</li>
+<li id="sec-1.7.1.1.4.2">∧ (-dY ⩽position(C,id2)[1.] - position(C,id1)[1.] ⩽ dY+1) <br/>
+</li>
+<li id="sec-1.7.1.1.4.3">∧ (-dZ ⩽position(C,id2)[2.] - position(C,id1)[2.] ⩽ dZ+1) <br/>
+
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li id="sec-1.7.1.2">collision(C, id) =min <br/>
+<ul>
+<li id="sec-1.7.1.2.1">tmp = ∅, ∀nomP ∈ mPerso.keySet(), <br/>
+</li>
+<li id="sec-1.7.1.2.2">tmp ⋃ collisionGauche(C,id,nomP)[1.] ⋃ collisionGauche(C,nomP,id)[0.] <br/>
+
+
+
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-1.7.2" class="outline-4">
+<h4 id="sec-1.7.2"><span class="section-number-4">1.7.2</span> [init] </h4>
+<div class="outline-text-4" id="text-1.7.2">
+
+<ul>
+<li id="sec-1.7.2.1">terrain(init(l,h,p)) = Terrain::init(l,h,p) <br/>
+
+</li>
+<li id="sec-1.7.2.2">mPerso(init(l,h,p)) = <br/>
+<ul>
+<li id="sec-1.7.2.2.1">mPerso.put("Alex", Personnage::init("Alex",20,51,10,100,1664)) <br/>
+</li>
+<li id="sec-1.7.2.2.2">mPerso.put("Ryan", Personnage::init("Ryan",25,60,12,200,1664)) <br/>
+</li>
+<li id="sec-1.7.2.2.3">mPerso.put("Slick", Gangster::init("Slick",35,80,20,250,2000)) <br/>
+</li>
+<li id="sec-1.7.2.2.4">+ Random : <br/>
+<ul>
+<li id="sec-1.7.2.2.4.1">name = RandomName() <br/>
+</li>
+<li id="sec-1.7.2.2.4.2">mPerso.put(name, Gangster::init(name,18,45,9,50,500)) <br/>
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li id="sec-1.7.2.3">estFrappe(init(l,h,p),id)=false <br/>
+
+</li>
+<li id="sec-1.7.2.4">estGele(init(l,h,p),id)=false <br/>
+
+</li>
+<li id="sec-1.7.2.5">position <br/>
+<ul>
+<li id="sec-1.7.2.5.1">position(init(l,h,p),"Alex") = 10 + Personnage::largeur(mPerso(init(l,h,p)).get("Alex"))/2 + 1 <br/>
+</li>
+<li id="sec-1.7.2.5.2">position(init(l,h,p),"Ryan") = 10 + Personnage::largeur(mPerso(init(l,h,p)).get("Ryan"))/2 + 1 <br/>
+</li>
+<li id="sec-1.7.2.5.3">position(init(l,h,p),"Slick") = l - 10 - Personnage::largeur(mPerso(init(l,h,p)).get("Slick"))/2 - 1 <br/>
+</li>
+<li id="sec-1.7.2.5.4">position(init(l,h,p), id) = Random sur Bloc Vide <br/>
+
+
+
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-1.7.3" class="outline-4">
+<h4 id="sec-1.7.3"><span class="section-number-4">1.7.3</span> [gerer] </h4>
+<div class="outline-text-4" id="text-1.7.3">
+
+<ul>
+<li id="sec-1.7.3.1">∀id ∈ mPerso.keySet(), mPerso(gerer(C, cmd)).get(id) = <br/>
+<ul>
+<li id="sec-1.7.3.1.1">si ¬estFrappe(gerer(C, cmd),id) alors mPerso(C).get(id) <br/>
+</li>
+<li id="sec-1.7.3.1.2">sinon Personnage::retrait(mPerso(C).get(id),cpt) <br/>
+<ul>
+<li id="sec-1.7.3.1.2.1">avec cpt=0, ∀p ∈ collision(C,id), cmd.get(Personnage::nom(p)) == FRAPPE, cpt += Personnage::force(p) <br/>
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li id="sec-1.7.3.2">∀id ∈ mPerso.keySet(), estFrappe(gerer(C, cmd), id) = <br/>
+<ul>
+<li id="sec-1.7.3.2.1">collision(C,id) ≠ ∅ ∧ (∃p ∈ collision(C,id) tq cmd.get(Personnage::nom(p)) == FRAPPE) <br/>
+
+</li>
+</ul>
+</li>
+<li id="sec-1.7.3.3">∀id ∈ mPerso.keySet(), estGele(gerer(C, cmd), id) = (cmd.get(id) == FRAPPE) ∨ estFrappe(gerer(C, cmd), id) ∨ Chose::estPorte(mPerso(gerer(C, cmd)).get(id)) ∨ (estGele(C, id) ∧ cptGele(C, id) &gt; 1) <br/>
+
+</li>
+<li id="sec-1.7.3.4">∀id ∈ mPerso.keySet(), cptGele(gerer(C, cmd), id) = <br/>
+<ul>
+<li id="sec-1.7.3.4.1">si (cmd.get(id) == FRAPPE) alors 1 <br/>
+</li>
+<li id="sec-1.7.3.4.2">sinon si estFrappe(gerer(C, cmd), id) alors 3 <br/>
+</li>
+<li id="sec-1.7.3.4.3">sinon cpt(C, id)-1 <br/>
+
+</li>
+</ul>
+</li>
+<li id="sec-1.7.3.5">mPerso.keySet(), position(gerer(C, cmd), id) = <br/>
+<ul>
+<li id="sec-1.7.3.5.1">si estFrappe(gerer(C, cmd), id), <br/>
+<ul>
+<li id="sec-1.7.3.5.1.1">si (∃p ∈ collisionGauche(C,id,p) tq cmd.get(Personnage::nom(p)) == FRAPPE) alors <br/>
+<ul>
+<li id="sec-1.7.3.5.1.1.1">{ min(position(C, id)[0.]+64, Terrain::largeur(terrain(C)) ; position(C, id)[1.] ; position(C, id)[2.] } <br/>
+</li>
+</ul>
+</li>
+<li id="sec-1.7.3.5.1.2">si (∃p ∈ collisionGauche(C,p,id) tq cmd.get(Personnage::nom(p)) == FRAPPE) alors <br/>
+<ul>
+<li id="sec-1.7.3.5.1.2.1">{ max(position(C, id)[0.]-64, 0) ; position(C, id)[1.] ; position(C, id)[2.] } <br/>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li id="sec-1.7.3.5.2">si Chose::estPorte(mPerso(C).get(id)) alors <br/>
+<ul>
+<li id="sec-1.7.3.5.2.1">∃p ∈ mPerso(C).keySet() tq Personnage::laChoseEquipee(p) == mPerso(C).get(id) ∧ cmd.get(Personnage::nom(p)) ≠ JETER <br/>
+<ul>
+<li id="sec-1.7.3.5.2.1.1">{ position(gerer(C, cmd), p)[0.] ; position(gerer(C,cmd), p)[1.] ; position(gerer(C, cmd), p)[2.] + Personnage::hauteur(p) } <br/>
+</li>
+</ul>
+</li>
+<li id="sec-1.7.3.5.2.2">∃p ∈ mPerso(C).keySet() tq Personnage::laChoseEquipee(p) == mPerso(C).get(id) ∧ cmd.get(Personnage::nom(p)) == JETER <br/>
+<ul>
+<li id="sec-1.7.3.5.2.2.1"><span class="todo TODO"> TODO</span> { position(C, p)[0.]+ ; position(C, id)[1.] ; 0 } <br/>
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble">
+<p class="author"> Author: COQUART KEVIN
+<a href="mailto:3000976@ari-31-309-06.infop6.jussieu.fr">&lt;3000976@ari-31-309-06.infop6.jussieu.fr&gt;</a>
+</p>
+<p class="date"> Date: 2014-03-25 16:27:51 CET</p>
+<p class="creator">HTML generated by org-mode 6.33x in emacs 23</p>
+</div>
+</div>
+</body>
+</html>

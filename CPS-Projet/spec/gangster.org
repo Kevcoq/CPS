@@ -1,6 +1,6 @@
 * Gangster
 ** service : Gangster
-** refine : Personnage
+** refine : [[file:personnage.org][Personnage]]
 ** use : Objet
 ** types : String, int
 
