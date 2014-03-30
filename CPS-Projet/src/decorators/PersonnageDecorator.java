@@ -9,11 +9,11 @@ import services.PersonnageService;
  * @author Kevin & Quentin
  * 
  */
-public abstract class PersonnageDecorator implements PersonnageService {
+public abstract class PersonnageDecorator extends ChoseDecorator implements PersonnageService {
 	private PersonnageService personnage;
 
 	public PersonnageDecorator(PersonnageService personnage) {
-		super();
+		super(personnage);
 		this.personnage = personnage;
 	}
 
