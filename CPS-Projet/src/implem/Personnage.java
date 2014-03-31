@@ -9,7 +9,7 @@ import services.PersonnageService;
  * @author Kevin & Quentin
  * 
  */
-public class Personnage implements PersonnageService {
+public class Personnage extends Chose implements PersonnageService {
 
 	private String nom;
 	private int largeur;

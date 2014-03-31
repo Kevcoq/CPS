@@ -6,7 +6,7 @@ package services;
  * @author Kevin & Quentin
  * 
  */
-public interface PersonnageService {
+public interface PersonnageService extends ChoseService {
 	/* Observator */
 	/**
 	 * 
