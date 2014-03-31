@@ -1,8 +1,8 @@
-//package services;
+package services;
 //
 //import enumeration.COMMANDE;
 //
-//public interface GestionCombatService {
+public interface GestionCombatService {
 //	public int largeur();
 //
 //	public int hauteur();
@@ -28,4 +28,4 @@
 //	public void gerer(String nom, COMMANDE cmd);
 //
 //	// TODO post
-//}
+}

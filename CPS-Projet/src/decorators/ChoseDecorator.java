@@ -2,7 +2,7 @@ package decorators;
 
 import services.ChoseService;
 
-public class ChoseDecorator implements ChoseService{
+public abstract class ChoseDecorator implements ChoseService{
 	private ChoseService chose;
 
 	

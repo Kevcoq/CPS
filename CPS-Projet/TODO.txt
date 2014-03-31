@@ -1,9 +1,7 @@
 TERRAIN 	-> contrat pour les observeurs ? oui (a verifier)
 
-Continuer la spec
 
-
-personnage  -> reprendre le code
+moteurJeu     -> contrat + implem
 
 gestionCombat -> jeter + position ???
 

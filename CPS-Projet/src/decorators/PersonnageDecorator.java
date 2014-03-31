@@ -9,11 +9,10 @@ import services.PersonnageService;
  * @author Kevin & Quentin
  * 
  */
-public abstract class PersonnageDecorator extends ChoseDecorator implements PersonnageService {
+public abstract class PersonnageDecorator  implements PersonnageService {
 	private PersonnageService personnage;
 
 	public PersonnageDecorator(PersonnageService personnage) {
-		super(personnage);
 		this.personnage = personnage;
 	}
 
@@ -102,5 +101,47 @@ public abstract class PersonnageDecorator extends ChoseDecorator implements Pers
 	public void jeter() {
 		personnage.jeter();
 	}
+
+	/**
+	 * @return
+	 * @see services.ChoseService#bonus()
+	 */
+	public int bonus() {
+		return personnage.bonus();
+	}
+
+	/**
+	 * @return
+	 * @see services.ChoseService#estPorte()
+	 */
+	public boolean estPorte() {
+		return personnage.estPorte();
+	}
+
+	/**
+	 * @param b
+	 * @see services.ChoseService#init(int)
+	 */
+	public void init(int b) {
+		personnage.init(b);
+	}
+
+	/**
+	 * 
+	 * @see services.ChoseService#estRamasse()
+	 */
+	public void estRamasse() {
+		personnage.estRamasse();
+	}
+
+	/**
+	 * 
+	 * @see services.ChoseService#estJete()
+	 */
+	public void estJete() {
+		personnage.estJete();
+	}
+	
+	
 
 }

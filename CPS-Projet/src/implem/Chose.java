@@ -2,7 +2,7 @@ package implem;
 
 import services.ChoseService;
 
-public class Chose implements ChoseService {
+public abstract class Chose implements ChoseService {
 	private int bonus;
 	private boolean estPorte;
 

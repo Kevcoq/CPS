@@ -62,7 +62,8 @@ public class PersonnageContrat extends PersonnageDecorator {
 
 		if (!(nom().equals(nom) && largeur() == largeur && hauteur() == hauteur
 				&& profondeur() == profondeur && force() == force
-				&& pointsDeVie() == pdv && sommeArgent() == 0 && estEquipe() == false)) {
+				&& pointsDeVie() == pdv && sommeArgent() == 0
+				&& estEquipe() == false && bonus() == force && !estPorte())) {
 			throw new PostconditionError("personnage -> init");
 		}
 	}
@@ -205,5 +206,21 @@ public class PersonnageContrat extends PersonnageDecorator {
 		// **** pointsDeVie(jeter(P)) = pointsDeVie(P)
 		if (!(pointsDeVie() == pdv_atpre && sommeArgent() == argent_atpre && estEquipe() == false))
 			throw new PostconditionError("personnage -> jeter");
+	}
+
+	public void estRamasse() {
+		if (!(!estPorte()))
+			throw new PreconditionError("chose -> estRamsse");
+		super.estRamasse();
+		if (!(estPorte()))
+			throw new PostconditionError("chose -> estRamasse");
+	}
+
+	public void estJete() {
+		if (!(estPorte()))
+			throw new PreconditionError("chose -> estJete");
+		super.estJete();
+		if (!(!estPorte()))
+			throw new PostconditionError("chose -> estJete");
 	}
 }
