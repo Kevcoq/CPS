@@ -1,0 +1,52 @@
+Start = (enter -> State00),
+
+State00 = (north -> State01),
+State01 = (north -> State02 | west -> State11 | south -> State00),
+
+State02 = (north -> State03 | south -> State01),
+State03 = (north -> State04 | south -> State02), 
+State04 = (south -> State03),
+
+State11 = (west -> State21 | east -> State01),
+State21 = (west -> State31 | east -> State11),
+State31 = (north -> State32 | south -> State30 | east -> State21),
+
+State30 = (north -> State31 | east -> State20),
+State20 = (west -> State30 | east -> State10),
+State10 = (west -> State20),
+
+State32 = (north -> State33 | south -> State31 | west -> State42),
+State42 = (east -> State32),
+
+State33 = (south -> State32 | east -> State23),
+State23 = (west -> State33 | east -> State13),
+State13 = (north -> State14 | west -> State23),
+
+State14 = (west -> State24 | south -> State13),
+State24 = (west -> State34 | east -> State14),
+State34 = (west -> State44 | east -> State24),
+
+State44 = (north -> End | south -> State43 | east -> State34),
+
+State43 = (north -> State44),
+
+
+
+End = (exit -> STOP).
+
+//Trace to DEADLOCK:
+//	enter
+//	north
+//	west
+//	west
+//	west
+//	north
+//	north
+//	east
+//	east
+//	north
+//	west
+//	west
+//	west
+//	north
+//	exit

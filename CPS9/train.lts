@@ -1,0 +1,44 @@
+Train = (in -> TAtt),
+TAtt = (vert -> roule -> out -> Train | rouge -> TAtt).
+
+||Train1 = (Train)/{in1/in, rouge1/rouge, vert1/vert, roule1/roule, out1/out}.
+||Train2 = (Train)/{in2/in, rouge2/rouge, vert2/vert, roule2/roule, out2/out}.
+
+Feu1 = Rouge,
+Vert = (change1 -> Rouge | vert1 -> Vert),
+Rouge = (change1 -> Vert | rouge1 -> Rouge).
+
+Feu2 = Vert,
+Vert = (change2 -> Rouge | vert2 -> Vert),
+Rouge = (change2 -> Vert | rouge2 -> Rouge).
+
+I1 = (in1 -> I1).
+I2 = (in2 -> I2).
+
+O1 = (out1 -> O1).
+O2 = (out2 -> O2).
+
+Control = RV_EE,
+RV_EE = (in2 -> RV_ET | in1 -> change2 -> change1 -> VR_TE),
+RV_ET = (in1 -> RV_TT | out2 -> RV_EE),
+RV_TT = (out2 -> change2 -> change1 -> VR_TE),
+VR_TE = (in2 -> VR_TT | out1 -> change1 -> change2 -> RV_EE),
+VR_TT = (out1 -> change1 -> change2 -> RV_ET).
+
+
+
+
+TFeu = (vert1 -> vert2 -> ERROR	| vert2 -> vert1 -> ERROR | vert1 -> change1 -> TFeu | vert2 -> change2 -> TFeu).
+TRoule = (roule1 -> roule2 -> ERROR	| roule2 -> roule1 -> ERROR | roule1 -> rouge1 -> TRoule | roule2 -> rouge2 -> TRoule).
+
+
+progress T1 = {out1}
+progress T2 = {out2}
+
+||System = (Train1 || Train2 || Control || Feu1 || Feu2 || I1 || I2 || O1 || O2)\{change1, change2}.
+//||System = (Train1 || Train2 || Control || Feu1 || Feu2 || I1 || I2 || O1 || O2 || TFeu)\{change1, change2}.
+//||System = (Train1 || Train2 || Control || Feu1 || Feu2 || I1 || I2 || O1 || O2 || TRoule)\{change1, change2}.
+//||System = (Train1 || Train2 || Control || Feu1 || Feu2 || I1 || I2 || O1 || O2 || TFeu || TRoule)\{change1, change2}.
+
+
+
