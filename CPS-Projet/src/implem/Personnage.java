@@ -1,6 +1,6 @@
 package implem;
 
-import services.ObjetService;
+import services.ChoseService;
 import services.PersonnageService;
 
 /**
@@ -18,7 +18,7 @@ public class Personnage extends Chose implements PersonnageService {
 	private int force;
 	private int pdv;
 	private int argent;
-	private ObjetService obj;
+	private ChoseService obj;
 
 	@Override
 	public String nom() {
@@ -66,7 +66,7 @@ public class Personnage extends Chose implements PersonnageService {
 	}
 
 	@Override
-	public ObjetService laChoseEquipee() {
+	public ChoseService laChoseEquipee() {
 		return obj;
 	}
 
@@ -102,7 +102,7 @@ public class Personnage extends Chose implements PersonnageService {
 	}
 
 	@Override
-	public void ramasser(ObjetService o) {
+	public void ramasser(ChoseService o) {
 		obj = o;
 	}
 

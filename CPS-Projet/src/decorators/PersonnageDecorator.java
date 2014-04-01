@@ -1,6 +1,6 @@
 package decorators;
 
-import services.ObjetService;
+import services.ChoseService;
 import services.PersonnageService;
 
 /**
@@ -73,7 +73,7 @@ public abstract class PersonnageDecorator  implements PersonnageService {
 	}
 
 	@Override
-	public ObjetService laChoseEquipee() {
+	public ChoseService laChoseEquipee() {
 		return personnage.laChoseEquipee();
 	}
 
@@ -93,7 +93,7 @@ public abstract class PersonnageDecorator  implements PersonnageService {
 	}
 
 	@Override
-	public void ramasser(ObjetService o) {
+	public void ramasser(ChoseService o) {
 		personnage.ramasser(o);
 	}
 

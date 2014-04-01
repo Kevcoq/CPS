@@ -1,5 +1,6 @@
 package services;
 
+import java.util.List;
 import java.util.Map;
 
 import enumeration.COMMANDE;
@@ -21,7 +22,9 @@ public interface GestionCombatService {
 
 	public int[] position(String nom);
 
-	public boolean collision(String nom);
+	public List<PersonnageService> collision(String nom);
+
+	public boolean collisionGauche(String nom1, String nom2);
 
 	// constructor :
 	public void init(int largeur, int hauteur, int profondeur);
@@ -29,7 +32,6 @@ public interface GestionCombatService {
 	// operator :
 	public void gerer(Map<String, COMMANDE> cmd);
 }
-
 
 // * GestionCombat
 // ** service : GestionCombat
@@ -56,11 +58,11 @@ public interface GestionCombatService {
 // **** position : [GestionCombat] × String → int[] // 0 → x ∧ 1 → y ∧ 2 → z
 // ***** pre position(C,id) require id ∈ mPerso.keySet()
 //
-// **** collisionGauche : [GestionCombat] × String × String → Personnage[]
+// **** collisionGauche : [GestionCombat] × String × String → boolean
 // ***** pre collisionGauche(C,id1,id2) require id1 ∈ mPerso.keySet() ∧ id2 ∈
 // mPerso.keySet()
 //
-// **** collision : [GestionCombat] × String → Personnage[]
+// **** collision : [GestionCombat] × String → List<Personnage>
 // ***** pre collision(C,id) require id ∈ mPerso.keySet()
 //
 //
@@ -94,8 +96,8 @@ public interface GestionCombatService {
 //
 // **** collision(C, id) =min
 // ***** tmp = ∅, ∀nomP ∈ mPerso.keySet(),
-// ***** tmp ⋃ collisionGauche(C,id,nomP)[1.] ⋃ collisionGauche(C,nomP,id)[0.]
-//
+// ***** tmp ⋃ nomP si collisionGauche(C,id,nomP)[1.] ||
+// collisionGauche(C,nomP,id)[0.]
 //
 //
 //
@@ -108,7 +110,7 @@ public interface GestionCombatService {
 // ***** mPerso.put("Alex", Personnage::init("Alex",20,51,10,100,1664))
 // ***** mPerso.put("Ryan", Personnage::init("Ryan",25,60,12,200,1664))
 // ***** mPerso.put("Slick", Gangster::init("Slick",35,80,20,250,2000))
-// ***** + Random :
+// ***** + 3 :
 // ****** name = RandomName()
 // ****** mPerso.put(name, Gangster::init(name,18,45,9,50,500))
 //
@@ -168,10 +170,10 @@ public interface GestionCombatService {
 // mPerso(C).get(id) ∧ cmd.get(Personnage::nom(p)) == JETER
 // ******* TODO { position(gerer(C, cmd), p)[0.] ; position(gerer(C,cmd), p)[1.]
 // ; 0 }
-// ***** si cmd.get(id) == GAUCHE
+// ***** si cmd.get(id) == DROITE
 // ******* { min( position(C, p)[0.] + 10, Terrain::largeur(terrain(C))) ;
 // position(C, p)[1.] ; 0 }
-// ***** si cmd.get(id) == DROITE
+// ***** si cmd.get(id) == GAUCHE
 // ******* { max( position(C, p)[0.] - 10, 0) ; position(C, p)[1.] ; 0 }
 // ***** si cmd.get(id) == HAUT
 // ******* { position(C, p)[0.] ; min( position(C, p)[1.] + 10,

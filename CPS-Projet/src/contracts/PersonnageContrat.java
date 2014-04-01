@@ -1,10 +1,10 @@
 package contracts;
 
+import services.ChoseService;
+import services.PersonnageService;
 import contracts.base.InvariantError;
 import contracts.base.PostconditionError;
 import contracts.base.PreconditionError;
-import services.ObjetService;
-import services.PersonnageService;
 import decorators.PersonnageDecorator;
 
 /**
@@ -78,7 +78,7 @@ public class PersonnageContrat extends PersonnageDecorator {
 		int pdv_atpre = pointsDeVie();
 		int argent_atpre = sommeArgent();
 		boolean equipe_atpre = estEquipe();
-		ObjetService chose_atpre = laChoseEquipee();
+		ChoseService chose_atpre = laChoseEquipee();
 		super.retraitPdv(s);
 		checkInvariant();
 
@@ -103,7 +103,7 @@ public class PersonnageContrat extends PersonnageDecorator {
 		int pdv_atpre = pointsDeVie();
 		int argent_atpre = sommeArgent();
 		boolean equipe_atpre = estEquipe();
-		ObjetService chose_atpre = laChoseEquipee();
+		ChoseService chose_atpre = laChoseEquipee();
 		super.depotPdv(s);
 		checkInvariant();
 
@@ -128,7 +128,7 @@ public class PersonnageContrat extends PersonnageDecorator {
 		int pdv_atpre = pointsDeVie();
 		int argent_atpre = sommeArgent();
 		boolean equipe_atpre = estEquipe();
-		ObjetService chose_atpre = laChoseEquipee();
+		ChoseService chose_atpre = laChoseEquipee();
 		super.retraitArgent(s);
 		checkInvariant();
 
@@ -152,7 +152,7 @@ public class PersonnageContrat extends PersonnageDecorator {
 		int pdv_atpre = pointsDeVie();
 		int argent_atpre = sommeArgent();
 		boolean equipe_atpre = estEquipe();
-		ObjetService chose_atpre = laChoseEquipee();
+		ChoseService chose_atpre = laChoseEquipee();
 		super.depotArgent(s);
 		checkInvariant();
 
@@ -167,7 +167,7 @@ public class PersonnageContrat extends PersonnageDecorator {
 	}
 
 	@Override
-	public void ramasser(ObjetService o) {
+	public void ramasser(ChoseService o) {
 		// pre ramasser(P,o) require ¬estVaincu(P) ∧ ¬estEquipe(P)
 		if (!(!estVaincu() && !estEquipe()))
 			throw new PreconditionError("personnage -> ramasser");

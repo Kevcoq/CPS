@@ -1,12 +1,14 @@
 SPEC :
 gestionCombat -> jeter + position ???
-	      -> jeter touche un personnage
+	      	  -> jeter touche un personnage
+	      	  -> reprendre collisionGauche = on ne s'occupe pas de leur pos
+	      	  -> gerer = soucis
 
 moteurJeu     -> generation de gangster
 
 CODE :
-moteurJeu     -> contrat + implem (partie cbt) + generation de gangsta
-
+moteurJeu     -> contrat
+gestionCbt	  -> contrat | gerer | collisionGauche
 
 
 les TESTS

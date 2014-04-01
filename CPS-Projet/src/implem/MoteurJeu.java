@@ -9,6 +9,14 @@ import enumeration.COMMANDE;
 import enumeration.RESULTAT;
 
 public class MoteurJeu implements MoteurJeuService {
+	static class Rand {
+		private static int n = 0;
+
+		public static String name() {
+			return "Gangster" + n++;
+		}
+	}
+
 	private int maxPasJeu = 0, pasJeuCourant = 0;
 	private boolean estFini = false;
 	private RESULTAT resultat;
@@ -52,6 +60,9 @@ public class MoteurJeu implements MoteurJeuService {
 		Map<String, COMMANDE> mCmd = new HashMap<String, COMMANDE>();
 		mCmd.put("Alex", cmdAlex);
 		mCmd.put("Ryan", cmdRyan);
+
+		generationCmds(mCmd);
+
 		cbt.gerer(mCmd);
 	}
 
@@ -60,7 +71,24 @@ public class MoteurJeu implements MoteurJeuService {
 		pasJeuCourant++;
 		Map<String, COMMANDE> mCmd = new HashMap<String, COMMANDE>();
 		mCmd.put(nom, cmd);
+
+		generationCmds(mCmd);
+
 		cbt.gerer(mCmd);
+	}
+
+	private void generationCmds(Map<String, COMMANDE> cmd) {
+		String[] noms = (String[]) cbt.mPerso().keySet().toArray();
+		for (int i = 0; i < noms.length; i++)
+			cmd.put(noms[i], genererCmd());
+
+		if (Math.random() < 0.15)
+			cmd.put(Rand.name(), genererCmd());
+	}
+
+	private COMMANDE genererCmd() {
+		COMMANDE[] cmds = COMMANDE.values();
+		return cmds[(int) (Math.random() * cmds.length)];
 	}
 
 }

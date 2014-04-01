@@ -67,7 +67,7 @@ public interface PersonnageService extends ChoseService {
 	 * @return rend l'objet equipee
 	 */
 	// pre laChoseEquipee(P) require estEquipe(P)
-	public ObjetService laChoseEquipee();
+	public ChoseService laChoseEquipee();
 
 	/* Constructeur */
 	/**
@@ -134,7 +134,7 @@ public interface PersonnageService extends ChoseService {
 	 *            l'objet
 	 */
 	// pre ramasser(P,o) require ¬estVaincu(P) ∧ ¬estEquipe(P)
-	public void ramasser(ObjetService o);
+	public void ramasser(ChoseService o);
 
 	/**
 	 * jete l'objet detenu, requiert d'avoir un objet

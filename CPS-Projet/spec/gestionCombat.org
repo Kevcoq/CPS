@@ -1,7 +1,7 @@
 * GestionCombat
 ** service : GestionCombat
 ** use : [[file:terrain.org][Terrain,]] [[file:personnage.org][Personnage]]
-** types : String, int, int[], boolean, Personnage[], Map<String,Personnage>, Map<String,COMMANDE>, enum COMMANDE {RIEN, GAUCHE, DROITE, HAUT, BAS, SAUTER, FRAPPE, JETER, RAMASSER}
+** types : String, int, int[], boolean, List<Personnage>, Map<String,Personnage>, Map<String,COMMANDE>, enum COMMANDE {RIEN, GAUCHE, DROITE, HAUT, BAS, SAUTER, FRAPPE, JETER, RAMASSER}
   
 
 ** observators :
@@ -21,10 +21,10 @@
 **** position : [GestionCombat] × String → int[]  // 0 → x ∧ 1 → y ∧ 2 → z
 ***** pre position(C,id) require id ∈ mPerso.keySet() 
 
-**** collisionGauche : [GestionCombat] × String × String → Personnage[]
+**** collisionGauche : [GestionCombat] × String × String → boolean
 ***** pre collisionGauche(C,id1,id2) require  id1 ∈ mPerso.keySet() ∧ id2 ∈ mPerso.keySet() 
 
-**** collision : [GestionCombat] × String → Personnage[]
+**** collision : [GestionCombat] × String → List<Personnage>
 ***** pre collision(C,id) require id ∈ mPerso.keySet() 
 
 
@@ -55,7 +55,7 @@
 
 **** collision(C, id) =min 
 ***** tmp = ∅, ∀nomP ∈ mPerso.keySet(),
-***** tmp ⋃ collisionGauche(C,id,nomP)[1.] ⋃ collisionGauche(C,nomP,id)[0.] 
+***** tmp ⋃ nomP si collisionGauche(C,id,nomP)[1.] || collisionGauche(C,nomP,id)[0.] 
 
 
 
@@ -115,9 +115,9 @@
 ******* { position(gerer(C, cmd), p)[0.] ; position(gerer(C,cmd), p)[1.] ; position(gerer(C, cmd), p)[2.] + Personnage::hauteur(p) }
 ****** ∃p ∈ mPerso(C).keySet() tq Personnage::laChoseEquipee(p) == mPerso(C).get(id) ∧ cmd.get(Personnage::nom(p)) == JETER 
 ******* TODO { position(gerer(C, cmd), p)[0.] ; position(gerer(C,cmd), p)[1.] ; 0 }
-***** si cmd.get(id) == GAUCHE
-******* { min( position(C, p)[0.] + 10, Terrain::largeur(terrain(C)))  ; position(C, p)[1.] ; 0 }
 ***** si cmd.get(id) == DROITE
+******* { min( position(C, p)[0.] + 10, Terrain::largeur(terrain(C)))  ; position(C, p)[1.] ; 0 }
+***** si cmd.get(id) == GAUCHE
 ******* { max( position(C, p)[0.] - 10, 0) ; position(C, p)[1.] ; 0 }
 ***** si cmd.get(id) == HAUT
 ******* { position(C, p)[0.] ;  min( position(C, p)[1.] + 10, Terrain::profondeur(terrain(C))) ; 0 }
