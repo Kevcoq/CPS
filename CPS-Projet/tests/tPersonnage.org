@@ -1,0 +1,144 @@
+* Test Personnage
+
+** Cas de test 1.1 : Personnage::testInit
+*** Condition initiale : ∅
+*** Operation : L0 =(def) init("Alex", 15, 50, 10, 100, 1664)
+*** Oracle :
+**** nom(L0) = "Alex"
+**** largeur(L0) = 15
+**** hauteur(L0) = 50
+**** profondeur(L0) = 10
+**** force(L0) = 100
+**** pointDeVie(L0) = 1664
+**** sommeArgent(L0) = 0
+**** estEquipe(L0) = false
+**** bonus(L0) = 100
+**** estPorte(L0) = false
+
+
+** Cas de test 1.2 : Personnage::testInitFail1
+*** Condition initiale : ∅
+*** Operation : L0 =(def) init("Alex", -15, 50, 10, 100, 1664)
+*** Oracle :
+**** -15 < 0
+**** #exception levee
+
+** Cas de test 1.3 : Personnage::testInitFail2
+*** Condition initiale : ∅
+*** Operation : L0 =(def) init("Alex", 15, -50, 10, 100, 1664)
+*** Oracle :
+**** -50 < 0
+**** #exception levee
+
+** Cas de test 1.4 : ...
+
+
+
+
+** Cas de test 2.1 : Personnage::retraitPdv
+*** Condition initiale :  L =(def) init("Alex", 15, 50, 10, 100, 1664)
+*** Operation : L0 =(def) retraitPdv(L, 50)
+*** Oracle : 
+**** pointsDeVie(L0) = pointsDeVie(L) - 50
+
+** Cas de test 2.2 : Personnage::retraitPdvFail1
+*** Condition initiale :  L =(def) init("Alex", 15, 50, 10, 100, 1664)
+*** Operation : L0 =(def) retraitPdv(L, -50)
+*** Oracle : 
+**** -50 < 0
+**** #exception levee
+
+
+
+
+** Cas de test 3.1 : Personnage::depotPdv
+*** Condition initiale :  L =(def) init("Alex", 15, 50, 10, 100, 1664)
+*** Operation : L0 =(def) depotPdv(L, 50)
+*** Oracle : 
+**** pointsDeVie(L0) = pointsDeVie(L) + 50
+
+** Cas de test 3.2 : Personnage::depotPdvFail1
+*** Condition initiale :  L =(def) init("Alex", 15, 50, 10, 100, 1664)
+*** Operation : L0 =(def) depotPdv(L, -50)
+*** Oracle : 
+**** -50 < 0
+**** #exception levee
+
+
+
+
+
+** Cas de test 4.1 : Personnage::retraitArgent
+*** Condition initiale :  L =(def) init("Alex", 15, 50, 10, 100, 1664)
+*** Operation : L0 =(def) retraitArgent(L, 50)
+*** Oracle : 
+**** sommeArgent(L0) = sommeArgent(L) - 50
+
+** Cas de test 4.2 : Personnage::retraitArgentFail1
+*** Condition initiale :  L =(def) init("Alex", 15, 50, 10, 100, 1664)
+*** Operation : L0 =(def) retraitArgent(L, -50)
+*** Oracle : 
+**** -50 < 0
+**** #exception levee
+
+
+
+
+** Cas de test 5.1 : Personnage::depotArgent
+*** Condition initiale :  L =(def) init("Alex", 15, 50, 10, 100, 1664)
+*** Operation : L0 =(def) depotArgent(L, 50)
+*** Oracle : 
+**** sommeArgent(L0) = sommeArgent(L) + 50
+
+** Cas de test 5.2 : Personnage::depotArgentFail1
+*** Condition initiale :  L =(def) init("Alex", 15, 50, 10, 100, 1664)
+*** Operation : L0 =(def) depotArgent(L, -50)
+*** Oracle : 
+**** -50 < 0
+**** #exception levee
+
+
+
+** Cas de test 6.1 : Personnage::ramasser
+*** Condition initiale :  
+**** L =(def) init("Alex", 15, 50, 10, 100, 1664)
+**** C =(def) ObjetEquipable
+*** Operation : L0 =(def) ramasser(L, C)
+*** Oracle : 
+**** estEquipe(L0) = true
+**** laChoseEquipee(L0) = C
+
+
+** Cas de test 6.2 : Personnage::ramasserFail1
+*** Condition initiale :  
+**** L =(def) init("Alex", 15, 50, 10, 100, 1664)
+**** C =(def) ObjetEquipable
+**** C2 =(def) ObjetEquipable
+**** L0 =(def) ramasser(L, C)
+*** Operation : L1 =(def) ramasser(L0, C2)
+*** Oracle : 
+**** estEquipe(L1) = true
+**** #exception levee
+
+
+
+
+
+
+** Cas de test 7.1 : Personnage::jeter
+*** Condition initiale :  
+**** L =(def) init("Alex", 15, 50, 10, 100, 1664)
+**** C =(def) ObjetEquipable
+**** L0 =(def) ramasser(L, C)
+*** Operation : L1 =(def) jeter(L0)
+*** Oracle : 
+**** estEquipe(L1) = false
+
+** Cas de test 7.2 : Personnage::jeterFail
+*** Condition initiale :  
+**** L =(def) init("Alex", 15, 50, 10, 100, 1664)
+*** Operation : L1 =(def) jeter(L0)
+*** Oracle : 
+**** estEquipe(L) = false
+**** #exception levee
+
