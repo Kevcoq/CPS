@@ -19,7 +19,9 @@ public interface MoteurJeuService {
 	public void init(int largeur, int hauteur, int profondeur, int maxPas);
 
 	// operator :
-	public void pasJeu(COMMANDE cmd);
+	public void pasJeu(COMMANDE cmdAlex, COMMANDE cmdRyan);
+
+	public void pasJeu(String nom, COMMANDE cmd);
 
 }
 

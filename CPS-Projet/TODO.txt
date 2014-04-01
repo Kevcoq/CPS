@@ -1,8 +1,6 @@
-TERRAIN 	-> contrat pour les observeurs ? oui (a verifier)
-
-
-moteurJeu     -> contrat + implem
+moteurJeu     -> contrat + implem (partie cbt)
 
 gestionCombat -> jeter + position ???
 
 
+les TESTS

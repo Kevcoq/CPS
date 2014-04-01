@@ -65,11 +65,22 @@ public abstract class MoteurJeuDecorator implements MoteurJeuService {
 	}
 
 	/**
-	 * @param cmd
-	 * @see services.MoteurJeuService#pasJeu(enumeration.COMMANDE)
+	 * @param cmdAlex
+	 * @param cmdRyan
+	 * @see services.MoteurJeuService#pasJeu(enumeration.COMMANDE,
+	 *      enumeration.COMMANDE)
 	 */
-	public void pasJeu(COMMANDE cmd) {
-		moteur.pasJeu(cmd);
+	public void pasJeu(COMMANDE cmdAlex, COMMANDE cmdRyan) {
+		moteur.pasJeu(cmdAlex, cmdRyan);
+	}
+
+	/**
+	 * @param nom
+	 * @param cmd
+	 * @see services.MoteurJeuService#pasJeu(String nom, enumeration.COMMANDE)
+	 */
+	public void pasJeu(String nom, COMMANDE cmd) {
+		moteur.pasJeu(nom, cmd);
 	}
 
 }

@@ -1,5 +1,7 @@
 package contracts;
 
+import implem.Bloc;
+import services.BlocService;
 import services.TerrainService;
 import contracts.base.PostconditionError;
 import contracts.base.PreconditionError;
@@ -21,6 +23,19 @@ public class TerrainContract extends TerrainDecorator {
 	 */
 	public TerrainContract(TerrainService terrain) {
 		super(terrain);
+	}
+
+	// pre getBloc(T,i,j,k) require (0 ≤ i < (largeur(T)/Bloc::largeur())) ∧ (0
+	// ≤ j < (profondeur(T)/Bloc::profondeur())) ∧ (0 ≤ k <
+	// (hauteur(T)/Bloc::hauteur()))
+	@Override
+	public BlocService getBloc(int i, int j, int k) {
+		if (!(0 <= i && i < largeur() / Bloc.largeur && 0 <= j
+				&& j < profondeur() / Bloc.profondeur && 0 <= k && k < hauteur()
+				/ Bloc.hauteur))
+			throw new PreconditionError("terrain -> getBloc");
+
+		return super.getBloc(i, j, k);
 	}
 
 	// pre init(largeur,hauteur,profondeur) require largeur > 0 ∧ hauteur > 0 ∧
