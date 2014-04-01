@@ -69,7 +69,7 @@
 ***** mPerso.put("Alex", Personnage::init("Alex",20,51,10,100,1664)) 
 ***** mPerso.put("Ryan", Personnage::init("Ryan",25,60,12,200,1664)) 
 ***** mPerso.put("Slick", Gangster::init("Slick",35,80,20,250,2000))
-***** + Random :
+***** + 3 gangster lambda :
 ****** name = RandomName()
 ****** mPerso.put(name, Gangster::init(name,18,45,9,50,500))
 

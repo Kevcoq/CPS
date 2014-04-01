@@ -35,14 +35,14 @@ public class MoteurJeuContract extends MoteurJeuDecorator {
 		// TODO gestionCbt
 	}
 
-	public void init(int largeur, int hauteur, int maxPas) {
+	public void init(int largeur, int hauteur, int profondeur, int maxPas) {
 		// pre init(largeur,hauteur,maxPas) require largeurâ‰¥ 256 âˆ§
 		// hauteurâ‰¥ 240
 		// âˆ§ maxPasâ‰¥ 0
 		if (!(largeur >= 256 && hauteur >= 240 && maxPas >= 0))
 			throw new PreconditionError("moteurJeu -> init");
 
-		super.init(largeur, hauteur, maxPas);
+		super.init(largeur, hauteur, profondeur, maxPas);
 		checkInvariant();
 
 		/*

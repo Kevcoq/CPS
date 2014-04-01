@@ -42,9 +42,8 @@
 *** [pasJeu]
 **** pasJeuCourant(pasJeu(M,cA,cR))=pasJeuCourant(M) +1
 **** combat(pasJeu(M,cA,cR))=GestionCombat::gerer(combat(M),Map<String,COMMANDE>)
-***** avec put("Alex", cA) ∧ put("Ryan", cR) ∧ ∀i [0...GestionCombat::mPerso(combat(M)).size()-2] put(name, RandomCmd)
+***** avec put("Alex", cA) ∧ put("Ryan", cR) ∧ ∀i [0...GestionCombat::mPerso(combat(M)).size()-3] put(name, randomCmd()) ∧ si (Math.random() < 0.1) alors put(randomName(), randomCmd())
 
 **** pasJeuCourant(pasJeu(M,n,c))=pasJeuCourant(M) +1
-**** combat(pasJeu(M,n,c))=
-***** si (n == "Alex") alors combat(pasJeu(M,c,RIEN))
-***** sinon combat(pasJeu(M,RIEN,c))
+**** combat(pasJeu(M,n,c))=GestionCombat::gerer(combat(M),Map<String,COMMANDE>)
+***** avec put(n, c) ∧ ∀i [0...GestionCombat::mPerso(combat(M)).size()-2] put(name, randomCmd()) ∧ si (Math.random() < 0.1) alors put(randomName(), randomCmd())

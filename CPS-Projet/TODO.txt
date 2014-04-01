@@ -1,6 +1,12 @@
-moteurJeu     -> contrat + implem (partie cbt)
-
+SPEC :
 gestionCombat -> jeter + position ???
+	      -> jeter touche un personnage
+
+moteurJeu     -> generation de gangster
+
+CODE :
+moteurJeu     -> contrat + implem (partie cbt) + generation de gangsta
+
 
 
 les TESTS
