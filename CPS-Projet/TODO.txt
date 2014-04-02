@@ -20,3 +20,6 @@ gestionCbt	  -> contrat | gerer | collisionGauche
 les TESTS
 objetEquipable -> refine ???? chose et objet
 objetMarchand -> refine Objet ???
++ gstCbt et moteurJeu
+
+test de séquence ??????

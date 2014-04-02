@@ -5,10 +5,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import services.BlocService;
 import contracts.base.PreconditionError;
 import enumeration.TYPE_Bloc;
 import enumeration.TYPE_Tresor;
-import services.BlocService;
 
 public abstract class AbstractTestBloc {
 	private BlocService bloc;
@@ -36,6 +36,8 @@ public abstract class AbstractTestBloc {
 		bloc = null;
 	}
 
+	// ///////////////////////////
+	// ///////// PRE /////////////
 	//
 	//
 	//
@@ -92,6 +94,42 @@ public abstract class AbstractTestBloc {
 		} catch (PreconditionError e) {
 			Assert.assertTrue(true);
 		}
+	}
+
+	// ///////////////////////////
+	// ///////// POST ////////////
+	public boolean checkInvariant() {
+		if (bloc.aTresor())
+			return bloc.typeTresor() != TYPE_Tresor.RIEN;
+		return bloc.typeTresor() == TYPE_Tresor.RIEN;
+	}
+
+	@Test
+	public void testPostInit() {
+		bloc.init(TYPE_Bloc.VIDE, TYPE_Tresor.RIEN);
+		Assert.assertTrue(checkInvariant() && bloc.typeBloc() == TYPE_Bloc.VIDE
+				&& !bloc.aTresor());
+	}
+
+	@Test
+	public void testPostInit2() {
+		bloc.init(TYPE_Bloc.VIDE, TYPE_Tresor.DIXDOLLAR);
+		Assert.assertTrue(checkInvariant() && bloc.typeBloc() == TYPE_Bloc.VIDE
+				&& bloc.aTresor());
+	}
+
+	@Test
+	public void testPostRamasser() {
+		bloc.init(TYPE_Bloc.VIDE, TYPE_Tresor.DIXDOLLAR);
+		bloc.ramasserTresor();
+		Assert.assertTrue(checkInvariant() && !bloc.aTresor());
+	}
+
+	@Test
+	public void testPostDeposer() {
+		bloc.init(TYPE_Bloc.VIDE, TYPE_Tresor.RIEN);
+		bloc.deposerTresor(TYPE_Tresor.DIXDOLLAR);
+		Assert.assertTrue(checkInvariant() && bloc.aTresor());
 	}
 
 }

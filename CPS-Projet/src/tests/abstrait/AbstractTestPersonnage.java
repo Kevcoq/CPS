@@ -33,12 +33,8 @@ public abstract class AbstractTestPersonnage {
 		perso = null;
 	}
 
-	public boolean checkInvariant() {
-		if (perso.estVaincu())
-			return perso.pointsDeVie() == 0;
-		return perso.pointsDeVie() > 0;
-	}
-
+	// /////////////////////////
+	// ///////// PRE ///////////
 	@Test
 	public void testInit() {
 		perso.init("Alex", 15, 50, 10, 100, 1664);
@@ -115,6 +111,7 @@ public abstract class AbstractTestPersonnage {
 	public void testRetraitPdv() {
 		perso.init("Alex", 15, 50, 10, 100, 1664);
 		perso.retraitPdv(50);
+		Assert.assertTrue(true);
 	}
 
 	@Test
@@ -137,6 +134,7 @@ public abstract class AbstractTestPersonnage {
 	public void testDepotPdv() {
 		perso.init("Alex", 15, 50, 10, 100, 1664);
 		perso.depotPdv(50);
+		Assert.assertTrue(true);
 	}
 
 	@Test
@@ -159,6 +157,7 @@ public abstract class AbstractTestPersonnage {
 	public void testDepotArgent() {
 		perso.init("Alex", 15, 50, 10, 100, 1664);
 		perso.depotArgent(50);
+		Assert.assertTrue(true);
 	}
 
 	@Test
@@ -182,6 +181,7 @@ public abstract class AbstractTestPersonnage {
 		perso.init("Alex", 15, 50, 10, 100, 1664);
 		perso.depotArgent(100);
 		perso.retraitArgent(50);
+		Assert.assertTrue(true);
 	}
 
 	@Test
@@ -189,6 +189,7 @@ public abstract class AbstractTestPersonnage {
 		perso.init("Alex", 15, 50, 10, 100, 1664);
 		perso.depotArgent(50);
 		perso.retraitArgent(50);
+		Assert.assertTrue(true);
 	}
 
 	@Test
@@ -223,6 +224,7 @@ public abstract class AbstractTestPersonnage {
 		ObjetEquipable obj = new ObjetEquipable();
 		obj.init("baton", 300);
 		perso.ramasser(obj);
+		Assert.assertTrue(true);
 	}
 
 	@Test
@@ -253,6 +255,7 @@ public abstract class AbstractTestPersonnage {
 		obj.init("baton", 300);
 		perso.ramasser(obj);
 		perso.jeter();
+		Assert.assertTrue(true);
 	}
 
 	@Test
@@ -263,5 +266,82 @@ public abstract class AbstractTestPersonnage {
 		} catch (PreconditionError e) {
 			Assert.assertTrue(true);
 		}
+	}
+
+	// /////////////////////////
+	// ///////// POST //////////
+	public boolean checkInvariant() {
+		if (perso.estVaincu())
+			return perso.pointsDeVie() == 0;
+		return perso.pointsDeVie() > 0;
+	}
+
+	@Test
+	public void testPostInit() {
+		perso.init("Alex", 15, 50, 10, 100, 1664);
+		Assert.assertTrue(checkInvariant() && perso.nom().equals("Alex")
+				&& perso.largeur() == 15 && perso.hauteur() == 50
+				&& perso.profondeur() == 10 && perso.force() == 100
+				&& perso.pointsDeVie() == 1664 && perso.sommeArgent() == 0
+				&& !perso.estEquipe() && perso.bonus() == 100
+				&& !perso.estPorte());
+	}
+
+	@Test
+	public void testPostRetraitPdv() {
+		perso.init("Alex", 15, 50, 10, 100, 1664);
+		int pdv_atpre = perso.pointsDeVie();
+		perso.retraitPdv(50);
+		Assert.assertTrue(checkInvariant()
+				&& perso.pointsDeVie() == pdv_atpre - 50);
+	}
+
+	@Test
+	public void testPostDepotPdv() {
+		perso.init("Alex", 15, 50, 10, 100, 1664);
+		int pdv_atpre = perso.pointsDeVie();
+		perso.depotPdv(50);
+		Assert.assertTrue(checkInvariant()
+				&& perso.pointsDeVie() == pdv_atpre + 50);
+	}
+
+	@Test
+	public void testPostDepotArgent() {
+		perso.init("Alex", 15, 50, 10, 100, 1664);
+		int argent_atpre = perso.sommeArgent();
+		perso.depotArgent(50);
+		Assert.assertTrue(checkInvariant()
+				&& perso.sommeArgent() == argent_atpre + 50);
+
+	}
+
+	@Test
+	public void testPostRetraitArgent1() {
+		perso.init("Alex", 15, 50, 10, 100, 1664);
+		perso.depotArgent(100);
+		int argent_atpre = perso.sommeArgent();
+		perso.retraitArgent(50);
+		Assert.assertTrue(checkInvariant()
+				&& perso.sommeArgent() == argent_atpre - 50);
+	}
+
+	@Test
+	public void testPostRamasser() {
+		perso.init("Alex", 15, 50, 10, 100, 1664);
+		ObjetEquipable obj = new ObjetEquipable();
+		obj.init("baton", 300);
+		perso.ramasser(obj);
+		Assert.assertTrue(checkInvariant() && perso.estEquipe()
+				&& perso.laChoseEquipee().equals(obj));
+	}
+
+	@Test
+	public void testPostJeter() {
+		perso.init("Alex", 15, 50, 10, 100, 1664);
+		ObjetEquipable obj = new ObjetEquipable();
+		obj.init("baton", 300);
+		perso.ramasser(obj);
+		perso.jeter();
+		Assert.assertTrue(checkInvariant() && !perso.estEquipe());
 	}
 }

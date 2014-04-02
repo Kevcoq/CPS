@@ -31,6 +31,8 @@ public abstract class AbstractTestObjetMarchand {
 		obj = null;
 	}
 
+	// ////////////////////////////////////////
+	// /////////// PRE ////////////////////////
 	//
 	//
 	//
@@ -80,6 +82,22 @@ public abstract class AbstractTestObjetMarchand {
 		} catch (PreconditionError e) {
 			Assert.assertTrue(true);
 		}
+	}
+
+	// ////////////////////////////////////////
+	// ///////////// POST /////////////////////
+	@Test
+	public void testPostInit() {
+		obj.init("PEPITEOR", 5000);
+		Assert.assertTrue(obj.nom().equals("PEPITEOR") && obj.prix() == 5000
+				&& !obj.estVendu());
+	}
+
+	@Test
+	public void testPostVendu() {
+		obj.init("PEPITEOR", 5000);
+		obj.vendre();
+		Assert.assertTrue(obj.estVendu());
 	}
 
 }

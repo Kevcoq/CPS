@@ -9,6 +9,7 @@
 
 ** Constructors :
 **** init : int → [Chose]
+***** pre init(C, bonus) require bonus > 0 
 
 ** Operators :
 **** estRamasse : [Chose] → [Chose]

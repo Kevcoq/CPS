@@ -31,6 +31,8 @@ public abstract class AbstractTestChose {
 		chose = null;
 	}
 
+	// ///////////////////////////////////////////////////////
+	// /////////////// PRE //////////////////
 	//
 	//
 	//
@@ -92,6 +94,29 @@ public abstract class AbstractTestChose {
 		} catch (PreconditionError e) {
 			Assert.assertTrue(true);
 		}
+	}
+
+	// ///////////////////////////////////////////////////////
+	// /////////////// POST //////////////////
+	@Test
+	public void testPostInit() {
+		chose.init(50);
+		Assert.assertTrue(chose.bonus() == 50 && !chose.estPorte());
+	}
+
+	@Test
+	public void testPostEstRamasse() {
+		chose.init(50);
+		chose.estRamasse();
+		Assert.assertTrue(chose.estPorte());
+	}
+
+	@Test
+	public void testPostEstJete() {
+		chose.init(50);
+		chose.estRamasse();
+		chose.estJete();
+		Assert.assertTrue(!chose.estPorte());
 	}
 
 }

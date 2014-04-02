@@ -31,6 +31,7 @@ public abstract class AbstractTestObjet {
 		obj = null;
 	}
 
+	// ///////// PRE /////////////
 	@Test
 	public void testInit() {
 		obj.init("DOLLAR");
@@ -44,6 +45,13 @@ public abstract class AbstractTestObjet {
 		} catch (PreconditionError e) {
 			Assert.assertTrue(true);
 		}
+	}
+
+	// ///////// POST /////////////
+	@Test
+	public void testPostInit() {
+		obj.init("DOLLAR");
+		Assert.assertTrue(obj.nom().equals("DOLLAR"));
 	}
 
 }
