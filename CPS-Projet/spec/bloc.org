@@ -29,9 +29,9 @@
 **** aTresor(B) =(min) typeTresor ≠ TYPE_Tresor.RIEN
 
 *** [init]
-**** largeur(init(b,t)) = 10
-**** hauteur(init(b,t)) = 10
-**** profondeur(init(b,t)) = 10
+**** largeur(init(b,t)) = 40
+**** hauteur(init(b,t)) = 100
+**** profondeur(init(b,t)) = 40
 **** typeBloc(init(b,t)) = b
 **** typeTresor(init(b,t)) = t
 

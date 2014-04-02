@@ -7,5 +7,5 @@ package enumeration;
  * 
  */
 public enum RESULTAT {
-	WIN, LOSE
+	GAGNEE, PERDUE, NULLE
 }

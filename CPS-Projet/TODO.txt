@@ -1,7 +1,10 @@
+Bloc taille mini slick
+revoir ts pixel en bloc
+
+
 SPEC :
 gestionCombat -> jeter + position ???
 	      	  -> jeter touche un personnage
-	      	  -> reprendre collisionGauche = on ne s'occupe pas de leur pos
 	      	  -> gerer = soucis
 
 moteurJeu     -> generation de gangster
@@ -10,7 +13,6 @@ moteurJeu     -> generation de gangster
 
 
 CODE :
-moteurJeu     -> contrat
 gestionCbt	  -> contrat | gerer | collisionGauche
 
 
@@ -18,8 +20,8 @@ gestionCbt	  -> contrat | gerer | collisionGauche
 
 
 les TESTS
-objetEquipable -> refine ???? chose et objet
+objetEquipable -> refine ???? chose et objet [OK]
 objetMarchand -> refine Objet ???
 + gstCbt et moteurJeu
 
-test de séquence ??????
+test de sï¿½quence ??????

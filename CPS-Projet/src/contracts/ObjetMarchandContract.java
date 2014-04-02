@@ -17,7 +17,7 @@ public class ObjetMarchandContract extends ObjetMarchandDecorator {
 
 		super.init(nom, prix);
 
-		if (!(nom == nom()))
+		if (!(nom == nom() && prix == prix() && !estVendu()))
 			throw new PostconditionError("objetMarchand -> init");
 	}
 

@@ -10,7 +10,6 @@ import java.util.Random;
 import services.ChoseService;
 import services.GangsterService;
 import services.GestionCombatService;
-import services.ObjetEquipableService;
 import services.PersonnageService;
 import services.TerrainService;
 import enumeration.COMMANDE;
@@ -20,14 +19,14 @@ public class GestionCombat implements GestionCombatService {
 	class Position {
 		private int x, y, z;
 
-		public Position(int x, int y, int z) {
+		private Position(int x, int y, int z) {
 			super();
 			this.x = x;
 			this.y = y;
 			this.z = z;
 		}
 
-		public int[] toTbl() {
+		private int[] toTbl() {
 			int[] tmp = { x, y, z };
 			return tmp;
 		}
@@ -38,7 +37,7 @@ public class GestionCombat implements GestionCombatService {
 		private boolean estGele;
 		private int nbGele;
 
-		public FG() {
+		private FG() {
 			super();
 			this.estFrappe = false;
 			this.estGele = false;
@@ -91,6 +90,7 @@ public class GestionCombat implements GestionCombatService {
 	@Override
 	public List<PersonnageService> collision(String nom) {
 		Collection<PersonnageService> persos = mPerso.values();
+		persos.remove(mPerso.get(nom));
 		List<PersonnageService> lPerso = new ArrayList<PersonnageService>();
 		for (PersonnageService p : persos) {
 			if (collisionGauche(nom, p.nom()) || collisionGauche(p.nom(), nom))
@@ -204,9 +204,11 @@ public class GestionCombat implements GestionCombatService {
 					case JETER:
 						ChoseService chose = p.laChoseEquipee();
 						p.jeter();
-						// gestion des dégats
-						if (!(chose instanceof ObjetEquipableService))
-							((PersonnageService) chose).estJete();
+						chose.estJete();
+						// TODO gestion des degats
+						if (chose instanceof PersonnageService) {
+							// TODO perte de pdv
+						}
 						mPos.get(p.nom()).z = 0;
 						break;
 

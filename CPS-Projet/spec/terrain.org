@@ -22,6 +22,6 @@
 **** hauteur(init(l,h,p)) = h
 **** profondeur(init(l,h,p)) = p
 **** getBloc(init(l,h,p),x,y,z) ≠ null avec 
-***** ∀x ∈ [0;(largeur(init(l,h,p))/Bloc::largeur())], 
-***** ∀y ∈ [0;(profondeur(init(l,h,p))/Bloc::profondeur())], 
-***** ∀z ∈ [0;(hauteur(init(l,h,p))/Bloc::hauteur())],
+***** ∀x ∈ [0;largeur(init(l,h,p))], 
+***** ∀y ∈ [0;profondeur(init(l,h,p))],
+***** ∀z ∈ [0;hauteur(init(l,h,p))],

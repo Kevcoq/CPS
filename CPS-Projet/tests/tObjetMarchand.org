@@ -4,6 +4,7 @@
 *** Condition initiale : ∅
 *** Operation : L0 =(def) init("PEPITEOR", 5000)
 *** Oracle :
+**** nom(L0) = PEPITEOR
 **** prix(L0) = 5000
 **** estVendu(L0) = false
 
