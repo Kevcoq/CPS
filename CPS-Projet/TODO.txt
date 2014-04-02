@@ -6,9 +6,17 @@ gestionCombat -> jeter + position ???
 
 moteurJeu     -> generation de gangster
 
+
+
+
 CODE :
 moteurJeu     -> contrat
 gestionCbt	  -> contrat | gerer | collisionGauche
 
 
+
+
+
 les TESTS
+objetEquipable -> refine ???? chose et objet
+objetMarchand -> refine Objet ???

@@ -1,0 +1,50 @@
+* Test Bloc
+
+** Cas de test 1.1 : Bloc::testInit
+*** Condition initiale : ∅
+*** Operation : L0 =(def) init(VIDE, RIEN)
+*** Oracle :
+**** aTresor(L0) = false
+**** typeBloc(L0) = VIDE
+
+
+** Cas de test 1.2 : Bloc::testInit2
+*** Condition initiale : ∅
+*** Operation : L0 =(def) init(VIDE, DIXDOLLAR)
+*** Oracle :
+**** aTresor(L0) = true
+**** typeTresor(L0) = DIXDOLLAR
+**** typeBloc(L0) = VIDE
+
+
+
+
+** Cas de test 2.1 : Bloc::testRamasserTresor
+*** Condition initiale : L =(def) init(VIDE, DIXDOLLAR)
+*** Operation : L0 =(def) ramasserTresor(L)
+*** Oracle :
+**** aTresor(L0) = false
+
+** Cas de test 2.2 : Bloc::testRamasserTresorFail
+*** Condition initiale : L =(def) init(VIDE, RIEN)
+*** Operation : L0 =(def) ramasserTresor(L)
+*** Oracle :
+**** aTresor(L) = false
+**** #exception levee
+
+
+
+
+** Cas de test 3.1 : Bloc::testDeposerTresor
+*** Condition initiale : L =(def) init(VIDE, RIEN)
+*** Operation : L0 =(def) deposerTresor(L, CHAINEVELO)
+*** Oracle :
+**** aTresor(L0) = true
+**** typeTresor(L0) = CHAINEVELO
+
+** Cas de test 3.2 : Bloc::testDeposerTresorFail
+*** Condition initiale : L =(def) init(VIDE, DIXDOLLAR)
+*** Operation : L0 =(def) deposerTresor(L, CHAINEVELO)
+*** Oracle :
+**** aTresor(L) = true
+**** #exception levee

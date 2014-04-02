@@ -7,7 +7,7 @@ public interface ObjetMarchandService extends ObjetService {
 	public boolean estVendu();
 
 	// constructor :
-	public void init(int prix);
+	public void init(String nom, int prix);
 
 	// operator :
 	public void vendre();

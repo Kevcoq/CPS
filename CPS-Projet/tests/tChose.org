@@ -1,0 +1,51 @@
+* Test Chose
+
+** Cas de test 1.1 : Chose::testInit
+*** Condition initiale : ∅
+*** Operation : L0 =(def) init(50)
+*** Oracle : 
+**** bonus(L0) = 50
+**** estPorte = false
+
+
+** Cas de test 1.2 : Chose::testInitFail
+*** Condition initiale : ∅
+*** Operation : L0 =(def) init(-50)
+*** Oracle : 
+**** -50 < 0
+**** #exception levee
+
+
+
+
+** Cas de test 2.1 : Chose::testEstRamasse
+*** Condition initiale : L =(def) init(50)
+*** Operation : L0 =(def) estRamasse(L)
+*** Oracle : 
+**** estPorte(L0) = true
+
+** Cas de test 2.2 : Chose::testEstRamasseFail
+*** Condition initiale : 
+**** L =(def) init(50)
+**** L0 = (def) estRamasse(L)
+*** Operation : L1 =(def) estRamasse(L0)
+*** Oracle : 
+**** estPorte(L0) = true
+**** #exception levee
+
+
+** Cas de test 3.1 : Chose::testEstJete
+*** Condition initiale : 
+**** L =(def) init(50)
+**** L0 = (def) estRamasse(L)
+*** Operation : L1 =(def) estJete(L0)
+*** Oracle : 
+**** estPorte(L1) = false
+
+** Cas de test 3.2 : Chose::testEstJeteFail
+*** Condition initiale : L =(def) init(50)
+*** Operation : L0 =(def) estJete(L)
+*** Oracle : 
+**** estPorte(L) = false
+**** #exception levee
+

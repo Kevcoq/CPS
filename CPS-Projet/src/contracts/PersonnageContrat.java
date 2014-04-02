@@ -121,7 +121,7 @@ public class PersonnageContrat extends PersonnageDecorator {
 	public void retraitArgent(int s) {
 		// pre retraitArgent(P,s) require ¬estVaincu(P) ∧ s > 0 ∧ s <
 		// sommeArgent(P)
-		if (!(!estVaincu() && s > 0 && s < sommeArgent()))
+		if (!(!estVaincu() && s > 0 && s <= sommeArgent()))
 			throw new PreconditionError("personnage -> retraitArgent");
 
 		checkInvariant();
@@ -191,7 +191,7 @@ public class PersonnageContrat extends PersonnageDecorator {
 	@Override
 	public void jeter() {
 		// pre jeter(P) require ¬estVaincu(P) ∧ estEquipe(P)
-		if (!(!estVaincu() && !estEquipe()))
+		if (!(!estVaincu() && estEquipe()))
 			throw new PreconditionError("personnage -> jeter");
 
 		checkInvariant();

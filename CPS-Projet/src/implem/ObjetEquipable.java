@@ -11,8 +11,14 @@ public class ObjetEquipable extends Chose implements ObjetEquipableService {
 	}
 
 	@Override
-	public void init(String nom) {
+	public void init(String nom, int bonus) {
+		init(bonus);
 		this.nom = nom;
+	}
+
+	@Override
+	public void init(String nom) {
+		init(nom, (int) (Math.random() * 250));
 	}
 
 }

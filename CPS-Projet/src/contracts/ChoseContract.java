@@ -5,7 +5,7 @@ import contracts.base.PreconditionError;
 import services.ChoseService;
 import decorators.ChoseDecorator;
 
-public abstract class ChoseContract extends ChoseDecorator {
+public class ChoseContract extends ChoseDecorator {
 
 	public ChoseContract(ChoseService chose) {
 		super(chose);

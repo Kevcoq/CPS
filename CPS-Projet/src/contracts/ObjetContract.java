@@ -5,7 +5,7 @@ import contracts.base.PreconditionError;
 import services.ObjetService;
 import decorators.ObjetDecorator;
 
-public abstract class ObjetContract extends ObjetDecorator {
+public class ObjetContract extends ObjetDecorator {
 
 	public ObjetContract(ObjetService obj) {
 		super(obj);

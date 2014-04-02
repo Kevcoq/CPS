@@ -35,11 +35,12 @@ public abstract class ObjetMarchandDecorator implements ObjetMarchandService {
 	}
 
 	/**
+	 * @param nom
 	 * @param prix
-	 * @see services.ObjetMarchand#init(int)
+	 * @see services.ObjetMarchand#init(String, int)
 	 */
-	public void init(int prix) {
-		obj.init(prix);
+	public void init(String nom, int prix) {
+		obj.init(nom, prix);
 	}
 
 	/**
@@ -56,11 +57,6 @@ public abstract class ObjetMarchandDecorator implements ObjetMarchandService {
 	 */
 	public void vendre() {
 		obj.vendre();
-	}
-
-	public void init(String nom, int prix) {
-		init(prix);
-		init(nom);
 	}
 
 }

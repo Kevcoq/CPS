@@ -2,7 +2,7 @@ package implem;
 
 import services.ObjetService;
 
-public abstract class Objet implements ObjetService {
+public class Objet implements ObjetService {
 	private String nom = "";
 
 	@Override

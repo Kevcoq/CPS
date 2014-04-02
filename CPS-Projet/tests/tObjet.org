@@ -1,0 +1,13 @@
+* Test Objet
+
+** Cas de test 1.1 : Objet::testInit
+*** Condition initiale : ∅
+*** Operation : L0 =(def) init("DOLLAR")
+*** Oracle : nom(L0) = DOLLAR
+
+** Cas de test 1.2 : Objet::testInitFail
+*** Condition initiale : ∅
+*** Operation : L0 =(def) init("")
+*** Oracle :
+**** "" == ""
+**** #exception levee

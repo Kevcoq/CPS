@@ -17,7 +17,8 @@ public class ObjetMarchand extends Objet implements ObjetMarchandService {
 	}
 
 	@Override
-	public void init(int prix) {
+	public void init(String nom, int prix) {
+		init(nom);
 		this.prix = prix;
 		estVendu = false;
 	}

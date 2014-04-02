@@ -69,12 +69,29 @@
 
 
 ** Cas de test 4.1 : Personnage::retraitArgent
+*** Condition initiale : 
+**** L =(def) init("Alex", 15, 50, 10, 100, 1664)
+**** L0 =(def) depotArgent(L, 100)
+*** Operation : L1 =(def) retraitArgent(L0, 50)
+*** Oracle : 
+**** sommeArgent(L1) = sommeArgent(L0) - 50
+
+** Cas de test 4.2 : Personnage::retraitArgent
+*** Condition initiale : 
+**** L =(def) init("Alex", 15, 50, 10, 100, 1664)
+**** L0 =(def) depotArgent(L, 50)
+*** Operation : L1 =(def) retraitArgent(L0, 50)
+*** Oracle : 
+**** sommeArgent(L1) = sommeArgent(L0) - 50
+
+** Cas de test 4.3 : Personnage::retraitArgentFail1
 *** Condition initiale :  L =(def) init("Alex", 15, 50, 10, 100, 1664)
 *** Operation : L0 =(def) retraitArgent(L, 50)
 *** Oracle : 
-**** sommeArgent(L0) = sommeArgent(L) - 50
+**** 50 > sommeArgent(L)
+**** #exception levee
 
-** Cas de test 4.2 : Personnage::retraitArgentFail1
+** Cas de test 4.4 : Personnage::retraitArgentFail1
 *** Condition initiale :  L =(def) init("Alex", 15, 50, 10, 100, 1664)
 *** Operation : L0 =(def) retraitArgent(L, -50)
 *** Oracle : 

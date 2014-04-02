@@ -1,0 +1,41 @@
+* Test ObjetMarchand
+
+** Cas de test 1.1 : ObjetMarchand::testInit
+*** Condition initiale : ∅
+*** Operation : L0 =(def) init("PEPITEOR", 5000)
+*** Oracle :
+**** prix(L0) = 5000
+**** estVendu(L0) = false
+
+** Cas de test 1.2 : ObjetMarchand::testInitFail1
+*** Condition initiale : ∅
+*** Operation : L0 =(def) init("", 5000)
+*** Oracle :
+**** "" == ""
+**** #exception levee
+
+** Cas de test 1.3 : ObjetMarchand::testInitFail2
+*** Condition initiale : ∅
+*** Operation : L0 =(def) init("PEPITEOR", 0)
+*** Oracle :
+**** 0 <= 0
+**** #exception levee
+
+
+
+
+** Cas de test 2.1 : ObjetMarchand::testVendre
+*** Condition initiale : L =(def) init("PEPITEOR", 5000)
+*** Operation : L0 =(def) vendre(L)
+*** Oracle :
+**** prix(L0) = 5000
+**** estVendu(L0) = true
+
+** Cas de test 2.1 : ObjetMarchand::testVendre
+*** Condition initiale : 
+**** L =(def) init("PEPITEOR", 5000)
+**** L0 =(def) vendre(L)
+*** Operation : L1 =(def) vendre(L0)
+*** Oracle :
+**** estVendu(L0) = true
+**** #exception levee

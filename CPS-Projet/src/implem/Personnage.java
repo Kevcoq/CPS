@@ -73,6 +73,7 @@ public class Personnage extends Chose implements PersonnageService {
 	@Override
 	public void init(String nom, int largeur, int hauteur, int profondeur,
 			int force, int pdv) {
+		init(force);
 		this.nom = nom;
 		this.largeur = largeur;
 		this.hauteur = hauteur;
