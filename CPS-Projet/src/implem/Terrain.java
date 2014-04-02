@@ -39,30 +39,34 @@ public class Terrain implements TerrainService {
 
 	@Override
 	public void init(int largeur, int hauteur, int profondeur) {
+		map = new Bloc[largeur][profondeur][hauteur];
 		this.largeur = largeur;
 		this.hauteur = hauteur;
 		this.profondeur = profondeur;
 
 		// On parcourt la map
-		for (int i = 0; i < largeur / Bloc.largeur; i++) {
-			for (int j = 0; j < hauteur / Bloc.hauteur; j++) {
-				for (int k = 0; k < profondeur / Bloc.profondeur; k++) {
-					// on creer un bloc
-					Bloc b = new Bloc();
+		for (int i = 0; i < largeur; i++) {
+			for (int j = 0; j < profondeur; j++) {
+				// on creer un bloc
+				Bloc b = new Bloc();
 
-					if (Math.random() < 0.15) {
-						// on initialise le bloc en fosse
-						b.init(TYPE_Bloc.FOSSE);
-					} else if (Math.random() < 0.25) {
-						// on initialise le bloc en vide + tresor
-						TYPE_Tresor tresor[] = TYPE_Tresor.values();
-						b.init(TYPE_Bloc.VIDE,
-								tresor[(int) (Math.random() * tresor.length)]);
-					} else {
-						// on initialise le bloc en vide
-						b.init(TYPE_Bloc.VIDE);
-					}
-					// on ajoute le bloc a la map
+				if (Math.random() < 0.15) {
+					// on initialise le bloc en fosse
+					b.init(TYPE_Bloc.FOSSE);
+				} else if (Math.random() < 0.25) {
+					// on initialise le bloc en vide + tresor
+					TYPE_Tresor tresor[] = TYPE_Tresor.values();
+					b.init(TYPE_Bloc.VIDE,
+							tresor[(int) (Math.random() * tresor.length)]);
+				} else {
+					// on initialise le bloc en vide
+					b.init(TYPE_Bloc.VIDE);
+				}
+				// on ajoute le bloc a la map
+				map[i][j][0] = b;
+				for (int k = 1; k < hauteur; k++) {
+					b = new Bloc();
+					b.init(TYPE_Bloc.VIDE);
 					map[i][j][k] = b;
 				}
 			}

@@ -49,6 +49,7 @@ public class MoteurJeu implements MoteurJeuService {
 
 	@Override
 	public void init(int largeur, int hauteur, int profondeur, int maxPas) {
+		cbt = new GestionCombat();
 		cbt.init(largeur, hauteur, profondeur);
 		maxPasJeu = maxPas;
 		pasJeuCourant = 0;
@@ -78,9 +79,8 @@ public class MoteurJeu implements MoteurJeuService {
 	}
 
 	private void generationCmds(Map<String, COMMANDE> cmd) {
-		String[] noms = (String[]) cbt.mPerso().keySet().toArray();
-		for (int i = 0; i < noms.length; i++)
-			cmd.put(noms[i], genererCmd());
+		for (String nom : cbt.mPerso().keySet())
+			cmd.put(nom, genererCmd());
 
 		if (Math.random() < 0.15)
 			cmd.put(Rand.name(), genererCmd());

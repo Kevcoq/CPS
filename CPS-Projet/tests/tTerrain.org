@@ -1,0 +1,35 @@
+* Test Terrain
+
+** Cas de test 1.1 : Terrain::testInit
+*** Condition initiale : ∅
+*** Operation : L0 =(def) init(20, 4, 10)
+*** Oracle : 
+**** largeur(L0) = 20
+**** profondeur(L0) = 10
+**** hauteur(L0) = 4
+**** getBloc(init(l,h,p),x,y,z) ≠ null avec 
+***** ∀x ∈ [0;largeur(init(l,h,p))], 
+***** ∀y ∈ [0;profondeur(init(l,h,p))],
+***** ∀z ∈ [0;hauteur(init(l,h,p))],
+
+** Cas de test 1.2 : Terrain::testInitFail1
+*** Condition initiale : ∅
+*** Operation : L0 =(def) init(-20, 4, 10)
+*** Oracle : 
+**** -20 < 0
+**** #exception levee
+
+** Cas de test 1.2 : Terrain::testInitFail1
+*** Condition initiale : ∅
+*** Operation : L0 =(def) init(20, -4, 10)
+*** Oracle : 
+**** -4 < 0
+**** #exception levee
+
+** Cas de test 1.2 : Terrain::testInitFail1
+*** Condition initiale : ∅
+*** Operation : L0 =(def) init(20, 4, -10)
+*** Oracle : 
+**** -10 < 0
+**** #exception levee
+

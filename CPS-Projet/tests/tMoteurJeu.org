@@ -1,0 +1,71 @@
+* Test MoteurJeu
+
+** Cas de test 1.1 : MoteurJeu::testInit
+*** Condition initiale : ∅
+*** Operation : L0 =(def) init(20, 4, 10, 100)
+*** Oracle : 
+**** estFini(L0) = false
+**** maxPasJeu(L0) = 100
+**** pasJeuCourant(L0) = 0
+
+** Cas de test 1.2 : MoteurJeu::testInitFail1
+*** Condition initiale : ∅
+*** Operation : L0 =(def) init(-20, 4, 10, 100)
+*** Oracle : 
+**** -20 > 0
+**** #exception levee
+
+** Cas de test 1.3 : MoteurJeu::testInitFail2
+*** Condition initiale : ∅
+*** Operation : L0 =(def) init(20, -4, 10, 100)
+*** Oracle : 
+**** -4 > 0
+**** #exception levee
+
+** Cas de test 1.4 : MoteurJeu::testInitFail3
+*** Condition initiale : ∅
+*** Operation : L0 =(def) init(20, 4, -10, 100)
+*** Oracle : 
+**** -10 > 0
+**** #exception levee
+
+** Cas de test 1.5 : MoteurJeu::testInitFail4
+*** Condition initiale : ∅
+*** Operation : L0 =(def) init(20, 4, 10, 0)
+*** Oracle : 
+**** 0 > 0
+**** #exception levee
+
+
+
+
+
+
+** Cas de test 2.1 : MoteurJeu::pasJeu1
+*** Condition initiale : L =(def) init(20, 4, 10, 0)
+*** Operation : L0 =(def) pasJeu(cmdA, cmdR)
+*** Oracle : 
+**** pasJeuCourant(L0) = pasJeuCourant(L) + 1
+
+** Cas de test 2.2 : MoteurJeu::pasJeu2
+*** Condition initiale : L =(def) init(20, 4, 10, 0)
+*** Operation : L0 =(def) pasJeu("Alex", cmd)
+*** Oracle : 
+**** pasJeuCourant(L0) = pasJeuCourant(L) + 1
+
+** Cas de test 2.3 : MoteurJeu::pasJeu3
+*** Condition initiale : L =(def) init(20, 4, 10, 0)
+*** Operation : L0 =(def) pasJeu("Ryan", cmd)
+*** Oracle : 
+**** pasJeuCourant(L0) = pasJeuCourant(L) + 1
+
+** Cas de test 2.4 : MoteurJeu::pasJeu4
+*** Condition initiale : L =(def) init(20, 4, 10, 0)
+*** Operation : L0 =(def) pasJeu("autre", cmd)
+*** Oracle : 
+**** TODO signe different autre != Ryan ∨ Alex
+**** #exception levee
+
+
+
+

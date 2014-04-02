@@ -1,6 +1,5 @@
 package contracts;
 
-import implem.Bloc;
 import services.BlocService;
 import services.TerrainService;
 import contracts.base.PostconditionError;
@@ -25,14 +24,12 @@ public class TerrainContract extends TerrainDecorator {
 		super(terrain);
 	}
 
-	// pre getBloc(T,i,j,k) require (0 ≤ i < (largeur(T)/Bloc::largeur())) ∧ (0
-	// ≤ j < (profondeur(T)/Bloc::profondeur())) ∧ (0 ≤ k <
-	// (hauteur(T)/Bloc::hauteur()))
+	// pre getBloc(T,i,j,k) require (0 ≤ i < largeur(T)) ∧ (0
+	// ≤ j < profondeur(T)) ∧ (0 ≤ k <
+	// hauteur(T))
 	@Override
 	public BlocService getBloc(int i, int j, int k) {
-		if (!(0 <= i && i < largeur() / Bloc.largeur && 0 <= j
-				&& j < profondeur() / Bloc.profondeur && 0 <= k && k < hauteur()
-				/ Bloc.hauteur))
+		if (!(0 <= i && i < largeur() && 0 <= j && j < profondeur() && 0 <= k && k < hauteur()))
 			throw new PreconditionError("terrain -> getBloc");
 
 		return super.getBloc(i, j, k);
@@ -52,9 +49,9 @@ public class TerrainContract extends TerrainDecorator {
 		// **** hauteur(init(l,h,p)) = h
 		// **** profondeur(init(l,h,p)) = p
 		// **** getBloc(init(l,h,p),x,y,z) ≠ null avec
-		// ***** ∀x ∈ [0;(largeur(init(l,h,p))/Bloc::largeur())],
-		// ***** ∀y ∈ [0;(profondeur(init(l,h,p))/Bloc::profondeur())],
-		// ***** ∀z ∈ [0;(hauteur(init(l,h,p))/Bloc::hauteur())],
+		// ***** ∀x ∈ [0;largeur(init(l,h,p))],
+		// ***** ∀y ∈ [0;profondeur(init(l,h,p))],
+		// ***** ∀z ∈ [0;hauteur(init(l,h,p))],
 
 		// TODO les pour tout
 		if (!(largeur == largeur() && hauteur == hauteur() && profondeur == profondeur()))

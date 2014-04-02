@@ -18,7 +18,7 @@
 **** cptGele : [GestionCombat] × String → int
 ***** pre cptGele(C,id) require id ∈ mPerso.keySet() ∧ estGele(C,id)
 
-**** position : [GestionCombat] × String → int[]  // 0 → x ∧ 1 → y ∧ 2 → z
+**** position : [GestionCombat] × String → int[]  // 0 → x ∧ 1 → y ∧ 2 → z ∧ 3 → dir [0 gauche / 1 droite]
 ***** pre position(C,id) require id ∈ mPerso.keySet() 
 
 **** collisionGauche : [GestionCombat] × String × String → boolean
@@ -84,9 +84,9 @@
 **** estGele(init(l,h,p),id)=false
 
 **** position
-***** position(init(l,h,p),"Alex") = { 0 ; Terrain::profondeur(init(l,h,p)) / 2 + 1 ; 0 }
-***** position(init(l,h,p),"Ryan") = { 0  ; Terrain::profondeur(init(l,h,p)) / 2 - 1 ; 0 }
-***** position(init(l,h,p),"Slick") = { Terrain::largeur(init(l,h,p)) - 1 ; Terrain::profondeur(init(l,h,p)) / 2 ; 0 }
+***** position(init(l,h,p),"Alex") = { 0 ; Terrain::profondeur(init(l,h,p)) / 2 + 1 ; 0 ; 1}
+***** position(init(l,h,p),"Ryan") = { 0  ; Terrain::profondeur(init(l,h,p)) / 2 - 1 ; 0 ; 1}
+***** position(init(l,h,p),"Slick") = { Terrain::largeur(init(l,h,p)) - 1 ; Terrain::profondeur(init(l,h,p)) / 2 ; 0 ; 0}
 ***** position(init(l,h,p), id) = Random sur Bloc Vide 
 
 
@@ -95,6 +95,7 @@
 
 
 *** [gerer]
+**** TODO id n'appartient pas a keySet creation
 ****  ∀id ∈ mPerso.keySet(), mPerso(gerer(C, cmd)).get(id) =  
 ***** si ¬estFrappe(gerer(C, cmd),id) alors mPerso(C).get(id)
 ***** sinon Personnage::retrait(mPerso(C).get(id),cpt)
@@ -113,23 +114,24 @@
 **** mPerso.keySet(), position(gerer(C, cmd), id) =
 ***** si estFrappe(gerer(C, cmd), id), 
 ****** si (∃p ∈ collisionGauche(C,id,p) tq cmd.get(Personnage::nom(p)) == FRAPPE) alors 
-******* { min(position(C, id)[0.]+3, Terrain::largeur(terrain(C)) ; position(C, id)[1.] ; 0 }
+******* { min(position(C, id)[0.]+3, Terrain::largeur(terrain(C)) ; position(C, id)[1.] ; 0 ; position(C, id)[3.] }
 ****** si (∃p ∈ collisionGauche(C,p,id) tq cmd.get(Personnage::nom(p)) == FRAPPE) alors 
-******* { max(position(C, id)[0.]-3, 0) ; position(C, id)[1.] ; 0 }
+******* { max(position(C, id)[0.]-3, 0) ; position(C, id)[1.] ; 0 ; position(C, id)[3.] }
 ***** si Chose::estPorte(mPerso(C).get(id)) alors 
 ****** ∃p ∈ mPerso(C).keySet() tq Personnage::laChoseEquipee(p) == mPerso(C).get(id) ∧ cmd.get(Personnage::nom(p)) ≠ JETER 
-******* { position(gerer(C, cmd), p)[0.] ; position(gerer(C,cmd), p)[1.] ; 1}
+******* { position(gerer(C, cmd), p)[0.] ; position(gerer(C,cmd), p)[1.] ; 1 ; position(gerer(C, cmd) p)[3.]}
 ****** ∃p ∈ mPerso(C).keySet() tq Personnage::laChoseEquipee(p) == mPerso(C).get(id) ∧ cmd.get(Personnage::nom(p)) == JETER 
-******* TODO { position(gerer(C, cmd), p)[0.]+/-5 ; position(gerer(C,cmd), p)[1.] ; 0 }
+******* si position(gerer(C, cmd), p)[3.] = 0 alors { max( position(gerer(C, cmd), p)[0.] - 5, 0) ; position(gerer(C,cmd), p)[1.] ; 0 ; 0 }
+******* sinon { min( position(gerer(C, cmd), p)[0.] + 5, Terrain::largeur(terrain(C)) - 1 ; position(gerer(C,cmd), p)[1.] ; 0 ; 1 }
 ***** si cmd.get(id) == DROITE
-******* { min( position(C, p)[0.] + 1, Terrain::largeur(terrain(C)) - 1)  ; position(C, p)[1.] ; 0 }
+******* { min( position(C, p)[0.] + 1, Terrain::largeur(terrain(C)) - 1)  ; position(C, p)[1.] ; 0 ; 1}
 ***** si cmd.get(id) == GAUCHE
-******* { max( position(C, p)[0.] - 1, 0) ; position(C, p)[1.] ; 0 }
+******* { max( position(C, p)[0.] - 1, 0) ; position(C, p)[1.] ; 0 ; 0}
 ***** si cmd.get(id) == HAUT
-******* { position(C, p)[0.] ;  min( position(C, p)[1.] + 1, Terrain::profondeur(terrain(C)) - 1) ; 0 }
+******* { position(C, p)[0.] ;  min( position(C, p)[1.] + 1, Terrain::profondeur(terrain(C)) - 1) ; 0 ; position(C, id)[3.] }
 ***** si cmd.get(id) == BAS
-******* { position(C, p)[0.] ; max( position(C, p)[1.] - 1, 0) ; 0 }
+******* { position(C, p)[0.] ; max( position(C, p)[1.] - 1, 0) ; 0 ; position(C, id)[3.] }
 ***** si cmd.get(id) == SAUTER
-******* { position(C, p)[0.] ; position(C, p)[1.] ; 1 }
+******* { position(C, p)[0.] ; position(C, p)[1.] ; 1 ; position(C, id)[3.] }
 ***** sinon 
-******* { position(C, p)[0.] ; position(C, p)[1.] ; 0 }
+******* { position(C, p)[0.] ; position(C, p)[1.] ; 0 ; position(C, id)[3.] }

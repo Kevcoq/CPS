@@ -60,7 +60,7 @@ public class MoteurJeuContract extends MoteurJeuDecorator {
 	public void init(int largeur, int hauteur, int profondeur, int maxPas) {
 		// ***** pre init(largeur, hauteur, profondeur, maxPas) require largeur
 		// > 0 ∧ hauteur > 0 ∧ profondeur > 0 ∧ maxPas > 0
-		if (!(largeur > 0 && hauteur > 0 && maxPas > 0))
+		if (!(largeur > 0 && hauteur > 0 && profondeur > 0 && maxPas > 0))
 			throw new PreconditionError("moteurJeu -> init");
 
 		super.init(largeur, hauteur, profondeur, maxPas);

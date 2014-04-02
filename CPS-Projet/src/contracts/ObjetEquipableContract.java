@@ -12,12 +12,22 @@ public class ObjetEquipableContract extends ObjetEquipableDecorator {
 	}
 
 	public void init(String nom, int b) {
-		if (!(nom != ""))
+		if (!(nom != "" && b > 0))
 			throw new PreconditionError("objet -> init");
 
 		super.init(nom, b);
 
 		if (!(nom == nom() && bonus() == b && !estPorte()))
+			throw new PostconditionError("objet -> init");
+	}
+
+	public void init(String nom) {
+		if (!(nom != ""))
+			throw new PreconditionError("objet -> init");
+
+		super.init(nom);
+
+		if (!(nom == nom() && !estPorte()))
 			throw new PostconditionError("objet -> init");
 	}
 

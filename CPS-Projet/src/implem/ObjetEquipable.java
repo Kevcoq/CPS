@@ -18,7 +18,6 @@ public class ObjetEquipable extends Chose implements ObjetEquipableService {
 
 	@Override
 	public void init(String nom) {
-		init(nom, (int) (Math.random() * 250));
+		this.nom = nom;
 	}
-
 }
