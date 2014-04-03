@@ -79,4 +79,9 @@ public class Position implements PositionService {
 	public String toString() {
 		return "{ " + x + " ; " + y + "; " + z + " }";
 	}
+
+	@Override
+	public boolean collision(PositionService p) {
+		return equals(p) || equals(p.x() - 1, p.y(), p.z());
+	}
 }

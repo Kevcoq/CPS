@@ -16,6 +16,7 @@ import services.PersonnageService;
 import services.PositionService;
 import services.TerrainService;
 import enumeration.COMMANDE;
+import enumeration.TYPE_Bloc;
 import enumeration.TYPE_Tresor;
 
 public class GestionCombat implements GestionCombatService {
@@ -50,40 +51,56 @@ public class GestionCombat implements GestionCombatService {
 
 	@Override
 	public boolean estFrappe(String nom) {
-		return mFG.get(nom).estFrappe;
+		if (mFG.containsKey(nom))
+			return mFG.get(nom).estFrappe;
+		throw new Error("nom n'existe pas");
 	}
 
 	@Override
 	public boolean estGele(String nom) {
-		return mFG.get(nom).estGele;
+		if (mFG.containsKey(nom))
+			return mFG.get(nom).estGele;
+		throw new Error("nom n'existe pas");
 	}
 
 	@Override
 	public int cptGele(String nom) {
-		return mFG.get(nom).nbGele;
+		if (mFG.containsKey(nom))
+			return mFG.get(nom).nbGele;
+		throw new Error("nom n'existe pas");
 	}
 
 	@Override
 	public PositionService position(String nom) {
-		return mPos.get(nom);
+		if (mFG.containsKey(nom))
+			return mPos.get(nom);
+		throw new Error("nom n'existe pas");
 	}
 
 	@Override
 	public boolean collisionGauche(String nom1, String nom2) {
-		PositionService pos1 = mPos.get(nom1), pos2 = mPos.get(nom2);
-		return pos1.equals(pos2)
-				|| pos1.equals(pos2.x() - 1, pos2.y(), pos2.z());
+		if (mPos.containsKey(nom1) && mPos.containsKey(nom2)) {
+			PositionService pos1 = mPos.get(nom1), pos2 = mPos.get(nom2);
+			return pos1.equals(pos2)
+					|| pos1.equals(pos2.x() - 1, pos2.y(), pos2.z());
+		}
+		throw new Error("nom n'existe pas");
+
 	}
 
 	@Override
 	public List<PersonnageService> collision(String nom) {
-		List<PersonnageService> lPerso = new ArrayList<PersonnageService>();
-		for (String name : mPerso.keySet()) {
-			if (!nom.equals(name) && collisionGauche(nom, name)
-					|| collisionGauche(name, nom))
-				lPerso.add(mPerso.get(name));
+		if (mPerso.containsKey(nom)) {
+			List<PersonnageService> lPerso = new ArrayList<PersonnageService>();
+			for (String name : mPerso.keySet()) {
+				if (!nom.equals(name) && collisionGauche(nom, name)
+						|| collisionGauche(name, nom))
+					lPerso.add(mPerso.get(name));
+			}
+			return lPerso;
 		}
-		return lPerso;
+		throw new Error("nom n'existe pas");
+
 	}
 
 	@Override
@@ -100,14 +117,18 @@ public class GestionCombat implements GestionCombatService {
 		alex.init("Alex", 20, 51, 10, 100, 1664);
 		mPerso.put("Alex", alex);
 		PositionService posAlex = new Position();
-		posAlex.init(1, terrain.profondeur() / 2 + 1, 0, false);
+		posAlex.init(0, terrain.profondeur() / 2 + 1, 0, false);
+		terrain.getBloc(0, terrain.profondeur() / 2 + 1, 0)
+				.init(TYPE_Bloc.VIDE);
 		mPos.put("Alex", posAlex);
 
 		PersonnageService ryan = new Personnage();
 		ryan.init("Ryan", 25, 60, 12, 200, 1664);
 		mPerso.put("Ryan", ryan);
 		PositionService posRyan = new Position();
-		posRyan.init(1, terrain.profondeur() / 2 - 1, 0, false);
+		posRyan.init(0, terrain.profondeur() / 2 - 1, 0, false);
+		terrain.getBloc(0, terrain.profondeur() / 2 - 1, 0)
+				.init(TYPE_Bloc.VIDE);
 		mPos.put("Ryan", posRyan);
 
 		GangsterService slick = new Gangster();
@@ -115,6 +136,8 @@ public class GestionCombat implements GestionCombatService {
 		mPerso.put("Slick", slick);
 		PositionService posSlick = new Position();
 		posSlick.init(terrain.largeur() - 1, terrain.profondeur() / 2, 0, true);
+		terrain.getBloc(terrain.largeur() - 1, terrain.profondeur() / 2, 0)
+				.init(TYPE_Bloc.VIDE);
 		mPos.put("Slick", posSlick);
 
 		Random r = new Random();
@@ -154,8 +177,8 @@ public class GestionCombat implements GestionCombatService {
 
 					// on les retire + gele
 					p.retraitPdv(cpt);
-					mFG.get(p).estGele = true;
-					mFG.get(p).estFrappe = false;
+					mFG.get(p.nom()).estGele = true;
+					mFG.get(p.nom()).estFrappe = false;
 					// TODO cpt gele
 
 					// deplacement suivant la direction de frappe du 1er

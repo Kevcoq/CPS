@@ -1,6 +1,7 @@
 package tests.abstrait;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.After;
@@ -8,10 +9,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import enumeration.COMMANDE;
 import services.GestionCombatService;
 import services.PersonnageService;
 import services.PositionService;
+import enumeration.COMMANDE;
 
 public abstract class AbstractTestGestionCombat {
 	private GestionCombatService gestionCombat;
@@ -52,8 +53,21 @@ public abstract class AbstractTestGestionCombat {
 	// /////////////// POST /////////////////
 
 	private boolean checkInvariant() {
-		// TODO
-		return false;
+		boolean bool = true;
+		for (String s : gestionCombat.mPerso().keySet()) {
+			List<PersonnageService> verif = gestionCombat.collision(s);
+			for (PersonnageService pTmp : verif) {
+				if (gestionCombat.collisionGauche(s, pTmp.nom()))
+					bool &= gestionCombat.position(s).collision(
+							gestionCombat.position(pTmp.nom()));
+				else if (gestionCombat.collisionGauche(pTmp.nom(), s))
+					bool &= gestionCombat.position(pTmp.nom()).collision(
+							gestionCombat.position(s));
+			}
+			if (!bool)
+				return false;
+		}
+		return bool;
 	}
 
 	//
@@ -84,9 +98,11 @@ public abstract class AbstractTestGestionCombat {
 				if (pAlex.equals(0, 6, 0) && pRyan.equals(0, 4, 0)
 						&& pSlick.equals(19, 5, 0))
 					Assert.assertTrue(true);
-			}
+			} else
+				Assert.assertTrue(false);
+		} else {
+			Assert.assertTrue(false);
 		}
-		Assert.assertFalse(false);
 	}
 
 	@Test
@@ -118,9 +134,11 @@ public abstract class AbstractTestGestionCombat {
 				if (pAlex.equals(0, 6, 0) && pRyan.equals(0, 4, 0)
 						&& pSlick.equals(19, 5, 0))
 					Assert.assertTrue(true);
-			}
+			} else
+				Assert.assertTrue(false);
+		} else {
+			Assert.assertTrue(false);
 		}
-		Assert.assertFalse(false);
 	}
 
 	@Test
@@ -153,9 +171,11 @@ public abstract class AbstractTestGestionCombat {
 				if (pAlex.equals(1, 6, 0) && pRyan.equals(0, 4, 0)
 						&& pSlick.equals(19, 5, 0))
 					Assert.assertTrue(true);
-			}
+			} else
+				Assert.assertTrue(false);
+		} else {
+			Assert.assertTrue(false);
 		}
-		Assert.assertFalse(false);
 	}
 
 	@Test
@@ -188,9 +208,11 @@ public abstract class AbstractTestGestionCombat {
 				if (pAlex.equals(0, 7, 0) && pRyan.equals(0, 4, 0)
 						&& pSlick.equals(19, 5, 0))
 					Assert.assertTrue(true);
-			}
+			} else
+				Assert.assertTrue(false);
+		} else {
+			Assert.assertTrue(false);
 		}
-		Assert.assertFalse(false);
 	}
 
 	@Test
@@ -223,9 +245,11 @@ public abstract class AbstractTestGestionCombat {
 				if (pAlex.equals(0, 5, 0) && pRyan.equals(0, 4, 0)
 						&& pSlick.equals(19, 5, 0))
 					Assert.assertTrue(true);
-			}
+			} else
+				Assert.assertTrue(false);
+		} else {
+			Assert.assertTrue(false);
 		}
-		Assert.assertFalse(false);
 	}
 
 	@Test
@@ -258,9 +282,11 @@ public abstract class AbstractTestGestionCombat {
 				if (pAlex.equals(0, 6, 1) && pRyan.equals(0, 4, 0)
 						&& pSlick.equals(19, 5, 0))
 					Assert.assertTrue(true);
-			}
+			} else
+				Assert.assertTrue(false);
+		} else {
+			Assert.assertTrue(false);
 		}
-		Assert.assertFalse(false);
 	}
 
 	@Test
@@ -293,9 +319,11 @@ public abstract class AbstractTestGestionCombat {
 				if (pAlex.equals(0, 6, 0) && pRyan.equals(0, 4, 0)
 						&& pSlick.equals(18, 5, 0))
 					Assert.assertTrue(true);
-			}
+			} else
+				Assert.assertTrue(false);
+		} else {
+			Assert.assertTrue(false);
 		}
-		Assert.assertFalse(false);
 	}
 
 	@Test
@@ -332,9 +360,11 @@ public abstract class AbstractTestGestionCombat {
 				if (pAlex.equals(0, 4, 0) && pRyan.equals(0, 4, 1)
 						&& pSlick.equals(19, 5, 0))
 					Assert.assertTrue(true);
-			}
+			} else
+				Assert.assertTrue(false);
+		} else {
+			Assert.assertTrue(false);
 		}
-		Assert.assertFalse(false);
 	}
 
 	@Test
@@ -374,8 +404,10 @@ public abstract class AbstractTestGestionCombat {
 				if (pAlex.equals(0, 4, 0) && pRyan.equals(3, 4, 0)
 						&& pSlick.equals(19, 5, 0))
 					Assert.assertTrue(true);
-			}
+			} else
+				Assert.assertTrue(false);
+		} else {
+			Assert.assertTrue(false);
 		}
-		Assert.assertFalse(false);
 	}
 }

@@ -50,10 +50,10 @@ public class Terrain implements TerrainService {
 				// on creer un bloc
 				Bloc b = new Bloc();
 
-				if (Math.random() < 0.15) {
+				if (Math.random() < 0.1) {
 					// on initialise le bloc en fosse
 					b.init(TYPE_Bloc.FOSSE);
-				} else if (Math.random() < 0.25) {
+				} else if (Math.random() < 0.05) {
 					// on initialise le bloc en vide + tresor
 					TYPE_Tresor tresor[] = TYPE_Tresor.values();
 					b.init(TYPE_Bloc.VIDE,

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import services.GestionCombatService;
 import services.MoteurJeuService;
+import tools.GenerateurCmd;
 import enumeration.COMMANDE;
 import enumeration.RESULTAT;
 
@@ -18,7 +19,6 @@ public class MoteurJeu implements MoteurJeuService {
 	}
 
 	private int maxPasJeu = 0, pasJeuCourant = 0;
-	private boolean estFini = false;
 	private RESULTAT resultat;
 	private GestionCombatService cbt;
 
@@ -34,7 +34,10 @@ public class MoteurJeu implements MoteurJeuService {
 
 	@Override
 	public boolean estFini() {
-		return estFini;
+		return pasJeuCourant == maxPasJeu
+				|| cbt.mPerso().get("Slick").estVaincu()
+				|| (cbt.mPerso().get("Alex").estVaincu() && cbt.mPerso()
+						.get("Ryan").estVaincu());
 	}
 
 	@Override
@@ -79,17 +82,11 @@ public class MoteurJeu implements MoteurJeuService {
 	private Map<String, COMMANDE> generationCmds() {
 		Map<String, COMMANDE> cmd = new HashMap<>();
 		for (String nom : cbt.mPerso().keySet())
-			cmd.put(nom, genererCmd());
+			cmd.put(nom, GenerateurCmd.genererCmd());
 
 		if (Math.random() < 0.15)
-			cmd.put(Rand.name(), genererCmd());
+			cmd.put(Rand.name(), GenerateurCmd.genererCmd());
 
 		return cmd;
 	}
-
-	private COMMANDE genererCmd() {
-		COMMANDE[] cmds = COMMANDE.values();
-		return cmds[(int) (Math.random() * cmds.length)];
-	}
-
 }

@@ -9,6 +9,7 @@
 **** dirG : [Position] → boolean 
 **** equals : [Position] × Position → boolean
 **** equals : [Position] × int × int × int → boolean
+**** collision : [Position] × Position → boolean
 
 ** Constructors :
 **** init : int × int × int × boolean → [Position]
@@ -26,6 +27,7 @@
 *** [invariant]
 **** equals(P, p2) =def (x(P) = x(p2) ∧ y(P) = y(p2) ∧ z(P) = z(p2))
 **** equals(P, i, j, k) =def (x(P) = i ∧ y(P) = j ∧ z(P) = k)
+**** collsion(P, p2) =def equals(P, p2) ∨ equals(P, x(p2) - 1, y(p2), z(p2))
 **** set(P, p2) =def set(P, x(p2), y(p2), z(p2))
 
 *** [init]

@@ -12,6 +12,8 @@ public interface PositionService {
 	public boolean equals(PositionService p);
 
 	public boolean equals(int i, int j, int k);
+	
+	public boolean collision(PositionService p);
 
 	public void init(int i, int j, int k, boolean d);
 

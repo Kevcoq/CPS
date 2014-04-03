@@ -130,4 +130,20 @@ public abstract class AbstractTestPosition {
 		pos2.init(4, 5, 6, false);
 		Assert.assertTrue(!position.equals(pos2));
 	}
+
+	@Test
+	public void testPostCollisionTrue() {
+		position.init(1, 2, 3, true);
+		PositionService pos2 = new Position();
+		pos2.init(2, 2, 3, false);
+		Assert.assertTrue(position.collision(pos2));
+	}
+
+	@Test
+	public void testPostCollisionFalse() {
+		position.init(1, 2, 3, true);
+		PositionService pos2 = new Position();
+		pos2.init(0, 2, 3, false);
+		Assert.assertTrue(!position.collision(pos2));
+	}
 }

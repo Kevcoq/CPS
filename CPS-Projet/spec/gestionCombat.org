@@ -50,7 +50,7 @@
 **** collisionGauche(C,id1,id2) =min
 # v3
 ***** pos1 = position(C, id1), pos2 = position(C, id2),
-***** Position::equals(pos1, pos2) ∨ Position::equals(pos1, x(pos2) - 1, y(pos2), z(pos2))
+***** Position::collision(pos1, pos2)
 
 
 # v2
@@ -118,7 +118,6 @@
 ***** sinon si estFrappe(gerer(C, cmd), id) alors 3
 ***** sinon cpt(C, id)-1
 
-* TODO position
 **** mPerso.keySet(), position(gerer(C, cmd), id) =
 ***** si estFrappe(gerer(C, cmd), id), 
 ****** si (∃p ∈ collisionGauche(C,id,p) tq cmd.get(Personnage::nom(p)) == FRAPPE) alors 
@@ -131,7 +130,7 @@
 ******* Position::set(position(C, id), position(C, p))
 ****** ∃p ∈ mPerso(C).keySet() tq Personnage::laChoseEquipee(p) == mPerso(C).get(id) ∧ cmd.get(Personnage::nom(p)) == JETER
 ******* si Position::dirG(position(gerer(C, cmd), p)) alors Position::set(position(C, id), Position::x(max(position(C, p) - 5, 0)), Position::y(position(C, p)), 0) 
-******* sinonPosition::set(position(C, id), Position::x(min(position(C, p) + 5, Terrain::largeur(terrain(C))), Position::y(position(C, p)), 0) 
+******* sinon Position::set(position(C, id), Position::x(min(position(C, p) + 5, Terrain::largeur(terrain(C))), Position::y(position(C, p)), 0) 
 
 ***** si cmd.get(id) == DROITE
 ******* Position::setX(position(C, id), min( Position::x(position(C, id)) + 1, Terrain::largeur(terrain(C))))

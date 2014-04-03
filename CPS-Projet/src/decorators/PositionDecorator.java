@@ -11,6 +11,15 @@ public abstract class PositionDecorator implements PositionService {
 	}
 
 	/**
+	 * @param p
+	 * @return
+	 * @see services.PositionService#collision(services.PositionService)
+	 */
+	public boolean collision(PositionService p) {
+		return pos.collision(p);
+	}
+
+	/**
 	 * @param pos
 	 * @see services.PositionService#set(services.PositionService)
 	 */

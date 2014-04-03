@@ -91,3 +91,20 @@
 **** L1 =(def) init(1, 2, 3, false)
 *** Operation : L0 =(def) equals(L, L1)
 *** Oracle : true
+
+
+
+** Cas de test 4.1 : Position::collisionTrue
+*** Condition initiale : 
+**** L =(def) init(1, 2, 3, true)
+**** L1 =(def) init(2, 2, 3, true)
+*** Operation : L0 =(def) collision(L, L1)
+*** Oracle : true
+
+** Cas de test 4.2 : Position::collisionFalse
+*** Condition initiale :
+**** L =(def) init(1, 2, 3, true)
+**** L1 =(def) init(0, 2, 3, false)
+*** Operation : L0 =(def) collision(L, L1)
+*** Oracle : false
+
