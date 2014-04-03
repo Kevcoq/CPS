@@ -1,0 +1,93 @@
+* Test Position
+
+** Cas de test 1.1 : Position::testInit
+*** Condition initiale : ∅
+*** Operation : L0 =(def) init(1, 2, 3, true)
+*** Oracle : 
+**** x(L0) = 1
+**** y(L0) = 2
+**** z(L0) = 3
+**** dirG(L0) = true
+
+
+** Cas de test 2.1 : Position::testSetX
+*** Condition initiale : L =(def) init(1, 2, 3, true)
+*** Operation : L0 =(def) setX(L, 5)
+*** Oracle : 
+**** x(L0) = 5
+**** y(L0) = y(L)
+**** z(L0) = z(L)
+**** dirG(L0) = dirG(L)
+
+** Cas de test 2.2 : Position::testSetY
+*** Condition initiale : L =(def) init(1, 2, 3, true)
+*** Operation : L0 =(def) setY(L, 5)
+*** Oracle : 
+**** x(L0) = x(L)
+**** y(L0) = 5
+**** z(L0) = z(L)
+**** dirG(L0) = dirG(L)
+
+** Cas de test 2.3 : Position::testSetZ
+*** Condition initiale : L =(def) init(1, 2, 3, true)
+*** Operation : L0 =(def) setZ(L, 5)
+*** Oracle : 
+**** x(L0) = x(L)
+**** y(L0) = y(L)
+**** z(L0) = 5
+**** dirG(L0) = dirG(L)
+
+** Cas de test 2.4 : Position::testSetdir
+*** Condition initiale : L =(def) init(1, 2, 3, true)
+*** Operation : L0 =(def) setdir(L, false)
+*** Oracle : 
+**** x(L0) = x(L)
+**** y(L0) = y(L)
+**** z(L0) = z(L)
+**** dirG(L0) = false
+
+** Cas de test 2.5 : Position::testSet
+*** Condition initiale : L =(def) init(1, 2, 3, true)
+*** Operation : L0 =(def) set(L, 5, 6 ,7)
+*** Oracle : 
+**** x(L0) = 5
+**** y(L0) = 6
+**** z(L0) = 7
+**** dirG(L0) = dirG(L)
+
+** Cas de test 2.6 : Position::testSet2
+*** Condition initiale : 
+**** L =(def) init(1, 2, 3, true)
+**** L1 =(def) init(5, 6, 7, true)
+*** Operation : L0 =(def) set(L, L2)
+*** Oracle : 
+**** x(L0) = 5
+**** y(L0) = 6
+**** z(L0) = 7
+**** dirG(L0) = dirG(L)
+
+
+
+** Cas de test 3.1 : Position::equalsFalse
+*** Condition initiale : L =(def) init(1, 2, 3, true)
+*** Operation : L0 =(def) equals(L, 5, 6 ,7)
+*** Oracle : false
+
+** Cas de test 3.2 : Position::equalsTrue
+*** Condition initiale : L =(def) init(1, 2, 3, true)
+*** Operation : L0 =(def) equals(L, 1, 2, 3)
+*** Oracle : true
+
+** Cas de test 3.3 : Position::equalsFalse2
+*** Condition initiale : 
+**** L =(def) init(1, 2, 3, true)
+**** L1 =(def) init(4, 5, 6, true)
+*** Operation : L0 =(def) equals(L, L1)
+*** Oracle : false
+
+** Cas de test 3.4 : Position::equalsTrue2
+*** Condition initiale :
+**** L =(def) init(1, 2, 3, true)
+**** L1 =(def) init(1, 2, 3, false)
+*** Operation : L0 =(def) equals(L, L1)
+*** Oracle : true

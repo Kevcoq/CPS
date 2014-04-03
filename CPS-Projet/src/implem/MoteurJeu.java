@@ -58,11 +58,10 @@ public class MoteurJeu implements MoteurJeuService {
 	@Override
 	public void pasJeu(COMMANDE cmdAlex, COMMANDE cmdRyan) {
 		pasJeuCourant++;
-		Map<String, COMMANDE> mCmd = new HashMap<String, COMMANDE>();
+		Map<String, COMMANDE> mCmd = generationCmds();
+
 		mCmd.put("Alex", cmdAlex);
 		mCmd.put("Ryan", cmdRyan);
-
-		generationCmds(mCmd);
 
 		cbt.gerer(mCmd);
 	}
@@ -70,20 +69,22 @@ public class MoteurJeu implements MoteurJeuService {
 	@Override
 	public void pasJeu(String nom, COMMANDE cmd) {
 		pasJeuCourant++;
-		Map<String, COMMANDE> mCmd = new HashMap<String, COMMANDE>();
-		mCmd.put(nom, cmd);
+		Map<String, COMMANDE> mCmd = generationCmds();
 
-		generationCmds(mCmd);
+		mCmd.put(nom, cmd);
 
 		cbt.gerer(mCmd);
 	}
 
-	private void generationCmds(Map<String, COMMANDE> cmd) {
+	private Map<String, COMMANDE> generationCmds() {
+		Map<String, COMMANDE> cmd = new HashMap<>();
 		for (String nom : cbt.mPerso().keySet())
 			cmd.put(nom, genererCmd());
 
 		if (Math.random() < 0.15)
 			cmd.put(Rand.name(), genererCmd());
+
+		return cmd;
 	}
 
 	private COMMANDE genererCmd() {

@@ -7,6 +7,7 @@ import contracts.base.InvariantError;
 import contracts.base.PostconditionError;
 import services.GestionCombatService;
 import services.PersonnageService;
+import services.PositionService;
 import decorators.GestionCombatDecorator;
 
 public class GestionCombatContract extends GestionCombatDecorator {
@@ -32,15 +33,15 @@ public class GestionCombatContract extends GestionCombatDecorator {
 			List<PersonnageService> tmp = new ArrayList<>();
 			for (String s : mPerso().keySet()) {
 				if (collisionGauche(nom, s)) {
-					int[] pos1 = position(nom), pos2 = position(s);
-					if (!((pos1[0] == pos2[0] || pos1[0] == pos2[0] - 1)
-							&& pos1[1] == pos2[1] && pos1[2] == pos2[2]))
+					PositionService pos1 = position(nom), pos2 = position(s);
+					if (!(pos1.equals(pos2) || pos1.equals(pos2.x() - 1,
+							pos2.y(), pos2.z())))
 						throw new InvariantError("gestionCombat");
 					tmp.add(mPerso().get(s));
 				} else if (collisionGauche(s, nom)) {
-					int[] pos1 = position(s), pos2 = position(nom);
-					if (!((pos1[0] == pos2[0] || pos1[0] == pos2[0] - 1)
-							&& pos1[1] == pos2[1] && pos1[2] == pos2[2]))
+					PositionService pos1 = position(s), pos2 = position(nom);
+					if (!(pos1.equals(pos2) || pos1.equals(pos2.x() - 1,
+							pos2.y(), pos2.z())))
 						throw new InvariantError("gestionCombat");
 					tmp.add(mPerso().get(s));
 				}
@@ -82,22 +83,24 @@ public class GestionCombatContract extends GestionCombatDecorator {
 		// ***** position(init(l,h,p),"Slick") = { Terrain::largeur(init(l,h,p))
 		// - 1 ; Terrain::profondeur(init(l,h,p)) / 2 ; 0 }
 		// ***** position(init(l,h,p), id) = Random sur Bloc Vide
-		if (!(mPerso().size() == 6 && mPerso().containsKey("Alex")
-				&& mPerso().containsKey("Ryan") && mPerso()
+		if (!(mPerso().size() == 6))
+			throw new PostconditionError("gestionCombat -> init : SIZE");
+		if (!(mPerso().containsKey("Alex") && mPerso().containsKey("Ryan") && mPerso()
 				.containsKey("Slick")))
-			throw new PostconditionError("gestionCombat -> init");
+			throw new PostconditionError(
+					"gestionCombat -> init : PERSO_PRESENT");
 
 		for (String s : mPerso().keySet())
 			if (estFrappe(s) || estGele(s))
-				throw new PostconditionError("gestionCombat -> init");
+				throw new PostconditionError(
+						"gestionCombat -> init : FRAPPE|GELE");
 
-		int[] posA = position("Alex"), posR = position("Ryan"), posS = position("Slick");
-		if (!(posA[0] == 0 && posA[1] == terrain().profondeur() / 2 + 1
-				&& posA[2] == 0 && posR[0] == 0
-				&& posR[1] == terrain().profondeur() / 2 - 1 && posR[2] == 0
-				&& posS[0] == terrain().largeur() - 1
-				&& posS[1] == terrain().profondeur() / 2 && posS[2] == 0))
-			throw new PostconditionError("gestionCombat -> init");
+		PositionService posA = position("Alex"), posR = position("Ryan"), posS = position("Slick");
+		if (!(posA.equals(0, terrain().profondeur() / 2 + 1, 0)
+				&& posR.equals(0, terrain().profondeur() / 2 - 1, 0) && posS
+					.equals(terrain().largeur() - 1,
+							terrain().profondeur() / 2, 0)))
+			throw new PostconditionError("gestionCombat -> init : POSITION");
 
 	}
 	// TODO gerer

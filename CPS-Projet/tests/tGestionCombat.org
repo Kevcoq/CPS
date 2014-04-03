@@ -1,0 +1,131 @@
+* Test GestionCombat
+
+** Cas de test 1.1 : GestionCombat::testInit
+*** Condition initiale : ∅
+*** Operation : L0 =(def) init(20, 4 ,10)
+*** Oracle : 
+**** estFrappe(L0, ?) = false
+**** estGele(L0, ?) = false
+**** mPerso(L0).keySet() = { Alex, Ryan, Slick, +3 gagnster }
+**** position(L0, Alex) = { 0 ; 6 ; 0 }
+**** position(L0, Ryan) = { 0 ; 4 ; 0 }
+**** position(L0, Slick) = { 19 ; 5 ; 0 }
+
+
+
+
+** Cas de test 2.1 : GestionCombat::gererRIEN
+*** Condition initiale : 
+**** L =(def) init(20, 4 ,10)
+**** map = { <Alex, RIEN>, <RYAN, RIEN>, <SLICK, RIEN>, <???, RIEN> }
+*** Operation : L0 =(def) gerer(L, map)
+*** Oracle : 
+**** estFrappe(L0, ?) = false
+**** estGele(L0, ?) = false
+**** mPerso(L0).keySet() = { Alex, Ryan, Slick, +3 gagnster }
+**** position(L0, Alex) = { 0 ; 6 ; 0 }
+**** position(L0, Ryan) = { 0 ; 4 ; 0 }
+**** position(L0, Slick) = { 19 ; 5 ; 0 }
+
+** Cas de test 2.2 : GestionCombat::gererDROITE
+*** Condition initiale : 
+**** L =(def) init(20, 4 ,10)
+**** map = { <Alex, DROITE>, <RYAN, RIEN>, <SLICK, RIEN>, <???, RIEN> }
+*** Operation : L0 =(def) gerer(L, map)
+*** Oracle : 
+**** estFrappe(L0, ?) = false
+**** estGele(L0, ?) = false
+**** mPerso(L0).keySet() = { Alex, Ryan, Slick, +3 gagnster }
+**** position(L0, Alex) = { 1 ; 6 ; 0 }
+**** position(L0, Ryan) = { 0 ; 4 ; 0 }
+**** position(L0, Slick) = { 19 ; 5 ; 0 }
+
+** Cas de test 2.3 : GestionCombat::gererHAUT
+*** Condition initiale : 
+**** L =(def) init(20, 4 ,10)
+**** map = { <Alex, HAUT>, <RYAN, RIEN>, <SLICK, RIEN>, <???, RIEN> }
+*** Operation : L0 =(def) gerer(L, map)
+*** Oracle : 
+**** estFrappe(L0, ?) = false
+**** estGele(L0, ?) = false
+**** mPerso(L0).keySet() = { Alex, Ryan, Slick, +3 gagnster }
+**** position(L0, Alex) = { 0 ; 7 ; 0 }
+**** position(L0, Ryan) = { 0 ; 4 ; 0 }
+**** position(L0, Slick) = { 19 ; 5 ; 0 }
+
+** Cas de test 2.4 : GestionCombat::gererBAS
+*** Condition initiale : 
+**** L =(def) init(20, 4 ,10)
+**** map = { <Alex, BAS>, <RYAN, RIEN>, <SLICK, RIEN>, <???, RIEN> }
+*** Operation : L0 =(def) gerer(L, map)
+*** Oracle : 
+**** estFrappe(L0, ?) = false
+**** estGele(L0, ?) = false
+**** mPerso(L0).keySet() = { Alex, Ryan, Slick, +3 gagnster }
+**** position(L0, Alex) = { 0 ; 5 ; 0 }
+**** position(L0, Ryan) = { 0 ; 4 ; 0 }
+**** position(L0, Slick) = { 19 ; 5 ; 0 }
+
+** Cas de test 2.5 : GestionCombat::gererSAUTER
+*** Condition initiale : 
+**** L =(def) init(20, 4 ,10)
+**** map = { <Alex, SAUTER>, <RYAN, RIEN>, <SLICK, RIEN>, <???, RIEN> }
+*** Operation : L0 =(def) gerer(L, map)
+*** Oracle : 
+**** estFrappe(L0, ?) = false
+**** estGele(L0, ?) = false
+**** mPerso(L0).keySet() = { Alex, Ryan, Slick, +3 gagnster }
+**** position(L0, Alex) = { 0 ; 6 ; 1 }
+**** position(L0, Ryan) = { 0 ; 4 ; 0 }
+**** position(L0, Slick) = { 19 ; 5 ; 0 }
+
+** Cas de test 2.6 : GestionCombat::gererGAUCHE
+*** Condition initiale : 
+**** L =(def) init(20, 4 ,10)
+**** map = { <Alex, RIEN>, <Ryan, RIEN>, <Slick, GAUCHE>, <???, RIEN> }
+*** Operation : L0 =(def) gerer(L, map)
+*** Oracle : 
+**** estFrappe(L0, ?) = false
+**** estGele(L0, ?) = false
+**** mPerso(L0).keySet() = { Alex, Ryan, Slick, +3 gagnster }
+**** position(L0, Alex) = { 0 ; 6 ; 0 }
+**** position(L0, Ryan) = { 0 ; 4 ; 0 }
+**** position(L0, Slick) = { 18 ; 5 ; 0 }
+
+** Cas de test 2.7 : GestionCombat::gererRAMASSER
+*** Condition initiale : 
+**** L =(def) init(20, 4 ,10)
+**** map1 = { <Alex, BAS>, <Ryan, RIEN>, <Slick, RIEN>, <???, RIEN> }
+**** map2 = { <Alex, BAS>, <Ryan, RIEN>, <Slick, RIEN>, <???, RIEN> }
+**** map3 = { <Alex, RAMSSER>, <Ryan, RIEN>, <Slick, RIEN>, <???, RIEN> }
+*** Operation : 
+**** L2 =(def) gerer(L, map1)
+**** L1 =(def) gerer(L2, map2)
+**** L0 =(def) gerer(L1, map3)
+*** Oracle : 
+**** estFrappe(L0, ?) = false
+**** estGele(L0, ?) = false
+**** mPerso(L0).keySet() = { Alex, Ryan, Slick, +3 gagnster }
+**** position(L0, Alex) = { 0 ; 4 ; 0 }
+**** position(L0, Ryan) = { 0 ; 4 ; 1 }
+**** position(L0, Slick) = { 19 ; 5 ; 0 }
+
+
+** Cas de test 2.7 : GestionCombat::gererJETER
+*** Condition initiale : 
+**** L =(def) init(20, 4 ,10)
+**** map1 = { <Alex, BAS>, <Ryan, RIEN>, <Slick, RIEN>, <???, RIEN> }
+**** map2 = { <Alex, BAS>, <Ryan, RIEN>, <Slick, RIEN>, <???, RIEN> }
+**** map3 = { <Alex, RAMSSER>, <Ryan, RIEN>, <Slick, RIEN>, <???, RIEN> }
+**** map4 = { <Alex, JETER>, <Ryan, RIEN>, <Slick, RIEN>, <???, RIEN> }
+*** Operation : 
+**** L2 =(def) gerer(L, map1)
+**** L1 =(def) gerer(L2, map2)
+**** L0 =(def) gerer(L1, map3)
+*** Oracle : 
+**** estFrappe(L0, ?) = false
+**** estGele(L0, ?) = false
+**** mPerso(L0).keySet() = { Alex, Ryan, Slick, +3 gagnster }
+**** position(L0, Alex) = { 0 ; 4 ; 0 }
+**** position(L0, Ryan) = { 3 ; 4 ; 0 }
+**** position(L0, Slick) = { 19 ; 5 ; 0 }

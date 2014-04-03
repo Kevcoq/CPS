@@ -20,7 +20,7 @@ public interface GestionCombatService {
 
 	public int cptGele(String nom);
 
-	public int[] position(String nom);
+	public PositionService position(String nom);
 
 	public List<PersonnageService> collision(String nom);
 

@@ -3,6 +3,8 @@ revoir ts pixel en bloc
 
 
 SPEC :
+REVOIR LES POSITIONS (new POSITIONSERVICE)
+
 gestionCombat -> jeter + position ???
 	      	  -> jeter touche un personnage
 	      	  -> gerer = soucis

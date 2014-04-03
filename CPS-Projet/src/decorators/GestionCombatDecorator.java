@@ -5,6 +5,7 @@ import java.util.Map;
 
 import services.GestionCombatService;
 import services.PersonnageService;
+import services.PositionService;
 import services.TerrainService;
 import enumeration.COMMANDE;
 
@@ -75,7 +76,7 @@ public abstract class GestionCombatDecorator implements GestionCombatService {
 	 * @return
 	 * @see services.GestionCombatService#position(java.lang.String)
 	 */
-	public int[] position(String nom) {
+	public PositionService position(String nom) {
 		return cbt.position(nom);
 	}
 

@@ -1,7 +1,7 @@
 * GestionCombat
 ** service : GestionCombat
-** use : [[file:terrain.org][Terrain,]] [[file:personnage.org][Personnage]]
-** types : String, int, int[], boolean, List<Personnage>, Map<String,Personnage>, Map<String,COMMANDE>, enum COMMANDE {RIEN, GAUCHE, DROITE, HAUT, BAS, SAUTER, FRAPPE, JETER, RAMASSER}
+** use : [[file:terrain.org][Terrain,]] [[file:personnage.org][Personnage]], [[file:position.org][Position]]
+** types : String, int, boolean, List<Personnage>, Map<String,Personnage>, Map<String,COMMANDE>, enum COMMANDE {RIEN, GAUCHE, DROITE, HAUT, BAS, SAUTER, FRAPPE, JETER, RAMASSER}
   
 
 ** observators :
@@ -18,7 +18,7 @@
 **** cptGele : [GestionCombat] × String → int
 ***** pre cptGele(C,id) require id ∈ mPerso.keySet() ∧ estGele(C,id)
 
-**** position : [GestionCombat] × String → int[]  // 0 → x ∧ 1 → y ∧ 2 → z ∧ 3 → dir [0 gauche / 1 droite]
+**** position : [GestionCombat] × String → Position
 ***** pre position(C,id) require id ∈ mPerso.keySet() 
 
 **** collisionGauche : [GestionCombat] × String × String → boolean
@@ -48,18 +48,25 @@
 ***** tmp ⋃ nomP si collisionGauche(C,id,nomP) || collisionGauche(C,nomP,id) 
 
 **** collisionGauche(C,id1,id2) =min
+# v3
 ***** pos1 = position(C, id1), pos2 = position(C, id2),
-****** (pos1[0.] ⩽ pos2[0.] ⩽ pos1[0.] + 1) ∧ 
-****** (pos1[1.] = pos2[1.]) ∧ 
-****** (pos1[2.] = pos2[2.]) 
+***** Position::equals(pos1, pos2) ∨ Position::equals(pos1, x(pos2) - 1, y(pos2), z(pos2))
 
-#***** dX = Personnage::largeur(mPerso.get(id1))/2 + Personnage::largeur(mPerso.get(id2))/2, 
-#***** dY = Personnage::profondeur(mPerso.get(id1))/2 + Personnage::profondeur(mPerso.get(id2))/2, 
-#***** dZ = Personnage::hauteur(mPerso.get(id1))/2 + Personnage::hauteur(mPerso.get(id2))/2, 
-#***** si ↓ alors [id1,id2] sinon []
-#****** (-dX ⩽position(C,id2)[0.] - position(C,id1)[0.] ⩽ dX+1) 
-#****** ∧ (-dY ⩽position(C,id2)[1.] - position(C,id1)[1.] ⩽ dY+1) 
-#****** ∧ (-dZ ⩽position(C,id2)[2.] - position(C,id1)[2.] ⩽ dZ+1)
+
+# v2
+# ***** pos1 = position(C, id1), pos2 = position(C, id2),
+# ****** (pos1[0.] ⩽ pos2[0.] ⩽ pos1[0.] + 1) ∧ 
+# ****** (pos1[1.] = pos2[1.]) ∧ 
+# ****** (pos1[2.] = pos2[2.]) 
+
+# v1
+# ***** dX = Personnage::largeur(mPerso.get(id1))/2 + Personnage::largeur(mPerso.get(id2))/2, 
+# ***** dY = Personnage::profondeur(mPerso.get(id1))/2 + Personnage::profondeur(mPerso.get(id2))/2, 
+# ***** dZ = Personnage::hauteur(mPerso.get(id1))/2 + Personnage::hauteur(mPerso.get(id2))/2, 
+# ***** si ↓ alors [id1,id2] sinon []
+# ****** (-dX ⩽position(C,id2)[0.] - position(C,id1)[0.] ⩽ dX+1) 
+# ****** ∧ (-dY ⩽position(C,id2)[1.] - position(C,id1)[1.] ⩽ dY+1) 
+# ****** ∧ (-dZ ⩽position(C,id2)[2.] - position(C,id1)[2.] ⩽ dZ+1)
 
 
 
@@ -84,9 +91,9 @@
 **** estGele(init(l,h,p),id)=false
 
 **** position
-***** position(init(l,h,p),"Alex") = { 0 ; Terrain::profondeur(init(l,h,p)) / 2 + 1 ; 0 ; 1}
-***** position(init(l,h,p),"Ryan") = { 0  ; Terrain::profondeur(init(l,h,p)) / 2 - 1 ; 0 ; 1}
-***** position(init(l,h,p),"Slick") = { Terrain::largeur(init(l,h,p)) - 1 ; Terrain::profondeur(init(l,h,p)) / 2 ; 0 ; 0}
+***** position(init(l,h,p),"Alex") = Position::init(0, Terrain::profondeur(init(l,h,p)) / 2 + 1, 0, false)
+***** position(init(l,h,p),"Ryan") = Position::init(0, Terrain::profondeur(init(l,h,p)) / 2 - 1, 0, false)
+***** position(init(l,h,p),"Slick") = Position::init(Terrain::largeur(init(l,h,p)) - 1, Terrain::profondeur(init(l,h,p)) / 2, 0, true)
 ***** position(init(l,h,p), id) = Random sur Bloc Vide 
 
 
@@ -95,7 +102,7 @@
 
 
 *** [gerer]
-**** TODO id n'appartient pas a keySet creation
+**** TODO id n'appartient pas a keySet, creation d'un gangster
 ****  ∀id ∈ mPerso.keySet(), mPerso(gerer(C, cmd)).get(id) =  
 ***** si ¬estFrappe(gerer(C, cmd),id) alors mPerso(C).get(id)
 ***** sinon Personnage::retrait(mPerso(C).get(id),cpt)
@@ -111,27 +118,37 @@
 ***** sinon si estFrappe(gerer(C, cmd), id) alors 3
 ***** sinon cpt(C, id)-1
 
+* TODO position
 **** mPerso.keySet(), position(gerer(C, cmd), id) =
 ***** si estFrappe(gerer(C, cmd), id), 
 ****** si (∃p ∈ collisionGauche(C,id,p) tq cmd.get(Personnage::nom(p)) == FRAPPE) alors 
-******* { min(position(C, id)[0.]+3, Terrain::largeur(terrain(C)) ; position(C, id)[1.] ; 0 ; position(C, id)[3.] }
+******* Position::setX(position(C, id), min(Position::x(position(C, id)) + 3, Terrain::largeur(terrain(C))))
 ****** si (∃p ∈ collisionGauche(C,p,id) tq cmd.get(Personnage::nom(p)) == FRAPPE) alors 
-******* { max(position(C, id)[0.]-3, 0) ; position(C, id)[1.] ; 0 ; position(C, id)[3.] }
+******* Position::setX(position(C, id), max(Position::x(position(C, id)) - 3, 0))
+
 ***** si Chose::estPorte(mPerso(C).get(id)) alors 
-****** ∃p ∈ mPerso(C).keySet() tq Personnage::laChoseEquipee(p) == mPerso(C).get(id) ∧ cmd.get(Personnage::nom(p)) ≠ JETER 
-******* { position(gerer(C, cmd), p)[0.] ; position(gerer(C,cmd), p)[1.] ; 1 ; position(gerer(C, cmd) p)[3.]}
-****** ∃p ∈ mPerso(C).keySet() tq Personnage::laChoseEquipee(p) == mPerso(C).get(id) ∧ cmd.get(Personnage::nom(p)) == JETER 
-******* si position(gerer(C, cmd), p)[3.] = 0 alors { max( position(gerer(C, cmd), p)[0.] - 5, 0) ; position(gerer(C,cmd), p)[1.] ; 0 ; 0 }
-******* sinon { min( position(gerer(C, cmd), p)[0.] + 5, Terrain::largeur(terrain(C)) - 1 ; position(gerer(C,cmd), p)[1.] ; 0 ; 1 }
+****** ∃p ∈ mPerso(C).keySet() tq Personnage::laChoseEquipee(p) == mPerso(C).get(id) ∧ cmd.get(Personnage::nom(p)) ≠ JETER
+******* Position::set(position(C, id), position(C, p))
+****** ∃p ∈ mPerso(C).keySet() tq Personnage::laChoseEquipee(p) == mPerso(C).get(id) ∧ cmd.get(Personnage::nom(p)) == JETER
+******* si Position::dirG(position(gerer(C, cmd), p)) alors Position::set(position(C, id), Position::x(max(position(C, p) - 5, 0)), Position::y(position(C, p)), 0) 
+******* sinonPosition::set(position(C, id), Position::x(min(position(C, p) + 5, Terrain::largeur(terrain(C))), Position::y(position(C, p)), 0) 
+
 ***** si cmd.get(id) == DROITE
-******* { min( position(C, p)[0.] + 1, Terrain::largeur(terrain(C)) - 1)  ; position(C, p)[1.] ; 0 ; 1}
+******* Position::setX(position(C, id), min( Position::x(position(C, id)) + 1, Terrain::largeur(terrain(C))))
+******* Posirion::setDir(position(C, id), false);
+
 ***** si cmd.get(id) == GAUCHE
-******* { max( position(C, p)[0.] - 1, 0) ; position(C, p)[1.] ; 0 ; 0}
+******* Position::setX(position(C, id), max( Position::x(position(C, id)) - 1, 0))
+******* Posirion::setDir(position(C, id), true);
+
 ***** si cmd.get(id) == HAUT
-******* { position(C, p)[0.] ;  min( position(C, p)[1.] + 1, Terrain::profondeur(terrain(C)) - 1) ; 0 ; position(C, id)[3.] }
+******* Position::setY(position(C, id), min( Position::y(position(C, id)) + 1, Terrain::profondeur(terrain(C))))
+
 ***** si cmd.get(id) == BAS
-******* { position(C, p)[0.] ; max( position(C, p)[1.] - 1, 0) ; 0 ; position(C, id)[3.] }
+******* Position::setY(position(C, id), max( Position::y(position(C, id)) - 1, 0))
+
 ***** si cmd.get(id) == SAUTER
-******* { position(C, p)[0.] ; position(C, p)[1.] ; 1 ; position(C, id)[3.] }
+******* Position::setZ(position(C, id), 1)
+
 ***** sinon 
-******* { position(C, p)[0.] ; position(C, p)[1.] ; 0 ; position(C, id)[3.] }
+******* Position::setZ(position(C, id), 0)

@@ -1,0 +1,381 @@
+package tests.abstrait;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import enumeration.COMMANDE;
+import services.GestionCombatService;
+import services.PersonnageService;
+import services.PositionService;
+
+public abstract class AbstractTestGestionCombat {
+	private GestionCombatService gestionCombat;
+
+	protected AbstractTestGestionCombat() {
+		gestionCombat = null;
+	}
+
+	protected final GestionCombatService getGestionCombat() {
+		return gestionCombat;
+	}
+
+	protected final void setGestionCombat(GestionCombatService GestionCombat) {
+		this.gestionCombat = GestionCombat;
+	}
+
+	@Before
+	public abstract void beforeTests();
+
+	@After
+	public final void afterTests() {
+		gestionCombat = null;
+	}
+
+	// //////////////////////////////////////
+	// /////////////// PRE //////////////////
+	//
+	//
+	//
+	// Init
+	@Test
+	public void testInit() {
+		gestionCombat.init(20, 4, 10);
+		Assert.assertTrue(true);
+	}
+
+	// //////////////////////////////////////
+	// /////////////// POST /////////////////
+
+	private boolean checkInvariant() {
+		// TODO
+		return false;
+	}
+
+	//
+	//
+	//
+	// Init
+	@Test
+	public void testPostInit() {
+		gestionCombat.init(20, 4, 10);
+
+		// invariant
+		if (checkInvariant()) {
+			// recup map Perso
+			Map<String, PersonnageService> perso = gestionCombat.mPerso();
+			// on verifie si les persos y sont
+			if (perso.size() == 6 && perso.containsKey("Alex")
+					&& perso.containsKey("Ryan") && perso.containsKey("Slick")) {
+				// on verifie si ils sont gele ou frappe
+				for (String tmp : perso.keySet())
+					if (gestionCombat.estFrappe(tmp)
+							|| gestionCombat.estGele(tmp))
+						Assert.assertTrue(false);
+
+				// on verifie leur position
+				PositionService pAlex = gestionCombat.position("Alex"), pRyan = gestionCombat
+						.position("Ryan"), pSlick = gestionCombat
+						.position("Slick");
+				if (pAlex.equals(0, 6, 0) && pRyan.equals(0, 4, 0)
+						&& pSlick.equals(19, 5, 0))
+					Assert.assertTrue(true);
+			}
+		}
+		Assert.assertFalse(false);
+	}
+
+	@Test
+	public void testPostGererRien() {
+		gestionCombat.init(20, 4, 10);
+		Map<String, COMMANDE> cmds = new HashMap<String, COMMANDE>();
+		for (String nom : gestionCombat.mPerso().keySet())
+			cmds.put(nom, COMMANDE.RIEN);
+
+		gestionCombat.gerer(cmds);
+
+		// invariant
+		if (checkInvariant()) {
+			// recup map Perso
+			Map<String, PersonnageService> perso = gestionCombat.mPerso();
+			// on verifie si les persos y sont
+			if (perso.size() == 6 && perso.containsKey("Alex")
+					&& perso.containsKey("Ryan") && perso.containsKey("Slick")) {
+				// on verifie si ils sont gele ou frappe
+				for (String tmp : perso.keySet())
+					if (gestionCombat.estFrappe(tmp)
+							|| gestionCombat.estGele(tmp))
+						Assert.assertTrue(false);
+
+				// on verifie leur position
+				PositionService pAlex = gestionCombat.position("Alex"), pRyan = gestionCombat
+						.position("Ryan"), pSlick = gestionCombat
+						.position("Slick");
+				if (pAlex.equals(0, 6, 0) && pRyan.equals(0, 4, 0)
+						&& pSlick.equals(19, 5, 0))
+					Assert.assertTrue(true);
+			}
+		}
+		Assert.assertFalse(false);
+	}
+
+	@Test
+	public void testPostGererDroite() {
+		gestionCombat.init(20, 4, 10);
+		Map<String, COMMANDE> cmds = new HashMap<String, COMMANDE>();
+		for (String nom : gestionCombat.mPerso().keySet())
+			cmds.put(nom, COMMANDE.RIEN);
+
+		cmds.put("Alex", COMMANDE.DROITE);
+		gestionCombat.gerer(cmds);
+
+		// invariant
+		if (checkInvariant()) {
+			// recup map Perso
+			Map<String, PersonnageService> perso = gestionCombat.mPerso();
+			// on verifie si les persos y sont
+			if (perso.size() == 6 && perso.containsKey("Alex")
+					&& perso.containsKey("Ryan") && perso.containsKey("Slick")) {
+				// on verifie si ils sont gele ou frappe
+				for (String tmp : perso.keySet())
+					if (gestionCombat.estFrappe(tmp)
+							|| gestionCombat.estGele(tmp))
+						Assert.assertTrue(false);
+
+				// on verifie leur position
+				PositionService pAlex = gestionCombat.position("Alex"), pRyan = gestionCombat
+						.position("Ryan"), pSlick = gestionCombat
+						.position("Slick");
+				if (pAlex.equals(1, 6, 0) && pRyan.equals(0, 4, 0)
+						&& pSlick.equals(19, 5, 0))
+					Assert.assertTrue(true);
+			}
+		}
+		Assert.assertFalse(false);
+	}
+
+	@Test
+	public void testPostGererHaut() {
+		gestionCombat.init(20, 4, 10);
+		Map<String, COMMANDE> cmds = new HashMap<String, COMMANDE>();
+		for (String nom : gestionCombat.mPerso().keySet())
+			cmds.put(nom, COMMANDE.RIEN);
+
+		cmds.put("Alex", COMMANDE.HAUT);
+		gestionCombat.gerer(cmds);
+
+		// invariant
+		if (checkInvariant()) {
+			// recup map Perso
+			Map<String, PersonnageService> perso = gestionCombat.mPerso();
+			// on verifie si les persos y sont
+			if (perso.size() == 6 && perso.containsKey("Alex")
+					&& perso.containsKey("Ryan") && perso.containsKey("Slick")) {
+				// on verifie si ils sont gele ou frappe
+				for (String tmp : perso.keySet())
+					if (gestionCombat.estFrappe(tmp)
+							|| gestionCombat.estGele(tmp))
+						Assert.assertTrue(false);
+
+				// on verifie leur position
+				PositionService pAlex = gestionCombat.position("Alex"), pRyan = gestionCombat
+						.position("Ryan"), pSlick = gestionCombat
+						.position("Slick");
+				if (pAlex.equals(0, 7, 0) && pRyan.equals(0, 4, 0)
+						&& pSlick.equals(19, 5, 0))
+					Assert.assertTrue(true);
+			}
+		}
+		Assert.assertFalse(false);
+	}
+
+	@Test
+	public void testPostGererBas() {
+		gestionCombat.init(20, 4, 10);
+		Map<String, COMMANDE> cmds = new HashMap<String, COMMANDE>();
+		for (String nom : gestionCombat.mPerso().keySet())
+			cmds.put(nom, COMMANDE.RIEN);
+
+		cmds.put("Alex", COMMANDE.BAS);
+		gestionCombat.gerer(cmds);
+
+		// invariant
+		if (checkInvariant()) {
+			// recup map Perso
+			Map<String, PersonnageService> perso = gestionCombat.mPerso();
+			// on verifie si les persos y sont
+			if (perso.size() == 6 && perso.containsKey("Alex")
+					&& perso.containsKey("Ryan") && perso.containsKey("Slick")) {
+				// on verifie si ils sont gele ou frappe
+				for (String tmp : perso.keySet())
+					if (gestionCombat.estFrappe(tmp)
+							|| gestionCombat.estGele(tmp))
+						Assert.assertTrue(false);
+
+				// on verifie leur position
+				PositionService pAlex = gestionCombat.position("Alex"), pRyan = gestionCombat
+						.position("Ryan"), pSlick = gestionCombat
+						.position("Slick");
+				if (pAlex.equals(0, 5, 0) && pRyan.equals(0, 4, 0)
+						&& pSlick.equals(19, 5, 0))
+					Assert.assertTrue(true);
+			}
+		}
+		Assert.assertFalse(false);
+	}
+
+	@Test
+	public void testPostSauter() {
+		gestionCombat.init(20, 4, 10);
+		Map<String, COMMANDE> cmds = new HashMap<String, COMMANDE>();
+		for (String nom : gestionCombat.mPerso().keySet())
+			cmds.put(nom, COMMANDE.RIEN);
+
+		cmds.put("Alex", COMMANDE.SAUTER);
+		gestionCombat.gerer(cmds);
+
+		// invariant
+		if (checkInvariant()) {
+			// recup map Perso
+			Map<String, PersonnageService> perso = gestionCombat.mPerso();
+			// on verifie si les persos y sont
+			if (perso.size() == 6 && perso.containsKey("Alex")
+					&& perso.containsKey("Ryan") && perso.containsKey("Slick")) {
+				// on verifie si ils sont gele ou frappe
+				for (String tmp : perso.keySet())
+					if (gestionCombat.estFrappe(tmp)
+							|| gestionCombat.estGele(tmp))
+						Assert.assertTrue(false);
+
+				// on verifie leur position
+				PositionService pAlex = gestionCombat.position("Alex"), pRyan = gestionCombat
+						.position("Ryan"), pSlick = gestionCombat
+						.position("Slick");
+				if (pAlex.equals(0, 6, 1) && pRyan.equals(0, 4, 0)
+						&& pSlick.equals(19, 5, 0))
+					Assert.assertTrue(true);
+			}
+		}
+		Assert.assertFalse(false);
+	}
+
+	@Test
+	public void testPostGererGauche() {
+		gestionCombat.init(20, 4, 10);
+		Map<String, COMMANDE> cmds = new HashMap<String, COMMANDE>();
+		for (String nom : gestionCombat.mPerso().keySet())
+			cmds.put(nom, COMMANDE.RIEN);
+
+		cmds.put("Slick", COMMANDE.GAUCHE);
+		gestionCombat.gerer(cmds);
+
+		// invariant
+		if (checkInvariant()) {
+			// recup map Perso
+			Map<String, PersonnageService> perso = gestionCombat.mPerso();
+			// on verifie si les persos y sont
+			if (perso.size() == 6 && perso.containsKey("Alex")
+					&& perso.containsKey("Ryan") && perso.containsKey("Slick")) {
+				// on verifie si ils sont gele ou frappe
+				for (String tmp : perso.keySet())
+					if (gestionCombat.estFrappe(tmp)
+							|| gestionCombat.estGele(tmp))
+						Assert.assertTrue(false);
+
+				// on verifie leur position
+				PositionService pAlex = gestionCombat.position("Alex"), pRyan = gestionCombat
+						.position("Ryan"), pSlick = gestionCombat
+						.position("Slick");
+				if (pAlex.equals(0, 6, 0) && pRyan.equals(0, 4, 0)
+						&& pSlick.equals(18, 5, 0))
+					Assert.assertTrue(true);
+			}
+		}
+		Assert.assertFalse(false);
+	}
+
+	@Test
+	public void testPostGererRamasser() {
+		gestionCombat.init(20, 4, 10);
+		Map<String, COMMANDE> cmds = new HashMap<String, COMMANDE>();
+		for (String nom : gestionCombat.mPerso().keySet())
+			cmds.put(nom, COMMANDE.RIEN);
+
+		cmds.put("Alex", COMMANDE.BAS);
+		gestionCombat.gerer(cmds);
+		gestionCombat.gerer(cmds);
+
+		cmds.put("Alex", COMMANDE.RAMASSER);
+		gestionCombat.gerer(cmds);
+
+		// invariant
+		if (checkInvariant()) {
+			// recup map Perso
+			Map<String, PersonnageService> perso = gestionCombat.mPerso();
+			// on verifie si les persos y sont
+			if (perso.size() == 6 && perso.containsKey("Alex")
+					&& perso.containsKey("Ryan") && perso.containsKey("Slick")) {
+				// on verifie si ils sont gele ou frappe
+				for (String tmp : perso.keySet())
+					if (gestionCombat.estFrappe(tmp)
+							|| gestionCombat.estGele(tmp))
+						Assert.assertTrue(false);
+
+				// on verifie leur position
+				PositionService pAlex = gestionCombat.position("Alex"), pRyan = gestionCombat
+						.position("Ryan"), pSlick = gestionCombat
+						.position("Slick");
+				if (pAlex.equals(0, 4, 0) && pRyan.equals(0, 4, 1)
+						&& pSlick.equals(19, 5, 0))
+					Assert.assertTrue(true);
+			}
+		}
+		Assert.assertFalse(false);
+	}
+
+	@Test
+	public void testPostGererJeter() {
+		gestionCombat.init(20, 4, 10);
+		Map<String, COMMANDE> cmds = new HashMap<String, COMMANDE>();
+		for (String nom : gestionCombat.mPerso().keySet())
+			cmds.put(nom, COMMANDE.RIEN);
+
+		cmds.put("Alex", COMMANDE.BAS);
+		gestionCombat.gerer(cmds);
+		gestionCombat.gerer(cmds);
+
+		cmds.put("Alex", COMMANDE.RAMASSER);
+		gestionCombat.gerer(cmds);
+
+		cmds.put("Alex", COMMANDE.JETER);
+		gestionCombat.gerer(cmds);
+
+		// invariant
+		if (checkInvariant()) {
+			// recup map Perso
+			Map<String, PersonnageService> perso = gestionCombat.mPerso();
+			// on verifie si les persos y sont
+			if (perso.size() == 6 && perso.containsKey("Alex")
+					&& perso.containsKey("Ryan") && perso.containsKey("Slick")) {
+				// on verifie si ils sont gele ou frappe
+				for (String tmp : perso.keySet())
+					if (gestionCombat.estFrappe(tmp)
+							|| gestionCombat.estGele(tmp))
+						Assert.assertTrue(false);
+
+				// on verifie leur position
+				PositionService pAlex = gestionCombat.position("Alex"), pRyan = gestionCombat
+						.position("Ryan"), pSlick = gestionCombat
+						.position("Slick");
+				if (pAlex.equals(0, 4, 0) && pRyan.equals(3, 4, 0)
+						&& pSlick.equals(19, 5, 0))
+					Assert.assertTrue(true);
+			}
+		}
+		Assert.assertFalse(false);
+	}
+}
