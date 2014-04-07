@@ -1,0 +1,46 @@
+× $\times$   
+∧ $\wedge$
+∨ $\vee$
+→ $\to$
+¬ $\neg$
+≠ $\neq$
+⩽ $\leqslant$
+≤ $\leqslant$   // on confond les deux nous....
+∅ $\varnothing$
+∀ $\forall$
+∃ $\exists$
+∈ $\in$
+⋃ $\cup$  // $\bigcup$
+
+
+dans le .emacs :
+
+(defun transf ()
+  (interactive "*")
+  (goto-char (point-min))
+  (replace-string "×" "$\\times$")
+  (goto-char (point-min))
+  (replace-string "∧" "$\\wedge$")
+  (goto-char (point-min))
+  (replace-string "∨" "$\\vee$")
+  (goto-char (point-min))
+  (replace-string "→" "$\\to$")
+  (goto-char (point-min))
+  (replace-string "¬" "$\\neg$")
+  (goto-char (point-min))
+  (replace-string "≠" "$\\neq$")
+  (goto-char (point-min))
+  (replace-string "⩽" "$\\leqslant$")
+  (goto-char (point-min))
+  (replace-string "≤" "$\\leqslant$")
+  (goto-char (point-min))
+  (replace-string "∅" "$\\varnothing$")
+  (goto-char (point-min))
+  (replace-string "∀" "$\\forall$")
+  (goto-char (point-min))
+  (replace-string "∃" "$\\exists$")
+  (goto-char (point-min))
+  (replace-string "∈" "$\\in$")
+  (goto-char (point-min))
+  (replace-string "⋃" "$\\cup$")
+)

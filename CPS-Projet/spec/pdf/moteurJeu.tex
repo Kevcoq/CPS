@@ -1,0 +1,210 @@
+% Created 2014-04-07 lun. 15:37
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage{amssymb}
+\usepackage{hyperref}
+
+
+\title{moteurJeu}
+\author{BUNEL QUENTIN}
+\date{07 avril 2014}
+
+\begin{document}
+
+\maketitle
+
+\setcounter{tocdepth}{3}
+\tableofcontents
+\vspace*{1cm}
+\section{MoteurJeu}
+\label{sec-1}
+
+\subsection{service : MoteurJeu}
+\label{sec-1.1}
+
+\subsection{use : \href{file:///users/Etu5/3000675/Desktop/spec/gestionCombat.org}{GestionCombat}}
+\label{sec-1.2}
+
+\subsection{types : String, int, boolean, enum FIN \{GAGNEE, PERDUE, NULLE\}, enum COMMANDE \{RIEN, GAUCHE, DROITE, HAUT, BAS, SAUTER, FRAPPE, JETER, RAMASSER\}}
+\label{sec-1.3}
+
+   
+\subsection{observators :}
+\label{sec-1.4}
+
+\subsubsection{}
+
+\begin{itemize}
+
+\item const maxPasJeu : [MoteurJeu] $\to$ int\\
+\label{sec-1.4.1.1}
+
+
+\item pasJeuCourant : [MoteurJeu] $\to$ int\\
+\label{sec-1.4.1.2}
+
+
+\item estFini : [MoteurJeu] $\to$ boolean\\
+\label{sec-1.4.1.3}
+
+
+\item resultatFinal : [MoteurJeu] $\to$ FIN\\
+\label{sec-1.4.1.4}
+
+\begin{itemize}
+
+\item pre resultatFinal(M) require estFini(M)\\
+\label{sec-1.4.1.4.1}
+
+\end{itemize} % ends low level
+
+\item combat : [MoteurJeu] $\to$ GestionCombat\\
+\label{sec-1.4.1.5}
+
+
+\end{itemize} % ends low level
+\subsection{Constructors :}
+\label{sec-1.5}
+
+\subsubsection{}
+
+\begin{itemize}
+
+\item init : int $\times$ int $\times$ int $\times$ int $\to$ [MoteurJeu]\\
+\label{sec-1.5.1.1}
+
+\begin{itemize}
+
+\item pre init(largeur, hauteur, profondeur, maxPas) require largeur > 0 $\wedge$ hauteur > 0 $\wedge$ profondeur > 0 $\wedge$ maxPas > 0\\
+\label{sec-1.5.1.1.1}
+
+
+\end{itemize} % ends low level
+\end{itemize} % ends low level
+\subsection{Operators :}
+\label{sec-1.6}
+
+\subsubsection{}
+
+\begin{itemize}
+
+\item pasJeu : [MoteurJeu] $\times$ COMMANDE $\times$ COMMANDE $\to$ [MoteurJeu]\\
+\label{sec-1.6.1.1}
+
+\begin{itemize}
+
+\item pre pasJeu(M, comAlex, comRyan) require $\neg$estFini(M) $\wedge$ comAlex $\in$ COMMANDE $\wedge$ comRyan $\in$ COMMANDE\\
+\label{sec-1.6.1.1.1}
+
+
+\end{itemize} % ends low level
+
+\item pasJeu : [MoteurJeu] $\times$ String $\times$ COMMANDE $\to$ [MoteurJeu]\\
+\label{sec-1.6.1.2}
+
+\begin{itemize}
+
+\item pre pasJeu(M, nom, com) require $\neg$estFini(M) $\wedge$ nom = ("Alex" $\vee$ "Ryan") $\wedge$ com $\in$ COMMANDE\\
+\label{sec-1.6.1.2.1}
+
+
+
+
+
+\end{itemize} % ends low level
+\end{itemize} % ends low level
+\subsection{Observations :}
+\label{sec-1.7}
+
+\subsubsection{[invariants]}
+\label{sec-1.7.1}
+
+\begin{itemize}
+
+\item 0 $\leqslant$ pasJeuCourant(M) $\leqslant$ maxPasJeu(M)\\
+\label{sec-1.7.1.1}
+
+
+\item estFini(M) =min (Personnage::estVaincu(GestionCombat::alex(combat(M))) $\wedge$ Personnage::estVaincu(GestionCombat::ryan(combat(M)))) $\vee$ Personnage::estVaincu(GestionCombat::slick(combat(M))) $\vee$ pasJeuCourant(M)=maxPasJeu(M))\\
+\label{sec-1.7.1.2}
+
+
+\item resultatFinal(M) =min\\
+\label{sec-1.7.1.3}
+
+\begin{itemize}
+
+\item GAGNEE si Personnage::estVaincu(GestionCombat::slick(combat(M))) $\wedge$ $\neg$(Personnage::estVaincu(GestionCombat::alex(combat(M))) $\wedge$ Personnage::estVaincu(GestionCombat::ryan(combat(M))))\\
+\label{sec-1.7.1.3.1}
+
+
+\item PERDUE si $\neg$Personnage::estVaincu(GestionCombat::slick(combat(M))) $\wedge$ (Personnage::estVaincu(GestionCombat::alex(combat(M))) $\wedge$ Personnage::estVaincu(GestionCombat::ryan(combat(M))))\\
+\label{sec-1.7.1.3.2}
+
+
+\item NULLE sinon\\
+\label{sec-1.7.1.3.3}
+
+
+\end{itemize} % ends low level
+\end{itemize} % ends low level
+\subsubsection{[init]}
+\label{sec-1.7.2}
+
+\begin{itemize}
+
+\item maxPasJeu(init(l,h,p,m))=m\\
+\label{sec-1.7.2.1}
+
+
+\item pasJeuCourant(init(l,h,p,m))=0\\
+\label{sec-1.7.2.2}
+
+
+\item combat(init(l,h,p,m))=GestionCombat::init(l,h,p)\\
+\label{sec-1.7.2.3}
+
+
+\end{itemize} % ends low level
+\subsubsection{[pasJeu]}
+\label{sec-1.7.3}
+
+\begin{itemize}
+
+\item pasJeuCourant(pasJeu(M,cA,cR))=pasJeuCourant(M) +1\\
+\label{sec-1.7.3.1}
+
+
+\item combat(pasJeu(M,cA,cR))=GestionCombat::gerer(combat(M),Map<String,COMMANDE>)\\
+\label{sec-1.7.3.2}
+
+\begin{itemize}
+
+\item avec put("Alex", cA) $\wedge$ put("Ryan", cR) $\wedge$ $\forall$i [0\ldots{}GestionCombat::mPerso(combat(M)).size()-3] put(name, randomCmd()) $\wedge$ si (Math.random() < 0.1) alors put(randomName(), randomCmd())\\
+\label{sec-1.7.3.2.1}
+
+
+\end{itemize} % ends low level
+
+\item pasJeuCourant(pasJeu(M,n,c))=pasJeuCourant(M) +1\\
+\label{sec-1.7.3.3}
+
+
+\item combat(pasJeu(M,n,c))=GestionCombat::gerer(combat(M),Map<String,COMMANDE>)\\
+\label{sec-1.7.3.4}
+
+\begin{itemize}
+
+\item avec put(n, c) $\wedge$ $\forall$i [0\ldots{}GestionCombat::mPerso(combat(M)).size()-2] put(name, randomCmd()) $\wedge$ si (Math.random() < 0.1) alors put(randomName(), randomCmd())\\
+\label{sec-1.7.3.4.1}
+
+\end{itemize} % ends low level
+\end{itemize} % ends low level
+
+\end{document}

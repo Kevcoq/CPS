@@ -1,0 +1,474 @@
+% Created 2014-04-07 lun. 15:26
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage{amssymb}
+\usepackage{hyperref}
+
+
+\title{gestionCombat}
+\author{BUNEL QUENTIN}
+\date{07 avril 2014}
+
+\begin{document}
+
+\maketitle
+
+\setcounter{tocdepth}{3}
+\tableofcontents
+\vspace*{1cm}
+\section{GestionCombat}
+\label{sec-1}
+
+\subsection{service : GestionCombat}
+\label{sec-1.1}
+
+\subsection{use : \href{file:///users/Etu5/3000675/Desktop/spec/terrain.org}{Terrain,} \href{file:///users/Etu5/3000675/Desktop/spec/personnage.org}{Personnage}, \href{file:///users/Etu5/3000675/Desktop/spec/position.org}{Position}}
+\label{sec-1.2}
+
+\subsection{types : String, int, boolean, List<Personnage>, Map<String,Personnage>, Map<String,COMMANDE>, enum COMMANDE \{RIEN, GAUCHE, DROITE, HAUT, BAS, SAUTER, FRAPPE, JETER, RAMASSER\}}
+\label{sec-1.3}
+
+  
+
+\subsection{observators :}
+\label{sec-1.4}
+
+\subsubsection{}
+
+\begin{itemize}
+
+\item terrain : [GestionCombat] $\to$ Terrain\\
+\label{sec-1.4.1.1}
+
+
+
+\item mPerso : [GestionCombat] $\to$ Map<String,Personnage>\\
+\label{sec-1.4.1.2}
+
+
+
+\item estFrappe : [GestionCombat] $\times$ String $\to$ boolean\\
+\label{sec-1.4.1.3}
+
+\begin{itemize}
+
+\item pre estFrappe(C,id) require id $\in$ mPerso.keySet()\\
+\label{sec-1.4.1.3.1}
+
+
+\end{itemize} % ends low level
+
+\item estGele : [GestionCombat] $\times$ String $\to$ boolean\\
+\label{sec-1.4.1.4}
+
+\begin{itemize}
+
+\item pre estGele(C,id) require id $\in$ mPerso.keySet()\\
+\label{sec-1.4.1.4.1}
+
+
+\end{itemize} % ends low level
+
+\item cptGele : [GestionCombat] $\times$ String $\to$ int\\
+\label{sec-1.4.1.5}
+
+\begin{itemize}
+
+\item pre cptGele(C,id) require id $\in$ mPerso.keySet() $\wedge$ estGele(C,id)\\
+\label{sec-1.4.1.5.1}
+
+
+\end{itemize} % ends low level
+
+\item position : [GestionCombat] $\times$ String $\to$ Position\\
+\label{sec-1.4.1.6}
+
+\begin{itemize}
+
+\item pre position(C,id) require id $\in$ mPerso.keySet()\\
+\label{sec-1.4.1.6.1}
+
+
+\end{itemize} % ends low level
+
+\item collisionGauche : [GestionCombat] $\times$ String $\times$ String $\to$ boolean\\
+\label{sec-1.4.1.7}
+
+\begin{itemize}
+
+\item pre collisionGauche(C,id1,id2) require  id1 $\in$ mPerso.keySet() $\wedge$ id2 $\in$ mPerso.keySet()\\
+\label{sec-1.4.1.7.1}
+
+
+\end{itemize} % ends low level
+
+\item collision : [GestionCombat] $\times$ String $\to$ List<Personnage>\\
+\label{sec-1.4.1.8}
+
+\begin{itemize}
+
+\item pre collision(C,id) require id $\in$ mPerso.keySet()\\
+\label{sec-1.4.1.8.1}
+
+
+
+
+\end{itemize} % ends low level
+\end{itemize} % ends low level
+\subsection{Constructors :}
+\label{sec-1.5}
+
+\subsubsection{}
+
+\begin{itemize}
+
+\item init : int $\times$ int $\times$ int $\to$ [GestionCombat]\\
+\label{sec-1.5.1.1}
+
+
+
+
+
+\end{itemize} % ends low level
+\subsection{Operators :}
+\label{sec-1.6}
+
+\subsubsection{}
+
+\begin{itemize}
+
+\item gerer : [GestionCombat] $\times$ Map<String,COMMANDE> $\to$ [GestionCombat]\\
+\label{sec-1.6.1.1}
+
+
+
+
+
+\end{itemize} % ends low level
+\subsection{Observations :}
+\label{sec-1.7}
+
+\subsubsection{[invariants]}
+\label{sec-1.7.1}
+
+\begin{itemize}
+
+\item collision(C, id) =min\\
+\label{sec-1.7.1.1}
+
+\begin{itemize}
+
+\item tmp = $\varnothing$, $\forall$nomP $\in$ mPerso.keySet(),\\
+\label{sec-1.7.1.1.1}
+
+
+\item tmp $\cup$ nomP si collisionGauche(C,id,nomP) || collisionGauche(C,nomP,id)\\
+\label{sec-1.7.1.1.2}
+
+
+\end{itemize} % ends low level
+
+\item collisionGauche(C,id1,id2) =min\\
+\label{sec-1.7.1.2}
+
+\begin{itemize}
+
+\item pos1 = position(C, id1), pos2 = position(C, id2),\\
+\label{sec-1.7.1.2.1}
+
+
+\item Position::collision(pos1, pos2)\\
+\label{sec-1.7.1.2.2}
+
+
+
+
+
+
+
+
+
+
+
+
+\end{itemize} % ends low level
+\end{itemize} % ends low level
+\subsubsection{[init]}
+\label{sec-1.7.2}
+
+\begin{itemize}
+
+\item terrain(init(l,h,p)) = Terrain::init(l,h,p)\\
+\label{sec-1.7.2.1}
+
+
+
+\item mPerso(init(l,h,p)) =\\
+\label{sec-1.7.2.2}
+
+\begin{itemize}
+
+\item mPerso.put("Alex", Personnage::init("Alex",20,51,10,100,1664))\\
+\label{sec-1.7.2.2.1}
+
+
+\item mPerso.put("Ryan", Personnage::init("Ryan",25,60,12,200,1664))\\
+\label{sec-1.7.2.2.2}
+
+
+\item mPerso.put("Slick", Gangster::init("Slick",35,80,20,250,2000))\\
+\label{sec-1.7.2.2.3}
+
+
+\item + 3 gangster lambda :\\
+\label{sec-1.7.2.2.4}
+
+\begin{itemize}
+
+\item name = RandomName()\\
+\label{sec-1.7.2.2.4.1}
+
+
+\item mPerso.put(name, Gangster::init(name,18,45,9,50,500))\\
+\label{sec-1.7.2.2.4.2}
+
+
+\end{itemize} % ends low level
+\end{itemize} % ends low level
+
+\item estFrappe(init(l,h,p),id)=false\\
+\label{sec-1.7.2.3}
+
+
+
+\item estGele(init(l,h,p),id)=false\\
+\label{sec-1.7.2.4}
+
+
+
+\item position\\
+\label{sec-1.7.2.5}
+
+\begin{itemize}
+
+\item position(init(l,h,p),"Alex") = Position::init(0, Terrain::profondeur(init(l,h,p)) / 2 + 1, 0, false)\\
+\label{sec-1.7.2.5.1}
+
+
+\item position(init(l,h,p),"Ryan") = Position::init(0, Terrain::profondeur(init(l,h,p)) / 2 - 1, 0, false)\\
+\label{sec-1.7.2.5.2}
+
+
+\item position(init(l,h,p),"Slick") = Position::init(Terrain::largeur(init(l,h,p)) - 1, Terrain::profondeur(init(l,h,p)) / 2, 0, true)\\
+\label{sec-1.7.2.5.3}
+
+
+\item position(init(l,h,p), id) = Random sur Bloc Vide\\
+\label{sec-1.7.2.5.4}
+
+
+
+
+
+
+
+\end{itemize} % ends low level
+\end{itemize} % ends low level
+\subsubsection{[gerer]}
+\label{sec-1.7.3}
+
+\begin{itemize}
+
+\item \textbf{TODO} id n'appartient pas a keySet, creation d'un gangster\\
+\label{sec-1.7.3.1}
+
+
+\item $\forall$id $\in$ mPerso.keySet(), mPerso(gerer(C, cmd)).get(id) =\\
+\label{sec-1.7.3.2}
+
+\begin{itemize}
+
+\item si $\neg$estFrappe(gerer(C, cmd),id) alors mPerso(C).get(id)\\
+\label{sec-1.7.3.2.1}
+
+
+\item sinon Personnage::retrait(mPerso(C).get(id),cpt)\\
+\label{sec-1.7.3.2.2}
+
+\begin{itemize}
+
+\item avec cpt=0, $\forall$p $\in$ collision(C,id), cmd.get(Personnage::nom(p)) \texttt{= FRAPPE, cpt +} Personnage::force(p)\\
+\label{sec-1.7.3.2.2.1}
+
+
+\end{itemize} % ends low level
+\end{itemize} % ends low level
+
+\item $\forall$id $\in$ mPerso.keySet(), estFrappe(gerer(C, cmd), id) =\\
+\label{sec-1.7.3.3}
+
+\begin{itemize}
+
+\item collision(C,id) $\neq$ $\varnothing$ $\wedge$ ($\exists$p $\in$ collision(C,id) tq cmd.get(Personnage::nom(p)) == FRAPPE)\\
+\label{sec-1.7.3.3.1}
+
+
+\end{itemize} % ends low level
+
+\item $\forall$id $\in$ mPerso.keySet(), estGele(gerer(C, cmd), id) = (cmd.get(id) == FRAPPE) $\vee$ estFrappe(gerer(C, cmd), id) $\vee$ Chose::estPorte(mPerso(gerer(C, cmd)).get(id)) $\vee$ (estGele(C, id) $\wedge$ cptGele(C, id) > 1)\\
+\label{sec-1.7.3.4}
+
+
+
+\item $\forall$id $\in$ mPerso.keySet(), cptGele(gerer(C, cmd), id) =\\
+\label{sec-1.7.3.5}
+
+\begin{itemize}
+
+\item si (cmd.get(id) == FRAPPE) alors 1\\
+\label{sec-1.7.3.5.1}
+
+
+\item sinon si estFrappe(gerer(C, cmd), id) alors 3\\
+\label{sec-1.7.3.5.2}
+
+
+\item sinon cpt(C, id)-1\\
+\label{sec-1.7.3.5.3}
+
+
+\end{itemize} % ends low level
+
+\item mPerso.keySet(), position(gerer(C, cmd), id) =\\
+\label{sec-1.7.3.6}
+
+\begin{itemize}
+
+\item si estFrappe(gerer(C, cmd), id),\\
+\label{sec-1.7.3.6.1}
+
+\begin{itemize}
+
+\item si ($\exists$p $\in$ collisionGauche(C,id,p) tq cmd.get(Personnage::nom(p)) == FRAPPE) alors\\
+\label{sec-1.7.3.6.1.1}
+
+\begin{itemize}
+
+\item Position::setX(position(C, id), min(Position::x(position(C, id)) + 3, Terrain::largeur(terrain(C))))\\
+\label{sec-1.7.3.6.1.1.1}
+
+\end{itemize} % ends low level
+
+\item si ($\exists$p $\in$ collisionGauche(C,p,id) tq cmd.get(Personnage::nom(p)) == FRAPPE) alors\\
+\label{sec-1.7.3.6.1.2}
+
+\begin{itemize}
+
+\item Position::setX(position(C, id), max(Position::x(position(C, id)) - 3, 0))\\
+\label{sec-1.7.3.6.1.2.1}
+
+
+\end{itemize} % ends low level
+\end{itemize} % ends low level
+
+\item si Chose::estPorte(mPerso(C).get(id)) alors\\
+\label{sec-1.7.3.6.2}
+
+\begin{itemize}
+
+\item $\exists$p $\in$ mPerso(C).keySet() tq Personnage::laChoseEquipee(p) == mPerso(C).get(id) $\wedge$ cmd.get(Personnage::nom(p)) $\neq$ JETER\\
+\label{sec-1.7.3.6.2.1}
+
+\begin{itemize}
+
+\item Position::set(position(C, id), position(C, p))\\
+\label{sec-1.7.3.6.2.1.1}
+
+\end{itemize} % ends low level
+
+\item $\exists$p $\in$ mPerso(C).keySet() tq Personnage::laChoseEquipee(p) \texttt{= mPerso(C).get(id) $\wedge$ cmd.get(Personnage::nom(p)) =} JETER\\
+\label{sec-1.7.3.6.2.2}
+
+\begin{itemize}
+
+\item si Position::dirG(position(gerer(C, cmd), p)) alors Position::set(position(C, id), Position::x(max(position(C, p) - 5, 0)), Position::y(position(C, p)), 0)\\
+\label{sec-1.7.3.6.2.2.1}
+
+
+\item sinon Position::set(position(C, id), Position::x(min(position(C, p) + 5, Terrain::largeur(terrain(C))), Position::y(position(C, p)), 0)\\
+\label{sec-1.7.3.6.2.2.2}
+
+
+
+\item Position::setX(position(C, id), min( Position::x(position(C, id)) + 1, Terrain::largeur(terrain(C))))\\
+\label{sec-1.7.3.6.3.1}
+
+
+\item Posirion::setDir(position(C, id), false);\\
+\label{sec-1.7.3.6.3.2}
+
+
+
+\item Position::setX(position(C, id), max( Position::x(position(C, id)) - 1, 0))\\
+\label{sec-1.7.3.6.4.1}
+
+
+\item Posirion::setDir(position(C, id), true);\\
+\label{sec-1.7.3.6.4.2}
+
+
+
+\item Position::setY(position(C, id), min( Position::y(position(C, id)) + 1, Terrain::profondeur(terrain(C))))\\
+\label{sec-1.7.3.6.5.1}
+
+
+
+\item Position::setY(position(C, id), max( Position::y(position(C, id)) - 1, 0))\\
+\label{sec-1.7.3.6.6.1}
+
+
+
+\item Position::setZ(position(C, id), 1)\\
+\label{sec-1.7.3.6.7.1}
+
+
+
+\item Position::setZ(position(C, id), 0)\\
+\label{sec-1.7.3.6.8.1}
+
+\end{itemize} % ends low level
+\end{itemize} % ends low level
+
+\item si cmd.get(id) == DROITE\\
+\label{sec-1.7.3.6.3}
+
+
+\item si cmd.get(id) == GAUCHE\\
+\label{sec-1.7.3.6.4}
+
+
+\item si cmd.get(id) == HAUT\\
+\label{sec-1.7.3.6.5}
+
+
+\item si cmd.get(id) == BAS\\
+\label{sec-1.7.3.6.6}
+
+
+\item si cmd.get(id) == SAUTER\\
+\label{sec-1.7.3.6.7}
+
+
+\item sinon\\
+\label{sec-1.7.3.6.8}
+
+\end{itemize} % ends low level
+\end{itemize} % ends low level
+
+\end{document}

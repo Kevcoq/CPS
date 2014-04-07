@@ -1,0 +1,29 @@
+* Terrain
+** service : Terrain
+** use : [[file:bloc.org][Bloc]]
+** types : int, Bloc[][][]
+
+
+** observators :
+*** 
+**** const largeur : [Terrain] → int
+**** const hauteur : [Terrain] → int
+**** const profondeur : [Terrain] → int
+**** getBloc : [Terrain] × int × int × int → Bloc
+***** pre getBloc(T,i,j,k) require (0 ≤ i < (largeur(T)/Bloc::largeur())) ∧ (0 ≤ j < (profondeur(T)/Bloc::profondeur())) ∧ (0 ≤ k < (hauteur(T)/Bloc::hauteur()))
+
+** Constructors :
+*** 
+**** init : int × int × int → [Terrain]
+***** pre init(largeur,hauteur,profondeur) require largeur > 0 ∧ hauteur > 0 ∧ profondeur > 0 
+
+** Observations :
+
+*** [init]
+**** largeur(init(l,h,p)) = l
+**** hauteur(init(l,h,p)) = h
+**** profondeur(init(l,h,p)) = p
+**** getBloc(init(l,h,p),x,y,z) ≠ null avec 
+***** ∀x ∈ [0;largeur(init(l,h,p))], 
+***** ∀y ∈ [0;profondeur(init(l,h,p))],
+***** ∀z ∈ [0;hauteur(init(l,h,p))],

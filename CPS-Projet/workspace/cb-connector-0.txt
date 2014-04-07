@@ -1,0 +1,6 @@
+avr. 07, 2014 2:01:01 PM org.codebeamer.eclipse.mylyn.core.LogUtils configureJavaLogging
+INFO: Java logging is configured from logging.properties
+avr. 07, 2014 2:03:43 PM org.codebeamer.eclipse.mylyn.core.CodeBeamerClientManager readCache
+INFO: Loading client cache (82 bytes)
+avr. 07, 2014 2:03:43 PM org.codebeamer.eclipse.mylyn.core.CodeBeamerClientManager writeCache
+INFO: Saved client cache (82 bytes)

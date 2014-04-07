@@ -1,0 +1,275 @@
+% Created 2014-04-07 lun. 15:07
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage{amssymb}
+\usepackage{hyperref}
+
+
+\title{position}
+\author{BUNEL QUENTIN}
+\date{07 avril 2014}
+
+\begin{document}
+
+\maketitle
+
+\setcounter{tocdepth}{3}
+\tableofcontents
+\vspace*{1cm}
+\section{Position}
+\label{sec-1}
+
+\subsection{service : Position}
+\label{sec-1.1}
+
+\subsection{types :int, boolean}
+\label{sec-1.2}
+
+
+\subsection{observators :}
+\label{sec-1.3}
+
+\subsubsection{}
+
+\begin{itemize}
+
+\item x : [Position] $\to$ int\\
+\label{sec-1.3.1.1}
+
+
+\item y : [Position] $\to$ int\\
+\label{sec-1.3.1.2}
+
+
+\item z : [Position] $\to$ int\\
+\label{sec-1.3.1.3}
+
+
+\item dirG : [Position] $\to$ boolean\\
+\label{sec-1.3.1.4}
+
+
+\item equals : [Position] $\times$ Position $\to$ boolean\\
+\label{sec-1.3.1.5}
+
+
+\item equals : [Position] $\times$ int $\times$ int $\times$ int $\to$ boolean\\
+\label{sec-1.3.1.6}
+
+
+\item collision : [Position] $\times$ Position $\to$ boolean\\
+\label{sec-1.3.1.7}
+
+
+\end{itemize} % ends low level
+\subsection{Constructors :}
+\label{sec-1.4}
+
+\subsubsection{}
+
+\begin{itemize}
+
+\item init : int $\times$ int $\times$ int $\times$ boolean $\to$ [Position]\\
+\label{sec-1.4.1.1}
+
+
+
+\end{itemize} % ends low level
+\subsection{Operators :}
+\label{sec-1.5}
+
+\subsubsection{}
+
+\begin{itemize}
+
+\item setX : [Position] $\times$ int $\to$ [Position]\\
+\label{sec-1.5.1.1}
+
+
+\item setY : [Position] $\times$ int $\to$ [Position]\\
+\label{sec-1.5.1.2}
+
+
+\item setZ : [Position] $\times$ int $\to$ [Position]\\
+\label{sec-1.5.1.3}
+
+
+\item setDir : [Position] $\times$ boolean $\to$ [Position]\\
+\label{sec-1.5.1.4}
+
+
+\item set : [Position] $\times$ int $\times$ int $\times$ int $\to$ [Position]\\
+\label{sec-1.5.1.5}
+
+
+\item set : [Position] $\times$ Position $\to$ [Position]\\
+\label{sec-1.5.1.6}
+
+
+\end{itemize} % ends low level
+\subsection{Observations :}
+\label{sec-1.6}
+
+\subsubsection{[invariant]}
+\label{sec-1.6.1}
+
+\begin{itemize}
+
+\item equals(P, p2) =def (x(P) = x(p2) $\wedge$ y(P) = y(p2) $\wedge$ z(P) = z(p2))\\
+\label{sec-1.6.1.1}
+
+
+\item equals(P, i, j, k) =def (x(P) = i $\wedge$ y(P) = j $\wedge$ z(P) = k)\\
+\label{sec-1.6.1.2}
+
+
+\item collsion(P, p2) =def equals(P, p2) $\vee$ equals(P, x(p2) - 1, y(p2), z(p2))\\
+\label{sec-1.6.1.3}
+
+
+\item set(P, p2) =def set(P, x(p2), y(p2), z(p2))\\
+\label{sec-1.6.1.4}
+
+
+\end{itemize} % ends low level
+\subsubsection{[init]}
+\label{sec-1.6.2}
+
+\begin{itemize}
+
+\item x(init(i, j, k, d)) = i\\
+\label{sec-1.6.2.1}
+
+
+\item y(init(i, j, k, d)) = j\\
+\label{sec-1.6.2.2}
+
+
+\item z(init(i, j, k, d)) = k\\
+\label{sec-1.6.2.3}
+
+
+\item dirG(init(i, j, k, d)) = d\\
+\label{sec-1.6.2.4}
+
+
+\end{itemize} % ends low level
+\subsubsection{[setX]}
+\label{sec-1.6.3}
+
+\begin{itemize}
+
+\item x(setX(P, n)) = n\\
+\label{sec-1.6.3.1}
+
+
+\item y(setX(P, n)) = y(P)\\
+\label{sec-1.6.3.2}
+
+
+\item z(setX(P, n)) = z(P)\\
+\label{sec-1.6.3.3}
+
+
+\item dirG(setX(P, n)) = dirG(P)\\
+\label{sec-1.6.3.4}
+
+
+\end{itemize} % ends low level
+\subsubsection{[setY]}
+\label{sec-1.6.4}
+
+\begin{itemize}
+
+\item x(setY(P, n)) = x(P)\\
+\label{sec-1.6.4.1}
+
+
+\item y(setY(P, n)) = n\\
+\label{sec-1.6.4.2}
+
+
+\item z(setY(P, n)) = z(P)\\
+\label{sec-1.6.4.3}
+
+
+\item dirG(setY(P, n)) = dirG(P)\\
+\label{sec-1.6.4.4}
+
+
+\end{itemize} % ends low level
+\subsubsection{[setZ]}
+\label{sec-1.6.5}
+
+\begin{itemize}
+
+\item x(setZ(P, n)) = x(P)\\
+\label{sec-1.6.5.1}
+
+
+\item y(setZ(P, n)) = y(P)\\
+\label{sec-1.6.5.2}
+
+
+\item z(setZ(P, n)) = n\\
+\label{sec-1.6.5.3}
+
+
+\item dirG(setZ(P, n)) = dirG(P)\\
+\label{sec-1.6.5.4}
+
+
+\end{itemize} % ends low level
+\subsubsection{[setDir]}
+\label{sec-1.6.6}
+
+\begin{itemize}
+
+\item x(setDir(P, n)) = x(P)\\
+\label{sec-1.6.6.1}
+
+
+\item y(setDir(P, n)) = y(P)\\
+\label{sec-1.6.6.2}
+
+
+\item z(setDir(P, n)) = z(P)\\
+\label{sec-1.6.6.3}
+
+
+\item dirG(setDir(P, n)) = n\\
+\label{sec-1.6.6.4}
+
+
+\end{itemize} % ends low level
+\subsubsection{[set]}
+\label{sec-1.6.7}
+
+\begin{itemize}
+
+\item x(set(P, i, j, k)) = i\\
+\label{sec-1.6.7.1}
+
+
+\item y(set(P, i, j, k)) = j\\
+\label{sec-1.6.7.2}
+
+
+\item z(set(P, i, j, k)) = k\\
+\label{sec-1.6.7.3}
+
+
+\item dirG(set(P, i, j, k)) = dirG(P)\\
+\label{sec-1.6.7.4}
+
+
+
+\end{itemize} % ends low level
+
+\end{document}

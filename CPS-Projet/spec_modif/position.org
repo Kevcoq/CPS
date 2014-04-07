@@ -1,0 +1,72 @@
+* Position
+** service : Position
+** types :int, boolean
+
+** observators :
+*** 
+**** x : [Position] → int
+**** y : [Position] → int
+**** z : [Position] → int
+**** dirG : [Position] → boolean 
+**** equals : [Position] × Position → boolean
+**** equals : [Position] × int × int × int → boolean
+**** collision : [Position] × Position → boolean
+
+** Constructors :
+*** 
+**** init : int × int × int × boolean → [Position]
+
+
+** Operators :
+*** 
+**** setX : [Position] × int → [Position]
+**** setY : [Position] × int → [Position]
+**** setZ : [Position] × int → [Position]
+**** setDir : [Position] × boolean → [Position]
+**** set : [Position] × int × int × int → [Position]
+**** set : [Position] × Position → [Position]
+
+** Observations :
+*** [invariant]
+**** equals(P, p2) =def (x(P) = x(p2) ∧ y(P) = y(p2) ∧ z(P) = z(p2))
+**** equals(P, i, j, k) =def (x(P) = i ∧ y(P) = j ∧ z(P) = k)
+**** collsion(P, p2) =def equals(P, p2) ∨ equals(P, x(p2) - 1, y(p2), z(p2))
+**** set(P, p2) =def set(P, x(p2), y(p2), z(p2))
+
+*** [init]
+**** x(init(i, j, k, d)) = i
+**** y(init(i, j, k, d)) = j
+**** z(init(i, j, k, d)) = k
+**** dirG(init(i, j, k, d)) = d
+
+*** [setX]
+**** x(setX(P, n)) = n
+**** y(setX(P, n)) = y(P)
+**** z(setX(P, n)) = z(P)
+**** dirG(setX(P, n)) = dirG(P)
+
+*** [setY]
+**** x(setY(P, n)) = x(P)
+**** y(setY(P, n)) = n
+**** z(setY(P, n)) = z(P)
+**** dirG(setY(P, n)) = dirG(P)
+
+*** [setZ]
+**** x(setZ(P, n)) = x(P)
+**** y(setZ(P, n)) = y(P)
+**** z(setZ(P, n)) = n
+**** dirG(setZ(P, n)) = dirG(P)
+
+*** [setDir]
+**** x(setDir(P, n)) = x(P)
+**** y(setDir(P, n)) = y(P)
+**** z(setDir(P, n)) = z(P)
+**** dirG(setDir(P, n)) = n
+
+*** [set]
+**** x(set(P, i, j, k)) = i
+**** y(set(P, i, j, k)) = j
+**** z(set(P, i, j, k)) = k
+**** dirG(set(P, i, j, k)) = dirG(P)
+
+
