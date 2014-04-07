@@ -1,9 +1,9 @@
 package decorators;
 
-import enumeration.COMMANDE;
-import enumeration.RESULTAT;
 import services.GestionCombatService;
 import services.MoteurJeuService;
+import enumeration.COMMANDE;
+import enumeration.RESULTAT;
 
 public abstract class MoteurJeuDecorator implements MoteurJeuService {
 	private MoteurJeuService moteur;

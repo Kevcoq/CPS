@@ -6,11 +6,12 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 import mains.Mains;
-import enumeration.TYPE_Bloc;
 import services.GestionCombatService;
 import services.MoteurJeuService;
 import services.PersonnageService;
+import services.PositionService;
 import services.TerrainService;
+import enumeration.TYPE_Bloc;
 
 public class Affichage extends JPanel {
 	private MoteurJeuService moteur;
@@ -40,7 +41,8 @@ public class Affichage extends JPanel {
 					g.setColor(Color.GRAY);
 				else
 					g.setColor(Color.BLACK);
-				g.fillRect(i * coef, j * coef, coef, coef);
+				g.fillRect(i * coef, (terrain.profondeur() - 1 - j) * coef,
+						coef, coef);
 			}
 
 		//
@@ -54,17 +56,13 @@ public class Affichage extends JPanel {
 		// | 40 Alex et Ryan
 		for (PersonnageService p : cbt.mPerso().values()) {
 			if (p.nom().equals("Slick"))
-				ajouter(colorPerso, cbt.position(p.nom()).x(),
-						cbt.position(p.nom()).y(), 2);
+				ajouter(colorPerso, cbt.position(p.nom()), 2);
 			else if (p.nom().equals("Alex"))
-				ajouter(colorPerso, cbt.position(p.nom()).x(),
-						cbt.position(p.nom()).y(), 3);
+				ajouter(colorPerso, cbt.position(p.nom()), 3);
 			else if (p.nom().equals("Ryan"))
-				ajouter(colorPerso, cbt.position(p.nom()).x(),
-						cbt.position(p.nom()).y(), 4);
+				ajouter(colorPerso, cbt.position(p.nom()), 4);
 			else
-				ajouter(colorPerso, cbt.position(p.nom()).x(),
-						cbt.position(p.nom()).y(), 1);
+				ajouter(colorPerso, cbt.position(p.nom()), 1);
 		}
 
 		//
@@ -90,79 +88,80 @@ public class Affichage extends JPanel {
 					g.setColor(Color.BLUE);
 				else
 					continue;
-				g.fillRect(i * coef, j * coef, coef, coef);
+				g.fillRect(i * coef, (terrain.profondeur() - 1 - j) * coef,
+						coef, coef);
 			}
 
 	}
 
-	private static void ajouter(int[][] tab, int x, int y, int nb) {
+	private static void ajouter(int[][] tab, PositionService pos, int nb) {
 		// 1 gangster | 2 slick | 3 alex | 4 ryan | 10 gangsterS
 		// | 20 Slick + Alex ou/et Ryan | 30 Alex et/ou Ryan + gangster
 		// | 40 Alex et Ryan
 		switch (nb) {
 		case 1:
-			switch (tab[x][y]) {
+			switch (tab[pos.x()][pos.y()]) {
 			case 0:
-				tab[x][y] = 1;
+				tab[pos.x()][pos.y()] = 1;
 				break;
 			case 1:
-				tab[x][y] = 10;
+				tab[pos.x()][pos.y()] = 10;
 				break;
 			}
 			break;
 		case 2:
-			switch (tab[x][y]) {
+			switch (tab[pos.x()][pos.y()]) {
 			case 3:
-				tab[x][y] = 20;
+				tab[pos.x()][pos.y()] = 20;
 				break;
 			case 4:
-				tab[x][y] = 20;
+				tab[pos.x()][pos.y()] = 20;
 				break;
 			case 30:
-				tab[x][y] = 20;
+				tab[pos.x()][pos.y()] = 20;
 				break;
 			case 40:
-				tab[x][y] = 20;
+				tab[pos.x()][pos.y()] = 20;
 				break;
 			default:
-				tab[x][y] = 2;
+				tab[pos.x()][pos.y()] = 2;
 			}
 			break;
 		case 3:
-			switch (tab[x][y]) {
+			switch (tab[pos.x()][pos.y()]) {
 			case 1:
-				tab[x][y] = 30;
+				tab[pos.x()][pos.y()] = 30;
 				break;
 			case 2:
-				tab[x][y] = 20;
+				tab[pos.x()][pos.y()] = 20;
 				break;
 			case 4:
-				tab[x][y] = 40;
+				tab[pos.x()][pos.y()] = 40;
 				break;
 			case 10:
-				tab[x][y] = 30;
+				tab[pos.x()][pos.y()] = 30;
 				break;
 			default:
-				tab[x][y] = 3;
+				tab[pos.x()][pos.y()] = 3;
 			}
 
 			break;
 		case 4:
-			switch (tab[x][y]) {
+			switch (tab[pos.x()][pos.y()]) {
 			case 1:
-				tab[x][y] = 30;
+				tab[pos.x()][pos.y()] = 30;
 				break;
 			case 2:
-				tab[x][y] = 20;
+				tab[pos.x()][pos.y()] = 20;
 				break;
 			case 3:
-				tab[x][y] = 40;
+				tab[pos.x()][pos.y()] = 40;
 				break;
 			case 10:
-				tab[x][y] = 30;
+				tab[pos.x()][pos.y()] = 30;
 				break;
 			default:
-				tab[x][y] = 4;
+				tab[pos.x()][pos.y()] = 4;
 			}
 			break;
 		}

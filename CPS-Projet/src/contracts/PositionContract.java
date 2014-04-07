@@ -1,7 +1,7 @@
 package contracts;
 
-import contracts.base.PostconditionError;
 import services.PositionService;
+import contracts.base.PostconditionError;
 import decorators.PositionDecorator;
 
 public class PositionContract extends PositionDecorator {
@@ -63,8 +63,6 @@ public class PositionContract extends PositionDecorator {
 	public void set(PositionService pos2) {
 		boolean d_atpre = dirG();
 		super.set(pos2);
-		System.out.println(this);
-		System.out.println(pos2);
 		if (!(x() == pos2.x() && y() == pos2.y() && z() == pos2.z() && dirG() == d_atpre))
 			throw new PostconditionError("Position -> set");
 	}

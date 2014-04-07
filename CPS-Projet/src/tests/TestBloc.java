@@ -1,8 +1,8 @@
 package tests;
 
 import implem.Bloc;
-import contracts.BlocContract;
 import tests.abstrait.AbstractTestBloc;
+import contracts.BlocContract;
 
 public class TestBloc extends AbstractTestBloc {
 

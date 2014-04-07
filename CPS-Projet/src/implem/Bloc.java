@@ -1,8 +1,8 @@
 package implem;
 
+import services.BlocService;
 import enumeration.TYPE_Bloc;
 import enumeration.TYPE_Tresor;
-import services.BlocService;
 
 /**
  * Implem des Bloc

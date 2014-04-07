@@ -72,8 +72,16 @@ public class GestionCombat implements GestionCombatService {
 
 	@Override
 	public PositionService position(String nom) {
-		if (mFG.containsKey(nom))
-			return mPos.get(nom);
+		if (mFG.containsKey(nom)) {
+			PositionService pos = mPos.get(nom);
+			if (pos.x() >= terrain.largeur())
+				throw new ArrayIndexOutOfBoundsException("x = " + pos.x()
+						+ " > " + terrain.largeur());
+			if (pos.y() >= terrain.profondeur())
+				throw new ArrayIndexOutOfBoundsException("y = " + pos.y()
+						+ " > " + terrain.profondeur());
+			return pos;
+		}
 		throw new Error("nom n'existe pas");
 	}
 
@@ -186,7 +194,7 @@ public class GestionCombat implements GestionCombatService {
 					if (mPos.get(lCol.get(0).nom()).dirG())
 						pos.setX(Math.max(pos.x() - 5, 0));
 					else
-						pos.setX(Math.min(pos.x() + 5, terrain.largeur()));
+						pos.setX(Math.min(pos.x() + 5, terrain.largeur() - 1));
 
 				} else if (mFG.get(p.nom()).estGele) {
 					// si gele
@@ -197,27 +205,11 @@ public class GestionCombat implements GestionCombatService {
 					// pour le reste
 					switch (cmd.get(p.nom())) {
 					case GAUCHE:
-						pos.setX(Math.max(0, pos.x() - 1));
-						pos.setZ(0);
-						pos.setDir(true);
-						break;
-
 					case DROITE:
-						pos.setX(Math.min(terrain.largeur(), pos.x() + 1));
-						pos.setZ(0);
-						pos.setDir(false);
-						break;
 					case HAUT:
-						pos.setY(Math.min(terrain.profondeur(), pos.y() + 1));
-						pos.setZ(0);
-						break;
 					case BAS:
-						pos.setY(Math.max(0, pos.y() - 1));
-						pos.setZ(0);
-						break;
-
 					case SAUTER:
-						pos.setZ(1);
+						deplacement(cmd.get(p.nom()), pos);
 						break;
 
 					case FRAPPE:
@@ -259,15 +251,16 @@ public class GestionCombat implements GestionCombatService {
 										.nom());
 								posTmpPerso.setX(Math.max(
 										0,
-										Math.min(terrain.largeur(), pos.x()
+										Math.min(terrain.largeur() - 1, pos.x()
 												+ (5 * direction))));
 								posTmpPerso.setY(pos.y());
 								posTmpPerso.setZ(0);
 							} else {
 								// depose de l'objet
 								terrain.getBloc(
-										Math.max(0, Math.min(terrain.largeur(),
-												pos.x() + (5 * direction))),
+										Math.max(0, Math.min(
+												terrain.largeur() - 1, pos.x()
+														+ (5 * direction))),
 										pos.y(), 0)
 										.deposerTresor(
 												TYPE_Tresor
@@ -304,6 +297,83 @@ public class GestionCombat implements GestionCombatService {
 					}
 				}
 			}
+			// on a traite sa cmd
+			cmd.remove(p.nom());
+		}
+
+		// si il reste des cmd, creation d'un gangster
+		if (!cmd.isEmpty()) {
+			Random r = new Random();
+			for (String s : cmd.keySet()) {
+				// on recupere sa futur position
+				int x = r.nextInt(terrain.largeur()), y = r.nextInt(terrain
+						.profondeur());
+				// si c'est un mur, dommage il est mort
+				if (terrain.getBloc(x, y, 0).typeBloc() == TYPE_Bloc.VIDE) {
+					// sinon on l'initialise
+					GangsterService g = new Gangster();
+					g.init(s, 18, 45, 9, 50, 500);
+					mPerso.put(s, g);
+					PositionService posTmp = new Position();
+					posTmp.init(r.nextInt(terrain.largeur()),
+							r.nextInt(terrain.profondeur()), 0, true);
+					mPos.put(s, posTmp);
+					mFG.put(s, new FG());
+				}
+			}
+		}
+
+	}
+
+	public String toString() {
+		String s = "";
+		for (PersonnageService perso : mPerso.values()) {
+			s += perso + ", g : " + mFG.get(perso.nom()).estGele + "\t"
+					+ mPos.get(perso.nom()) + "\n";
+		}
+		return s;
+	}
+
+	private void deplacement(COMMANDE cmd, PositionService pos) {
+		// on atterit
+		pos.setZ(0);
+
+		int x = pos.x(), y = pos.y(), z = pos.z();
+
+		// switch sur la cmd
+		switch (cmd) {
+		case GAUCHE:
+			if (terrain.getBloc(Math.max(0, x - 1), y, z).typeBloc() == TYPE_Bloc.VIDE) {
+				pos.setX(Math.max(0, pos.x() - 1));
+				pos.setDir(true);
+			}
+			break;
+
+		case DROITE:
+			if (terrain.getBloc(Math.min(terrain.largeur() - 1, pos.x() + 1),
+					y, z).typeBloc() == TYPE_Bloc.VIDE) {
+				pos.setX(Math.min(terrain.largeur() - 1, pos.x() + 1));
+				pos.setDir(false);
+			}
+			break;
+		case HAUT:
+			if (terrain.getBloc(x,
+					Math.min(terrain.profondeur() - 1, pos.y() + 1), z)
+					.typeBloc() == TYPE_Bloc.VIDE)
+				pos.setY(Math.min(terrain.profondeur() - 1, pos.y() + 1));
+			break;
+		case BAS:
+			if (terrain.getBloc(x, Math.max(0, pos.y() - 1), z).typeBloc() == TYPE_Bloc.VIDE)
+				pos.setY(Math.max(0, pos.y() - 1));
+			break;
+
+		case SAUTER:
+			if (terrain.getBloc(x, y, 1).typeBloc() == TYPE_Bloc.VIDE)
+				pos.setZ(1);
+			break;
+
+		default:
+			break;
 		}
 	}
 }

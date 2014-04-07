@@ -1,8 +1,8 @@
 package tests;
 
 import implem.GestionCombat;
-import contracts.GestionCombatContract;
 import tests.abstrait.AbstractTestGestionCombat;
+import contracts.GestionCombatContract;
 
 public class TestGestionCombat extends AbstractTestGestionCombat {
 

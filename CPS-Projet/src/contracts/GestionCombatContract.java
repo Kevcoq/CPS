@@ -3,11 +3,11 @@ package contracts;
 import java.util.ArrayList;
 import java.util.List;
 
-import contracts.base.InvariantError;
-import contracts.base.PostconditionError;
 import services.GestionCombatService;
 import services.PersonnageService;
 import services.PositionService;
+import contracts.base.InvariantError;
+import contracts.base.PostconditionError;
 import decorators.GestionCombatDecorator;
 
 public class GestionCombatContract extends GestionCombatDecorator {

@@ -1,8 +1,8 @@
 package tests;
 
 import implem.Position;
-import contracts.PositionContract;
 import tests.abstrait.AbstractTestPosition;
+import contracts.PositionContract;
 
 public class TestPosition extends AbstractTestPosition {
 

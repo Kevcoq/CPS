@@ -1,8 +1,8 @@
 package contracts;
 
+import services.ChoseService;
 import contracts.base.PostconditionError;
 import contracts.base.PreconditionError;
-import services.ChoseService;
 import decorators.ChoseDecorator;
 
 public class ChoseContract extends ChoseDecorator {

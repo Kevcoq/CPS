@@ -5,9 +5,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import services.MoteurJeuService;
 import contracts.base.PreconditionError;
 import enumeration.COMMANDE;
-import services.MoteurJeuService;
 
 public abstract class AbstractTestMoteurJeu {
 	private MoteurJeuService moteur;

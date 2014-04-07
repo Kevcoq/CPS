@@ -1,8 +1,8 @@
 package tests;
 
 import implem.ObjetEquipable;
-import contracts.ObjetEquipableContract;
 import tests.abstrait.AbstractTestObjetEquipable;
+import contracts.ObjetEquipableContract;
 
 public class TestObjetEquipable extends AbstractTestObjetEquipable {
 

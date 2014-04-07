@@ -1,8 +1,8 @@
 package decorators;
 
+import services.BlocService;
 import enumeration.TYPE_Bloc;
 import enumeration.TYPE_Tresor;
-import services.BlocService;
 
 /**
  * Decorator de Bloc

@@ -85,7 +85,7 @@ public class MoteurJeu implements MoteurJeuService {
 			cmd.put(nom, GenerateurCmd.genererCmd());
 
 		if (Math.random() < 0.15)
-			cmd.put(Rand.name(), GenerateurCmd.genererCmd());
+			cmd.put(Rand.name(), COMMANDE.RIEN);
 
 		return cmd;
 	}

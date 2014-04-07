@@ -1,8 +1,8 @@
 package contracts;
 
+import services.ObjetEquipableService;
 import contracts.base.PostconditionError;
 import contracts.base.PreconditionError;
-import services.ObjetEquipableService;
 import decorators.ObjetEquipableDecorator;
 
 public class ObjetEquipableContract extends ObjetEquipableDecorator {

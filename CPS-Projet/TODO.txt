@@ -1,6 +1,4 @@
 Bloc taille mini slick
-revoir ts pixel en bloc
-
 
 SPEC :
 REVOIR LES POSITIONS (new POSITIONSERVICE)
@@ -8,22 +6,15 @@ REVOIR LES POSITIONS (new POSITIONSERVICE)
 gestionCombat -> jeter + position ???
 	      	  -> jeter touche un personnage
 	      	  -> gerer = soucis
+	      	  		-> frappe : se frappe soit meme
+	      	  		-> porter : se porte soit meme 
+	      	  		-> ...
 
-moteurJeu     -> generation de gangster
 
 
-
-
-CODE :
-gestionCbt	  -> contrat | gerer | collisionGauche
-
+moteurJeu     -> generation de gangster (CODE)
 
 
 
 
-les TESTS
-objetEquipable -> refine ???? chose et objet [OK]
-objetMarchand -> refine Objet ???
-+ gstCbt et moteurJeu
-
-test de s�quence ??????
+test de sequence ??????

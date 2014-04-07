@@ -1,9 +1,9 @@
 package contracts;
 
 import implem.Bloc;
+import services.BlocService;
 import contracts.base.InvariantError;
 import contracts.base.PostconditionError;
-import services.BlocService;
 import decorators.BlocDecorator;
 import enumeration.TYPE_Bloc;
 import enumeration.TYPE_Tresor;

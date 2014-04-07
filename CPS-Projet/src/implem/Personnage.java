@@ -112,4 +112,8 @@ public class Personnage extends Chose implements PersonnageService {
 		obj = null;
 	}
 
+	public String toString() {
+		return nom + "-> " + pdv + ", " + argent + "$, v-" + estEquipe()
+				+ ", ^-" + estPorte();
+	}
 }

@@ -1,8 +1,8 @@
 package tests;
 
 import implem.Terrain;
-import contracts.TerrainContract;
 import tests.abstrait.AbstractTestTerrain;
+import contracts.TerrainContract;
 
 public class TestTerrain extends AbstractTestTerrain {
 

@@ -48,6 +48,8 @@ public class IHM {
 			// graphisme
 			frame.repaint();
 			Thread.sleep(500);
+
+			System.out.println(moteur.combat());
 		}
 	}
 
@@ -70,9 +72,10 @@ public class IHM {
 	private void bouton(JPanel pBouton) {
 		ecoute = new Ecouteur();
 		JButton gauche = new JButton("Gauche"), droite = new JButton("Droite"), haut = new JButton(
-				"Haut"), bas = new JButton("Bas"), sauter = new JButton(
-				"Sauter"), ramasser = new JButton("Ramasser"), jeter = new JButton(
-				"Jeter"), rien = new JButton("Rien");
+				"Haut"), bas = new JButton("Bas"), frapper = new JButton(
+				"Frappe"), sauter = new JButton("Sauter"), ramasser = new JButton(
+				"Ramasser"), jeter = new JButton("Jeter"), rien = new JButton(
+				"Rien");
 
 		pBouton.add(gauche);
 		gauche.addActionListener(ecoute);
@@ -85,6 +88,9 @@ public class IHM {
 
 		pBouton.add(bas);
 		bas.addActionListener(ecoute);
+
+		pBouton.add(frapper);
+		frapper.addActionListener(ecoute);
 
 		pBouton.add(sauter);
 		sauter.addActionListener(ecoute);
