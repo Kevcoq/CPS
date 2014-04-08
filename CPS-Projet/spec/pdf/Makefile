@@ -1,6 +1,6 @@
-all : tout
+all : gen cleantmp
 
-tout :
+gen :
 	pdflatex bloc.tex
 	pdflatex chose.tex
 	pdflatex gangster.tex
@@ -12,6 +12,9 @@ tout :
 	pdflatex personnage.tex
 	pdflatex position.tex
 	pdflatex terrain.tex
+
+cleantmp :
+	rm -f *.log *.aux *.toc *.out *~
 
 clean :
 	rm -f *.pdf *.log *.aux *.toc *.out *~
