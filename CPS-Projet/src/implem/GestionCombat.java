@@ -105,6 +105,7 @@ public class GestionCombat implements GestionCombatService {
 						|| collisionGauche(name, nom))
 					lPerso.add(mPerso.get(name));
 			}
+			lPerso.remove(mPerso.get(nom));
 			return lPerso;
 		}
 		throw new Error("nom n'existe pas");
@@ -215,6 +216,7 @@ public class GestionCombat implements GestionCombatService {
 					case FRAPPE:
 						for (PersonnageService tmp : collision(p.nom()))
 							mFG.get(tmp.nom()).estFrappe = true;
+
 						mFG.get(p.nom()).estGele = true;
 						pos.setZ(0);
 						break;
@@ -285,6 +287,7 @@ public class GestionCombat implements GestionCombatService {
 								if (pos.equals(mPos.get(s))) {
 									PersonnageService tmp = mPerso.get(s);
 									tmp.estRamasse();
+									mPos.get(tmp.nom()).setZ(1);
 									p.ramasser(tmp);
 									break;
 								}

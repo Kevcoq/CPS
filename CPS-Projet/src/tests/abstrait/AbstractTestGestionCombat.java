@@ -88,21 +88,23 @@ public abstract class AbstractTestGestionCombat {
 				// on verifie si ils sont gele ou frappe
 				for (String tmp : perso.keySet())
 					if (gestionCombat.estFrappe(tmp)
-							|| gestionCombat.estGele(tmp))
+							|| gestionCombat.estGele(tmp)) {
 						Assert.assertTrue(false);
+						return;
+					}
 
 				// on verifie leur position
 				PositionService pAlex = gestionCombat.position("Alex"), pRyan = gestionCombat
 						.position("Ryan"), pSlick = gestionCombat
 						.position("Slick");
 				if (pAlex.equals(0, 6, 0) && pRyan.equals(0, 4, 0)
-						&& pSlick.equals(19, 5, 0))
+						&& pSlick.equals(19, 5, 0)) {
 					Assert.assertTrue(true);
-			} else
-				Assert.assertTrue(false);
-		} else {
-			Assert.assertTrue(false);
+					return;
+				}
+			}
 		}
+		Assert.assertTrue(false);
 	}
 
 	@Test
@@ -124,8 +126,10 @@ public abstract class AbstractTestGestionCombat {
 				// on verifie si ils sont gele ou frappe
 				for (String tmp : perso.keySet())
 					if (gestionCombat.estFrappe(tmp)
-							|| gestionCombat.estGele(tmp))
+							|| gestionCombat.estGele(tmp)) {
 						Assert.assertTrue(false);
+						return;
+					}
 
 				// on verifie leur position
 				PositionService pAlex = gestionCombat.position("Alex"), pRyan = gestionCombat
@@ -134,11 +138,10 @@ public abstract class AbstractTestGestionCombat {
 				if (pAlex.equals(0, 6, 0) && pRyan.equals(0, 4, 0)
 						&& pSlick.equals(19, 5, 0))
 					Assert.assertTrue(true);
-			} else
-				Assert.assertTrue(false);
-		} else {
-			Assert.assertTrue(false);
+				return;
+			}
 		}
+		Assert.assertTrue(false);
 	}
 
 	@Test
@@ -161,21 +164,23 @@ public abstract class AbstractTestGestionCombat {
 				// on verifie si ils sont gele ou frappe
 				for (String tmp : perso.keySet())
 					if (gestionCombat.estFrappe(tmp)
-							|| gestionCombat.estGele(tmp))
+							|| gestionCombat.estGele(tmp)) {
 						Assert.assertTrue(false);
+						return;
+					}
 
 				// on verifie leur position
 				PositionService pAlex = gestionCombat.position("Alex"), pRyan = gestionCombat
 						.position("Ryan"), pSlick = gestionCombat
 						.position("Slick");
 				if (pAlex.equals(1, 6, 0) && pRyan.equals(0, 4, 0)
-						&& pSlick.equals(19, 5, 0))
+						&& pSlick.equals(19, 5, 0)) {
 					Assert.assertTrue(true);
-			} else
-				Assert.assertTrue(false);
-		} else {
-			Assert.assertTrue(false);
+					return;
+				}
+			}
 		}
+		Assert.assertTrue(false);
 	}
 
 	@Test
@@ -198,21 +203,23 @@ public abstract class AbstractTestGestionCombat {
 				// on verifie si ils sont gele ou frappe
 				for (String tmp : perso.keySet())
 					if (gestionCombat.estFrappe(tmp)
-							|| gestionCombat.estGele(tmp))
+							|| gestionCombat.estGele(tmp)) {
 						Assert.assertTrue(false);
+						return;
+					}
 
 				// on verifie leur position
 				PositionService pAlex = gestionCombat.position("Alex"), pRyan = gestionCombat
 						.position("Ryan"), pSlick = gestionCombat
 						.position("Slick");
 				if (pAlex.equals(0, 7, 0) && pRyan.equals(0, 4, 0)
-						&& pSlick.equals(19, 5, 0))
+						&& pSlick.equals(19, 5, 0)) {
 					Assert.assertTrue(true);
-			} else
-				Assert.assertTrue(false);
-		} else {
-			Assert.assertTrue(false);
+					return;
+				}
+			}
 		}
+		Assert.assertTrue(false);
 	}
 
 	@Test
@@ -235,21 +242,23 @@ public abstract class AbstractTestGestionCombat {
 				// on verifie si ils sont gele ou frappe
 				for (String tmp : perso.keySet())
 					if (gestionCombat.estFrappe(tmp)
-							|| gestionCombat.estGele(tmp))
+							|| gestionCombat.estGele(tmp)) {
 						Assert.assertTrue(false);
+						return;
+					}
 
 				// on verifie leur position
 				PositionService pAlex = gestionCombat.position("Alex"), pRyan = gestionCombat
 						.position("Ryan"), pSlick = gestionCombat
 						.position("Slick");
 				if (pAlex.equals(0, 5, 0) && pRyan.equals(0, 4, 0)
-						&& pSlick.equals(19, 5, 0))
+						&& pSlick.equals(19, 5, 0)) {
 					Assert.assertTrue(true);
-			} else
-				Assert.assertTrue(false);
-		} else {
-			Assert.assertTrue(false);
+					return;
+				}
+			}
 		}
+		Assert.assertTrue(false);
 	}
 
 	@Test
@@ -272,21 +281,23 @@ public abstract class AbstractTestGestionCombat {
 				// on verifie si ils sont gele ou frappe
 				for (String tmp : perso.keySet())
 					if (gestionCombat.estFrappe(tmp)
-							|| gestionCombat.estGele(tmp))
+							|| gestionCombat.estGele(tmp)) {
 						Assert.assertTrue(false);
+						return;
+					}
 
 				// on verifie leur position
 				PositionService pAlex = gestionCombat.position("Alex"), pRyan = gestionCombat
 						.position("Ryan"), pSlick = gestionCombat
 						.position("Slick");
 				if (pAlex.equals(0, 6, 1) && pRyan.equals(0, 4, 0)
-						&& pSlick.equals(19, 5, 0))
+						&& pSlick.equals(19, 5, 0)) {
 					Assert.assertTrue(true);
-			} else
-				Assert.assertTrue(false);
-		} else {
-			Assert.assertTrue(false);
+					return;
+				}
+			}
 		}
+		Assert.assertTrue(false);
 	}
 
 	@Test
@@ -309,34 +320,45 @@ public abstract class AbstractTestGestionCombat {
 				// on verifie si ils sont gele ou frappe
 				for (String tmp : perso.keySet())
 					if (gestionCombat.estFrappe(tmp)
-							|| gestionCombat.estGele(tmp))
+							|| gestionCombat.estGele(tmp)) {
 						Assert.assertTrue(false);
+						return;
+					}
 
 				// on verifie leur position
 				PositionService pAlex = gestionCombat.position("Alex"), pRyan = gestionCombat
 						.position("Ryan"), pSlick = gestionCombat
 						.position("Slick");
 				if (pAlex.equals(0, 6, 0) && pRyan.equals(0, 4, 0)
-						&& pSlick.equals(18, 5, 0))
+						&& pSlick.equals(18, 5, 0)) {
 					Assert.assertTrue(true);
-			} else
-				Assert.assertTrue(false);
-		} else {
-			Assert.assertTrue(false);
+					return;
+				}
+			}
 		}
+		Assert.assertTrue(false);
 	}
 
 	@Test
 	public void testPostGererRamasser() {
 		gestionCombat.init(20, 4, 10);
 		Map<String, COMMANDE> cmds = new HashMap<String, COMMANDE>();
+
+		// bas
 		for (String nom : gestionCombat.mPerso().keySet())
 			cmds.put(nom, COMMANDE.RIEN);
-
 		cmds.put("Alex", COMMANDE.BAS);
 		gestionCombat.gerer(cmds);
+
+		// bas
+		for (String nom : gestionCombat.mPerso().keySet())
+			cmds.put(nom, COMMANDE.RIEN);
+		cmds.put("Alex", COMMANDE.BAS);
 		gestionCombat.gerer(cmds);
 
+		// ramasser
+		for (String nom : gestionCombat.mPerso().keySet())
+			cmds.put(nom, COMMANDE.RIEN);
 		cmds.put("Alex", COMMANDE.RAMASSER);
 		gestionCombat.gerer(cmds);
 
@@ -350,37 +372,59 @@ public abstract class AbstractTestGestionCombat {
 				// on verifie si ils sont gele ou frappe
 				for (String tmp : perso.keySet())
 					if (gestionCombat.estFrappe(tmp)
-							|| gestionCombat.estGele(tmp))
-						Assert.assertTrue(false);
+							|| gestionCombat.estGele(tmp)) {
+						Assert.assertFalse(true);
+						return;
+					}
 
 				// on verifie leur position
 				PositionService pAlex = gestionCombat.position("Alex"), pRyan = gestionCombat
 						.position("Ryan"), pSlick = gestionCombat
 						.position("Slick");
+				System.out.println(pAlex.equals(0, 4, 0) + "&&"
+						+ pRyan.equals(0, 4, 1) + "&&"
+						+ pSlick.equals(19, 5, 0));
 				if (pAlex.equals(0, 4, 0) && pRyan.equals(0, 4, 1)
-						&& pSlick.equals(19, 5, 0))
-					Assert.assertTrue(true);
-			} else
-				Assert.assertTrue(false);
-		} else {
-			Assert.assertTrue(false);
+						&& pSlick.equals(19, 5, 0)) {
+					System.out.println(perso.get("Ryan").estPorte() + "&&"
+							+ perso.get("Alex").estEquipe());
+					if (perso.get("Ryan").estPorte()
+							&& perso.get("Alex").estEquipe()) {
+						Assert.assertTrue(true);
+						return;
+					}
+				}
+			}
 		}
+		Assert.assertTrue(false);
 	}
 
 	@Test
 	public void testPostGererJeter() {
 		gestionCombat.init(20, 4, 10);
 		Map<String, COMMANDE> cmds = new HashMap<String, COMMANDE>();
+
+		// bas
 		for (String nom : gestionCombat.mPerso().keySet())
 			cmds.put(nom, COMMANDE.RIEN);
-
 		cmds.put("Alex", COMMANDE.BAS);
 		gestionCombat.gerer(cmds);
+
+		// bas
+		for (String nom : gestionCombat.mPerso().keySet())
+			cmds.put(nom, COMMANDE.RIEN);
+		cmds.put("Alex", COMMANDE.BAS);
 		gestionCombat.gerer(cmds);
 
+		// ramasser
+		for (String nom : gestionCombat.mPerso().keySet())
+			cmds.put(nom, COMMANDE.RIEN);
 		cmds.put("Alex", COMMANDE.RAMASSER);
 		gestionCombat.gerer(cmds);
 
+		// jeter
+		for (String nom : gestionCombat.mPerso().keySet())
+			cmds.put(nom, COMMANDE.RIEN);
 		cmds.put("Alex", COMMANDE.JETER);
 		gestionCombat.gerer(cmds);
 
@@ -394,20 +438,25 @@ public abstract class AbstractTestGestionCombat {
 				// on verifie si ils sont gele ou frappe
 				for (String tmp : perso.keySet())
 					if (gestionCombat.estFrappe(tmp)
-							|| gestionCombat.estGele(tmp))
+							|| gestionCombat.estGele(tmp)) {
 						Assert.assertTrue(false);
+						return;
+					}
 
 				// on verifie leur position
 				PositionService pAlex = gestionCombat.position("Alex"), pRyan = gestionCombat
 						.position("Ryan"), pSlick = gestionCombat
 						.position("Slick");
+
 				if (pAlex.equals(0, 4, 0) && pRyan.equals(3, 4, 0)
 						&& pSlick.equals(19, 5, 0))
-					Assert.assertTrue(true);
-			} else
-				Assert.assertTrue(false);
-		} else {
-			Assert.assertTrue(false);
+					if (!perso.get("Ryan").estPorte()
+							&& !perso.get("Alex").estEquipe()) {
+						Assert.assertTrue(true);
+						return;
+					}
+			}
 		}
+		Assert.assertTrue(false);
 	}
 }

@@ -6,8 +6,9 @@ REVOIR LES POSITIONS (new POSITIONSERVICE)
 gestionCombat -> jeter + position ???
 	      	  -> jeter touche un personnage
 	      	  -> gerer = soucis
-	      	  		-> frappe : se frappe soit meme
-	      	  		-> porter : se porte soit meme 
+	      	  -> revoir les invariants dans le code
+	      	  		-> frappe
+	      	  		-> porter
 	      	  		-> ...
 
 
