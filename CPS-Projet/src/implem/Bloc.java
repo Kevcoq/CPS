@@ -6,8 +6,9 @@ import enumeration.TYPE_Tresor;
 
 /**
  * Implem des Bloc
+ * 
  * @author Kevin & Quentin
- *
+ * 
  */
 public class Bloc implements BlocService {
 	public static final int largeur = 10, hauteur = 10, profondeur = 10;
@@ -64,6 +65,16 @@ public class Bloc implements BlocService {
 	@Override
 	public void deposerTresor(TYPE_Tresor t) {
 		tTresor = t;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Bloc [tBloc=" + tBloc + ", tTresor=" + tTresor + "]";
 	}
 
 }

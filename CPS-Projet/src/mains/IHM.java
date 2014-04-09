@@ -3,9 +3,11 @@ package mains;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 
 import mains.toolsIHM.Affichage;
 import mains.toolsIHM.Ecouteur;
@@ -70,38 +72,50 @@ public class IHM {
 
 	// bouton
 	private void bouton(JPanel pBouton) {
+		// ecouteur
 		ecoute = new Ecouteur();
-		JButton gauche = new JButton("Gauche"), droite = new JButton("Droite"), haut = new JButton(
-				"Haut"), bas = new JButton("Bas"), frapper = new JButton(
-				"Frappe"), sauter = new JButton("Sauter"), ramasser = new JButton(
-				"Ramasser"), jeter = new JButton("Jeter"), rien = new JButton(
-				"Rien");
 
-		pBouton.add(gauche);
+		JMenuBar jmb = new JMenuBar();
+		JMenuItem gauche = new JMenuItem("Gauche"), droite = new JMenuItem(
+				"Droite"), haut = new JMenuItem("Haut"), bas = new JMenuItem(
+				"Bas"), frapper = new JMenuItem("Frappe"), sauter = new JMenuItem(
+				"Sauter"), ramasser = new JMenuItem("Ramasser"), jeter = new JMenuItem(
+				"Jeter"), rien = new JMenuItem("Rien");
+
+		// ajout au menu
+		jmb.add(rien);
+		jmb.add(gauche);
+		jmb.add(droite);
+		jmb.add(haut);
+		jmb.add(bas);
+		jmb.add(frapper);
+		jmb.add(sauter);
+		jmb.add(ramasser);
+		jmb.add(jeter);
+		
+		// bar de menu
+		pBouton.add(jmb);
+
+		// listener
 		gauche.addActionListener(ecoute);
-
-		pBouton.add(droite);
 		droite.addActionListener(ecoute);
-
-		pBouton.add(haut);
 		haut.addActionListener(ecoute);
-
-		pBouton.add(bas);
 		bas.addActionListener(ecoute);
-
-		pBouton.add(frapper);
 		frapper.addActionListener(ecoute);
-
-		pBouton.add(sauter);
 		sauter.addActionListener(ecoute);
-
-		pBouton.add(ramasser);
 		ramasser.addActionListener(ecoute);
-
-		pBouton.add(jeter);
 		jeter.addActionListener(ecoute);
-
-		pBouton.add(rien);
 		rien.addActionListener(ecoute);
+
+		// raccourcis
+		gauche.setAccelerator(KeyStroke.getKeyStroke('q'));
+		droite.setAccelerator(KeyStroke.getKeyStroke('d'));
+		haut.setAccelerator(KeyStroke.getKeyStroke('z'));
+		bas.setAccelerator(KeyStroke.getKeyStroke('s'));
+		frapper.setAccelerator(KeyStroke.getKeyStroke('f'));
+		sauter.setAccelerator(KeyStroke.getKeyStroke(' '));
+		ramasser.setAccelerator(KeyStroke.getKeyStroke('r'));
+		jeter.setAccelerator(KeyStroke.getKeyStroke('j'));
+		rien.setAccelerator(KeyStroke.getKeyStroke('!'));
 	}
 }

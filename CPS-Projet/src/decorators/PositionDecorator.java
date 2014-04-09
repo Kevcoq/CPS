@@ -140,4 +140,12 @@ public abstract class PositionDecorator implements PositionService {
 		return pos.toString();
 	}
 
+	/**
+	 * @return
+	 * @see services.PositionService#clone()
+	 */
+	public PositionService clone() {
+		return pos.clone();
+	}
+
 }

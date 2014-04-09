@@ -92,9 +92,8 @@ public class GestionCombatContract extends GestionCombatDecorator {
 					"gestionCombat -> init : PERSO_PRESENT");
 
 		for (String s : mPerso().keySet())
-			if (estFrappe(s) || estGele(s))
-				throw new PostconditionError(
-						"gestionCombat -> init : FRAPPE|GELE");
+			if (estGele(s))
+				throw new PostconditionError("gestionCombat -> init : GELE");
 
 		PositionService posA = position("Alex"), posR = position("Ryan"), posS = position("Slick");
 		if (!(posA.equals(0, terrain().profondeur() / 2 + 1, 0)

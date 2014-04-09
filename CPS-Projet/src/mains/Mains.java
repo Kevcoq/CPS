@@ -11,7 +11,7 @@ import services.MoteurJeuService;
 import tools.Coloriage;
 
 public class Mains {
-	public static int coef = 20;
+	public static int coef = 40;
 
 	public static void main(String[] args) throws IOException,
 			InterruptedException {

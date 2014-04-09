@@ -13,6 +13,7 @@ import services.GestionCombatService;
 import services.PersonnageService;
 import services.PositionService;
 import enumeration.COMMANDE;
+import enumeration.TYPE_Bloc;
 
 public abstract class AbstractTestGestionCombat {
 	private GestionCombatService gestionCombat;
@@ -37,6 +38,15 @@ public abstract class AbstractTestGestionCombat {
 		gestionCombat = null;
 	}
 
+	private void initialisation() {
+		gestionCombat.init(20, 4, 10);
+		for (int i = 0; i < gestionCombat.terrain().largeur(); i++)
+			for (int j = 0; j < gestionCombat.terrain().profondeur(); j++)
+				for (int k = 0; k < gestionCombat.terrain().hauteur(); k++)
+					gestionCombat.terrain().getBloc(i, j, k)
+							.init(TYPE_Bloc.VIDE);
+	}
+
 	// //////////////////////////////////////
 	// /////////////// PRE //////////////////
 	//
@@ -45,7 +55,7 @@ public abstract class AbstractTestGestionCombat {
 	// Init
 	@Test
 	public void testInit() {
-		gestionCombat.init(20, 4, 10);
+		initialisation();
 		Assert.assertTrue(true);
 	}
 
@@ -64,8 +74,10 @@ public abstract class AbstractTestGestionCombat {
 					bool &= gestionCombat.position(pTmp.nom()).collision(
 							gestionCombat.position(s));
 			}
-			if (!bool)
+			if (!bool) {
+				Assert.assertTrue(gestionCombat.toString(), false);
 				return false;
+			}
 		}
 		return bool;
 	}
@@ -76,8 +88,14 @@ public abstract class AbstractTestGestionCombat {
 				&& perso.containsKey("Ryan") && perso.containsKey("Slick")) {
 			// on verifie si ils sont gele ou frappe
 			for (String tmp : perso.keySet())
-				if (gestionCombat.estFrappe(tmp) || gestionCombat.estGele(tmp)) {
-					Assert.assertTrue(tmp + " est frappe ou gele.", false);
+				if (gestionCombat.estGele(tmp)) {
+					if (!pA && tmp.equals("Alex"))
+						continue;
+					if (!pR && tmp.equals("Ryan"))
+						continue;
+					if (!pS && tmp.equals("Slick"))
+						continue;
+					Assert.assertTrue(tmp + " est gele.", false);
 
 					return false;
 				}
@@ -98,7 +116,6 @@ public abstract class AbstractTestGestionCombat {
 		} else {
 			Assert.assertTrue(
 					"ne contient pas les 2 persos, slick et 3 gangster", false);
-
 			return false;
 		}
 	}
@@ -109,7 +126,7 @@ public abstract class AbstractTestGestionCombat {
 	// Init
 	@Test
 	public void testPostInit() {
-		gestionCombat.init(20, 4, 10);
+		initialisation();
 
 		// invariant
 		if (checkInvariant()) {
@@ -121,12 +138,11 @@ public abstract class AbstractTestGestionCombat {
 				return;
 			}
 		}
-		Assert.assertTrue(false);
 	}
 
 	@Test
 	public void testPostGererRien() {
-		gestionCombat.init(20, 4, 10);
+		initialisation();
 		Map<String, COMMANDE> cmds = new HashMap<String, COMMANDE>();
 		for (String nom : gestionCombat.mPerso().keySet())
 			cmds.put(nom, COMMANDE.RIEN);
@@ -148,7 +164,7 @@ public abstract class AbstractTestGestionCombat {
 
 	@Test
 	public void testPostGererDroite() {
-		gestionCombat.init(20, 4, 10);
+		initialisation();
 		Map<String, COMMANDE> cmds = new HashMap<String, COMMANDE>();
 		for (String nom : gestionCombat.mPerso().keySet())
 			cmds.put(nom, COMMANDE.RIEN);
@@ -167,15 +183,16 @@ public abstract class AbstractTestGestionCombat {
 				if (pAlex.equals(1, 6, 0)) {
 					Assert.assertTrue(true);
 					return;
+				} else {
+					Assert.assertTrue(gestionCombat.toString(), false);
 				}
 			}
 		}
-		Assert.assertTrue(false);
 	}
 
 	@Test
 	public void testPostGererHaut() {
-		gestionCombat.init(20, 4, 10);
+		initialisation();
 		Map<String, COMMANDE> cmds = new HashMap<String, COMMANDE>();
 		for (String nom : gestionCombat.mPerso().keySet())
 			cmds.put(nom, COMMANDE.RIEN);
@@ -195,15 +212,16 @@ public abstract class AbstractTestGestionCombat {
 				if (pAlex.equals(0, 7, 0)) {
 					Assert.assertTrue(true);
 					return;
+				} else {
+					Assert.assertTrue(gestionCombat.toString(), false);
 				}
 			}
 		}
-		Assert.assertTrue(false);
 	}
 
 	@Test
 	public void testPostGererBas() {
-		gestionCombat.init(20, 4, 10);
+		initialisation();
 		Map<String, COMMANDE> cmds = new HashMap<String, COMMANDE>();
 		for (String nom : gestionCombat.mPerso().keySet())
 			cmds.put(nom, COMMANDE.RIEN);
@@ -224,15 +242,16 @@ public abstract class AbstractTestGestionCombat {
 				if (pAlex.equals(0, 5, 0)) {
 					Assert.assertTrue(true);
 					return;
+				} else {
+					Assert.assertTrue(gestionCombat.toString(), false);
 				}
 			}
 		}
-		Assert.assertTrue(false);
 	}
 
 	@Test
 	public void testPostSauter() {
-		gestionCombat.init(20, 4, 10);
+		initialisation();
 		Map<String, COMMANDE> cmds = new HashMap<String, COMMANDE>();
 		for (String nom : gestionCombat.mPerso().keySet())
 			cmds.put(nom, COMMANDE.RIEN);
@@ -252,15 +271,16 @@ public abstract class AbstractTestGestionCombat {
 				if (pAlex.equals(0, 6, 1)) {
 					Assert.assertTrue(true);
 					return;
+				} else {
+					Assert.assertTrue(gestionCombat.toString(), false);
 				}
 			}
 		}
-		Assert.assertTrue(false);
 	}
 
 	@Test
 	public void testPostGererGauche() {
-		gestionCombat.init(20, 4, 10);
+		initialisation();
 		Map<String, COMMANDE> cmds = new HashMap<String, COMMANDE>();
 		for (String nom : gestionCombat.mPerso().keySet())
 			cmds.put(nom, COMMANDE.RIEN);
@@ -280,15 +300,16 @@ public abstract class AbstractTestGestionCombat {
 				if (pSlick.equals(18, 5, 0)) {
 					Assert.assertTrue(true);
 					return;
+				} else {
+					Assert.assertTrue(gestionCombat.toString(), false);
 				}
 			}
 		}
-		Assert.assertTrue(false);
 	}
 
 	@Test
 	public void testPostGererRamasser() {
-		gestionCombat.init(20, 4, 10);
+		initialisation();
 		Map<String, COMMANDE> cmds = new HashMap<String, COMMANDE>();
 
 		// bas
@@ -324,16 +345,19 @@ public abstract class AbstractTestGestionCombat {
 							&& perso.get("Alex").estEquipe()) {
 						Assert.assertTrue(true);
 						return;
+					} else {
+						Assert.assertTrue(gestionCombat.toString(), false);
 					}
+				} else {
+					Assert.assertTrue(gestionCombat.toString(), false);
 				}
 			}
 		}
-		Assert.assertTrue(false);
 	}
 
 	@Test
 	public void testPostGererJeter() {
-		gestionCombat.init(20, 4, 10);
+		initialisation();
 		Map<String, COMMANDE> cmds = new HashMap<String, COMMANDE>();
 
 		// bas
@@ -376,9 +400,10 @@ public abstract class AbstractTestGestionCombat {
 							&& !perso.get("Alex").estEquipe()) {
 						Assert.assertTrue(true);
 						return;
+					} else {
+						Assert.assertTrue(gestionCombat.toString(), false);
 					}
 			}
 		}
-		Assert.assertTrue("truc", false);
 	}
 }

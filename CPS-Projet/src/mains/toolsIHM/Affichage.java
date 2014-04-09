@@ -12,9 +12,11 @@ import services.PersonnageService;
 import services.PositionService;
 import services.TerrainService;
 import enumeration.TYPE_Bloc;
+import enumeration.TYPE_Tresor;
 
 public class Affichage extends JPanel {
 	private MoteurJeuService moteur;
+	private int coef = Mains.coef;
 
 	public Affichage(MoteurJeuService moteur) {
 		super();
@@ -26,29 +28,50 @@ public class Affichage extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private String tresorToString(TYPE_Tresor tresor) {
+		switch (tresor) {
+		case CINQDOLLAR:
+			return "5";
+		case DIXDOLLAR:
+			return "10";
+		case CHAINEVELO:
+			return "CV";
+		case POUBELLEMETALLIQUE:
+			return "PM";
+
+		default:
+			return null;
+		}
+	}
+
 	public void paintComponent(Graphics g) {
-		int coef = Mains.coef;
 		// racourcis
 		GestionCombatService cbt = moteur.combat();
 		TerrainService terrain = cbt.terrain();
 
-		//
-		//
 		// bloc
-		for (int i = 0; i < terrain.largeur(); i++)
-			for (int j = 0; j < terrain.profondeur(); j++) {
-				if (terrain.getBloc(i, j, 0).typeBloc() == TYPE_Bloc.VIDE)
-					g.setColor(Color.GRAY);
-				else
-					g.setColor(Color.BLACK);
-				g.fillRect(i * coef, (terrain.profondeur() - 1 - j) * coef,
-						coef, coef);
-			}
+		colorier_bloc(g, terrain);
 
-		//
-		//
-		//
-		//
+		// personnage
+		colorier_personnage(g, cbt, terrain);
+
+		// objet
+		colorier_objet(g, terrain);
+
+	}
+
+	private void colorier_objet(Graphics g, TerrainService terrain) {
+		g.setColor(Color.WHITE);
+		for (int i = 0; i < terrain.largeur(); i++)
+			for (int j = 0; j < terrain.profondeur(); j++)
+				if (terrain.getBloc(i, j, 0).aTresor())
+					g.drawString(tresorToString(terrain.getBloc(i, j, 0)
+							.typeTresor()), i * coef,
+							(terrain.profondeur() - j) * coef);
+	}
+
+	private void colorier_personnage(Graphics g, GestionCombatService cbt,
+			TerrainService terrain) {
 		// tableau statut personnage
 		int[][] colorPerso = new int[terrain.largeur()][terrain.profondeur()];
 		// 1 gangster | 2 slick | 3 alex | 4 ryan | 10 gangsterS
@@ -65,10 +88,6 @@ public class Affichage extends JPanel {
 				ajouter(colorPerso, cbt.position(p.nom()), 1);
 		}
 
-		//
-		//
-		//
-		//
 		// colorer les personnages
 		for (int i = 0; i < colorPerso.length; i++)
 			for (int j = 0; j < colorPerso[0].length; j++) {
@@ -91,7 +110,18 @@ public class Affichage extends JPanel {
 				g.fillRect(i * coef, (terrain.profondeur() - 1 - j) * coef,
 						coef, coef);
 			}
+	}
 
+	private void colorier_bloc(Graphics g, TerrainService terrain) {
+		for (int i = 0; i < terrain.largeur(); i++)
+			for (int j = 0; j < terrain.profondeur(); j++) {
+				if (terrain.getBloc(i, j, 0).typeBloc() == TYPE_Bloc.VIDE)
+					g.setColor(Color.GRAY);
+				else
+					g.setColor(Color.BLACK);
+				g.fillRect(i * coef, (terrain.profondeur() - 1 - j) * coef,
+						coef, coef);
+			}
 	}
 
 	private static void ajouter(int[][] tab, PositionService pos, int nb) {

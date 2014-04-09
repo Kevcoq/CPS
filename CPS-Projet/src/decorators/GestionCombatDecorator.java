@@ -47,15 +47,6 @@ public abstract class GestionCombatDecorator implements GestionCombatService {
 	/**
 	 * @param nom
 	 * @return
-	 * @see services.GestionCombatService#estFrappe(java.lang.String)
-	 */
-	public boolean estFrappe(String nom) {
-		return cbt.estFrappe(nom);
-	}
-
-	/**
-	 * @param nom
-	 * @return
 	 * @see services.GestionCombatService#estGele(java.lang.String)
 	 */
 	public boolean estGele(String nom) {
@@ -107,4 +98,7 @@ public abstract class GestionCombatDecorator implements GestionCombatService {
 		cbt.gerer(cmd);
 	}
 
+	public String toString() {
+		return cbt.toString();
+	}
 }

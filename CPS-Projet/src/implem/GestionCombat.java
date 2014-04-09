@@ -197,16 +197,6 @@ public class GestionCombat implements GestionCombatService {
 						// frappe
 						frapper(p);
 
-						// deplacement
-						for (PersonnageService tmp : collision(p.nom())) {
-							PositionService posTmp = mPos.get(tmp.nom());
-							for (int i = 0; i < 5; i++)
-								if (mPos.get(p.nom()).dirG())
-									deplacement(COMMANDE.GAUCHE, posTmp);
-								else
-									deplacement(COMMANDE.DROITE, posTmp);
-						}
-
 						mFG.get(p.nom()).estGele = true;
 						pos.setZ(0);
 						break;
@@ -220,27 +210,14 @@ public class GestionCombat implements GestionCombatService {
 							gestionDegatJeter(p, chose);
 						}
 
+						mFG.get(p.nom()).estGele = true;
+						pos.setZ(0);
 						break;
 
 					case RAMASSER:
-						BlocService b = terrain.getBloc(pos.x(), pos.y(),
-								pos.z());
-						if (b.aTresor()) {
-							ObjetEquipableService obj = new ObjetEquipable();
-							// TODO bonus
-							obj.init(b.typeTresor().name(), 50);
-							obj.estRamasse();
-							p.ramasser(obj);
-						} else {
-							for (String s : mPerso.keySet())
-								if (pos.equals(mPos.get(s)) && s != p.nom()) {
-									PersonnageService tmp = mPerso.get(s);
-									tmp.estRamasse();
-									mPos.get(tmp.nom()).setZ(1);
-									p.ramasser(tmp);
-									break;
-								}
-						}
+						ramasser(p, pos);
+
+						pos.setZ(0);
 						break;
 
 					default:
@@ -251,10 +228,12 @@ public class GestionCombat implements GestionCombatService {
 				if (p.estEquipe()
 						&& p.laChoseEquipee() instanceof PersonnageService)
 					mPos.get(((PersonnageService) p.laChoseEquipee()).nom())
-							.set(pos);
+							.set(pos.x(),
+									pos.y(),
+									Math.min(pos.z() + 1, terrain.hauteur() - 1));
 			}
 
-			// qurveille les morts
+			// surveille les morts
 			checkMort(cmd);
 			// on a traite sa cmd
 			cmd.remove(p.nom());
@@ -262,26 +241,73 @@ public class GestionCombat implements GestionCombatService {
 
 		// si il reste des cmd, creation d'un gangster
 		if (!cmd.isEmpty()) {
-			Random r = new Random();
-			for (String s : cmd.keySet()) {
-				// on recupere sa futur position
-				int x = r.nextInt(terrain.largeur()), y = r.nextInt(terrain
-						.profondeur());
-				// si c'est un mur, dommage il est mort
-				if (terrain.getBloc(x, y, 0).typeBloc() == TYPE_Bloc.VIDE) {
-					// sinon on l'initialise
-					GangsterService g = new Gangster();
-					g.init(s, 18, 45, 9, 50, 500);
-					mPerso.put(s, g);
-					PositionService posTmp = new Position();
-					posTmp.init(r.nextInt(terrain.largeur()),
-							r.nextInt(terrain.profondeur()), 0, true);
-					mPos.put(s, posTmp);
-					mFG.put(s, new FG());
-				}
-			}
+			creationGangster(cmd);
 		}
 
+	}
+
+	private void creationGangster(Map<String, COMMANDE> cmd) {
+		Random r = new Random();
+		for (String s : cmd.keySet()) {
+			// on recupere sa futur position
+			int x = r.nextInt(terrain.largeur()), y = r.nextInt(terrain
+					.profondeur());
+			// si c'est un mur, dommage il est mort
+			if (terrain.getBloc(x, y, 0).typeBloc() == TYPE_Bloc.VIDE) {
+				// sinon on l'initialise
+				GangsterService g = new Gangster();
+				g.init(s, 18, 45, 9, 50, 500);
+				mPerso.put(s, g);
+				PositionService posTmp = new Position();
+				posTmp.init(r.nextInt(terrain.largeur()),
+						r.nextInt(terrain.profondeur()), 0, true);
+				mPos.put(s, posTmp);
+				mFG.put(s, new FG());
+			}
+		}
+	}
+
+	private void ramasser(PersonnageService p, PositionService pos) {
+		// le bloc
+		BlocService b = terrain.getBloc(pos.x(), pos.y(), pos.z());
+
+		System.out.println(b);
+		// si il y a un tresor
+		if (b.aTresor()) {
+			TYPE_Tresor tTresor = b.typeTresor();
+			switch (tTresor) {
+			// argent
+			case DIXDOLLAR:
+				p.depotArgent(10);
+				break;
+			case CINQDOLLAR:
+				p.depotArgent(5);
+				break;
+
+			default:
+				// objet equipable
+				ObjetEquipableService obj = new ObjetEquipable();
+				// TODO bonus
+				obj.init(b.typeTresor().name(), 50);
+				obj.estRamasse();
+				p.ramasser(obj);
+				break;
+			}
+
+			// on fini par le ramasser
+			b.ramasserTresor();
+		}
+		// si il n'y a pas d'objet, on ramasse peut etre un personnage
+		else {
+			for (String s : mPerso.keySet())
+				if (pos.equals(mPos.get(s)) && s != p.nom()) {
+					PersonnageService tmp = mPerso.get(s);
+					tmp.estRamasse();
+					mPos.get(tmp.nom()).setZ(1);
+					p.ramasser(tmp);
+					break;
+				}
+		}
 	}
 
 	private void frapper(PersonnageService p) {
@@ -293,6 +319,14 @@ public class GestionCombat implements GestionCombatService {
 				tmp.retraitPdv(p.force());
 			mFG.get(tmp.nom()).estGele = true;
 			// TODO cpt gele
+
+			// deplacement
+			PositionService posTmp = mPos.get(tmp.nom());
+			for (int i = 0; i < 5; i++)
+				if (mPos.get(p.nom()).dirG())
+					deplacement(COMMANDE.GAUCHE, posTmp);
+				else
+					deplacement(COMMANDE.DROITE, posTmp);
 		}
 	}
 
