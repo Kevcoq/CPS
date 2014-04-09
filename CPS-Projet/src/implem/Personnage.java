@@ -52,7 +52,7 @@ public class Personnage extends Chose implements PersonnageService {
 
 	@Override
 	public boolean estVaincu() {
-		return pdv == 0;
+		return pdv <= 0;
 	}
 
 	@Override

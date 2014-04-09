@@ -1,4 +1,4 @@
-Bloc taille mini slick
+CLAVIER !!!!!
 
 SPEC :
 REVOIR LES POSITIONS (new POSITIONSERVICE)
@@ -19,3 +19,5 @@ moteurJeu     -> generation de gangster (CODE)
 
 
 test de sequence ??????
+
+

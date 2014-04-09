@@ -1,4 +1,4 @@
-all : gen cleantmp
+all : gen cleantmp move
 
 gen :
 	pdflatex bloc.tex
@@ -13,9 +13,12 @@ gen :
 	pdflatex position.tex
 	pdflatex terrain.tex
 
+move :
+	mv *.pdf ../pdf/
+
 cleantmp :
 	rm -f *.log *.aux *.toc *.out *~
 
 clean :
-	rm -f *.pdf *.log *.aux *.toc *.out *~
+	rm -f *.pdf ../pdf/*.pdf *.log *.aux *.toc *.out *~
 

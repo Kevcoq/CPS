@@ -84,4 +84,10 @@ public class Position implements PositionService {
 	public boolean collision(PositionService p) {
 		return equals(p) || equals(p.x() - 1, p.y(), p.z());
 	}
+
+	public PositionService clone() {
+		PositionService p = new Position();
+		p.init(x(), y(), z(), dirG());
+		return p;
+	}
 }

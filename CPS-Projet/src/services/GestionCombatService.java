@@ -14,7 +14,7 @@ public interface GestionCombatService {
 
 	public Map<String, PersonnageService> mPerso();
 
-	public boolean estFrappe(String nom);
+	// TODO effacer public boolean estFrappe(String nom);
 
 	public boolean estGele(String nom);
 

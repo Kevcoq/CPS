@@ -70,6 +70,39 @@ public abstract class AbstractTestGestionCombat {
 		return bool;
 	}
 
+	private boolean checkInit(Map<String, PersonnageService> perso, boolean pA,
+			boolean pR, boolean pS) {
+		if (perso.size() == 6 && perso.containsKey("Alex")
+				&& perso.containsKey("Ryan") && perso.containsKey("Slick")) {
+			// on verifie si ils sont gele ou frappe
+			for (String tmp : perso.keySet())
+				if (gestionCombat.estFrappe(tmp) || gestionCombat.estGele(tmp)) {
+					Assert.assertTrue(tmp + " est frappe ou gele.", false);
+
+					return false;
+				}
+			Assert.assertTrue("personne de frappe ou gele.", true);
+
+			// on verifie leur position
+			PositionService pAlex = gestionCombat.position("Alex"), pRyan = gestionCombat
+					.position("Ryan"), pSlick = gestionCombat.position("Slick");
+			if ((!pA || pAlex.equals(0, 6, 0))
+					&& (!pR || pRyan.equals(0, 4, 0))
+					&& (!pS || pSlick.equals(19, 5, 0))) {
+				Assert.assertTrue("tous a la bonne pos", true);
+				return true;
+			} else {
+				Assert.assertTrue("position incorrecte", false);
+				return false;
+			}
+		} else {
+			Assert.assertTrue(
+					"ne contient pas les 2 persos, slick et 3 gangster", false);
+
+			return false;
+		}
+	}
+
 	//
 	//
 	//
@@ -83,25 +116,9 @@ public abstract class AbstractTestGestionCombat {
 			// recup map Perso
 			Map<String, PersonnageService> perso = gestionCombat.mPerso();
 			// on verifie si les persos y sont
-			if (perso.size() == 6 && perso.containsKey("Alex")
-					&& perso.containsKey("Ryan") && perso.containsKey("Slick")) {
-				// on verifie si ils sont gele ou frappe
-				for (String tmp : perso.keySet())
-					if (gestionCombat.estFrappe(tmp)
-							|| gestionCombat.estGele(tmp)) {
-						Assert.assertTrue(false);
-						return;
-					}
-
-				// on verifie leur position
-				PositionService pAlex = gestionCombat.position("Alex"), pRyan = gestionCombat
-						.position("Ryan"), pSlick = gestionCombat
-						.position("Slick");
-				if (pAlex.equals(0, 6, 0) && pRyan.equals(0, 4, 0)
-						&& pSlick.equals(19, 5, 0)) {
-					Assert.assertTrue(true);
-					return;
-				}
+			if (checkInit(perso, true, true, true)) {
+				Assert.assertTrue(true);
+				return;
 			}
 		}
 		Assert.assertTrue(false);
@@ -121,23 +138,8 @@ public abstract class AbstractTestGestionCombat {
 			// recup map Perso
 			Map<String, PersonnageService> perso = gestionCombat.mPerso();
 			// on verifie si les persos y sont
-			if (perso.size() == 6 && perso.containsKey("Alex")
-					&& perso.containsKey("Ryan") && perso.containsKey("Slick")) {
-				// on verifie si ils sont gele ou frappe
-				for (String tmp : perso.keySet())
-					if (gestionCombat.estFrappe(tmp)
-							|| gestionCombat.estGele(tmp)) {
-						Assert.assertTrue(false);
-						return;
-					}
-
-				// on verifie leur position
-				PositionService pAlex = gestionCombat.position("Alex"), pRyan = gestionCombat
-						.position("Ryan"), pSlick = gestionCombat
-						.position("Slick");
-				if (pAlex.equals(0, 6, 0) && pRyan.equals(0, 4, 0)
-						&& pSlick.equals(19, 5, 0))
-					Assert.assertTrue(true);
+			if (checkInit(perso, true, true, true)) {
+				Assert.assertTrue(true);
 				return;
 			}
 		}
@@ -159,22 +161,10 @@ public abstract class AbstractTestGestionCombat {
 			// recup map Perso
 			Map<String, PersonnageService> perso = gestionCombat.mPerso();
 			// on verifie si les persos y sont
-			if (perso.size() == 6 && perso.containsKey("Alex")
-					&& perso.containsKey("Ryan") && perso.containsKey("Slick")) {
-				// on verifie si ils sont gele ou frappe
-				for (String tmp : perso.keySet())
-					if (gestionCombat.estFrappe(tmp)
-							|| gestionCombat.estGele(tmp)) {
-						Assert.assertTrue(false);
-						return;
-					}
-
+			if (checkInit(perso, false, true, true)) {
 				// on verifie leur position
-				PositionService pAlex = gestionCombat.position("Alex"), pRyan = gestionCombat
-						.position("Ryan"), pSlick = gestionCombat
-						.position("Slick");
-				if (pAlex.equals(1, 6, 0) && pRyan.equals(0, 4, 0)
-						&& pSlick.equals(19, 5, 0)) {
+				PositionService pAlex = gestionCombat.position("Alex");
+				if (pAlex.equals(1, 6, 0)) {
 					Assert.assertTrue(true);
 					return;
 				}
@@ -198,22 +188,11 @@ public abstract class AbstractTestGestionCombat {
 			// recup map Perso
 			Map<String, PersonnageService> perso = gestionCombat.mPerso();
 			// on verifie si les persos y sont
-			if (perso.size() == 6 && perso.containsKey("Alex")
-					&& perso.containsKey("Ryan") && perso.containsKey("Slick")) {
-				// on verifie si ils sont gele ou frappe
-				for (String tmp : perso.keySet())
-					if (gestionCombat.estFrappe(tmp)
-							|| gestionCombat.estGele(tmp)) {
-						Assert.assertTrue(false);
-						return;
-					}
+			if (checkInit(perso, false, true, true)) {
 
 				// on verifie leur position
-				PositionService pAlex = gestionCombat.position("Alex"), pRyan = gestionCombat
-						.position("Ryan"), pSlick = gestionCombat
-						.position("Slick");
-				if (pAlex.equals(0, 7, 0) && pRyan.equals(0, 4, 0)
-						&& pSlick.equals(19, 5, 0)) {
+				PositionService pAlex = gestionCombat.position("Alex");
+				if (pAlex.equals(0, 7, 0)) {
 					Assert.assertTrue(true);
 					return;
 				}
@@ -237,22 +216,12 @@ public abstract class AbstractTestGestionCombat {
 			// recup map Perso
 			Map<String, PersonnageService> perso = gestionCombat.mPerso();
 			// on verifie si les persos y sont
-			if (perso.size() == 6 && perso.containsKey("Alex")
-					&& perso.containsKey("Ryan") && perso.containsKey("Slick")) {
-				// on verifie si ils sont gele ou frappe
-				for (String tmp : perso.keySet())
-					if (gestionCombat.estFrappe(tmp)
-							|| gestionCombat.estGele(tmp)) {
-						Assert.assertTrue(false);
-						return;
-					}
+			// on verifie si les persos y sont
+			if (checkInit(perso, false, true, true)) {
 
 				// on verifie leur position
-				PositionService pAlex = gestionCombat.position("Alex"), pRyan = gestionCombat
-						.position("Ryan"), pSlick = gestionCombat
-						.position("Slick");
-				if (pAlex.equals(0, 5, 0) && pRyan.equals(0, 4, 0)
-						&& pSlick.equals(19, 5, 0)) {
+				PositionService pAlex = gestionCombat.position("Alex");
+				if (pAlex.equals(0, 5, 0)) {
 					Assert.assertTrue(true);
 					return;
 				}
@@ -276,22 +245,11 @@ public abstract class AbstractTestGestionCombat {
 			// recup map Perso
 			Map<String, PersonnageService> perso = gestionCombat.mPerso();
 			// on verifie si les persos y sont
-			if (perso.size() == 6 && perso.containsKey("Alex")
-					&& perso.containsKey("Ryan") && perso.containsKey("Slick")) {
-				// on verifie si ils sont gele ou frappe
-				for (String tmp : perso.keySet())
-					if (gestionCombat.estFrappe(tmp)
-							|| gestionCombat.estGele(tmp)) {
-						Assert.assertTrue(false);
-						return;
-					}
+			if (checkInit(perso, false, true, true)) {
 
 				// on verifie leur position
-				PositionService pAlex = gestionCombat.position("Alex"), pRyan = gestionCombat
-						.position("Ryan"), pSlick = gestionCombat
-						.position("Slick");
-				if (pAlex.equals(0, 6, 1) && pRyan.equals(0, 4, 0)
-						&& pSlick.equals(19, 5, 0)) {
+				PositionService pAlex = gestionCombat.position("Alex");
+				if (pAlex.equals(0, 6, 1)) {
 					Assert.assertTrue(true);
 					return;
 				}
@@ -315,22 +273,11 @@ public abstract class AbstractTestGestionCombat {
 			// recup map Perso
 			Map<String, PersonnageService> perso = gestionCombat.mPerso();
 			// on verifie si les persos y sont
-			if (perso.size() == 6 && perso.containsKey("Alex")
-					&& perso.containsKey("Ryan") && perso.containsKey("Slick")) {
-				// on verifie si ils sont gele ou frappe
-				for (String tmp : perso.keySet())
-					if (gestionCombat.estFrappe(tmp)
-							|| gestionCombat.estGele(tmp)) {
-						Assert.assertTrue(false);
-						return;
-					}
+			if (checkInit(perso, true, true, false)) {
 
 				// on verifie leur position
-				PositionService pAlex = gestionCombat.position("Alex"), pRyan = gestionCombat
-						.position("Ryan"), pSlick = gestionCombat
-						.position("Slick");
-				if (pAlex.equals(0, 6, 0) && pRyan.equals(0, 4, 0)
-						&& pSlick.equals(18, 5, 0)) {
+				PositionService pSlick = gestionCombat.position("Slick");
+				if (pSlick.equals(18, 5, 0)) {
 					Assert.assertTrue(true);
 					return;
 				}
@@ -367,27 +314,12 @@ public abstract class AbstractTestGestionCombat {
 			// recup map Perso
 			Map<String, PersonnageService> perso = gestionCombat.mPerso();
 			// on verifie si les persos y sont
-			if (perso.size() == 6 && perso.containsKey("Alex")
-					&& perso.containsKey("Ryan") && perso.containsKey("Slick")) {
-				// on verifie si ils sont gele ou frappe
-				for (String tmp : perso.keySet())
-					if (gestionCombat.estFrappe(tmp)
-							|| gestionCombat.estGele(tmp)) {
-						Assert.assertFalse(true);
-						return;
-					}
+			if (checkInit(perso, false, false, true)) {
 
 				// on verifie leur position
 				PositionService pAlex = gestionCombat.position("Alex"), pRyan = gestionCombat
-						.position("Ryan"), pSlick = gestionCombat
-						.position("Slick");
-				System.out.println(pAlex.equals(0, 4, 0) + "&&"
-						+ pRyan.equals(0, 4, 1) + "&&"
-						+ pSlick.equals(19, 5, 0));
-				if (pAlex.equals(0, 4, 0) && pRyan.equals(0, 4, 1)
-						&& pSlick.equals(19, 5, 0)) {
-					System.out.println(perso.get("Ryan").estPorte() + "&&"
-							+ perso.get("Alex").estEquipe());
+						.position("Ryan");
+				if (pAlex.equals(0, 4, 0) && pRyan.equals(0, 4, 1)) {
 					if (perso.get("Ryan").estPorte()
 							&& perso.get("Alex").estEquipe()) {
 						Assert.assertTrue(true);
@@ -433,23 +365,13 @@ public abstract class AbstractTestGestionCombat {
 			// recup map Perso
 			Map<String, PersonnageService> perso = gestionCombat.mPerso();
 			// on verifie si les persos y sont
-			if (perso.size() == 6 && perso.containsKey("Alex")
-					&& perso.containsKey("Ryan") && perso.containsKey("Slick")) {
-				// on verifie si ils sont gele ou frappe
-				for (String tmp : perso.keySet())
-					if (gestionCombat.estFrappe(tmp)
-							|| gestionCombat.estGele(tmp)) {
-						Assert.assertTrue(false);
-						return;
-					}
+			if (checkInit(perso, false, false, true)) {
 
 				// on verifie leur position
 				PositionService pAlex = gestionCombat.position("Alex"), pRyan = gestionCombat
-						.position("Ryan"), pSlick = gestionCombat
-						.position("Slick");
+						.position("Ryan");
 
-				if (pAlex.equals(0, 4, 0) && pRyan.equals(3, 4, 0)
-						&& pSlick.equals(19, 5, 0))
+				if (pAlex.equals(0, 4, 0) && pRyan.equals(3, 4, 0))
 					if (!perso.get("Ryan").estPorte()
 							&& !perso.get("Alex").estEquipe()) {
 						Assert.assertTrue(true);
@@ -457,6 +379,6 @@ public abstract class AbstractTestGestionCombat {
 					}
 			}
 		}
-		Assert.assertTrue(false);
+		Assert.assertTrue("truc", false);
 	}
 }

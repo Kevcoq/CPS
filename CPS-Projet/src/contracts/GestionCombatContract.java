@@ -46,6 +46,7 @@ public class GestionCombatContract extends GestionCombatDecorator {
 					tmp.add(mPerso().get(s));
 				}
 			}
+			tmp.remove(mPerso().get(nom));
 			if (tmp.size() != col.size())
 				throw new InvariantError("gestionCombat");
 			else

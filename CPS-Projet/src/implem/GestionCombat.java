@@ -22,13 +22,13 @@ import enumeration.TYPE_Tresor;
 public class GestionCombat implements GestionCombatService {
 
 	class FG {
-		private boolean estFrappe;
+		// TODO effacer private boolean estFrappe;
 		private boolean estGele;
 		private int nbGele;
 
 		private FG() {
 			super();
-			this.estFrappe = false;
+			// TODO effacer this.estFrappe = false;
 			this.estGele = false;
 			this.nbGele = 0;
 		}
@@ -49,12 +49,13 @@ public class GestionCombat implements GestionCombatService {
 		return mPerso;
 	}
 
-	@Override
-	public boolean estFrappe(String nom) {
-		if (mFG.containsKey(nom))
-			return mFG.get(nom).estFrappe;
-		throw new Error("nom n'existe pas");
-	}
+	// TODO effacer
+	// @Override
+	// public boolean estFrappe(String nom) {
+	// if (mFG.containsKey(nom))
+	// return mFG.get(nom).estFrappe;
+	// throw new Error("nom n'existe pas");
+	// }
 
 	@Override
 	public boolean estGele(String nom) {
@@ -172,38 +173,17 @@ public class GestionCombat implements GestionCombatService {
 		// list des persos
 		Collection<PersonnageService> persos = mPerso.values();
 		for (PersonnageService p : persos) {
+
 			PositionService pos = mPos.get(p.nom());
 			// si !estPorte
 			if (!p.estPorte()) {
-				// si estFrappe
-				if (mFG.get(p.nom()).estFrappe) {
-					// on cpt le nombre de degat recu
-					int cpt = 0;
-					List<PersonnageService> lCol = collision(p.nom());
-					for (PersonnageService tmp : lCol)
-						if (cmd.get(tmp.nom()) == COMMANDE.FRAPPE)
-							cpt += tmp.force();
-
-					// on les retire + gele
-					p.retraitPdv(cpt);
-					mFG.get(p.nom()).estGele = true;
-					mFG.get(p.nom()).estFrappe = false;
-					// TODO cpt gele
-
-					// deplacement suivant la direction de frappe du 1er
-					// agresseur
-					if (mPos.get(lCol.get(0).nom()).dirG())
-						pos.setX(Math.max(pos.x() - 5, 0));
-					else
-						pos.setX(Math.min(pos.x() + 5, terrain.largeur() - 1));
-
-				} else if (mFG.get(p.nom()).estGele) {
-					// si gele
+				// si gele
+				if (mFG.get(p.nom()).estGele) {
 					if (--mFG.get(p.nom()).nbGele <= 0)
 						mFG.get(p.nom()).estGele = false;
-
-				} else {
-					// pour le reste
+				}
+				// sinon
+				else {
 					switch (cmd.get(p.nom())) {
 					case GAUCHE:
 					case DROITE:
@@ -214,8 +194,18 @@ public class GestionCombat implements GestionCombatService {
 						break;
 
 					case FRAPPE:
-						for (PersonnageService tmp : collision(p.nom()))
-							mFG.get(tmp.nom()).estFrappe = true;
+						// frappe
+						frapper(p);
+
+						// deplacement
+						for (PersonnageService tmp : collision(p.nom())) {
+							PositionService posTmp = mPos.get(tmp.nom());
+							for (int i = 0; i < 5; i++)
+								if (mPos.get(p.nom()).dirG())
+									deplacement(COMMANDE.GAUCHE, posTmp);
+								else
+									deplacement(COMMANDE.DROITE, posTmp);
+						}
 
 						mFG.get(p.nom()).estGele = true;
 						pos.setZ(0);
@@ -227,48 +217,7 @@ public class GestionCombat implements GestionCombatService {
 							p.jeter();
 							chose.estJete();
 
-							// TODO gestion des degats au autre
-							int cpt = 0;
-							int direction;
-							if (pos.dirG())
-								direction = -1;
-							else
-								direction = 1;
-							for (int i = 0; i < 5; i++) {
-								for (String tmp : mPos.keySet())
-									if (pos.equals(mPos.get(tmp).x()
-											+ (i * direction), mPos.get(tmp)
-											.y(), mPos.get(tmp).z())) {
-										mPerso.get(tmp).retraitPdv(
-												chose.bonus());
-										cpt++;
-									}
-							}
-
-							if (chose instanceof PersonnageService) {
-								// perte pdv du perso jete + deplacement
-								PersonnageService tmpPerso = (PersonnageService) chose;
-								tmpPerso.retraitPdv(tmpPerso.bonus() * cpt);
-								PositionService posTmpPerso = mPos.get(tmpPerso
-										.nom());
-								posTmpPerso.setX(Math.max(
-										0,
-										Math.min(terrain.largeur() - 1, pos.x()
-												+ (5 * direction))));
-								posTmpPerso.setY(pos.y());
-								posTmpPerso.setZ(0);
-							} else {
-								// depose de l'objet
-								terrain.getBloc(
-										Math.max(0, Math.min(
-												terrain.largeur() - 1, pos.x()
-														+ (5 * direction))),
-										pos.y(), 0)
-										.deposerTresor(
-												TYPE_Tresor
-														.valueOf(((ObjetEquipable) chose)
-																.nom()));
-							}
+							gestionDegatJeter(p, chose);
 						}
 
 						break;
@@ -284,7 +233,7 @@ public class GestionCombat implements GestionCombatService {
 							p.ramasser(obj);
 						} else {
 							for (String s : mPerso.keySet())
-								if (pos.equals(mPos.get(s))) {
+								if (pos.equals(mPos.get(s)) && s != p.nom()) {
 									PersonnageService tmp = mPerso.get(s);
 									tmp.estRamasse();
 									mPos.get(tmp.nom()).setZ(1);
@@ -299,7 +248,14 @@ public class GestionCombat implements GestionCombatService {
 						break;
 					}
 				}
+				if (p.estEquipe()
+						&& p.laChoseEquipee() instanceof PersonnageService)
+					mPos.get(((PersonnageService) p.laChoseEquipee()).nom())
+							.set(pos);
 			}
+
+			// qurveille les morts
+			checkMort(cmd);
 			// on a traite sa cmd
 			cmd.remove(p.nom());
 		}
@@ -326,6 +282,64 @@ public class GestionCombat implements GestionCombatService {
 			}
 		}
 
+	}
+
+	private void frapper(PersonnageService p) {
+		for (PersonnageService tmp : collision(p.nom())) {
+			// on retire les pdv + gele
+			if (p.estEquipe())
+				tmp.retraitPdv(p.force() + p.laChoseEquipee().bonus());
+			else
+				tmp.retraitPdv(p.force());
+			mFG.get(tmp.nom()).estGele = true;
+			// TODO cpt gele
+		}
+	}
+
+	private void gestionDegatJeter(PersonnageService p, ChoseService chose) {
+		// pos = posP.clone
+		PositionService pos = mPos.get(p.nom()).clone(), posVerif = pos.clone();
+
+		for (int i = 0; i < 5; i++) {
+			for (PersonnageService tmp : mPerso.values()) {
+				if (tmp != p && tmp != chose)
+					if (mPos.get(tmp.nom()).equals(pos)) {
+						tmp.retraitPdv(chose.bonus());
+					}
+			}
+			if (pos.dirG())
+				deplacement(COMMANDE.GAUCHE, pos);
+			else
+				deplacement(COMMANDE.DROITE, pos);
+			if (posVerif.equals(pos))
+				break;
+		}
+
+		if (chose instanceof PersonnageService) {
+			// perso -> perte pdv + deplacement
+			((PersonnageService) chose).retraitPdv(p.force());
+			mPos.get(((PersonnageService) chose).nom()).set(pos);
+		} else {
+			// depose de l'objet
+			terrain.getBloc(pos.x(), pos.y(), pos.z()).deposerTresor(
+					TYPE_Tresor.valueOf(((ObjetEquipable) chose).nom()));
+		}
+	}
+
+	private void checkMort(Map<String, COMMANDE> cmd) {
+		List<String> nomsMort = new ArrayList<String>();
+		for (PersonnageService p : mPerso.values())
+			if (p.estVaincu()) {
+				System.out.println("dead");
+				nomsMort.add(p.nom());
+			}
+
+		for (String nom : nomsMort) {
+			mPos.remove(nom);
+			cmd.remove(nom);
+			mFG.remove(nom);
+			mPerso.remove(nom);
+		}
 	}
 
 	public String toString() {
@@ -379,4 +393,16 @@ public class GestionCombat implements GestionCombatService {
 			break;
 		}
 	}
+
+	// TODO effacer
+	// private PersonnageService quiNousPorte(ChoseService chose) {
+	// if (!chose.estPorte())
+	// throw new Error("on n'est pas porte !!!");
+	//
+	// for (PersonnageService p : mPerso.values())
+	// if (p.estEquipe() && p.laChoseEquipee() == chose)
+	// return p;
+	//
+	// throw new Error("on est porte par personne WTF ???");
+	// }
 }

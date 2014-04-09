@@ -19,7 +19,6 @@ public class MoteurJeu implements MoteurJeuService {
 	}
 
 	private int maxPasJeu = 0, pasJeuCourant = 0;
-	private RESULTAT resultat;
 	private GestionCombatService cbt;
 
 	@Override
@@ -42,7 +41,16 @@ public class MoteurJeu implements MoteurJeuService {
 
 	@Override
 	public RESULTAT resultatFinal() {
-		return resultat;
+		if (cbt.mPerso().get("Slick").estVaincu()
+				&& (!cbt.mPerso().get("Alex").estVaincu() || !cbt.mPerso()
+						.get("Ryan").estVaincu()))
+			return RESULTAT.GAGNEE;
+		else if (!cbt.mPerso().get("Slick").estVaincu()
+				&& cbt.mPerso().get("Alex").estVaincu()
+				&& cbt.mPerso().get("Ryan").estVaincu())
+			return RESULTAT.PERDUE;
+		else
+			return RESULTAT.NULLE;
 	}
 
 	@Override
@@ -60,23 +68,27 @@ public class MoteurJeu implements MoteurJeuService {
 
 	@Override
 	public void pasJeu(COMMANDE cmdAlex, COMMANDE cmdRyan) {
-		pasJeuCourant++;
-		Map<String, COMMANDE> mCmd = generationCmds();
+		if (!estFini()) {
+			pasJeuCourant++;
+			Map<String, COMMANDE> mCmd = generationCmds();
 
-		mCmd.put("Alex", cmdAlex);
-		mCmd.put("Ryan", cmdRyan);
+			mCmd.put("Alex", cmdAlex);
+			mCmd.put("Ryan", cmdRyan);
 
-		cbt.gerer(mCmd);
+			cbt.gerer(mCmd);
+		}
 	}
 
 	@Override
 	public void pasJeu(String nom, COMMANDE cmd) {
-		pasJeuCourant++;
-		Map<String, COMMANDE> mCmd = generationCmds();
+		if (!estFini()) {
+			pasJeuCourant++;
+			Map<String, COMMANDE> mCmd = generationCmds();
 
-		mCmd.put(nom, cmd);
+			mCmd.put(nom, cmd);
 
-		cbt.gerer(mCmd);
+			cbt.gerer(mCmd);
+		}
 	}
 
 	private Map<String, COMMANDE> generationCmds() {
@@ -84,7 +96,7 @@ public class MoteurJeu implements MoteurJeuService {
 		for (String nom : cbt.mPerso().keySet())
 			cmd.put(nom, GenerateurCmd.genererCmd());
 
-		if (Math.random() < 0.15)
+		if (Math.random() < 0.05)
 			cmd.put(Rand.name(), COMMANDE.RIEN);
 
 		return cmd;
