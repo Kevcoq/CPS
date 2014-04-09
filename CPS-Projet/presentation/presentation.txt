@@ -1,0 +1,46 @@
+Pour la présentation du projet :
+
+
+Intro / Problème :
+L'objectif du projet est de réaliser la spécification du jeu River City Ransom,
+puis d'implémenter celle-ci (décorateurs, contracts, tests) selon la méthodologie du cours.
+Nous avons découpé le travail en 11 services. 
+
+
+Solutions :
+
+Un des premiers problèmes qui s'est présentés à nous est qu'il nous fallait différencier les objets équipables
+des objets marchands. En effet, les objets marchands ont un prix et peuvent se vendre, alors que les objets 
+équipables doivent contenir un bonus, c'est-à-dire un nombre de points de vie à retirer au personnage cible 
+d'un éventuel jet. Notre service Objet déclare uniquement un observateur nom() de type String et possède deux 
+sous-services : ObjetEquipable et ObjetMarchand.
+
+Un autre facteur vient cependant modifier la solution : un personnage peut être porté par un autre !
+Personnage raffinerait donc ObjetEquipable ? et donc Objet ?
+La solution que nous avons choisi a été la création d'un service Chose qui décrit ce qui est portable et 
+le bonus apporté. Personnage et ObjetEquipable raffinent tous les deux Chose.
+Ainsi, quand on a besoin de manipuler des objets, comme dans les blocs du terrain, on est sûr de ne pas
+confondre avec les personnages.
+
+
+Pour avoir accès aux personnages, dans GestionCombat, nous avons fait le choix d'avoir une HashMap dont les
+clés sont les noms des personnages, et les valeurs les instances de Personnage (ou Gangster). On peut par 
+exemple appeler mPerso.get("Alex") pour récupérer Alex.
+De plus, la méthode gerer() prend en paramètre une HashMap<String, COMMANDE> qui associe à chaque personnage
+la commande qu'il doit réaliser dans le pas de jeu.
+
+Les positions sont gérées par un service spécial Position. C'est ce service qui détermine quand deux personnages
+sont en collision.
+
+Les dimensions du terrain sont exprimées en blocs de taille fixe.
+Un bloc peut être un fossé ou non. S'il n'est pas un fossé, il peut contenir un objet (trésor).
+
+
+
+Conclusion :
+
+??
+
+
+
+
