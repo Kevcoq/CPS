@@ -23,10 +23,24 @@ Ainsi, quand on a besoin de manipuler des objets, comme dans les blocs du terrai
 confondre avec les personnages.
 
 
+Pour avoir accès aux personnages, dans GestionCombat, nous avons fait le choix d'avoir une HashMap dont les
+clés sont les noms des personnages, et les valeurs les instances de Personnage (ou Gangster). On peut par 
+exemple appeler mPerso.get("Alex") pour récupérer Alex.
+De plus, la méthode gerer() prend en paramètre une HashMap<String, COMMANDE> qui associe à chaque personnage
+la commande qu'il doit réaliser dans le pas de jeu.
+
+Les positions sont gérées par un service spécial Position. C'est ce service qui détermine quand deux personnages
+sont en collision.
+
+Les dimensions du terrain sont exprimées en blocs de taille fixe.
+Un bloc peut être un fossé ou non. S'il n'est pas un fossé, il peut contenir un objet (trésor).
+
+
+
 Conclusion :
 
+??
 
 
 
 
-Ce n'est PAS FINI !

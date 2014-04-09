@@ -28,10 +28,10 @@
 ** Observations :
 *** [invariants]
 **** 0 ⩽ pasJeuCourant(M) ⩽ maxPasJeu(M)
-**** estFini(M) =min (Personnage::estVaincu(GestionCombat::alex(combat(M))) ∧ Personnage::estVaincu(GestionCombat::ryan(combat(M)))) ∨ Personnage::estVaincu(GestionCombat::slick(combat(M))) ∨ pasJeuCourant(M)=maxPasJeu(M))
+**** estFini(M) =min (Personnage::estVaincu(GestionCombat::mPerso(combat(M)).get("Alex")) ∧ Personnage::estVaincu(GestionCombat::mPerso(combat(M)).get("Ryan")) ∨ Personnage::estVaincu(GestionCombat::mPerso(combat(M)).get("Slick")) ∨ pasJeuCourant(M)=maxPasJeu(M))
 **** resultatFinal(M) =min
-***** GAGNEE si Personnage::estVaincu(GestionCombat::slick(combat(M))) ∧ ¬(Personnage::estVaincu(GestionCombat::alex(combat(M))) ∧ Personnage::estVaincu(GestionCombat::ryan(combat(M))))
-***** PERDUE si ¬Personnage::estVaincu(GestionCombat::slick(combat(M))) ∧ (Personnage::estVaincu(GestionCombat::alex(combat(M))) ∧ Personnage::estVaincu(GestionCombat::ryan(combat(M))))
+***** GAGNEE si Personnage::estVaincu(GestionCombat::mPerso(combat(M).get("Slick"))) ∧ ¬(Personnage::estVaincu(GestionCombat::mPerso(combat(M)).get("Alex")) ∧ Personnage::estVaincu(GestionCombat::mPerso(combat(M)).get("Ryan")))
+***** PERDUE si ¬Personnage::estVaincu(GestionCombat::mPerso(combat(M)).get("Slick")) ∧ (Personnage::estVaincu(GestionCombat::mPerso(combat(M)).get("Alex")) ∧ Personnage::estVaincu(GestionCombat::mPerso(combat(M)).get("Ryan")))
 ***** NULLE sinon
 
 *** [init]
