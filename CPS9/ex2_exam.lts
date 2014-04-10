@@ -1,0 +1,27 @@
+Person = (enter -> use -> leave -> Person).
+
+||Woman1 = (Person/{w1_enter/enter, w1_use/use, w1_leave/leave}).
+||Woman2 = (Person/{w2_enter/enter, w2_use/use, w2_leave/leave}).
+||Man1 = (Person/{m1_enter/enter, m1_use/use, m1_leave/leave}).
+||Man2 = (Person/{m2_enter/enter, m2_use/use, m2_leave/leave}).
+
+Bathroom = BVV,
+BVV = (w1_enter -> woman1 -> BWV
+	| w2_enter -> woman2 -> BVW
+	| m1_enter -> man1 -> BMV
+	| m2_enter -> man2 -> BVM),
+BWV = (w2_enter -> woman2 -> BWW
+	| w1_leave -> Bathroom),
+BVW = (w1_enter -> woman1 -> BWW
+	| w2_leave -> Bathroom),
+BWW = (w1_leave -> w2_leave -> Bathroom
+	| w2_leave -> w1_leave -> Bathroom),
+BMV = (m2_enter -> man2 -> BMM
+	| m1_leave -> Bathroom),
+BVM = (m1_enter -> man1 -> BMM
+	| m2_leave -> Bathroom),
+BMM = (m1_leave -> m2_leave -> Bathroom
+	| wm_leave -> m1_leave -> Bathroom).
+
+
+||System= (Woman1 || Woman2 || Man1 || Man2 || Bathroom)@{woman1,woman2,man1,man2}.

@@ -34,20 +34,20 @@ public class MoteurJeu implements MoteurJeuService {
 	@Override
 	public boolean estFini() {
 		return pasJeuCourant == maxPasJeu
-				|| cbt.mPerso().get("Slick").estVaincu()
-				|| (cbt.mPerso().get("Alex").estVaincu() && cbt.mPerso()
-						.get("Ryan").estVaincu());
+				|| !cbt.mPerso().containsKey("Slick")
+				|| (!cbt.mPerso().containsKey("Alex") && !cbt.mPerso()
+						.containsKey("Ryan"));
 	}
 
 	@Override
 	public RESULTAT resultatFinal() {
-		if (cbt.mPerso().get("Slick").estVaincu()
-				&& (!cbt.mPerso().get("Alex").estVaincu() || !cbt.mPerso()
-						.get("Ryan").estVaincu()))
+		if (!cbt.mPerso().containsKey("Slick")
+				&& (cbt.mPerso().containsKey("Alex") || cbt.mPerso()
+						.containsKey("Ryan")))
 			return RESULTAT.GAGNEE;
-		else if (!cbt.mPerso().get("Slick").estVaincu()
-				&& cbt.mPerso().get("Alex").estVaincu()
-				&& cbt.mPerso().get("Ryan").estVaincu())
+		else if (cbt.mPerso().containsKey("Slick")
+				&& !cbt.mPerso().containsKey("Alex")
+				&& !cbt.mPerso().containsKey("Ryan"))
 			return RESULTAT.PERDUE;
 		else
 			return RESULTAT.NULLE;

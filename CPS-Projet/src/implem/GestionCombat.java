@@ -233,11 +233,11 @@ public class GestionCombat implements GestionCombatService {
 									Math.min(pos.z() + 1, terrain.hauteur() - 1));
 			}
 
-			// surveille les morts
-			checkMort(cmd);
 			// on a traite sa cmd
 			cmd.remove(p.nom());
 		}
+		// surveille les morts
+		checkMort(cmd);
 
 		// si il reste des cmd, creation d'un gangster
 		if (!cmd.isEmpty()) {
