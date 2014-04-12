@@ -13,6 +13,16 @@
 ⋃ $\cup$  // $\bigcup$
 
 
+
+
+emacs personnage.org -f org-export-as-latex --kill
+
+
+
+
+
+
+
 dans le .emacs :
 
 (defun transf ()
