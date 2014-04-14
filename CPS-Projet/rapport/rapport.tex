@@ -1,14 +1,31 @@
-Pour la présentation du projet :
+\documentclass[a4paper,titlepage,openany,12pt]{report}
 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage{lmodern}
+\usepackage{pxfonts}
+\usepackage{graphicx}
 
-Intro / Problème :
+\title{Projet CPS (MI047) - River City Ransom}
+\author{Kevin Coquart \and Quentin Bunel}
+
+\begin{document}
+
+\maketitle
+
+\section*{Introduction}
+
 L'objectif du projet est de réaliser la spécification du jeu River City Ransom,
 puis d'implémenter celle-ci (décorateurs, contracts, tests) selon la méthodologie du cours.
-Nous avons découpé le travail en 11 services. 
+Nous avons découpé le travail en 11 services.
 
+Les spécifications ont été redigées dans le format org. C'est un format de l'éditeur Emacs
+qui permet de générer facilement des fichiers html ou pdf (voir plus bas).
 
-Solutions :
+\section*{Solutions}
 
+\paragraph{}
 Un des premiers problèmes qui s'est présenté à nous est qu'il fallait différencier les objets équipables
 des objets marchands. En effet, les objets marchands ont un prix et peuvent se vendre, alors que les objets 
 équipables doivent contenir un bonus, c'est-à-dire un nombre de points de vie à retirer au personnage cible 
@@ -22,25 +39,23 @@ le bonus apporté. Personnage et ObjetEquipable raffinent tous les deux Chose.
 Ainsi, quand on a besoin de manipuler des objets, comme dans les blocs du terrain, on est sûr de ne pas
 confondre avec les personnages.
 
-
+\paragraph{}
 Pour avoir accès aux personnages, dans GestionCombat, nous avons fait le choix d'avoir une HashMap dont les
 clés sont les noms des personnages, et les valeurs les instances de Personnage (ou Gangster). On peut par 
 exemple appeler mPerso.get("Alex") pour récupérer Alex.
 De plus, la méthode gerer() prend en paramètre une HashMap<String, COMMANDE> qui associe à chaque personnage
 la commande qu'il doit réaliser dans le pas de jeu.
 
-Les positions sont gérées par un service spécial Position. C'est ce service qui détermine quand deux personnages
-sont en collision.
+\section*{Annexes}
 
-Les dimensions du terrain sont exprimées en blocs de taille fixe.
-Un bloc peut être un fossé ou non. S'il n'est pas un fossé, il peut contenir un objet (trésor).
+Vous trouverez ci-joint :
+\begin{itemize}
+\item Dans /spec, les specifications au format org et le Makefile pour générer les formats html et pdf (voir README.txt)
+\item Le code des services, décorateurs, contracts, tests et implémentation dans /src
+\end{itemize}
 
+\section*{Conclusion}
 
+\includegraphics[scale=0.3]{../saved}
 
-Conclusion :
-
-??
-
-
-
-
+\end{document}
