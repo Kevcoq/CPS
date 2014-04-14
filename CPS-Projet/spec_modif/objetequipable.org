@@ -1,9 +1,0 @@
-* ObjetEquipable
-** service : ObjetEquipable
-** refine : [[file:chose.org][Chose]], [[file:objet.org][Objet]]
-** types : String
-
-** Constructors :
-*** 
-**** init : String × int → [ObjetEquipable]
-***** pre init(nom) require nom ≠ ""
