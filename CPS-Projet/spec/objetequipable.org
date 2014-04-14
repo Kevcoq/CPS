@@ -4,5 +4,6 @@
 ** types : String
 
 ** Constructors :
+*** 
 **** init : String × int → [ObjetEquipable]
 ***** pre init(nom) require nom ≠ ""

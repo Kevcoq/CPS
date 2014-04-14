@@ -4,10 +4,12 @@
 
 
 ** observators : 
+*** 
 **** const nom : [Objet] → String
 
 
 ** Constructors :
+*** 
 **** init : String → [Objet]
 ***** pre init(nom) require nom ≠ ""
 

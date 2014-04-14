@@ -4,14 +4,17 @@
 
 
 ** observators :
+*** 
 **** const bonus : [Chose] → int
 **** estPorte : [Chose] → boolean
 
 ** Constructors :
+*** 
 **** init : int → [Chose]
 ***** pre init(C, bonus) require bonus > 0 
 
 ** Operators :
+*** 
 **** estRamasse : [Chose] → [Chose]
 ***** pre estRamasse(C) require ¬estPorte(C)
 

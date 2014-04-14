@@ -5,6 +5,7 @@
 
 
 ** observators :
+*** 
 **** const largeur : [Terrain] → int
 **** const hauteur : [Terrain] → int
 **** const profondeur : [Terrain] → int
@@ -12,6 +13,7 @@
 ***** pre getBloc(T,i,j,k) require (0 ≤ i < (largeur(T)/Bloc::largeur())) ∧ (0 ≤ j < (profondeur(T)/Bloc::profondeur())) ∧ (0 ≤ k < (hauteur(T)/Bloc::hauteur()))
 
 ** Constructors :
+*** 
 **** init : int × int × int → [Terrain]
 ***** pre init(largeur,hauteur,profondeur) require largeur > 0 ∧ hauteur > 0 ∧ profondeur > 0 
 

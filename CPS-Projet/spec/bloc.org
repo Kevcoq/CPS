@@ -4,6 +4,7 @@
 ** types : int, boolean, enum TYPE_Bloc {VIDE, FOSSE}, enum TYPE_Tresor {RIEN, DIXDOLLAR, CINQDOLLAR, CHAINEVELO, POUBELLEMETALLIQUE}
 
 ** observators :
+*** 
 **** const largeur : → int
 **** const hauteur : → int
 **** const profondeur : → int
@@ -13,10 +14,12 @@
 ***** pre typeTresor(B) require aTresor(B)
 
 ** Constructors :
+*** 
 **** init : TYPE_Bloc × TYPE_Tresor → [Bloc]
 **** init : TYPE_Bloc → [Bloc]
 
 ** Operators :
+*** 
 **** ramasserTresor : [Bloc] → Objet
 ***** pre ramasserTresor(B) require aTresor(B)
 

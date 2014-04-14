@@ -5,5 +5,6 @@
 ** types : String, int
 
 ** Constructors :
+*** 
 **** init : String × int × int × int × int x int → [Personnage]
 ***** pre init(nom,largeur,hauteur,profondeur,force,pointsVie) require nom ≠ "" ∧ largeur > 0 ∧ hauteur > 0 ∧ profondeur > 0 ∧ 0 < force < pointsVie

@@ -5,16 +5,19 @@
 
 
 ** observators : 
+*** 
 **** const prix : [ObjetMarchand] → int
 **** estVendu : [ObjetMarchand] → boolean
 
 
 ** Constructors :
+*** 
 **** init : String × int → [ObjetMarchand]
 ***** pre init(nom,prix) require nom ≠ "" ∧ prix > 0
 
 
 ** Operators :
+*** 
 **** vendre : [ObjetMarchand] → [ObjetMarchand]
 ***** pre vendre(O) require ¬estVendu(O)
 

@@ -4,6 +4,7 @@
 ** types : String, int, boolean, enum FIN {GAGNEE, PERDUE, NULLE}, enum COMMANDE {RIEN, GAUCHE, DROITE, HAUT, BAS, SAUTER, FRAPPE, JETER, RAMASSER}
    
 ** observators :
+*** 
 **** const maxPasJeu : [MoteurJeu] → int
 **** pasJeuCourant : [MoteurJeu] → int
 **** estFini : [MoteurJeu] → boolean
@@ -12,10 +13,12 @@
 **** combat : [MoteurJeu] → GestionCombat
 
 ** Constructors :
+*** 
 **** init : int × int × int × int → [MoteurJeu]
 ***** pre init(largeur, hauteur, profondeur, maxPas) require largeur > 0 ∧ hauteur > 0 ∧ profondeur > 0 ∧ maxPas > 0
 
 ** Operators :
+*** 
 **** pasJeu : [MoteurJeu] × COMMANDE × COMMANDE → [MoteurJeu]
 ***** pre pasJeu(M, comAlex, comRyan) require ¬estFini(M) ∧ comAlex ∈ COMMANDE ∧ comRyan ∈ COMMANDE
 

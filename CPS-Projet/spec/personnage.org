@@ -5,6 +5,7 @@
 
 
 ** observators :
+*** 
 **** const nom : [Personnage] → String
 **** const largeur : [Personnage] → int
 **** const hauteur : [Personnage] → int
@@ -18,11 +19,13 @@
 ***** pre laChoseEquipee(P) require estEquipe(P)
 
 ** Constructors :
-**** init : String × int × int × int × int x int → [Personnage]
+*** 
+**** init : String × int × int × int × int × int → [Personnage]
 ***** pre init(nom,largeur,hauteur,profondeur,force,pointsVie) require nom ≠ "" ∧ largeur > 0 ∧ hauteur > 0 ∧ profondeur > 0 ∧ 0 < force < pointsVie
 ****** le bonus du service Chose est un % de la force
 
 ** Operators :
+*** 
 **** retraitPdv : [Personnage] × int → [Personnage]
 ***** pre retraitPdv(P,s) require ¬estVaincu(P) ∧ s > 0
 **** depotPdv : [Personnage] × int → [Personnage]
@@ -88,7 +91,3 @@
 **** estEquipe(jeter(P)) = false
 **** sommeArgent(jeter(P)) = sommeArgent(P)
 **** pointsDeVie(jeter(P)) = pointsDeVie(P)
-
-
- 
-      

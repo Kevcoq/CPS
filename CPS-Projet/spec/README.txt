@@ -27,7 +27,8 @@ Pour le format pdf uniquement :
 Les fichiers seront placés dans /html (resp /tex et /pdf).
 Pour générer les pdf, il faut avoir généré les tex d'abord.
 Mise en garde : la cible 'clean' du Makefile supprimera
-tous les types de fichiers (html, tex et pdf)
+tous les types de fichiers (html, tex et pdf), utiliser
+clean(html|tex|pdf) pour ne supprimer que ce que vous souhaitez.
 
 
 Note : lors de la création des fichiers html et tex, l'éditeur
