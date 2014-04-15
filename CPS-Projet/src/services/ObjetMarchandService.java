@@ -1,44 +1,36 @@
 package services;
 
-public interface ObjetMarchandService extends ObjetService {
-	// observator :
+public interface ObjetMarchandService extends /* refine */ ObjetService {
+	
+	/* Observators */
+	
 	public int prix();
 
 	public boolean estVendu();
 
-	// constructor :
+	
+	/* Constructor */
+	/**
+	 * pre init(nom,prix) require nom ≠ "" ∧ prix > 0
+	 * @param nom
+	 * @param prix
+	 */
 	public void init(String nom, int prix);
 
-	// operator :
+	
+	/* Operators */
+	/**
+	 * pre vendre(O) require ¬estVendu(O)
+	 */
 	public void vendre();
+	
+	/* Observations */
+	
+	// *** [init]
+	// **** prix(init(n,p)) = p
+	// **** estVendu(init(n,p)) = false
+	//
+	// *** [vendre]
+	// **** estVendu(vendre(O)) = true
+
 }
-
-
-// * ObjetMarchand
-// ** service : ObjetMarchand
-// ** refine : [[file:objet.org][Objet]]
-// ** types : String, int, boolean
-//
-//
-// ** observators :
-// **** const prix : [ObjetMarchand] → int
-// **** estVendu : [ObjetMarchand] → boolean
-//
-//
-// ** Constructors :
-// **** init : String × int → [ObjetMarchand]
-// ***** pre init(nom,prix) require nom ≠ "" ∧ prix > 0
-//
-//
-// ** Operators :
-// **** vendre : [ObjetMarchand] → [ObjetMarchand]
-// ***** pre vendre(O) require ¬estVendu(O)
-//
-//
-// ** Observations :
-// *** [init]
-// **** prix(init(n,p)) = p
-// **** estVendu(init(n,p)) = false
-//
-// *** [vendre]
-// **** estVendu(vendre(O)) = true
