@@ -11,6 +11,7 @@ while ($var = <LECT>) {
     $var =~ s/(\<h1 class="title"\>)(\w)(\w+)(\<\/h1\>)/\1\U\2\E\3\4/;
     $var =~ s/(\<p class="author"\> )Author: (\w+)/\1Authors: Kevin Coquart, Quentin Bunel/;
     $var =~ s/\<a href="mailto:.*//;
+    $var =~ s|(\</script\>)|\1\n\<link rel="stylesheet" type="text/css" href="css.css"\>|;
     print ECR $var;
 }
 
