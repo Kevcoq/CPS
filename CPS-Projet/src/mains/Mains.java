@@ -10,9 +10,23 @@ import javax.imageio.ImageIO;
 import services.MoteurJeuService;
 import tools.Coloriage;
 
+/**
+ * Classe principale
+ * 
+ * @author Kevin & Quentin
+ * 
+ */
 public class Mains {
+	// permet d'aggrandir la vue du jeu
 	public static int coef = 40;
 
+	/**
+	 * methode du main
+	 * 
+	 * @param args
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
 	public static void main(String[] args) throws IOException,
 			InterruptedException {
 

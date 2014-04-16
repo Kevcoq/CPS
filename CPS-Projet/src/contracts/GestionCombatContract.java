@@ -2,6 +2,7 @@ package contracts;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import services.GestionCombatService;
 import services.PersonnageService;
@@ -9,6 +10,7 @@ import services.PositionService;
 import contracts.base.InvariantError;
 import contracts.base.PostconditionError;
 import decorators.GestionCombatDecorator;
+import enumeration.COMMANDE;
 
 public class GestionCombatContract extends GestionCombatDecorator {
 
@@ -19,14 +21,14 @@ public class GestionCombatContract extends GestionCombatDecorator {
 	public void checkInvariant(String nom) {
 		// *** [invariants]
 		// **** collision(C, id) =min
-		// ***** tmp = ∅, ∀nomP ∈ mPerso.keySet(),
-		// ***** tmp ⋃ nomP si collisionGauche(C,id,nomP) ||
+		// ***** tmp = âˆ…, âˆ€nomP âˆˆ mPerso.keySet(),
+		// ***** tmp â‹ƒ nomP si collisionGauche(C,id,nomP) ||
 		// collisionGauche(C,nomP,id)
 		//
 		// **** collisionGauche(C,id1,id2) =min
 		// ***** pos1 = position(C, id1), pos2 = position(C, id2),
-		// ****** (pos1[0.] ⩽ pos2[0.] ⩽ pos1[0.] + 1) ∧
-		// ****** (pos1[1.] = pos2[1.]) ∧
+		// ****** (pos1[0.] â©½ pos2[0.] â©½ pos1[0.] + 1) âˆ§
+		// ****** (pos1[1.] = pos2[1.]) âˆ§
 		// ****** (pos1[2.] = pos2[2.])
 		List<PersonnageService> col = collision(nom);
 		if (col.size() > 0) {
@@ -103,5 +105,78 @@ public class GestionCombatContract extends GestionCombatDecorator {
 			throw new PostconditionError("gestionCombat -> init : POSITION");
 
 	}
-	// TODO gerer
+
+	// *** [gerer]
+	// **** id n'appartient pas a keySet, creation d'un gangster
+	// **** ∀id ∈ mPerso.keySet(), mPerso(gerer(C, cmd)).get(id) =
+	// ***** si ¬estFrappe(gerer(C, cmd),id) alors mPerso(C).get(id)
+	// ***** sinon Personnage::retrait(mPerso(C).get(id),cpt)
+	// ****** avec cpt=0, ∀p ∈ collision(C,id), cmd.get(Personnage::nom(p)) ==
+	// FRAPPE, cpt += Personnage::force(p)
+	//
+	// **** ∀id ∈ mPerso.keySet(), estFrappe(gerer(C, cmd), id) =
+	// ***** collision(C,id) ≠ ∅ ∧ (∃p ∈ collision(C,id) tq
+	// cmd.get(Personnage::nom(p)) == FRAPPE)
+	//
+	// **** ∀id ∈ mPerso.keySet(), estGele(gerer(C, cmd), id) = (cmd.get(id) ==
+	// FRAPPE) ∨ estFrappe(gerer(C, cmd), id) ∨ Chose::estPorte(mPerso(gerer(C,
+	// cmd)).get(id)) ∨ (estGele(C, id) ∧ cptGele(C, id) > 1)
+	//
+	// **** ∀id ∈ mPerso.keySet(), cptGele(gerer(C, cmd), id) =
+	// ***** si (cmd.get(id) == FRAPPE) alors 1
+	// ***** sinon si estFrappe(gerer(C, cmd), id) alors 3
+	// ***** sinon cpt(C, id)-1
+	//
+	// **** mPerso.keySet(), position(gerer(C, cmd), id) =
+	// ***** si estFrappe(gerer(C, cmd), id),
+	// ****** si (∃p ∈ collisionGauche(C,id,p) tq cmd.get(Personnage::nom(p)) ==
+	// FRAPPE) alors
+	// ******* Position::setX(position(C, id), min(Position::x(position(C, id))
+	// + 3, Terrain::largeur(terrain(C))))
+	// ****** si (∃p ∈ collisionGauche(C,p,id) tq cmd.get(Personnage::nom(p)) ==
+	// FRAPPE) alors
+	// ******* Position::setX(position(C, id), max(Position::x(position(C, id))
+	// - 3, 0))
+	//
+	// ***** si Chose::estPorte(mPerso(C).get(id)) alors
+	// ****** ∃p ∈ mPerso(C).keySet() tq Personnage::laChoseEquipee(p) ==
+	// mPerso(C).get(id) ∧ cmd.get(Personnage::nom(p)) ≠ JETER
+	// ******* Position::set(position(C, id), position(C, p))
+	// ****** ∃p ∈ mPerso(C).keySet() tq Personnage::laChoseEquipee(p) ==
+	// mPerso(C).get(id) ∧ cmd.get(Personnage::nom(p)) == JETER
+	// ******* si Position::dirG(position(gerer(C, cmd), p)) alors
+	// Position::set(position(C, id), Position::x(max(position(C, p) - 5, 0)),
+	// Position::y(position(C, p)), 0)
+	// ******* sinon Position::set(position(C, id), Position::x(min(position(C,
+	// p) + 5, Terrain::largeur(terrain(C))), Position::y(position(C, p)), 0)
+	//
+	// ***** si cmd.get(id) == DROITE
+	// ****** Position::setX(position(C, id), min( Position::x(position(C, id))
+	// + 1, Terrain::largeur(terrain(C))))
+	// ****** Position::setDir(position(C, id), false);
+	//
+	// ***** si cmd.get(id) == GAUCHE
+	// ****** Position::setX(position(C, id), max( Position::x(position(C, id))
+	// - 1, 0))
+	// ****** Position::setDir(position(C, id), true);
+	//
+	// ***** si cmd.get(id) == HAUT
+	// ****** Position::setY(position(C, id), min( Position::y(position(C, id))
+	// + 1, Terrain::profondeur(terrain(C))))
+	//
+	// ***** si cmd.get(id) == BAS
+	// ****** Position::setY(position(C, id), max( Position::y(position(C, id))
+	// - 1, 0))
+	//
+	// ***** si cmd.get(id) == SAUTER
+	// ****** Position::setZ(position(C, id), 1)
+	//
+	// ***** sinon
+	// ****** Position::setZ(position(C, id), 0)
+
+	public void gerer(Map<String, COMMANDE> cmd) {
+		super.gerer(cmd);
+		for (String nom : cmd.keySet())
+			checkInvariant(nom);
+	}
 }

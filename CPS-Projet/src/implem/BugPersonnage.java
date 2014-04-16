@@ -4,12 +4,12 @@ import services.ChoseService;
 import services.PersonnageService;
 
 /**
- * Implem du Personnage
+ * Implem bugue de Personnage
  * 
  * @author Kevin & Quentin
  * 
  */
-public class Personnage extends Chose implements PersonnageService {
+public class BugPersonnage extends Chose implements PersonnageService {
 
 	private String nom;
 	private int largeur;
@@ -84,22 +84,22 @@ public class Personnage extends Chose implements PersonnageService {
 
 	@Override
 	public void retraitPdv(int s) {
-		pdv -= s;
-	}
-
-	@Override
-	public void depotPdv(int s) {
 		pdv += s;
 	}
 
 	@Override
+	public void depotPdv(int s) {
+		pdv -= s;
+	}
+
+	@Override
 	public void retraitArgent(int s) {
-		argent -= s;
+		argent += s;
 	}
 
 	@Override
 	public void depotArgent(int s) {
-		argent += s;
+		argent -= s;
 	}
 
 	@Override

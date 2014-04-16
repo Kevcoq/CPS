@@ -10,9 +10,22 @@ import services.PersonnageService;
 import services.TerrainService;
 import enumeration.TYPE_Bloc;
 
+/**
+ * Permet de colorier une image statique
+ * 
+ * @author Kevin & Quentin
+ * 
+ */
 public class Coloriage {
 	private static int coef = Mains.coef;
 
+	/**
+	 * creer l'image du jeu
+	 * 
+	 * @param moteur
+	 *            le moteur de jeu
+	 * @return une image
+	 */
 	public static BufferedImage image(MoteurJeuService moteur) {
 		// racourcis
 		GestionCombatService cbt = moteur.combat();
@@ -78,10 +91,22 @@ public class Coloriage {
 					colorier(img, i, j, Color.PINK);
 				else if (colorPerso[i][j] == 40)
 					colorier(img, i, j, Color.BLUE);
-		
+
 		return img;
 	}
 
+	/**
+	 * colorie une zone
+	 * 
+	 * @param img
+	 *            l'image
+	 * @param x
+	 *            l'abscisse
+	 * @param y
+	 *            l'ordonnee
+	 * @param c
+	 *            la couleur
+	 */
 	private static void colorier(BufferedImage img, int x, int y, Color c) {
 		for (int i = x * coef; i < x * coef + coef; i++)
 			for (int j = y * coef; j < y * coef + coef; j++)
@@ -89,6 +114,18 @@ public class Coloriage {
 
 	}
 
+	/**
+	 * gere les couleurs en fctions de la presence sur la case
+	 * 
+	 * @param tab
+	 *            le tableau
+	 * @param x
+	 *            l'abscisse
+	 * @param y
+	 *            l'ordonnee
+	 * @param nb
+	 *            le nombre associe au personnage
+	 */
 	private static void ajouter(int[][] tab, int x, int y, int nb) {
 		// 1 gangster | 2 slick | 3 alex | 4 ryan | 10 gangsterS
 		// | 20 Slick + Alex ou/et Ryan | 30 Alex et/ou Ryan + gangster

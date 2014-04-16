@@ -19,7 +19,7 @@ import enumeration.COMMANDE;
 import enumeration.TYPE_Bloc;
 import enumeration.TYPE_Tresor;
 
-public class GestionCombat implements GestionCombatService {
+public class BugGestionCombat implements GestionCombatService {
 	private Map<String, Integer> bonusObjet;
 
 	class FG {
@@ -158,7 +158,7 @@ public class GestionCombat implements GestionCombatService {
 		}
 
 		// frappe - gele
-		mFG = new HashMap<String, GestionCombat.FG>();
+		mFG = new HashMap<String, BugGestionCombat.FG>();
 		for (String nom : mPerso.keySet())
 			mFG.put(nom, new FG());
 
@@ -182,18 +182,26 @@ public class GestionCombat implements GestionCombatService {
 				else {
 					switch (cmd.get(p.nom())) {
 					case GAUCHE:
+						deplacement(COMMANDE.DROITE, pos);
+						break;
 					case DROITE:
+						deplacement(COMMANDE.HAUT, pos);
+						break;
 					case HAUT:
+						deplacement(COMMANDE.GAUCHE, pos);
+						break;
 					case BAS:
+						deplacement(COMMANDE.BAS, pos);
+						break;
 					case SAUTER:
-						deplacement(cmd.get(p.nom()), pos);
+						deplacement(COMMANDE.RIEN, pos);
 						break;
 
 					case FRAPPE:
 						// frappe
 						frapper(p);
 
-						mFG.get(p.nom()).estGele = true;
+						mFG.get(p.nom()).estGele = false;
 						pos.setZ(0);
 						break;
 
@@ -201,7 +209,7 @@ public class GestionCombat implements GestionCombatService {
 						if (p.estEquipe()) {
 							ChoseService chose = p.laChoseEquipee();
 							p.jeter();
-							chose.estJete();
+							// chose.estJete();
 
 							gestionDegatJeter(p, chose);
 						}
@@ -211,8 +219,7 @@ public class GestionCombat implements GestionCombatService {
 						break;
 
 					case RAMASSER:
-						if (!p.estEquipe())
-							ramasser(p, pos);
+						ramasser(p, pos);
 
 						pos.setZ(0);
 						break;
@@ -296,7 +303,7 @@ public class GestionCombat implements GestionCombatService {
 			}
 
 			// on fini par le ramasser
-			b.ramasserTresor();
+			// b.ramasserTresor();
 		}
 		// si il n'y a pas d'objet, on ramasse peut etre un personnage
 		else {

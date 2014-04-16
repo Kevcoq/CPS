@@ -3,21 +3,34 @@ package mains;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.KeyStroke;
 
 import mains.toolsIHM.Affichage;
 import mains.toolsIHM.Ecouteur;
 import services.MoteurJeuService;
+import tools.GenerateurCmd;
 import enumeration.COMMANDE;
 
+/**
+ * Gestion de l'affichage
+ * 
+ * @author Kevin & Quentin
+ * 
+ */
 public class IHM {
 	private int coef = Mains.coef;
 	private JFrame frame;
 	private Ecouteur ecoute;
+
+	private JRadioButton unJoueur;
+	private JRadioButton deuxJoueur;
+	private JRadioButton automatique;
 
 	private MoteurJeuService moteur;
 
@@ -27,6 +40,11 @@ public class IHM {
 		frame = new JFrame("Fight !!!");
 	}
 
+	/**
+	 * permet de lancer l'affichage et le jeu
+	 * 
+	 * @throws InterruptedException
+	 */
 	public void go() throws InterruptedException {
 		fenetre();
 
@@ -37,15 +55,24 @@ public class IHM {
 				System.out.println("Pas jeu courant : "
 						+ moteur.pasJeuCourant());
 
-			// automatique
-			// moteur.pasJeu(GenerateurCmd.genererCmd(),
-			// GenerateurCmd.genererCmd());
+			if (automatique.isSelected()) {
+				// automatique
+				moteur.pasJeu(GenerateurCmd.genererCmd(),
+						GenerateurCmd.genererCmd());
+			}
 
 			// manuel
-			COMMANDE tmp;
-			while ((tmp = ecoute.cmd()) == null)
+			COMMANDE cmdAlex, cmdRyan;
+			while ((cmdAlex = ecoute.cmd()) == null
+					&& !automatique.isSelected())
 				Thread.sleep(50);
-			moteur.pasJeu("Alex", tmp);
+			if (unJoueur.isSelected() && !automatique.isSelected())
+				moteur.pasJeu("Alex", cmdAlex);
+			else if (!automatique.isSelected()) {
+				while ((cmdRyan = ecoute.cmd()) == null)
+					Thread.sleep(50);
+				moteur.pasJeu(cmdAlex, cmdRyan);
+			}
 
 			// graphisme
 			frame.repaint();
@@ -55,22 +82,52 @@ public class IHM {
 		}
 	}
 
+	/**
+	 * creer la fenetre
+	 */
 	private void fenetre() {
-		// fenetre
-		JPanel jp = new Affichage(moteur);
+		// menu
 		JPanel pBouton = new JPanel();
 		bouton(pBouton);
+
+		// nombre de joueur
+		JPanel pJoueur = new JPanel();
+		ButtonGroup nbJoueur = new ButtonGroup();
+		unJoueur = new JRadioButton("Un joueur");
+		unJoueur.setSelected(true);
+		deuxJoueur = new JRadioButton("Deux joueur");
+		automatique = new JRadioButton("Automatique");
+		nbJoueur.add(unJoueur);
+		nbJoueur.add(deuxJoueur);
+		nbJoueur.add(automatique);
+		pJoueur.add(unJoueur);
+		pJoueur.add(deuxJoueur);
+		pJoueur.add(automatique);
+
+		// fenetre
+		JPanel jp = new Affichage(moteur);
 		frame.setLayout(new BorderLayout());
+
+		// ajout
 		frame.add(jp, BorderLayout.CENTER);
 		jp.setPreferredSize(new Dimension(moteur.combat().terrain().largeur()
 				* coef, moteur.combat().terrain().profondeur() * coef));
 		frame.add(pBouton, BorderLayout.BEFORE_FIRST_LINE);
+		frame.add(pJoueur, BorderLayout.EAST);
+
+		// blabla ...
 		frame.pack();
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	// bouton
+	/**
+	 * creer les boutons
+	 * 
+	 * @param pBouton
+	 *            le jpanel pour les bouton
+	 */
 	private void bouton(JPanel pBouton) {
 		// ecouteur
 		ecoute = new Ecouteur();
@@ -92,7 +149,7 @@ public class IHM {
 		jmb.add(sauter);
 		jmb.add(ramasser);
 		jmb.add(jeter);
-		
+
 		// bar de menu
 		pBouton.add(jmb);
 

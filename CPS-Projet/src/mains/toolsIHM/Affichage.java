@@ -14,6 +14,12 @@ import services.TerrainService;
 import enumeration.TYPE_Bloc;
 import enumeration.TYPE_Tresor;
 
+/**
+ * Gere l'affichage en tps reel
+ * 
+ * @author Kevin & Quentin
+ * 
+ */
 public class Affichage extends JPanel {
 	private MoteurJeuService moteur;
 	private int coef = Mains.coef;
@@ -28,6 +34,12 @@ public class Affichage extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * transforme le tresor en chaine de caractere pour l'affichage
+	 * 
+	 * @param tresor
+	 * @return
+	 */
 	private String tresorToString(TYPE_Tresor tresor) {
 		switch (tresor) {
 		case CINQDOLLAR:
@@ -60,6 +72,13 @@ public class Affichage extends JPanel {
 
 	}
 
+	/**
+	 * ecrit le nom des objets
+	 * 
+	 * @param g
+	 * @param terrain
+	 *            le terrain
+	 */
 	private void colorier_objet(Graphics g, TerrainService terrain) {
 		g.setColor(Color.WHITE);
 		for (int i = 0; i < terrain.largeur(); i++)
@@ -70,6 +89,15 @@ public class Affichage extends JPanel {
 							(terrain.profondeur() - j) * coef);
 	}
 
+	/**
+	 * colorie les personnages
+	 * 
+	 * @param g
+	 * @param cbt
+	 *            la gestion du combat
+	 * @param terrain
+	 *            le terrain
+	 */
 	private void colorier_personnage(Graphics g, GestionCombatService cbt,
 			TerrainService terrain) {
 		// tableau statut personnage
@@ -112,6 +140,13 @@ public class Affichage extends JPanel {
 			}
 	}
 
+	/**
+	 * colorie les blocs
+	 * 
+	 * @param g
+	 * @param terrain
+	 *            le terrain
+	 */
 	private void colorier_bloc(Graphics g, TerrainService terrain) {
 		for (int i = 0; i < terrain.largeur(); i++)
 			for (int j = 0; j < terrain.profondeur(); j++) {
@@ -124,6 +159,16 @@ public class Affichage extends JPanel {
 			}
 	}
 
+	/**
+	 * gere la couleur en fction des personnages sur le bloc
+	 * 
+	 * @param tab
+	 *            le tableau pour gerer les couleurs
+	 * @param pos
+	 *            la position
+	 * @param nb
+	 *            l'entier correspondant a une situation
+	 */
 	private static void ajouter(int[][] tab, PositionService pos, int nb) {
 		// 1 gangster | 2 slick | 3 alex | 4 ryan | 10 gangsterS
 		// | 20 Slick + Alex ou/et Ryan | 30 Alex et/ou Ryan + gangster
