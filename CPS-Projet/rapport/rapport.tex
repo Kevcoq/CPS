@@ -39,23 +39,140 @@ le bonus apporté. Personnage et ObjetEquipable raffinent tous les deux Chose.
 Ainsi, quand on a besoin de manipuler des objets, comme dans les blocs du terrain, on est sûr de ne pas
 confondre avec les personnages.
 
+\\ inclure le scheme de classe
+
 \paragraph{}
-Pour avoir accès aux personnages, dans GestionCombat, nous avons fait le choix d'avoir une HashMap dont les
+Pour avoir accès aux personnages, dans GestionCombat, nous avons fait le choix d'avoir une Map dont les
 clés sont les noms des personnages, et les valeurs les instances de Personnage (ou Gangster). On peut par 
 exemple appeler mPerso.get("Alex") pour récupérer Alex.
-De plus, la méthode gerer() prend en paramètre une HashMap<String, COMMANDE> qui associe à chaque personnage
+De plus, la méthode gerer() prend en paramètre une Map<String, COMMANDE> qui associe à chaque personnage
 la commande qu'il doit réaliser dans le pas de jeu.
+\\ rajout verif ortho
+Cela nous a permit d'unifier le traitement des differents types de
+pions (Alex, Ryan, Slick et les gangsters).
+Grace a leur nom, on a acces a l'objet qui les representes, leur
+position, et leur etat (gel).
+Au total, nous gerons 3 Map pour l'objet, la position et leur etat.
+
+\\ rajout
+\paragraph{}
+Nous avons decidé de faire de gestion combat un processus du jeu mais
+de ne pas lui donner de pouvoir decission, les decissions viennent du
+moteur de Jeu.
+Le moteur de jeu donne les commandes pour tout le monde, bot compris.
+Il peut aussi ajouter un nouveau nom a la liste des commandes et ainsi
+creer un nouveau gangster.
+Ce mode de gestion separe permet de bien differencier le centre de
+decision du processus d'avancement. Cela simplifie aussi les
+ameliorations possible.
+En modifiant moteur jeu l'on peut aisement faire une nouvelle
+implémentation ou les gagnsters deviendrait controlable. Et pourquoi
+pas en faire une version reseau avec 2 camps, les gentils et les mechants.
+
 
 \section*{Annexes}
 
 Vous trouverez ci-joint :
 \begin{itemize}
 \item Dans /spec, les specifications au format org et le Makefile pour générer les formats html et pdf (voir README.txt)
+\item Dans /tests, les tests au format org et le Makefile pour générer les formats html et pdf (voir README.txt)
 \item Le code des services, décorateurs, contracts, tests et implémentation dans /src
 \end{itemize}
+
+\section*{Version Bogue}
+\paragraph{}
+Il y a deux implementation bogue, celle de personnage dont les
+contratcs renvoient de joli erreur.
+Et celle de gestion combat, pour celle si, le contrat ne pouvant
+verifier les passage en erreur ne produit pas d'exception par contre
+les tests renvoie de joli message indiquant qu'il y a un soucis.
+
+
 
 \section*{Conclusion}
 
 \includegraphics[scale=0.3]{../saved}
+
+\\
+\paragraph{}
+Le jeu est fonctionnel, il n'est surement pas exempt de bogue. Nous
+avons essaye plusieurs scenario sans aucun probleme. L'interface
+graphique est assez minimaliste, quelques ameliorations possibles :
+\begin{itemize}
+\item l'ajout du pas de jeu dans une barre d'etat
+\item une boite d'alerte avec le resultat final
+\item la gestion de l'affichage des points de vie
+\end{itemize}
+Bien sur les graphismes ne sont pas fou, des petits carre de couleur
+diverse et varie mais l'ensemble reste coherant et comprehensible.
+Le jeu est entierement jouable au clavier.
+
+
+\\
+\section*{Notice}
+\paragraph{}
+Le jeu se partage en 3 mode de jeu
+\begin{itemize}
+\item automatique
+\item un joueur
+\item deux joueurs
+\end{itemize}
+
+\paragraph{}
+Pour changer le comportement des personnages non controle il faut
+aller voir la classe tools.GenerateurCmd .
+Il existe deux codes pour la meme methode, une version intelligent qui
+va plus souvent a se deplacer puis frapper de temps a autre, ainsi
+qu'une version beaucoup plus simple. Dans cette derniere, on peut
+basculer en commentant/decommantant dans un mode ou tout le monde est
+beau, tout le monde est gentil, la commande renvoye est RIEN. Ou bien
+c'est un random sur un tableau de commande donne, a nous de choisir
+les commandes du tableau.
+
+\paragraph{}
+Pour jouer, il suffit de choisir son mode de jeu, le mode 1 jouer est
+selectionne au depart. Puis choisir la commande a effectuer (clavier
+ou souris).
+En mode deux joueurs, il faut choisir deux commandes, l'une a la suite
+de l'autre.
+
+
+\section*{Connaissance acquise}
+\paragraph{}
+Ce projet nous a permit de decouvrir un aspect qui nous etait meconnu
+jusqu'a present, le monde des specifications.
+Au fil de notre scolarite, nous decouvrons l'aspect projet petit a
+petit.
+Au debut sur des projets simple, nous implementions la solution sans
+analyse prealable puis par la suite avec l'ecriture des algorithme
+complique au prealable pour savoir sur quel base partir.
+Ensuite, nous avons ajoute l'UML a nos competances, un travail plutot
+long et fastudieux pour le gain qu'il apporte. Les outils a notre
+disposition a la fac ne nous permettant pas de gagner reelement de
+temps en passant par ces structures.
+Enfin grace a cet UE nous avons decouvert les specifications.
+
+\paragraph{}
+Creer des specifications pour chaque services puis des tests sur
+chacun est aussi un travail assez fastudieux mais bien plus complexe
+est complet. Par la suite la plupart de l'implementation est trivial.
+Les tests permettent par la suite de verifier son travail et contaster
+les erreurs pour les corrigers.
+Une fois ces erreurs resolu, la mise en commum des sevices et l'essai
+du jeu se sont passe sans soucis.
+
+\paragraph{}
+Nous retenons plusieurs chose de ce projet, premierement, il est
+difficile de faire un jeu en 3 semaines.
+Deuxiement, nous ne sommes pas graphiste et celle se remarque tres
+vite.
+Pour finir nous avons decouvert le monde des specifications avec une
+approche proche de l'industrie, l'on produit une specification
+complete. Puis quelqu'un se charge de l'implementation et pour finir
+avec nos test on valide son travail.
+Bien sur dans le cadre de ce projet, l'implementation est faite par
+nous meme, cela d'ailleurs simplifie grandement la comprehension des
+specifications.
+
 
 \end{document}
