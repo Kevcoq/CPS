@@ -6,6 +6,7 @@
 \usepackage{lmodern}
 \usepackage{pxfonts}
 \usepackage{graphicx}
+\usepackage{lscape}
 
 \title{Projet CPS (MI047) - River City Ransom}
 \author{Kevin Coquart \and Quentin Bunel}
@@ -39,7 +40,9 @@ le bonus apporté. Personnage et ObjetEquipable raffinent tous les deux Chose.
 Ainsi, quand on a besoin de manipuler des objets, comme dans les blocs du terrain, on est sûr de ne pas
 confondre avec les personnages.
 
-\\ inclure le scheme de classe
+\begin{landscape}  % passage en paysage
+  \includegraphics[width=24cm]{../presentation/diagProjetCPS}
+\end{landscape}
 
 \paragraph{}
 Pour avoir accès aux personnages, dans GestionCombat, nous avons fait le choix d'avoir une Map dont les
@@ -47,27 +50,26 @@ clés sont les noms des personnages, et les valeurs les instances de Personnage 
 exemple appeler mPerso.get("Alex") pour récupérer Alex.
 De plus, la méthode gerer() prend en paramètre une Map<String, COMMANDE> qui associe à chaque personnage
 la commande qu'il doit réaliser dans le pas de jeu.
-\\ rajout verif ortho
-Cela nous a permit d'unifier le traitement des differents types de
-pions (Alex, Ryan, Slick et les gangsters).
-Grace a leur nom, on a acces a l'objet qui les representes, leur
-position, et leur etat (gel).
-Au total, nous gerons 3 Map pour l'objet, la position et leur etat.
 
-\\ rajout
+Cela nous a permis d'unifier le traitement des différents types de
+pions (Alex, Ryan, Slick et les gangsters).
+Grace à leur nom, on a acces a l'objet qui les représente, leur
+position, et leur état (gel).
+Au total, nous gérons 3 Map pour l'objet, la position et leur état.
+
 \paragraph{}
 Nous avons decidé de faire de gestion combat un processus du jeu mais
-de ne pas lui donner de pouvoir decission, les decissions viennent du
+de ne pas lui donner de pouvoir décision, les décisions viennent du
 moteur de Jeu.
 Le moteur de jeu donne les commandes pour tout le monde, bot compris.
-Il peut aussi ajouter un nouveau nom a la liste des commandes et ainsi
-creer un nouveau gangster.
-Ce mode de gestion separe permet de bien differencier le centre de
-decision du processus d'avancement. Cela simplifie aussi les
-ameliorations possible.
-En modifiant moteur jeu l'on peut aisement faire une nouvelle
-implémentation ou les gagnsters deviendrait controlable. Et pourquoi
-pas en faire une version reseau avec 2 camps, les gentils et les mechants.
+Il peut aussi ajouter un nouveau nom à la liste des commandes et ainsi
+créer un nouveau gangster.
+Ce mode de gestion séparé permet de bien différencier le centre de
+décision du processus d'avancement. Cela simplifie aussi les
+améliorations possibles.
+En modifiant moteur jeu l'on peut aisément faire une nouvelle
+implémentation ou les gangsters deviendraient controlables. Et pourquoi
+pas en faire une version réseau avec 2 camps, les gentils et les méchants.
 
 
 \section*{Annexes}
@@ -81,11 +83,11 @@ Vous trouverez ci-joint :
 
 \section*{Version Bogue}
 \paragraph{}
-Il y a deux implementation bogue, celle de personnage dont les
-contratcs renvoient de joli erreur.
-Et celle de gestion combat, pour celle si, le contrat ne pouvant
-verifier les passage en erreur ne produit pas d'exception par contre
-les tests renvoie de joli message indiquant qu'il y a un soucis.
+Il y a deux implémentations boguées, celle de personnage dont les
+contrats renvoient de jolies erreurs.
+Et celle de gestion combat, pour celle-ci, le contrat ne pouvant
+verifier les passages en erreur, ne produit pas d'exception par contre
+les tests renvoient de jolis messages indiquant qu'il y a un soucis.
 
 
 
@@ -93,25 +95,24 @@ les tests renvoie de joli message indiquant qu'il y a un soucis.
 
 \includegraphics[scale=0.3]{../saved}
 
-\\
+
 \paragraph{}
 Le jeu est fonctionnel, il n'est surement pas exempt de bogue. Nous
-avons essaye plusieurs scenario sans aucun probleme. L'interface
-graphique est assez minimaliste, quelques ameliorations possibles :
+avons essayé plusieurs scenarios sans aucun probleme. L'interface
+graphique est assez minimaliste, quelques améliorations possibles :
 \begin{itemize}
-\item l'ajout du pas de jeu dans une barre d'etat
-\item une boite d'alerte avec le resultat final
+\item l'ajout du pas de jeu dans une barre d'état
+\item une boîte d'alerte avec le résultat final
 \item la gestion de l'affichage des points de vie
 \end{itemize}
-Bien sur les graphismes ne sont pas fou, des petits carre de couleur
-diverse et varie mais l'ensemble reste coherant et comprehensible.
-Le jeu est entierement jouable au clavier.
+Bien sûr les graphismes ne sont pas fous, des petits carrés de couleurs
+diverses et variées mais l'ensemble reste cohérant et compréhensible.
+Le jeu est entièrement jouable au clavier.
 
 
-\\
 \section*{Notice}
 \paragraph{}
-Le jeu se partage en 3 mode de jeu
+Le jeu se partage en 3 modes de jeu :
 \begin{itemize}
 \item automatique
 \item un joueur
@@ -119,60 +120,60 @@ Le jeu se partage en 3 mode de jeu
 \end{itemize}
 
 \paragraph{}
-Pour changer le comportement des personnages non controle il faut
+Pour changer le comportement des personnages non contrôlés il faut
 aller voir la classe tools.GenerateurCmd .
-Il existe deux codes pour la meme methode, une version intelligent qui
-va plus souvent a se deplacer puis frapper de temps a autre, ainsi
-qu'une version beaucoup plus simple. Dans cette derniere, on peut
-basculer en commentant/decommantant dans un mode ou tout le monde est
-beau, tout le monde est gentil, la commande renvoye est RIEN. Ou bien
-c'est un random sur un tableau de commande donne, a nous de choisir
+Il existe deux codes pour la meme méthode, une version intelligent qui
+va plus souvent à se deplacer puis frapper de temps à autre, ainsi
+qu'une version beaucoup plus simple. Dans cette dernière, on peut
+basculer en commentant/décommantant dans un mode ou tout le monde est
+beau, tout le monde est gentil, la commande renvoyée est RIEN. Ou bien
+c'est un random sur un tableau de commandes donné, à nous de choisir
 les commandes du tableau.
 
 \paragraph{}
-Pour jouer, il suffit de choisir son mode de jeu, le mode 1 jouer est
-selectionne au depart. Puis choisir la commande a effectuer (clavier
+Pour jouer, il suffit de choisir son mode de jeu, le mode 1 joueur est
+selectionné au depart. Puis choisir la commande à effectuer (clavier
 ou souris).
-En mode deux joueurs, il faut choisir deux commandes, l'une a la suite
+En mode deux joueurs, il faut choisir deux commandes, l'une à la suite
 de l'autre.
 
 
-\section*{Connaissance acquise}
+\section*{Connaissances acquises}
 \paragraph{}
-Ce projet nous a permit de decouvrir un aspect qui nous etait meconnu
-jusqu'a present, le monde des specifications.
-Au fil de notre scolarite, nous decouvrons l'aspect projet petit a
+Ce projet nous a permis de decouvrir un aspect qui nous était méconnu
+jusqu'à présent, le monde des spécifications.
+Au fil de notre scolarité, nous découvrons l'aspect projet petit à
 petit.
-Au debut sur des projets simple, nous implementions la solution sans
-analyse prealable puis par la suite avec l'ecriture des algorithme
-complique au prealable pour savoir sur quel base partir.
-Ensuite, nous avons ajoute l'UML a nos competances, un travail plutot
-long et fastudieux pour le gain qu'il apporte. Les outils a notre
-disposition a la fac ne nous permettant pas de gagner reelement de
+Au debut sur des projets simples, nous implémentions la solution sans
+analyse préalable puis par la suite avec l'ecriture des algorithmes
+compliqués pour savoir sur quelle base partir.
+Ensuite, nous avons ajouté l'UML à nos compétances, un travail plutôt
+long et fastidieux pour le gain qu'il apporte. Les outils à notre
+disposition à la fac ne nous permettant pas de gagner réelement du
 temps en passant par ces structures.
-Enfin grace a cet UE nous avons decouvert les specifications.
+Enfin grâce à cette UE nous avons découvert les spécifications.
 
 \paragraph{}
-Creer des specifications pour chaque services puis des tests sur
-chacun est aussi un travail assez fastudieux mais bien plus complexe
-est complet. Par la suite la plupart de l'implementation est trivial.
-Les tests permettent par la suite de verifier son travail et contaster
-les erreurs pour les corrigers.
-Une fois ces erreurs resolu, la mise en commum des sevices et l'essai
-du jeu se sont passe sans soucis.
+Créer des spécifications pour chaque service puis des tests sur
+chacun est aussi un travail assez fastidieux mais bien plus complexe
+et complet. Par la suite la plupart de l'implémentation est triviale.
+Les tests permettent par la suite de vérifier son travail et contaster
+les erreurs pour les corriger.
+Une fois ces erreurs resolues, la mise en commum des services et l'essai
+du jeu se sont passés sans soucis.
 
 \paragraph{}
-Nous retenons plusieurs chose de ce projet, premierement, il est
+Nous retenons plusieurs choses de ce projet, premièrement, il est
 difficile de faire un jeu en 3 semaines.
-Deuxiement, nous ne sommes pas graphiste et celle se remarque tres
+Deuxiement, nous ne sommes pas graphistes et cela se remarque très
 vite.
-Pour finir nous avons decouvert le monde des specifications avec une
-approche proche de l'industrie, l'on produit une specification
-complete. Puis quelqu'un se charge de l'implementation et pour finir
-avec nos test on valide son travail.
-Bien sur dans le cadre de ce projet, l'implementation est faite par
-nous meme, cela d'ailleurs simplifie grandement la comprehension des
-specifications.
+Pour finir nous avons découvert le monde des spécifications avec une
+approche proche de l'industrie, l'on produit une spécification
+complète. Puis quelqu'un se charge de l'implémentation et pour finir
+avec nos tests on valide notre travail.
+Bien sûr dans le cadre de ce projet, l'implémentation est faite par
+nous-même, cela d'ailleurs simplifie grandement la compréhension des
+spécifications.
 
 
 \end{document}
