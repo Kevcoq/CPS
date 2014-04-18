@@ -53,7 +53,6 @@ public class TerrainContract extends TerrainDecorator {
 		// ***** ∀y ∈ [0;profondeur(init(l,h,p))],
 		// ***** ∀z ∈ [0;hauteur(init(l,h,p))],
 
-		// TODO les pour tout
 		if (!(largeur == largeur() && hauteur == hauteur() && profondeur == profondeur()))
 			throw new PostconditionError("terrain -> init");
 
