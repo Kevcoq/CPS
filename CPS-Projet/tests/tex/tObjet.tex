@@ -1,0 +1,65 @@
+% Created 2014-04-18 ven. 12:57
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage{amssymb}
+\usepackage{hyperref}
+
+
+\title{TObjet}
+\author{Kevin Coquart, Quentin Bunel}
+\date{18 avril 2014}
+
+\begin{document}
+
+\maketitle
+
+\setcounter{tocdepth}{3}
+\tableofcontents
+\vspace*{1cm}
+\section{Test Objet}
+\label{sec-1}
+
+
+\subsection{Cas de test 1.1 : Objet::testInit}
+\label{sec-1.1}
+
+\subsubsection{Condition initiale : $\varnothing$}
+\label{sec-1.1.1}
+
+\subsubsection{Operation : L0 =(def) init("DOLLAR")}
+\label{sec-1.1.2}
+
+\subsubsection{Oracle : nom(L0) = DOLLAR}
+\label{sec-1.1.3}
+
+
+\subsection{Cas de test 1.2 : Objet::testInitFail}
+\label{sec-1.2}
+
+\subsubsection{Condition initiale : $\varnothing$}
+\label{sec-1.2.1}
+
+\subsubsection{Operation : L0 =(def) init("")}
+\label{sec-1.2.2}
+
+\subsubsection{Oracle :}
+\label{sec-1.2.3}
+
+\begin{itemize}
+
+\item "" == ""\\
+\label{sec-1.2.3.1}
+
+
+\item \#exception levee\\
+\label{sec-1.2.3.2}
+
+\end{itemize} % ends low level
+
+\end{document}

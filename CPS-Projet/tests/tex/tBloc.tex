@@ -1,0 +1,174 @@
+% Created 2014-04-18 ven. 12:57
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage{amssymb}
+\usepackage{hyperref}
+
+
+\title{TBloc}
+\author{Kevin Coquart, Quentin Bunel}
+\date{18 avril 2014}
+
+\begin{document}
+
+\maketitle
+
+\setcounter{tocdepth}{3}
+\tableofcontents
+\vspace*{1cm}
+\section{Test Bloc}
+\label{sec-1}
+
+
+\subsection{Cas de test 1.1 : Bloc::testInit}
+\label{sec-1.1}
+
+\subsubsection{Condition initiale : $\varnothing$}
+\label{sec-1.1.1}
+
+\subsubsection{Operation : L0 =(def) init(VIDE, RIEN)}
+\label{sec-1.1.2}
+
+\subsubsection{Oracle :}
+\label{sec-1.1.3}
+
+\begin{itemize}
+
+\item aTresor(L0) = false\\
+\label{sec-1.1.3.1}
+
+
+\item typeBloc(L0) = VIDE\\
+\label{sec-1.1.3.2}
+
+
+
+\end{itemize} % ends low level
+\subsection{Cas de test 1.2 : Bloc::testInit2}
+\label{sec-1.2}
+
+\subsubsection{Condition initiale : $\varnothing$}
+\label{sec-1.2.1}
+
+\subsubsection{Operation : L0 =(def) init(VIDE, DIXDOLLAR)}
+\label{sec-1.2.2}
+
+\subsubsection{Oracle :}
+\label{sec-1.2.3}
+
+\begin{itemize}
+
+\item aTresor(L0) = true\\
+\label{sec-1.2.3.1}
+
+
+\item typeTresor(L0) = DIXDOLLAR\\
+\label{sec-1.2.3.2}
+
+
+\item typeBloc(L0) = VIDE\\
+\label{sec-1.2.3.3}
+
+
+
+
+
+\end{itemize} % ends low level
+\subsection{Cas de test 2.1 : Bloc::testRamasserTresor}
+\label{sec-1.3}
+
+\subsubsection{Condition initiale : L =(def) init(VIDE, DIXDOLLAR)}
+\label{sec-1.3.1}
+
+\subsubsection{Operation : L0 =(def) ramasserTresor(L)}
+\label{sec-1.3.2}
+
+\subsubsection{Oracle :}
+\label{sec-1.3.3}
+
+\begin{itemize}
+
+\item aTresor(L0) = false\\
+\label{sec-1.3.3.1}
+
+
+\end{itemize} % ends low level
+\subsection{Cas de test 2.2 : Bloc::testRamasserTresorFail}
+\label{sec-1.4}
+
+\subsubsection{Condition initiale : L =(def) init(VIDE, RIEN)}
+\label{sec-1.4.1}
+
+\subsubsection{Operation : L0 =(def) ramasserTresor(L)}
+\label{sec-1.4.2}
+
+\subsubsection{Oracle :}
+\label{sec-1.4.3}
+
+\begin{itemize}
+
+\item aTresor(L) = false\\
+\label{sec-1.4.3.1}
+
+
+\item \#exception levee\\
+\label{sec-1.4.3.2}
+
+
+
+
+
+\end{itemize} % ends low level
+\subsection{Cas de test 3.1 : Bloc::testDeposerTresor}
+\label{sec-1.5}
+
+\subsubsection{Condition initiale : L =(def) init(VIDE, RIEN)}
+\label{sec-1.5.1}
+
+\subsubsection{Operation : L0 =(def) deposerTresor(L, CHAINEVELO)}
+\label{sec-1.5.2}
+
+\subsubsection{Oracle :}
+\label{sec-1.5.3}
+
+\begin{itemize}
+
+\item aTresor(L0) = true\\
+\label{sec-1.5.3.1}
+
+
+\item typeTresor(L0) = CHAINEVELO\\
+\label{sec-1.5.3.2}
+
+
+\end{itemize} % ends low level
+\subsection{Cas de test 3.2 : Bloc::testDeposerTresorFail}
+\label{sec-1.6}
+
+\subsubsection{Condition initiale : L =(def) init(VIDE, DIXDOLLAR)}
+\label{sec-1.6.1}
+
+\subsubsection{Operation : L0 =(def) deposerTresor(L, CHAINEVELO)}
+\label{sec-1.6.2}
+
+\subsubsection{Oracle :}
+\label{sec-1.6.3}
+
+\begin{itemize}
+
+\item aTresor(L) = true\\
+\label{sec-1.6.3.1}
+
+
+\item \#exception levee\\
+\label{sec-1.6.3.2}
+
+\end{itemize} % ends low level
+
+\end{document}

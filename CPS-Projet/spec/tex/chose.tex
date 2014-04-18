@@ -1,0 +1,136 @@
+% Created 2014-04-18 ven. 12:57
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage{amssymb}
+\usepackage{hyperref}
+
+
+\title{Chose}
+\author{Kevin Coquart, Quentin Bunel}
+\date{18 avril 2014}
+
+\begin{document}
+
+\maketitle
+
+\setcounter{tocdepth}{3}
+\tableofcontents
+\vspace*{1cm}
+\section{Chose}
+\label{sec-1}
+
+\subsection{service : Chose}
+\label{sec-1.1}
+
+\subsection{types : int, boolean}
+\label{sec-1.2}
+
+
+
+\subsection{observators :}
+\label{sec-1.3}
+
+\subsubsection{}
+
+\begin{itemize}
+
+\item const bonus : [Chose] $\to$ int\\
+\label{sec-1.3.1.1}
+
+
+\item estPorte : [Chose] $\to$ boolean\\
+\label{sec-1.3.1.2}
+
+
+\end{itemize} % ends low level
+\subsection{Constructors :}
+\label{sec-1.4}
+
+\subsubsection{}
+
+\begin{itemize}
+
+\item init : int $\to$ [Chose]\\
+\label{sec-1.4.1.1}
+
+\begin{itemize}
+
+\item pre init(C, bonus) require bonus > 0\\
+\label{sec-1.4.1.1.1}
+
+
+\end{itemize} % ends low level
+\end{itemize} % ends low level
+\subsection{Operators :}
+\label{sec-1.5}
+
+\subsubsection{}
+
+\begin{itemize}
+
+\item estRamasse : [Chose] $\to$ [Chose]\\
+\label{sec-1.5.1.1}
+
+\begin{itemize}
+
+\item pre estRamasse(C) require $\neg$estPorte(C)\\
+\label{sec-1.5.1.1.1}
+
+
+\end{itemize} % ends low level
+
+\item estJete : [Chose] $\to$ [Chose]\\
+\label{sec-1.5.1.2}
+
+\begin{itemize}
+
+\item pre estJete(C) require estPorte(C)\\
+\label{sec-1.5.1.2.1}
+
+
+\end{itemize} % ends low level
+\end{itemize} % ends low level
+\subsection{Observations :}
+\label{sec-1.6}
+
+\subsubsection{[init]}
+\label{sec-1.6.1}
+
+\begin{itemize}
+
+\item bonus(init(b)) = b\\
+\label{sec-1.6.1.1}
+
+
+\item estPorte(init(b)) = false\\
+\label{sec-1.6.1.2}
+
+
+\end{itemize} % ends low level
+\subsubsection{[estRamasse]}
+\label{sec-1.6.2}
+
+\begin{itemize}
+
+\item estPorte(estRamasse(C)) = true\\
+\label{sec-1.6.2.1}
+
+
+\end{itemize} % ends low level
+\subsubsection{[estJete]}
+\label{sec-1.6.3}
+
+\begin{itemize}
+
+\item estPorte(estJete(C)) = false\\
+\label{sec-1.6.3.1}
+
+\end{itemize} % ends low level
+
+\end{document}

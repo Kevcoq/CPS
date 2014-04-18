@@ -1,0 +1,380 @@
+% Created 2014-04-18 ven. 12:57
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage{amssymb}
+\usepackage{hyperref}
+
+
+\title{TPosition}
+\author{Kevin Coquart, Quentin Bunel}
+\date{18 avril 2014}
+
+\begin{document}
+
+\maketitle
+
+\setcounter{tocdepth}{3}
+\tableofcontents
+\vspace*{1cm}
+\section{Test Position}
+\label{sec-1}
+
+
+\subsection{Cas de test 1.1 : Position::testInit}
+\label{sec-1.1}
+
+\subsubsection{Condition initiale : $\varnothing$}
+\label{sec-1.1.1}
+
+\subsubsection{Operation : L0 =(def) init(1, 2, 3, true)}
+\label{sec-1.1.2}
+
+\subsubsection{Oracle :}
+\label{sec-1.1.3}
+
+\begin{itemize}
+
+\item x(L0) = 1\\
+\label{sec-1.1.3.1}
+
+
+\item y(L0) = 2\\
+\label{sec-1.1.3.2}
+
+
+\item z(L0) = 3\\
+\label{sec-1.1.3.3}
+
+
+\item dirG(L0) = true\\
+\label{sec-1.1.3.4}
+
+
+
+\end{itemize} % ends low level
+\subsection{Cas de test 2.1 : Position::testSetX}
+\label{sec-1.2}
+
+\subsubsection{Condition initiale : L =(def) init(1, 2, 3, true)}
+\label{sec-1.2.1}
+
+\subsubsection{Operation : L0 =(def) setX(L, 5)}
+\label{sec-1.2.2}
+
+\subsubsection{Oracle :}
+\label{sec-1.2.3}
+
+\begin{itemize}
+
+\item x(L0) = 5\\
+\label{sec-1.2.3.1}
+
+
+\item y(L0) = y(L)\\
+\label{sec-1.2.3.2}
+
+
+\item z(L0) = z(L)\\
+\label{sec-1.2.3.3}
+
+
+\item dirG(L0) = dirG(L)\\
+\label{sec-1.2.3.4}
+
+
+\end{itemize} % ends low level
+\subsection{Cas de test 2.2 : Position::testSetY}
+\label{sec-1.3}
+
+\subsubsection{Condition initiale : L =(def) init(1, 2, 3, true)}
+\label{sec-1.3.1}
+
+\subsubsection{Operation : L0 =(def) setY(L, 5)}
+\label{sec-1.3.2}
+
+\subsubsection{Oracle :}
+\label{sec-1.3.3}
+
+\begin{itemize}
+
+\item x(L0) = x(L)\\
+\label{sec-1.3.3.1}
+
+
+\item y(L0) = 5\\
+\label{sec-1.3.3.2}
+
+
+\item z(L0) = z(L)\\
+\label{sec-1.3.3.3}
+
+
+\item dirG(L0) = dirG(L)\\
+\label{sec-1.3.3.4}
+
+
+\end{itemize} % ends low level
+\subsection{Cas de test 2.3 : Position::testSetZ}
+\label{sec-1.4}
+
+\subsubsection{Condition initiale : L =(def) init(1, 2, 3, true)}
+\label{sec-1.4.1}
+
+\subsubsection{Operation : L0 =(def) setZ(L, 5)}
+\label{sec-1.4.2}
+
+\subsubsection{Oracle :}
+\label{sec-1.4.3}
+
+\begin{itemize}
+
+\item x(L0) = x(L)\\
+\label{sec-1.4.3.1}
+
+
+\item y(L0) = y(L)\\
+\label{sec-1.4.3.2}
+
+
+\item z(L0) = 5\\
+\label{sec-1.4.3.3}
+
+
+\item dirG(L0) = dirG(L)\\
+\label{sec-1.4.3.4}
+
+
+\end{itemize} % ends low level
+\subsection{Cas de test 2.4 : Position::testSetdir}
+\label{sec-1.5}
+
+\subsubsection{Condition initiale : L =(def) init(1, 2, 3, true)}
+\label{sec-1.5.1}
+
+\subsubsection{Operation : L0 =(def) setdir(L, false)}
+\label{sec-1.5.2}
+
+\subsubsection{Oracle :}
+\label{sec-1.5.3}
+
+\begin{itemize}
+
+\item x(L0) = x(L)\\
+\label{sec-1.5.3.1}
+
+
+\item y(L0) = y(L)\\
+\label{sec-1.5.3.2}
+
+
+\item z(L0) = z(L)\\
+\label{sec-1.5.3.3}
+
+
+\item dirG(L0) = false\\
+\label{sec-1.5.3.4}
+
+
+\end{itemize} % ends low level
+\subsection{Cas de test 2.5 : Position::testSet}
+\label{sec-1.6}
+
+\subsubsection{Condition initiale : L =(def) init(1, 2, 3, true)}
+\label{sec-1.6.1}
+
+\subsubsection{Operation : L0 =(def) set(L, 5, 6 ,7)}
+\label{sec-1.6.2}
+
+\subsubsection{Oracle :}
+\label{sec-1.6.3}
+
+\begin{itemize}
+
+\item x(L0) = 5\\
+\label{sec-1.6.3.1}
+
+
+\item y(L0) = 6\\
+\label{sec-1.6.3.2}
+
+
+\item z(L0) = 7\\
+\label{sec-1.6.3.3}
+
+
+\item dirG(L0) = dirG(L)\\
+\label{sec-1.6.3.4}
+
+
+\end{itemize} % ends low level
+\subsection{Cas de test 2.6 : Position::testSet2}
+\label{sec-1.7}
+
+\subsubsection{Condition initiale :}
+\label{sec-1.7.1}
+
+\begin{itemize}
+
+\item L =(def) init(1, 2, 3, true)\\
+\label{sec-1.7.1.1}
+
+
+\item L1 =(def) init(5, 6, 7, true)\\
+\label{sec-1.7.1.2}
+
+\end{itemize} % ends low level
+\subsubsection{Operation : L0 =(def) set(L, L2)}
+\label{sec-1.7.2}
+
+\subsubsection{Oracle :}
+\label{sec-1.7.3}
+
+\begin{itemize}
+
+\item x(L0) = 5\\
+\label{sec-1.7.3.1}
+
+
+\item y(L0) = 6\\
+\label{sec-1.7.3.2}
+
+
+\item z(L0) = 7\\
+\label{sec-1.7.3.3}
+
+
+\item dirG(L0) = dirG(L)\\
+\label{sec-1.7.3.4}
+
+
+
+
+\end{itemize} % ends low level
+\subsection{Cas de test 3.1 : Position::equalsFalse}
+\label{sec-1.8}
+
+\subsubsection{Condition initiale : L =(def) init(1, 2, 3, true)}
+\label{sec-1.8.1}
+
+\subsubsection{Operation : L0 =(def) equals(L, 5, 6 ,7)}
+\label{sec-1.8.2}
+
+\subsubsection{Oracle : false}
+\label{sec-1.8.3}
+
+
+\subsection{Cas de test 3.2 : Position::equalsTrue}
+\label{sec-1.9}
+
+\subsubsection{Condition initiale : L =(def) init(1, 2, 3, true)}
+\label{sec-1.9.1}
+
+\subsubsection{Operation : L0 =(def) equals(L, 1, 2, 3)}
+\label{sec-1.9.2}
+
+\subsubsection{Oracle : true}
+\label{sec-1.9.3}
+
+
+\subsection{Cas de test 3.3 : Position::equalsFalse2}
+\label{sec-1.10}
+
+\subsubsection{Condition initiale :}
+\label{sec-1.10.1}
+
+\begin{itemize}
+
+\item L =(def) init(1, 2, 3, true)\\
+\label{sec-1.10.1.1}
+
+
+\item L1 =(def) init(4, 5, 6, true)\\
+\label{sec-1.10.1.2}
+
+\end{itemize} % ends low level
+\subsubsection{Operation : L0 =(def) equals(L, L1)}
+\label{sec-1.10.2}
+
+\subsubsection{Oracle : false}
+\label{sec-1.10.3}
+
+
+\subsection{Cas de test 3.4 : Position::equalsTrue2}
+\label{sec-1.11}
+
+\subsubsection{Condition initiale :}
+\label{sec-1.11.1}
+
+\begin{itemize}
+
+\item L =(def) init(1, 2, 3, true)\\
+\label{sec-1.11.1.1}
+
+
+\item L1 =(def) init(1, 2, 3, false)\\
+\label{sec-1.11.1.2}
+
+\end{itemize} % ends low level
+\subsubsection{Operation : L0 =(def) equals(L, L1)}
+\label{sec-1.11.2}
+
+\subsubsection{Oracle : true}
+\label{sec-1.11.3}
+
+
+
+
+\subsection{Cas de test 4.1 : Position::collisionTrue}
+\label{sec-1.12}
+
+\subsubsection{Condition initiale :}
+\label{sec-1.12.1}
+
+\begin{itemize}
+
+\item L =(def) init(1, 2, 3, true)\\
+\label{sec-1.12.1.1}
+
+
+\item L1 =(def) init(2, 2, 3, true)\\
+\label{sec-1.12.1.2}
+
+\end{itemize} % ends low level
+\subsubsection{Operation : L0 =(def) collision(L, L1)}
+\label{sec-1.12.2}
+
+\subsubsection{Oracle : true}
+\label{sec-1.12.3}
+
+
+\subsection{Cas de test 4.2 : Position::collisionFalse}
+\label{sec-1.13}
+
+\subsubsection{Condition initiale :}
+\label{sec-1.13.1}
+
+\begin{itemize}
+
+\item L =(def) init(1, 2, 3, true)\\
+\label{sec-1.13.1.1}
+
+
+\item L1 =(def) init(0, 2, 3, false)\\
+\label{sec-1.13.1.2}
+
+\end{itemize} % ends low level
+\subsubsection{Operation : L0 =(def) collision(L, L1)}
+\label{sec-1.13.2}
+
+\subsubsection{Oracle : false}
+\label{sec-1.13.3}
+
+
+
+\end{document}

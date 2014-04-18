@@ -1,0 +1,1924 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+
+lang="en" xml:lang="en">
+
+<head>
+
+<title>tPersonnage</title>
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+
+<meta name="generator" content="Org-mode"/>
+
+<meta name="generated" content="2014-04-18 12:57:47 CEST"/>
+
+
+
+<meta name="description" content=""/>
+
+<meta name="keywords" content=""/>
+
+<style type="text/css">
+
+ <!--/*--><![CDATA[/*><!--*/
+
+  html { font-family: Times, serif; font-size: 12pt; }
+
+  .title  { text-align: center; }
+
+  .todo   { color: red; }
+
+  .done   { color: green; }
+
+  .tag    { background-color: #add8e6; font-weight:normal }
+
+  .target { }
+
+  .timestamp { color: #bebebe; }
+
+  .timestamp-kwd { color: #5f9ea0; }
+
+  p.verse { margin-left: 3% }
+
+  pre {
+
+	border: 1pt solid #AEBDCC;
+
+	background-color: #F3F5F7;
+
+	padding: 5pt;
+
+	font-family: courier, monospace;
+
+        font-size: 90%;
+
+        overflow:auto;
+
+  }
+
+  table { border-collapse: collapse; }
+
+  td, th { vertical-align: top; }
+
+  dt { font-weight: bold; }
+
+  div.figure { padding: 0.5em; }
+
+  div.figure p { text-align: center; }
+
+  .linenr { font-size:smaller }
+
+  .code-highlighted {background-color:#ffff00;}
+
+  .org-info-js_info-navigation { border-style:none; }
+
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+
+                               white-space:nowrap; }
+
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+
+                                 font-weight:bold; }
+
+  /*]]>*/-->
+
+</style>
+
+<script type="text/javascript">
+
+<!--/*--><![CDATA[/*><!--*/
+
+ function CodeHighlightOn(elem, id)
+
+ {
+
+   var target = document.getElementById(id);
+
+   if(null != target) {
+
+     elem.cacheClassElem = elem.className;
+
+     elem.cacheClassTarget = target.className;
+
+     target.className = "code-highlighted";
+
+     elem.className   = "code-highlighted";
+
+   }
+
+ }
+
+ function CodeHighlightOff(elem, id)
+
+ {
+
+   var target = document.getElementById(id);
+
+   if(elem.cacheClassElem)
+
+     elem.className = elem.cacheClassElem;
+
+   if(elem.cacheClassTarget)
+
+     target.className = elem.cacheClassTarget;
+
+ }
+
+/*]]>*///-->
+
+</script>
+
+</head>
+
+<body>
+
+<div id="content">
+
+
+
+<h1 class="title">tPersonnage</h1>
+
+
+
+
+
+<div id="table-of-contents">
+
+<h2>Table of Contents</h2>
+
+<div id="text-table-of-contents">
+
+<ul>
+
+<li><a href="#sec-1">1 Test Personnage </a>
+
+<ul>
+
+<li><a href="#sec-1.1">1.1 Cas de test 1.1 : Personnage::testInit </a>
+
+<ul>
+
+<li><a href="#sec-1.1.1">1.1.1 Condition initiale : ∅ </a></li>
+
+<li><a href="#sec-1.1.2">1.1.2 Operation : L0 =(def) init("Alex", 15, 50, 10, 100, 1664) </a></li>
+
+<li><a href="#sec-1.1.3">1.1.3 Oracle : </a></li>
+
+</ul>
+
+</li>
+
+<li><a href="#sec-1.2">1.2 Cas de test 1.2 : Personnage::testInitFail1 </a>
+
+<ul>
+
+<li><a href="#sec-1.2.1">1.2.1 Condition initiale : ∅ </a></li>
+
+<li><a href="#sec-1.2.2">1.2.2 Operation : L0 =(def) init("Alex", -15, 50, 10, 100, 1664) </a></li>
+
+<li><a href="#sec-1.2.3">1.2.3 Oracle : </a></li>
+
+</ul>
+
+</li>
+
+<li><a href="#sec-1.3">1.3 Cas de test 1.3 : Personnage::testInitFail2 </a>
+
+<ul>
+
+<li><a href="#sec-1.3.1">1.3.1 Condition initiale : ∅ </a></li>
+
+<li><a href="#sec-1.3.2">1.3.2 Operation : L0 =(def) init("Alex", 15, -50, 10, 100, 1664) </a></li>
+
+<li><a href="#sec-1.3.3">1.3.3 Oracle : </a></li>
+
+</ul>
+
+</li>
+
+<li><a href="#sec-1.4">1.4 Cas de test 1.4 : &hellip; </a></li>
+
+<li><a href="#sec-1.5">1.5 Cas de test 2.1 : Personnage::retraitPdv </a>
+
+<ul>
+
+<li><a href="#sec-1.5.1">1.5.1 Condition initiale :  L =(def) init("Alex", 15, 50, 10, 100, 1664) </a></li>
+
+<li><a href="#sec-1.5.2">1.5.2 Operation : L0 =(def) retraitPdv(L, 50) </a></li>
+
+<li><a href="#sec-1.5.3">1.5.3 Oracle : </a></li>
+
+</ul>
+
+</li>
+
+<li><a href="#sec-1.6">1.6 Cas de test 2.2 : Personnage::retraitPdvFail1 </a>
+
+<ul>
+
+<li><a href="#sec-1.6.1">1.6.1 Condition initiale :  L =(def) init("Alex", 15, 50, 10, 100, 1664) </a></li>
+
+<li><a href="#sec-1.6.2">1.6.2 Operation : L0 =(def) retraitPdv(L, -50) </a></li>
+
+<li><a href="#sec-1.6.3">1.6.3 Oracle : </a></li>
+
+</ul>
+
+</li>
+
+<li><a href="#sec-1.7">1.7 Cas de test 3.1 : Personnage::depotPdv </a>
+
+<ul>
+
+<li><a href="#sec-1.7.1">1.7.1 Condition initiale :  L =(def) init("Alex", 15, 50, 10, 100, 1664) </a></li>
+
+<li><a href="#sec-1.7.2">1.7.2 Operation : L0 =(def) depotPdv(L, 50) </a></li>
+
+<li><a href="#sec-1.7.3">1.7.3 Oracle : </a></li>
+
+</ul>
+
+</li>
+
+<li><a href="#sec-1.8">1.8 Cas de test 3.2 : Personnage::depotPdvFail1 </a>
+
+<ul>
+
+<li><a href="#sec-1.8.1">1.8.1 Condition initiale :  L =(def) init("Alex", 15, 50, 10, 100, 1664) </a></li>
+
+<li><a href="#sec-1.8.2">1.8.2 Operation : L0 =(def) depotPdv(L, -50) </a></li>
+
+<li><a href="#sec-1.8.3">1.8.3 Oracle : </a></li>
+
+</ul>
+
+</li>
+
+<li><a href="#sec-1.9">1.9 Cas de test 4.1 : Personnage::retraitArgent </a>
+
+<ul>
+
+<li><a href="#sec-1.9.1">1.9.1 Condition initiale : </a></li>
+
+<li><a href="#sec-1.9.2">1.9.2 Operation : L1 =(def) retraitArgent(L0, 50) </a></li>
+
+<li><a href="#sec-1.9.3">1.9.3 Oracle : </a></li>
+
+</ul>
+
+</li>
+
+<li><a href="#sec-1.10">1.10 Cas de test 4.2 : Personnage::retraitArgent </a>
+
+<ul>
+
+<li><a href="#sec-1.10.1">1.10.1 Condition initiale : </a></li>
+
+<li><a href="#sec-1.10.2">1.10.2 Operation : L1 =(def) retraitArgent(L0, 50) </a></li>
+
+<li><a href="#sec-1.10.3">1.10.3 Oracle : </a></li>
+
+</ul>
+
+</li>
+
+<li><a href="#sec-1.11">1.11 Cas de test 4.3 : Personnage::retraitArgentFail1 </a>
+
+<ul>
+
+<li><a href="#sec-1.11.1">1.11.1 Condition initiale :  L =(def) init("Alex", 15, 50, 10, 100, 1664) </a></li>
+
+<li><a href="#sec-1.11.2">1.11.2 Operation : L0 =(def) retraitArgent(L, 50) </a></li>
+
+<li><a href="#sec-1.11.3">1.11.3 Oracle : </a></li>
+
+</ul>
+
+</li>
+
+<li><a href="#sec-1.12">1.12 Cas de test 4.4 : Personnage::retraitArgentFail1 </a>
+
+<ul>
+
+<li><a href="#sec-1.12.1">1.12.1 Condition initiale :  L =(def) init("Alex", 15, 50, 10, 100, 1664) </a></li>
+
+<li><a href="#sec-1.12.2">1.12.2 Operation : L0 =(def) retraitArgent(L, -50) </a></li>
+
+<li><a href="#sec-1.12.3">1.12.3 Oracle : </a></li>
+
+</ul>
+
+</li>
+
+<li><a href="#sec-1.13">1.13 Cas de test 5.1 : Personnage::depotArgent </a>
+
+<ul>
+
+<li><a href="#sec-1.13.1">1.13.1 Condition initiale :  L =(def) init("Alex", 15, 50, 10, 100, 1664) </a></li>
+
+<li><a href="#sec-1.13.2">1.13.2 Operation : L0 =(def) depotArgent(L, 50) </a></li>
+
+<li><a href="#sec-1.13.3">1.13.3 Oracle : </a></li>
+
+</ul>
+
+</li>
+
+<li><a href="#sec-1.14">1.14 Cas de test 5.2 : Personnage::depotArgentFail1 </a>
+
+<ul>
+
+<li><a href="#sec-1.14.1">1.14.1 Condition initiale :  L =(def) init("Alex", 15, 50, 10, 100, 1664) </a></li>
+
+<li><a href="#sec-1.14.2">1.14.2 Operation : L0 =(def) depotArgent(L, -50) </a></li>
+
+<li><a href="#sec-1.14.3">1.14.3 Oracle : </a></li>
+
+</ul>
+
+</li>
+
+<li><a href="#sec-1.15">1.15 Cas de test 6.1 : Personnage::ramasser </a>
+
+<ul>
+
+<li><a href="#sec-1.15.1">1.15.1 Condition initiale : </a></li>
+
+<li><a href="#sec-1.15.2">1.15.2 Operation : L0 =(def) ramasser(L, C) </a></li>
+
+<li><a href="#sec-1.15.3">1.15.3 Oracle : </a></li>
+
+</ul>
+
+</li>
+
+<li><a href="#sec-1.16">1.16 Cas de test 6.2 : Personnage::ramasserFail1 </a>
+
+<ul>
+
+<li><a href="#sec-1.16.1">1.16.1 Condition initiale : </a></li>
+
+<li><a href="#sec-1.16.2">1.16.2 Operation : L1 =(def) ramasser(L0, C2) </a></li>
+
+<li><a href="#sec-1.16.3">1.16.3 Oracle : </a></li>
+
+</ul>
+
+</li>
+
+<li><a href="#sec-1.17">1.17 Cas de test 7.1 : Personnage::jeter </a>
+
+<ul>
+
+<li><a href="#sec-1.17.1">1.17.1 Condition initiale : </a></li>
+
+<li><a href="#sec-1.17.2">1.17.2 Operation : L1 =(def) jeter(L0) </a></li>
+
+<li><a href="#sec-1.17.3">1.17.3 Oracle : </a></li>
+
+</ul>
+
+</li>
+
+<li><a href="#sec-1.18">1.18 Cas de test 7.2 : Personnage::jeterFail </a>
+
+<ul>
+
+<li><a href="#sec-1.18.1">1.18.1 Condition initiale : </a></li>
+
+<li><a href="#sec-1.18.2">1.18.2 Operation : L1 =(def) jeter(L0) </a></li>
+
+<li><a href="#sec-1.18.3">1.18.3 Oracle : </a></li>
+
+</ul>
+
+</li>
+
+</ul>
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+
+<div id="outline-container-1" class="outline-2">
+
+<h2 id="sec-1"><span class="section-number-2">1</span> Test Personnage </h2>
+
+<div class="outline-text-2" id="text-1">
+
+
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.1" class="outline-3">
+
+<h3 id="sec-1.1"><span class="section-number-3">1.1</span> Cas de test 1.1 : Personnage::testInit </h3>
+
+<div class="outline-text-3" id="text-1.1">
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.1.1" class="outline-4">
+
+<h4 id="sec-1.1.1"><span class="section-number-4">1.1.1</span> Condition initiale : ∅ </h4>
+
+<div class="outline-text-4" id="text-1.1.1">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.1.2" class="outline-4">
+
+<h4 id="sec-1.1.2"><span class="section-number-4">1.1.2</span> Operation : L0 =(def) init("Alex", 15, 50, 10, 100, 1664) </h4>
+
+<div class="outline-text-4" id="text-1.1.2">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.1.3" class="outline-4">
+
+<h4 id="sec-1.1.3"><span class="section-number-4">1.1.3</span> Oracle : </h4>
+
+<div class="outline-text-4" id="text-1.1.3">
+
+
+
+<ul>
+
+<li id="sec-1.1.3.1">nom(L0) = "Alex" <br/>
+
+</li>
+
+<li id="sec-1.1.3.2">largeur(L0) = 15 <br/>
+
+</li>
+
+<li id="sec-1.1.3.3">hauteur(L0) = 50 <br/>
+
+</li>
+
+<li id="sec-1.1.3.4">profondeur(L0) = 10 <br/>
+
+</li>
+
+<li id="sec-1.1.3.5">force(L0) = 100 <br/>
+
+</li>
+
+<li id="sec-1.1.3.6">pointDeVie(L0) = 1664 <br/>
+
+</li>
+
+<li id="sec-1.1.3.7">sommeArgent(L0) = 0 <br/>
+
+</li>
+
+<li id="sec-1.1.3.8">estEquipe(L0) = false <br/>
+
+</li>
+
+<li id="sec-1.1.3.9">bonus(L0) = 100 <br/>
+
+</li>
+
+<li id="sec-1.1.3.10">estPorte(L0) = false <br/>
+
+
+
+
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.2" class="outline-3">
+
+<h3 id="sec-1.2"><span class="section-number-3">1.2</span> Cas de test 1.2 : Personnage::testInitFail1 </h3>
+
+<div class="outline-text-3" id="text-1.2">
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.2.1" class="outline-4">
+
+<h4 id="sec-1.2.1"><span class="section-number-4">1.2.1</span> Condition initiale : ∅ </h4>
+
+<div class="outline-text-4" id="text-1.2.1">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.2.2" class="outline-4">
+
+<h4 id="sec-1.2.2"><span class="section-number-4">1.2.2</span> Operation : L0 =(def) init("Alex", -15, 50, 10, 100, 1664) </h4>
+
+<div class="outline-text-4" id="text-1.2.2">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.2.3" class="outline-4">
+
+<h4 id="sec-1.2.3"><span class="section-number-4">1.2.3</span> Oracle : </h4>
+
+<div class="outline-text-4" id="text-1.2.3">
+
+
+
+<ul>
+
+<li id="sec-1.2.3.1">-15 &lt; 0 <br/>
+
+</li>
+
+<li id="sec-1.2.3.2">#exception levee <br/>
+
+
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.3" class="outline-3">
+
+<h3 id="sec-1.3"><span class="section-number-3">1.3</span> Cas de test 1.3 : Personnage::testInitFail2 </h3>
+
+<div class="outline-text-3" id="text-1.3">
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.3.1" class="outline-4">
+
+<h4 id="sec-1.3.1"><span class="section-number-4">1.3.1</span> Condition initiale : ∅ </h4>
+
+<div class="outline-text-4" id="text-1.3.1">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.3.2" class="outline-4">
+
+<h4 id="sec-1.3.2"><span class="section-number-4">1.3.2</span> Operation : L0 =(def) init("Alex", 15, -50, 10, 100, 1664) </h4>
+
+<div class="outline-text-4" id="text-1.3.2">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.3.3" class="outline-4">
+
+<h4 id="sec-1.3.3"><span class="section-number-4">1.3.3</span> Oracle : </h4>
+
+<div class="outline-text-4" id="text-1.3.3">
+
+
+
+<ul>
+
+<li id="sec-1.3.3.1">-50 &lt; 0 <br/>
+
+</li>
+
+<li id="sec-1.3.3.2">#exception levee <br/>
+
+
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.4" class="outline-3">
+
+<h3 id="sec-1.4"><span class="section-number-3">1.4</span> Cas de test 1.4 : &hellip; </h3>
+
+<div class="outline-text-3" id="text-1.4">
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.5" class="outline-3">
+
+<h3 id="sec-1.5"><span class="section-number-3">1.5</span> Cas de test 2.1 : Personnage::retraitPdv </h3>
+
+<div class="outline-text-3" id="text-1.5">
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.5.1" class="outline-4">
+
+<h4 id="sec-1.5.1"><span class="section-number-4">1.5.1</span> Condition initiale :  L =(def) init("Alex", 15, 50, 10, 100, 1664) </h4>
+
+<div class="outline-text-4" id="text-1.5.1">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.5.2" class="outline-4">
+
+<h4 id="sec-1.5.2"><span class="section-number-4">1.5.2</span> Operation : L0 =(def) retraitPdv(L, 50) </h4>
+
+<div class="outline-text-4" id="text-1.5.2">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.5.3" class="outline-4">
+
+<h4 id="sec-1.5.3"><span class="section-number-4">1.5.3</span> Oracle : </h4>
+
+<div class="outline-text-4" id="text-1.5.3">
+
+
+
+<ul>
+
+<li id="sec-1.5.3.1">pointsDeVie(L0) = pointsDeVie(L) - 50 <br/>
+
+
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.6" class="outline-3">
+
+<h3 id="sec-1.6"><span class="section-number-3">1.6</span> Cas de test 2.2 : Personnage::retraitPdvFail1 </h3>
+
+<div class="outline-text-3" id="text-1.6">
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.6.1" class="outline-4">
+
+<h4 id="sec-1.6.1"><span class="section-number-4">1.6.1</span> Condition initiale :  L =(def) init("Alex", 15, 50, 10, 100, 1664) </h4>
+
+<div class="outline-text-4" id="text-1.6.1">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.6.2" class="outline-4">
+
+<h4 id="sec-1.6.2"><span class="section-number-4">1.6.2</span> Operation : L0 =(def) retraitPdv(L, -50) </h4>
+
+<div class="outline-text-4" id="text-1.6.2">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.6.3" class="outline-4">
+
+<h4 id="sec-1.6.3"><span class="section-number-4">1.6.3</span> Oracle : </h4>
+
+<div class="outline-text-4" id="text-1.6.3">
+
+
+
+<ul>
+
+<li id="sec-1.6.3.1">-50 &lt; 0 <br/>
+
+</li>
+
+<li id="sec-1.6.3.2">#exception levee <br/>
+
+
+
+
+
+
+
+
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.7" class="outline-3">
+
+<h3 id="sec-1.7"><span class="section-number-3">1.7</span> Cas de test 3.1 : Personnage::depotPdv </h3>
+
+<div class="outline-text-3" id="text-1.7">
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.7.1" class="outline-4">
+
+<h4 id="sec-1.7.1"><span class="section-number-4">1.7.1</span> Condition initiale :  L =(def) init("Alex", 15, 50, 10, 100, 1664) </h4>
+
+<div class="outline-text-4" id="text-1.7.1">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.7.2" class="outline-4">
+
+<h4 id="sec-1.7.2"><span class="section-number-4">1.7.2</span> Operation : L0 =(def) depotPdv(L, 50) </h4>
+
+<div class="outline-text-4" id="text-1.7.2">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.7.3" class="outline-4">
+
+<h4 id="sec-1.7.3"><span class="section-number-4">1.7.3</span> Oracle : </h4>
+
+<div class="outline-text-4" id="text-1.7.3">
+
+
+
+<ul>
+
+<li id="sec-1.7.3.1">pointsDeVie(L0) = pointsDeVie(L) + 50 <br/>
+
+
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.8" class="outline-3">
+
+<h3 id="sec-1.8"><span class="section-number-3">1.8</span> Cas de test 3.2 : Personnage::depotPdvFail1 </h3>
+
+<div class="outline-text-3" id="text-1.8">
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.8.1" class="outline-4">
+
+<h4 id="sec-1.8.1"><span class="section-number-4">1.8.1</span> Condition initiale :  L =(def) init("Alex", 15, 50, 10, 100, 1664) </h4>
+
+<div class="outline-text-4" id="text-1.8.1">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.8.2" class="outline-4">
+
+<h4 id="sec-1.8.2"><span class="section-number-4">1.8.2</span> Operation : L0 =(def) depotPdv(L, -50) </h4>
+
+<div class="outline-text-4" id="text-1.8.2">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.8.3" class="outline-4">
+
+<h4 id="sec-1.8.3"><span class="section-number-4">1.8.3</span> Oracle : </h4>
+
+<div class="outline-text-4" id="text-1.8.3">
+
+
+
+<ul>
+
+<li id="sec-1.8.3.1">-50 &lt; 0 <br/>
+
+</li>
+
+<li id="sec-1.8.3.2">#exception levee <br/>
+
+
+
+
+
+
+
+
+
+
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.9" class="outline-3">
+
+<h3 id="sec-1.9"><span class="section-number-3">1.9</span> Cas de test 4.1 : Personnage::retraitArgent </h3>
+
+<div class="outline-text-3" id="text-1.9">
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.9.1" class="outline-4">
+
+<h4 id="sec-1.9.1"><span class="section-number-4">1.9.1</span> Condition initiale : </h4>
+
+<div class="outline-text-4" id="text-1.9.1">
+
+
+
+<ul>
+
+<li id="sec-1.9.1.1">L =(def) init("Alex", 15, 50, 10, 100, 1664) <br/>
+
+</li>
+
+<li id="sec-1.9.1.2">L0 =(def) depotArgent(L, 100) <br/>
+
+</li>
+
+</ul>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.9.2" class="outline-4">
+
+<h4 id="sec-1.9.2"><span class="section-number-4">1.9.2</span> Operation : L1 =(def) retraitArgent(L0, 50) </h4>
+
+<div class="outline-text-4" id="text-1.9.2">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.9.3" class="outline-4">
+
+<h4 id="sec-1.9.3"><span class="section-number-4">1.9.3</span> Oracle : </h4>
+
+<div class="outline-text-4" id="text-1.9.3">
+
+
+
+<ul>
+
+<li id="sec-1.9.3.1">sommeArgent(L1) = sommeArgent(L0) - 50 <br/>
+
+
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.10" class="outline-3">
+
+<h3 id="sec-1.10"><span class="section-number-3">1.10</span> Cas de test 4.2 : Personnage::retraitArgent </h3>
+
+<div class="outline-text-3" id="text-1.10">
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.10.1" class="outline-4">
+
+<h4 id="sec-1.10.1"><span class="section-number-4">1.10.1</span> Condition initiale : </h4>
+
+<div class="outline-text-4" id="text-1.10.1">
+
+
+
+<ul>
+
+<li id="sec-1.10.1.1">L =(def) init("Alex", 15, 50, 10, 100, 1664) <br/>
+
+</li>
+
+<li id="sec-1.10.1.2">L0 =(def) depotArgent(L, 50) <br/>
+
+</li>
+
+</ul>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.10.2" class="outline-4">
+
+<h4 id="sec-1.10.2"><span class="section-number-4">1.10.2</span> Operation : L1 =(def) retraitArgent(L0, 50) </h4>
+
+<div class="outline-text-4" id="text-1.10.2">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.10.3" class="outline-4">
+
+<h4 id="sec-1.10.3"><span class="section-number-4">1.10.3</span> Oracle : </h4>
+
+<div class="outline-text-4" id="text-1.10.3">
+
+
+
+<ul>
+
+<li id="sec-1.10.3.1">sommeArgent(L1) = sommeArgent(L0) - 50 <br/>
+
+
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.11" class="outline-3">
+
+<h3 id="sec-1.11"><span class="section-number-3">1.11</span> Cas de test 4.3 : Personnage::retraitArgentFail1 </h3>
+
+<div class="outline-text-3" id="text-1.11">
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.11.1" class="outline-4">
+
+<h4 id="sec-1.11.1"><span class="section-number-4">1.11.1</span> Condition initiale :  L =(def) init("Alex", 15, 50, 10, 100, 1664) </h4>
+
+<div class="outline-text-4" id="text-1.11.1">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.11.2" class="outline-4">
+
+<h4 id="sec-1.11.2"><span class="section-number-4">1.11.2</span> Operation : L0 =(def) retraitArgent(L, 50) </h4>
+
+<div class="outline-text-4" id="text-1.11.2">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.11.3" class="outline-4">
+
+<h4 id="sec-1.11.3"><span class="section-number-4">1.11.3</span> Oracle : </h4>
+
+<div class="outline-text-4" id="text-1.11.3">
+
+
+
+<ul>
+
+<li id="sec-1.11.3.1">50 &gt; sommeArgent(L) <br/>
+
+</li>
+
+<li id="sec-1.11.3.2">#exception levee <br/>
+
+
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.12" class="outline-3">
+
+<h3 id="sec-1.12"><span class="section-number-3">1.12</span> Cas de test 4.4 : Personnage::retraitArgentFail1 </h3>
+
+<div class="outline-text-3" id="text-1.12">
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.12.1" class="outline-4">
+
+<h4 id="sec-1.12.1"><span class="section-number-4">1.12.1</span> Condition initiale :  L =(def) init("Alex", 15, 50, 10, 100, 1664) </h4>
+
+<div class="outline-text-4" id="text-1.12.1">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.12.2" class="outline-4">
+
+<h4 id="sec-1.12.2"><span class="section-number-4">1.12.2</span> Operation : L0 =(def) retraitArgent(L, -50) </h4>
+
+<div class="outline-text-4" id="text-1.12.2">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.12.3" class="outline-4">
+
+<h4 id="sec-1.12.3"><span class="section-number-4">1.12.3</span> Oracle : </h4>
+
+<div class="outline-text-4" id="text-1.12.3">
+
+
+
+<ul>
+
+<li id="sec-1.12.3.1">-50 &lt; 0 <br/>
+
+</li>
+
+<li id="sec-1.12.3.2">#exception levee <br/>
+
+
+
+
+
+
+
+
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.13" class="outline-3">
+
+<h3 id="sec-1.13"><span class="section-number-3">1.13</span> Cas de test 5.1 : Personnage::depotArgent </h3>
+
+<div class="outline-text-3" id="text-1.13">
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.13.1" class="outline-4">
+
+<h4 id="sec-1.13.1"><span class="section-number-4">1.13.1</span> Condition initiale :  L =(def) init("Alex", 15, 50, 10, 100, 1664) </h4>
+
+<div class="outline-text-4" id="text-1.13.1">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.13.2" class="outline-4">
+
+<h4 id="sec-1.13.2"><span class="section-number-4">1.13.2</span> Operation : L0 =(def) depotArgent(L, 50) </h4>
+
+<div class="outline-text-4" id="text-1.13.2">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.13.3" class="outline-4">
+
+<h4 id="sec-1.13.3"><span class="section-number-4">1.13.3</span> Oracle : </h4>
+
+<div class="outline-text-4" id="text-1.13.3">
+
+
+
+<ul>
+
+<li id="sec-1.13.3.1">sommeArgent(L0) = sommeArgent(L) + 50 <br/>
+
+
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.14" class="outline-3">
+
+<h3 id="sec-1.14"><span class="section-number-3">1.14</span> Cas de test 5.2 : Personnage::depotArgentFail1 </h3>
+
+<div class="outline-text-3" id="text-1.14">
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.14.1" class="outline-4">
+
+<h4 id="sec-1.14.1"><span class="section-number-4">1.14.1</span> Condition initiale :  L =(def) init("Alex", 15, 50, 10, 100, 1664) </h4>
+
+<div class="outline-text-4" id="text-1.14.1">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.14.2" class="outline-4">
+
+<h4 id="sec-1.14.2"><span class="section-number-4">1.14.2</span> Operation : L0 =(def) depotArgent(L, -50) </h4>
+
+<div class="outline-text-4" id="text-1.14.2">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.14.3" class="outline-4">
+
+<h4 id="sec-1.14.3"><span class="section-number-4">1.14.3</span> Oracle : </h4>
+
+<div class="outline-text-4" id="text-1.14.3">
+
+
+
+<ul>
+
+<li id="sec-1.14.3.1">-50 &lt; 0 <br/>
+
+</li>
+
+<li id="sec-1.14.3.2">#exception levee <br/>
+
+
+
+
+
+
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.15" class="outline-3">
+
+<h3 id="sec-1.15"><span class="section-number-3">1.15</span> Cas de test 6.1 : Personnage::ramasser </h3>
+
+<div class="outline-text-3" id="text-1.15">
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.15.1" class="outline-4">
+
+<h4 id="sec-1.15.1"><span class="section-number-4">1.15.1</span> Condition initiale : </h4>
+
+<div class="outline-text-4" id="text-1.15.1">
+
+
+
+<ul>
+
+<li id="sec-1.15.1.1">L =(def) init("Alex", 15, 50, 10, 100, 1664) <br/>
+
+</li>
+
+<li id="sec-1.15.1.2">C =(def) ObjetEquipable <br/>
+
+</li>
+
+</ul>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.15.2" class="outline-4">
+
+<h4 id="sec-1.15.2"><span class="section-number-4">1.15.2</span> Operation : L0 =(def) ramasser(L, C) </h4>
+
+<div class="outline-text-4" id="text-1.15.2">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.15.3" class="outline-4">
+
+<h4 id="sec-1.15.3"><span class="section-number-4">1.15.3</span> Oracle : </h4>
+
+<div class="outline-text-4" id="text-1.15.3">
+
+
+
+<ul>
+
+<li id="sec-1.15.3.1">estEquipe(L0) = true <br/>
+
+</li>
+
+<li id="sec-1.15.3.2">laChoseEquipee(L0) = C <br/>
+
+
+
+
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.16" class="outline-3">
+
+<h3 id="sec-1.16"><span class="section-number-3">1.16</span> Cas de test 6.2 : Personnage::ramasserFail1 </h3>
+
+<div class="outline-text-3" id="text-1.16">
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.16.1" class="outline-4">
+
+<h4 id="sec-1.16.1"><span class="section-number-4">1.16.1</span> Condition initiale : </h4>
+
+<div class="outline-text-4" id="text-1.16.1">
+
+
+
+<ul>
+
+<li id="sec-1.16.1.1">L =(def) init("Alex", 15, 50, 10, 100, 1664) <br/>
+
+</li>
+
+<li id="sec-1.16.1.2">C =(def) ObjetEquipable <br/>
+
+</li>
+
+<li id="sec-1.16.1.3">C2 =(def) ObjetEquipable <br/>
+
+</li>
+
+<li id="sec-1.16.1.4">L0 =(def) ramasser(L, C) <br/>
+
+</li>
+
+</ul>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.16.2" class="outline-4">
+
+<h4 id="sec-1.16.2"><span class="section-number-4">1.16.2</span> Operation : L1 =(def) ramasser(L0, C2) </h4>
+
+<div class="outline-text-4" id="text-1.16.2">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.16.3" class="outline-4">
+
+<h4 id="sec-1.16.3"><span class="section-number-4">1.16.3</span> Oracle : </h4>
+
+<div class="outline-text-4" id="text-1.16.3">
+
+
+
+<ul>
+
+<li id="sec-1.16.3.1">estEquipe(L1) = true <br/>
+
+</li>
+
+<li id="sec-1.16.3.2">#exception levee <br/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.17" class="outline-3">
+
+<h3 id="sec-1.17"><span class="section-number-3">1.17</span> Cas de test 7.1 : Personnage::jeter </h3>
+
+<div class="outline-text-3" id="text-1.17">
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.17.1" class="outline-4">
+
+<h4 id="sec-1.17.1"><span class="section-number-4">1.17.1</span> Condition initiale : </h4>
+
+<div class="outline-text-4" id="text-1.17.1">
+
+
+
+<ul>
+
+<li id="sec-1.17.1.1">L =(def) init("Alex", 15, 50, 10, 100, 1664) <br/>
+
+</li>
+
+<li id="sec-1.17.1.2">C =(def) ObjetEquipable <br/>
+
+</li>
+
+<li id="sec-1.17.1.3">L0 =(def) ramasser(L, C) <br/>
+
+</li>
+
+</ul>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.17.2" class="outline-4">
+
+<h4 id="sec-1.17.2"><span class="section-number-4">1.17.2</span> Operation : L1 =(def) jeter(L0) </h4>
+
+<div class="outline-text-4" id="text-1.17.2">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.17.3" class="outline-4">
+
+<h4 id="sec-1.17.3"><span class="section-number-4">1.17.3</span> Oracle : </h4>
+
+<div class="outline-text-4" id="text-1.17.3">
+
+
+
+<ul>
+
+<li id="sec-1.17.3.1">estEquipe(L1) = false <br/>
+
+
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.18" class="outline-3">
+
+<h3 id="sec-1.18"><span class="section-number-3">1.18</span> Cas de test 7.2 : Personnage::jeterFail </h3>
+
+<div class="outline-text-3" id="text-1.18">
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.18.1" class="outline-4">
+
+<h4 id="sec-1.18.1"><span class="section-number-4">1.18.1</span> Condition initiale : </h4>
+
+<div class="outline-text-4" id="text-1.18.1">
+
+
+
+<ul>
+
+<li id="sec-1.18.1.1">L =(def) init("Alex", 15, 50, 10, 100, 1664) <br/>
+
+</li>
+
+</ul>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.18.2" class="outline-4">
+
+<h4 id="sec-1.18.2"><span class="section-number-4">1.18.2</span> Operation : L1 =(def) jeter(L0) </h4>
+
+<div class="outline-text-4" id="text-1.18.2">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.18.3" class="outline-4">
+
+<h4 id="sec-1.18.3"><span class="section-number-4">1.18.3</span> Oracle : </h4>
+
+<div class="outline-text-4" id="text-1.18.3">
+
+
+
+<ul>
+
+<li id="sec-1.18.3.1">estEquipe(L) = false <br/>
+
+</li>
+
+<li id="sec-1.18.3.2">#exception levee <br/>
+
+
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="postamble">
+
+<p class="author"> Authors: Kevin Coquart, Quentin Bunel
+
+
+
+</p>
+
+<p class="date"> Date: 2014-04-18 12:57:47 CEST</p>
+
+<p class="creator">HTML generated by org-mode 6.33x in emacs 23</p>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
+

@@ -40,6 +40,11 @@ le bonus apporté. Personnage et ObjetEquipable raffinent tous les deux Chose.
 Ainsi, quand on a besoin de manipuler des objets, comme dans les blocs du terrain, on est sûr de ne pas
 confondre avec les personnages.
 
+\paragraph{}
+Le diagramme ci-dessous représente l'architecture globale de notre projet.
+On y voit les liens de raffinement (flèches pointillées) et les liens d'utilisation.
+Par exemple, moteurJeu utilise gestionCombat.
+
 \begin{landscape}  % passage en paysage
   \includegraphics[width=24cm]{../presentation/diagProjetCPS}
 \end{landscape}
@@ -79,7 +84,9 @@ Vous trouverez ci-joint :
 \item Dans /spec, les specifications au format org et le Makefile pour générer les formats html et pdf (voir README.txt)
 \item Dans /tests, les tests au format org et le Makefile pour générer les formats html et pdf (voir README.txt)
 \item Le code des services, décorateurs, contracts, tests et implémentation dans /src
+\item Des archives jar exécutables dans /jars
 \end{itemize}
+Note : les makefile ont été préalablement exécutés.
 
 \section*{Version Bogue}
 \paragraph{}
@@ -93,9 +100,6 @@ les tests renvoient de jolis messages indiquant qu'il y a un soucis.
 
 \section*{Conclusion}
 
-\includegraphics[scale=0.3]{../saved}
-
-
 \paragraph{}
 Le jeu est fonctionnel, il n'est surement pas exempt de bogue. Nous
 avons essayé plusieurs scenarios sans aucun probleme. L'interface
@@ -108,6 +112,13 @@ graphique est assez minimaliste, quelques améliorations possibles :
 Bien sûr les graphismes ne sont pas fous, des petits carrés de couleurs
 diverses et variées mais l'ensemble reste cohérant et compréhensible.
 Le jeu est entièrement jouable au clavier.
+
+
+\includegraphics[scale=0.3]{../saved2}
+
+
+La figure ci-dessus est une capture d'écran du jeu.
+Le personnage que nous contrôlons est Alex (carré vert du haut).
 
 
 \section*{Notice}
@@ -165,7 +176,7 @@ du jeu se sont passés sans soucis.
 \paragraph{}
 Nous retenons plusieurs choses de ce projet, premièrement, il est
 difficile de faire un jeu en 3 semaines.
-Deuxiement, nous ne sommes pas graphistes et cela se remarque très
+Deuxièment, nous ne sommes pas graphistes et cela se remarque très
 vite.
 Pour finir nous avons découvert le monde des spécifications avec une
 approche proche de l'industrie, l'on produit une spécification

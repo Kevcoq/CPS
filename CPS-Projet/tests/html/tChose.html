@@ -1,0 +1,786 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+
+lang="en" xml:lang="en">
+
+<head>
+
+<title>tChose</title>
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+
+<meta name="generator" content="Org-mode"/>
+
+<meta name="generated" content="2014-04-18 12:57:46 CEST"/>
+
+
+
+<meta name="description" content=""/>
+
+<meta name="keywords" content=""/>
+
+<style type="text/css">
+
+ <!--/*--><![CDATA[/*><!--*/
+
+  html { font-family: Times, serif; font-size: 12pt; }
+
+  .title  { text-align: center; }
+
+  .todo   { color: red; }
+
+  .done   { color: green; }
+
+  .tag    { background-color: #add8e6; font-weight:normal }
+
+  .target { }
+
+  .timestamp { color: #bebebe; }
+
+  .timestamp-kwd { color: #5f9ea0; }
+
+  p.verse { margin-left: 3% }
+
+  pre {
+
+	border: 1pt solid #AEBDCC;
+
+	background-color: #F3F5F7;
+
+	padding: 5pt;
+
+	font-family: courier, monospace;
+
+        font-size: 90%;
+
+        overflow:auto;
+
+  }
+
+  table { border-collapse: collapse; }
+
+  td, th { vertical-align: top; }
+
+  dt { font-weight: bold; }
+
+  div.figure { padding: 0.5em; }
+
+  div.figure p { text-align: center; }
+
+  .linenr { font-size:smaller }
+
+  .code-highlighted {background-color:#ffff00;}
+
+  .org-info-js_info-navigation { border-style:none; }
+
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+
+                               white-space:nowrap; }
+
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+
+                                 font-weight:bold; }
+
+  /*]]>*/-->
+
+</style>
+
+<script type="text/javascript">
+
+<!--/*--><![CDATA[/*><!--*/
+
+ function CodeHighlightOn(elem, id)
+
+ {
+
+   var target = document.getElementById(id);
+
+   if(null != target) {
+
+     elem.cacheClassElem = elem.className;
+
+     elem.cacheClassTarget = target.className;
+
+     target.className = "code-highlighted";
+
+     elem.className   = "code-highlighted";
+
+   }
+
+ }
+
+ function CodeHighlightOff(elem, id)
+
+ {
+
+   var target = document.getElementById(id);
+
+   if(elem.cacheClassElem)
+
+     elem.className = elem.cacheClassElem;
+
+   if(elem.cacheClassTarget)
+
+     target.className = elem.cacheClassTarget;
+
+ }
+
+/*]]>*///-->
+
+</script>
+
+</head>
+
+<body>
+
+<div id="content">
+
+
+
+<h1 class="title">tChose</h1>
+
+
+
+
+
+<div id="table-of-contents">
+
+<h2>Table of Contents</h2>
+
+<div id="text-table-of-contents">
+
+<ul>
+
+<li><a href="#sec-1">1 Test Chose </a>
+
+<ul>
+
+<li><a href="#sec-1.1">1.1 Cas de test 1.1 : Chose::testInit </a>
+
+<ul>
+
+<li><a href="#sec-1.1.1">1.1.1 Condition initiale : ∅ </a></li>
+
+<li><a href="#sec-1.1.2">1.1.2 Operation : L0 =(def) init(50) </a></li>
+
+<li><a href="#sec-1.1.3">1.1.3 Oracle : </a></li>
+
+</ul>
+
+</li>
+
+<li><a href="#sec-1.2">1.2 Cas de test 1.2 : Chose::testInitFail </a>
+
+<ul>
+
+<li><a href="#sec-1.2.1">1.2.1 Condition initiale : ∅ </a></li>
+
+<li><a href="#sec-1.2.2">1.2.2 Operation : L0 =(def) init(-50) </a></li>
+
+<li><a href="#sec-1.2.3">1.2.3 Oracle : </a></li>
+
+</ul>
+
+</li>
+
+<li><a href="#sec-1.3">1.3 Cas de test 2.1 : Chose::testEstRamasse </a>
+
+<ul>
+
+<li><a href="#sec-1.3.1">1.3.1 Condition initiale : L =(def) init(50) </a></li>
+
+<li><a href="#sec-1.3.2">1.3.2 Operation : L0 =(def) estRamasse(L) </a></li>
+
+<li><a href="#sec-1.3.3">1.3.3 Oracle : </a></li>
+
+</ul>
+
+</li>
+
+<li><a href="#sec-1.4">1.4 Cas de test 2.2 : Chose::testEstRamasseFail </a>
+
+<ul>
+
+<li><a href="#sec-1.4.1">1.4.1 Condition initiale : </a></li>
+
+<li><a href="#sec-1.4.2">1.4.2 Operation : L1 =(def) estRamasse(L0) </a></li>
+
+<li><a href="#sec-1.4.3">1.4.3 Oracle : </a></li>
+
+</ul>
+
+</li>
+
+<li><a href="#sec-1.5">1.5 Cas de test 3.1 : Chose::testEstJete </a>
+
+<ul>
+
+<li><a href="#sec-1.5.1">1.5.1 Condition initiale : </a></li>
+
+<li><a href="#sec-1.5.2">1.5.2 Operation : L1 =(def) estJete(L0) </a></li>
+
+<li><a href="#sec-1.5.3">1.5.3 Oracle : </a></li>
+
+</ul>
+
+</li>
+
+<li><a href="#sec-1.6">1.6 Cas de test 3.2 : Chose::testEstJeteFail </a>
+
+<ul>
+
+<li><a href="#sec-1.6.1">1.6.1 Condition initiale : L =(def) init(50) </a></li>
+
+<li><a href="#sec-1.6.2">1.6.2 Operation : L0 =(def) estJete(L) </a></li>
+
+<li><a href="#sec-1.6.3">1.6.3 Oracle : </a></li>
+
+</ul>
+
+</li>
+
+</ul>
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+
+<div id="outline-container-1" class="outline-2">
+
+<h2 id="sec-1"><span class="section-number-2">1</span> Test Chose </h2>
+
+<div class="outline-text-2" id="text-1">
+
+
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.1" class="outline-3">
+
+<h3 id="sec-1.1"><span class="section-number-3">1.1</span> Cas de test 1.1 : Chose::testInit </h3>
+
+<div class="outline-text-3" id="text-1.1">
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.1.1" class="outline-4">
+
+<h4 id="sec-1.1.1"><span class="section-number-4">1.1.1</span> Condition initiale : ∅ </h4>
+
+<div class="outline-text-4" id="text-1.1.1">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.1.2" class="outline-4">
+
+<h4 id="sec-1.1.2"><span class="section-number-4">1.1.2</span> Operation : L0 =(def) init(50) </h4>
+
+<div class="outline-text-4" id="text-1.1.2">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.1.3" class="outline-4">
+
+<h4 id="sec-1.1.3"><span class="section-number-4">1.1.3</span> Oracle : </h4>
+
+<div class="outline-text-4" id="text-1.1.3">
+
+
+
+<ul>
+
+<li id="sec-1.1.3.1">bonus(L0) = 50 <br/>
+
+</li>
+
+<li id="sec-1.1.3.2">estPorte = false <br/>
+
+
+
+
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.2" class="outline-3">
+
+<h3 id="sec-1.2"><span class="section-number-3">1.2</span> Cas de test 1.2 : Chose::testInitFail </h3>
+
+<div class="outline-text-3" id="text-1.2">
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.2.1" class="outline-4">
+
+<h4 id="sec-1.2.1"><span class="section-number-4">1.2.1</span> Condition initiale : ∅ </h4>
+
+<div class="outline-text-4" id="text-1.2.1">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.2.2" class="outline-4">
+
+<h4 id="sec-1.2.2"><span class="section-number-4">1.2.2</span> Operation : L0 =(def) init(-50) </h4>
+
+<div class="outline-text-4" id="text-1.2.2">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.2.3" class="outline-4">
+
+<h4 id="sec-1.2.3"><span class="section-number-4">1.2.3</span> Oracle : </h4>
+
+<div class="outline-text-4" id="text-1.2.3">
+
+
+
+<ul>
+
+<li id="sec-1.2.3.1">-50 &lt; 0 <br/>
+
+</li>
+
+<li id="sec-1.2.3.2">#exception levee <br/>
+
+
+
+
+
+
+
+
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.3" class="outline-3">
+
+<h3 id="sec-1.3"><span class="section-number-3">1.3</span> Cas de test 2.1 : Chose::testEstRamasse </h3>
+
+<div class="outline-text-3" id="text-1.3">
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.3.1" class="outline-4">
+
+<h4 id="sec-1.3.1"><span class="section-number-4">1.3.1</span> Condition initiale : L =(def) init(50) </h4>
+
+<div class="outline-text-4" id="text-1.3.1">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.3.2" class="outline-4">
+
+<h4 id="sec-1.3.2"><span class="section-number-4">1.3.2</span> Operation : L0 =(def) estRamasse(L) </h4>
+
+<div class="outline-text-4" id="text-1.3.2">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.3.3" class="outline-4">
+
+<h4 id="sec-1.3.3"><span class="section-number-4">1.3.3</span> Oracle : </h4>
+
+<div class="outline-text-4" id="text-1.3.3">
+
+
+
+<ul>
+
+<li id="sec-1.3.3.1">estPorte(L0) = true <br/>
+
+
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.4" class="outline-3">
+
+<h3 id="sec-1.4"><span class="section-number-3">1.4</span> Cas de test 2.2 : Chose::testEstRamasseFail </h3>
+
+<div class="outline-text-3" id="text-1.4">
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.4.1" class="outline-4">
+
+<h4 id="sec-1.4.1"><span class="section-number-4">1.4.1</span> Condition initiale : </h4>
+
+<div class="outline-text-4" id="text-1.4.1">
+
+
+
+<ul>
+
+<li id="sec-1.4.1.1">L =(def) init(50) <br/>
+
+</li>
+
+<li id="sec-1.4.1.2">L0 = (def) estRamasse(L) <br/>
+
+</li>
+
+</ul>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.4.2" class="outline-4">
+
+<h4 id="sec-1.4.2"><span class="section-number-4">1.4.2</span> Operation : L1 =(def) estRamasse(L0) </h4>
+
+<div class="outline-text-4" id="text-1.4.2">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.4.3" class="outline-4">
+
+<h4 id="sec-1.4.3"><span class="section-number-4">1.4.3</span> Oracle : </h4>
+
+<div class="outline-text-4" id="text-1.4.3">
+
+
+
+<ul>
+
+<li id="sec-1.4.3.1">estPorte(L0) = true <br/>
+
+</li>
+
+<li id="sec-1.4.3.2">#exception levee <br/>
+
+
+
+
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.5" class="outline-3">
+
+<h3 id="sec-1.5"><span class="section-number-3">1.5</span> Cas de test 3.1 : Chose::testEstJete </h3>
+
+<div class="outline-text-3" id="text-1.5">
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.5.1" class="outline-4">
+
+<h4 id="sec-1.5.1"><span class="section-number-4">1.5.1</span> Condition initiale : </h4>
+
+<div class="outline-text-4" id="text-1.5.1">
+
+
+
+<ul>
+
+<li id="sec-1.5.1.1">L =(def) init(50) <br/>
+
+</li>
+
+<li id="sec-1.5.1.2">L0 = (def) estRamasse(L) <br/>
+
+</li>
+
+</ul>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.5.2" class="outline-4">
+
+<h4 id="sec-1.5.2"><span class="section-number-4">1.5.2</span> Operation : L1 =(def) estJete(L0) </h4>
+
+<div class="outline-text-4" id="text-1.5.2">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.5.3" class="outline-4">
+
+<h4 id="sec-1.5.3"><span class="section-number-4">1.5.3</span> Oracle : </h4>
+
+<div class="outline-text-4" id="text-1.5.3">
+
+
+
+<ul>
+
+<li id="sec-1.5.3.1">estPorte(L1) = false <br/>
+
+
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.6" class="outline-3">
+
+<h3 id="sec-1.6"><span class="section-number-3">1.6</span> Cas de test 3.2 : Chose::testEstJeteFail </h3>
+
+<div class="outline-text-3" id="text-1.6">
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.6.1" class="outline-4">
+
+<h4 id="sec-1.6.1"><span class="section-number-4">1.6.1</span> Condition initiale : L =(def) init(50) </h4>
+
+<div class="outline-text-4" id="text-1.6.1">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.6.2" class="outline-4">
+
+<h4 id="sec-1.6.2"><span class="section-number-4">1.6.2</span> Operation : L0 =(def) estJete(L) </h4>
+
+<div class="outline-text-4" id="text-1.6.2">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.6.3" class="outline-4">
+
+<h4 id="sec-1.6.3"><span class="section-number-4">1.6.3</span> Oracle : </h4>
+
+<div class="outline-text-4" id="text-1.6.3">
+
+
+
+<ul>
+
+<li id="sec-1.6.3.1">estPorte(L) = false <br/>
+
+</li>
+
+<li id="sec-1.6.3.2">#exception levee <br/>
+
+
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="postamble">
+
+<p class="author"> Authors: Kevin Coquart, Quentin Bunel
+
+
+
+</p>
+
+<p class="date"> Date: 2014-04-18 12:57:46 CEST</p>
+
+<p class="creator">HTML generated by org-mode 6.33x in emacs 23</p>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
+

@@ -1,0 +1,512 @@
+% Created 2014-04-18 ven. 12:57
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage{amssymb}
+\usepackage{hyperref}
+
+
+\title{TGestionCombat}
+\author{Kevin Coquart, Quentin Bunel}
+\date{18 avril 2014}
+
+\begin{document}
+
+\maketitle
+
+\setcounter{tocdepth}{3}
+\tableofcontents
+\vspace*{1cm}
+\section{Test GestionCombat}
+\label{sec-1}
+
+
+\subsection{Cas de test 1.1 : GestionCombat::testInit}
+\label{sec-1.1}
+
+\subsubsection{Condition initiale : $\varnothing$}
+\label{sec-1.1.1}
+
+\subsubsection{Operation : L0 =(def) init(20, 4 ,10)}
+\label{sec-1.1.2}
+
+\subsubsection{Oracle :}
+\label{sec-1.1.3}
+
+\begin{itemize}
+
+\item estFrappe(L0, ?) = false\\
+\label{sec-1.1.3.1}
+
+
+\item estGele(L0, ?) = false\\
+\label{sec-1.1.3.2}
+
+
+\item mPerso(L0).keySet() = \{ Alex, Ryan, Slick, +3 gagnster \}\\
+\label{sec-1.1.3.3}
+
+
+\item position(L0, Alex) = \{ 0 ; 6 ; 0 \}\\
+\label{sec-1.1.3.4}
+
+
+\item position(L0, Ryan) = \{ 0 ; 4 ; 0 \}\\
+\label{sec-1.1.3.5}
+
+
+\item position(L0, Slick) = \{ 19 ; 5 ; 0 \}\\
+\label{sec-1.1.3.6}
+
+
+
+
+
+\end{itemize} % ends low level
+\subsection{Cas de test 2.1 : GestionCombat::gererRIEN}
+\label{sec-1.2}
+
+\subsubsection{Condition initiale :}
+\label{sec-1.2.1}
+
+\begin{itemize}
+
+\item L =(def) init(20, 4 ,10)\\
+\label{sec-1.2.1.1}
+
+
+\item map = \{ <Alex, RIEN>, <RYAN, RIEN>, <SLICK, RIEN>, <???, RIEN> \}\\
+\label{sec-1.2.1.2}
+
+\end{itemize} % ends low level
+\subsubsection{Operation : L0 =(def) gerer(L, map)}
+\label{sec-1.2.2}
+
+\subsubsection{Oracle :}
+\label{sec-1.2.3}
+
+\begin{itemize}
+
+\item estFrappe(L0, ?) = false\\
+\label{sec-1.2.3.1}
+
+
+\item estGele(L0, ?) = false\\
+\label{sec-1.2.3.2}
+
+
+\item mPerso(L0).keySet() = \{ Alex, Ryan, Slick, +3 gagnster \}\\
+\label{sec-1.2.3.3}
+
+
+\item position(L0, Alex) = \{ 0 ; 6 ; 0 \}\\
+\label{sec-1.2.3.4}
+
+
+\item position(L0, Ryan) = \{ 0 ; 4 ; 0 \}\\
+\label{sec-1.2.3.5}
+
+
+\item position(L0, Slick) = \{ 19 ; 5 ; 0 \}\\
+\label{sec-1.2.3.6}
+
+
+\end{itemize} % ends low level
+\subsection{Cas de test 2.2 : GestionCombat::gererDROITE}
+\label{sec-1.3}
+
+\subsubsection{Condition initiale :}
+\label{sec-1.3.1}
+
+\begin{itemize}
+
+\item L =(def) init(20, 4 ,10)\\
+\label{sec-1.3.1.1}
+
+
+\item map = \{ <Alex, DROITE>, <RYAN, RIEN>, <SLICK, RIEN>, <???, RIEN> \}\\
+\label{sec-1.3.1.2}
+
+\end{itemize} % ends low level
+\subsubsection{Operation : L0 =(def) gerer(L, map)}
+\label{sec-1.3.2}
+
+\subsubsection{Oracle :}
+\label{sec-1.3.3}
+
+\begin{itemize}
+
+\item estFrappe(L0, ?) = false\\
+\label{sec-1.3.3.1}
+
+
+\item estGele(L0, ?) = false\\
+\label{sec-1.3.3.2}
+
+
+\item mPerso(L0).keySet() = \{ Alex, Ryan, Slick, +3 gagnster \}\\
+\label{sec-1.3.3.3}
+
+
+\item position(L0, Alex) = \{ 1 ; 6 ; 0 \}\\
+\label{sec-1.3.3.4}
+
+
+\item position(L0, Ryan) = \{ 0 ; 4 ; 0 \}\\
+\label{sec-1.3.3.5}
+
+
+\item position(L0, Slick) = \{ 19 ; 5 ; 0 \}\\
+\label{sec-1.3.3.6}
+
+
+\end{itemize} % ends low level
+\subsection{Cas de test 2.3 : GestionCombat::gererHAUT}
+\label{sec-1.4}
+
+\subsubsection{Condition initiale :}
+\label{sec-1.4.1}
+
+\begin{itemize}
+
+\item L =(def) init(20, 4 ,10)\\
+\label{sec-1.4.1.1}
+
+
+\item map = \{ <Alex, HAUT>, <RYAN, RIEN>, <SLICK, RIEN>, <???, RIEN> \}\\
+\label{sec-1.4.1.2}
+
+\end{itemize} % ends low level
+\subsubsection{Operation : L0 =(def) gerer(L, map)}
+\label{sec-1.4.2}
+
+\subsubsection{Oracle :}
+\label{sec-1.4.3}
+
+\begin{itemize}
+
+\item estFrappe(L0, ?) = false\\
+\label{sec-1.4.3.1}
+
+
+\item estGele(L0, ?) = false\\
+\label{sec-1.4.3.2}
+
+
+\item mPerso(L0).keySet() = \{ Alex, Ryan, Slick, +3 gagnster \}\\
+\label{sec-1.4.3.3}
+
+
+\item position(L0, Alex) = \{ 0 ; 7 ; 0 \}\\
+\label{sec-1.4.3.4}
+
+
+\item position(L0, Ryan) = \{ 0 ; 4 ; 0 \}\\
+\label{sec-1.4.3.5}
+
+
+\item position(L0, Slick) = \{ 19 ; 5 ; 0 \}\\
+\label{sec-1.4.3.6}
+
+
+\end{itemize} % ends low level
+\subsection{Cas de test 2.4 : GestionCombat::gererBAS}
+\label{sec-1.5}
+
+\subsubsection{Condition initiale :}
+\label{sec-1.5.1}
+
+\begin{itemize}
+
+\item L =(def) init(20, 4 ,10)\\
+\label{sec-1.5.1.1}
+
+
+\item map = \{ <Alex, BAS>, <RYAN, RIEN>, <SLICK, RIEN>, <???, RIEN> \}\\
+\label{sec-1.5.1.2}
+
+\end{itemize} % ends low level
+\subsubsection{Operation : L0 =(def) gerer(L, map)}
+\label{sec-1.5.2}
+
+\subsubsection{Oracle :}
+\label{sec-1.5.3}
+
+\begin{itemize}
+
+\item estFrappe(L0, ?) = false\\
+\label{sec-1.5.3.1}
+
+
+\item estGele(L0, ?) = false\\
+\label{sec-1.5.3.2}
+
+
+\item mPerso(L0).keySet() = \{ Alex, Ryan, Slick, +3 gagnster \}\\
+\label{sec-1.5.3.3}
+
+
+\item position(L0, Alex) = \{ 0 ; 5 ; 0 \}\\
+\label{sec-1.5.3.4}
+
+
+\item position(L0, Ryan) = \{ 0 ; 4 ; 0 \}\\
+\label{sec-1.5.3.5}
+
+
+\item position(L0, Slick) = \{ 19 ; 5 ; 0 \}\\
+\label{sec-1.5.3.6}
+
+
+\end{itemize} % ends low level
+\subsection{Cas de test 2.5 : GestionCombat::gererSAUTER}
+\label{sec-1.6}
+
+\subsubsection{Condition initiale :}
+\label{sec-1.6.1}
+
+\begin{itemize}
+
+\item L =(def) init(20, 4 ,10)\\
+\label{sec-1.6.1.1}
+
+
+\item map = \{ <Alex, SAUTER>, <RYAN, RIEN>, <SLICK, RIEN>, <???, RIEN> \}\\
+\label{sec-1.6.1.2}
+
+\end{itemize} % ends low level
+\subsubsection{Operation : L0 =(def) gerer(L, map)}
+\label{sec-1.6.2}
+
+\subsubsection{Oracle :}
+\label{sec-1.6.3}
+
+\begin{itemize}
+
+\item estFrappe(L0, ?) = false\\
+\label{sec-1.6.3.1}
+
+
+\item estGele(L0, ?) = false\\
+\label{sec-1.6.3.2}
+
+
+\item mPerso(L0).keySet() = \{ Alex, Ryan, Slick, +3 gagnster \}\\
+\label{sec-1.6.3.3}
+
+
+\item position(L0, Alex) = \{ 0 ; 6 ; 1 \}\\
+\label{sec-1.6.3.4}
+
+
+\item position(L0, Ryan) = \{ 0 ; 4 ; 0 \}\\
+\label{sec-1.6.3.5}
+
+
+\item position(L0, Slick) = \{ 19 ; 5 ; 0 \}\\
+\label{sec-1.6.3.6}
+
+
+\end{itemize} % ends low level
+\subsection{Cas de test 2.6 : GestionCombat::gererGAUCHE}
+\label{sec-1.7}
+
+\subsubsection{Condition initiale :}
+\label{sec-1.7.1}
+
+\begin{itemize}
+
+\item L =(def) init(20, 4 ,10)\\
+\label{sec-1.7.1.1}
+
+
+\item map = \{ <Alex, RIEN>, <Ryan, RIEN>, <Slick, GAUCHE>, <???, RIEN> \}\\
+\label{sec-1.7.1.2}
+
+\end{itemize} % ends low level
+\subsubsection{Operation : L0 =(def) gerer(L, map)}
+\label{sec-1.7.2}
+
+\subsubsection{Oracle :}
+\label{sec-1.7.3}
+
+\begin{itemize}
+
+\item estFrappe(L0, ?) = false\\
+\label{sec-1.7.3.1}
+
+
+\item estGele(L0, ?) = false\\
+\label{sec-1.7.3.2}
+
+
+\item mPerso(L0).keySet() = \{ Alex, Ryan, Slick, +3 gagnster \}\\
+\label{sec-1.7.3.3}
+
+
+\item position(L0, Alex) = \{ 0 ; 6 ; 0 \}\\
+\label{sec-1.7.3.4}
+
+
+\item position(L0, Ryan) = \{ 0 ; 4 ; 0 \}\\
+\label{sec-1.7.3.5}
+
+
+\item position(L0, Slick) = \{ 18 ; 5 ; 0 \}\\
+\label{sec-1.7.3.6}
+
+
+\end{itemize} % ends low level
+\subsection{Cas de test 2.7 : GestionCombat::gererRAMASSER}
+\label{sec-1.8}
+
+\subsubsection{Condition initiale :}
+\label{sec-1.8.1}
+
+\begin{itemize}
+
+\item L =(def) init(20, 4 ,10)\\
+\label{sec-1.8.1.1}
+
+
+\item map1 = \{ <Alex, BAS>, <Ryan, RIEN>, <Slick, RIEN>, <???, RIEN> \}\\
+\label{sec-1.8.1.2}
+
+
+\item map2 = \{ <Alex, BAS>, <Ryan, RIEN>, <Slick, RIEN>, <???, RIEN> \}\\
+\label{sec-1.8.1.3}
+
+
+\item map3 = \{ <Alex, RAMSSER>, <Ryan, RIEN>, <Slick, RIEN>, <???, RIEN> \}\\
+\label{sec-1.8.1.4}
+
+\end{itemize} % ends low level
+\subsubsection{Operation :}
+\label{sec-1.8.2}
+
+\begin{itemize}
+
+\item L2 =(def) gerer(L, map1)\\
+\label{sec-1.8.2.1}
+
+
+\item L1 =(def) gerer(L2, map2)\\
+\label{sec-1.8.2.2}
+
+
+\item L0 =(def) gerer(L1, map3)\\
+\label{sec-1.8.2.3}
+
+\end{itemize} % ends low level
+\subsubsection{Oracle :}
+\label{sec-1.8.3}
+
+\begin{itemize}
+
+\item estFrappe(L0, ?) = false\\
+\label{sec-1.8.3.1}
+
+
+\item estGele(L0, ?) = false\\
+\label{sec-1.8.3.2}
+
+
+\item mPerso(L0).keySet() = \{ Alex, Ryan, Slick, +3 gagnster \}\\
+\label{sec-1.8.3.3}
+
+
+\item position(L0, Alex) = \{ 0 ; 4 ; 0 \}\\
+\label{sec-1.8.3.4}
+
+
+\item position(L0, Ryan) = \{ 0 ; 4 ; 1 \}\\
+\label{sec-1.8.3.5}
+
+
+\item position(L0, Slick) = \{ 19 ; 5 ; 0 \}\\
+\label{sec-1.8.3.6}
+
+
+
+\end{itemize} % ends low level
+\subsection{Cas de test 2.7 : GestionCombat::gererJETER}
+\label{sec-1.9}
+
+\subsubsection{Condition initiale :}
+\label{sec-1.9.1}
+
+\begin{itemize}
+
+\item L =(def) init(20, 4 ,10)\\
+\label{sec-1.9.1.1}
+
+
+\item map1 = \{ <Alex, BAS>, <Ryan, RIEN>, <Slick, RIEN>, <???, RIEN> \}\\
+\label{sec-1.9.1.2}
+
+
+\item map2 = \{ <Alex, BAS>, <Ryan, RIEN>, <Slick, RIEN>, <???, RIEN> \}\\
+\label{sec-1.9.1.3}
+
+
+\item map3 = \{ <Alex, RAMSSER>, <Ryan, RIEN>, <Slick, RIEN>, <???, RIEN> \}\\
+\label{sec-1.9.1.4}
+
+
+\item map4 = \{ <Alex, JETER>, <Ryan, RIEN>, <Slick, RIEN>, <???, RIEN> \}\\
+\label{sec-1.9.1.5}
+
+\end{itemize} % ends low level
+\subsubsection{Operation :}
+\label{sec-1.9.2}
+
+\begin{itemize}
+
+\item L2 =(def) gerer(L, map1)\\
+\label{sec-1.9.2.1}
+
+
+\item L1 =(def) gerer(L2, map2)\\
+\label{sec-1.9.2.2}
+
+
+\item L0 =(def) gerer(L1, map3)\\
+\label{sec-1.9.2.3}
+
+\end{itemize} % ends low level
+\subsubsection{Oracle :}
+\label{sec-1.9.3}
+
+\begin{itemize}
+
+\item estFrappe(L0, ?) = false\\
+\label{sec-1.9.3.1}
+
+
+\item estGele(L0, ?) = false\\
+\label{sec-1.9.3.2}
+
+
+\item mPerso(L0).keySet() = \{ Alex, Ryan, Slick, +3 gagnster \}\\
+\label{sec-1.9.3.3}
+
+
+\item position(L0, Alex) = \{ 0 ; 4 ; 0 \}\\
+\label{sec-1.9.3.4}
+
+
+\item position(L0, Ryan) = \{ 3 ; 4 ; 0 \}\\
+\label{sec-1.9.3.5}
+
+
+\item position(L0, Slick) = \{ 19 ; 5 ; 0 \}\\
+\label{sec-1.9.3.6}
+
+\end{itemize} % ends low level
+
+\end{document}

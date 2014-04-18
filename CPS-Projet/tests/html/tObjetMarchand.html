@@ -1,0 +1,688 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+
+lang="en" xml:lang="en">
+
+<head>
+
+<title>tObjetMarchand</title>
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+
+<meta name="generator" content="Org-mode"/>
+
+<meta name="generated" content="2014-04-18 12:57:47 CEST"/>
+
+
+
+<meta name="description" content=""/>
+
+<meta name="keywords" content=""/>
+
+<style type="text/css">
+
+ <!--/*--><![CDATA[/*><!--*/
+
+  html { font-family: Times, serif; font-size: 12pt; }
+
+  .title  { text-align: center; }
+
+  .todo   { color: red; }
+
+  .done   { color: green; }
+
+  .tag    { background-color: #add8e6; font-weight:normal }
+
+  .target { }
+
+  .timestamp { color: #bebebe; }
+
+  .timestamp-kwd { color: #5f9ea0; }
+
+  p.verse { margin-left: 3% }
+
+  pre {
+
+	border: 1pt solid #AEBDCC;
+
+	background-color: #F3F5F7;
+
+	padding: 5pt;
+
+	font-family: courier, monospace;
+
+        font-size: 90%;
+
+        overflow:auto;
+
+  }
+
+  table { border-collapse: collapse; }
+
+  td, th { vertical-align: top; }
+
+  dt { font-weight: bold; }
+
+  div.figure { padding: 0.5em; }
+
+  div.figure p { text-align: center; }
+
+  .linenr { font-size:smaller }
+
+  .code-highlighted {background-color:#ffff00;}
+
+  .org-info-js_info-navigation { border-style:none; }
+
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+
+                               white-space:nowrap; }
+
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+
+                                 font-weight:bold; }
+
+  /*]]>*/-->
+
+</style>
+
+<script type="text/javascript">
+
+<!--/*--><![CDATA[/*><!--*/
+
+ function CodeHighlightOn(elem, id)
+
+ {
+
+   var target = document.getElementById(id);
+
+   if(null != target) {
+
+     elem.cacheClassElem = elem.className;
+
+     elem.cacheClassTarget = target.className;
+
+     target.className = "code-highlighted";
+
+     elem.className   = "code-highlighted";
+
+   }
+
+ }
+
+ function CodeHighlightOff(elem, id)
+
+ {
+
+   var target = document.getElementById(id);
+
+   if(elem.cacheClassElem)
+
+     elem.className = elem.cacheClassElem;
+
+   if(elem.cacheClassTarget)
+
+     target.className = elem.cacheClassTarget;
+
+ }
+
+/*]]>*///-->
+
+</script>
+
+</head>
+
+<body>
+
+<div id="content">
+
+
+
+<h1 class="title">tObjetMarchand</h1>
+
+
+
+
+
+<div id="table-of-contents">
+
+<h2>Table of Contents</h2>
+
+<div id="text-table-of-contents">
+
+<ul>
+
+<li><a href="#sec-1">1 Test ObjetMarchand </a>
+
+<ul>
+
+<li><a href="#sec-1.1">1.1 Cas de test 1.1 : ObjetMarchand::testInit </a>
+
+<ul>
+
+<li><a href="#sec-1.1.1">1.1.1 Condition initiale : ∅ </a></li>
+
+<li><a href="#sec-1.1.2">1.1.2 Operation : L0 =(def) init("PEPITEOR", 5000) </a></li>
+
+<li><a href="#sec-1.1.3">1.1.3 Oracle : </a></li>
+
+</ul>
+
+</li>
+
+<li><a href="#sec-1.2">1.2 Cas de test 1.2 : ObjetMarchand::testInitFail1 </a>
+
+<ul>
+
+<li><a href="#sec-1.2.1">1.2.1 Condition initiale : ∅ </a></li>
+
+<li><a href="#sec-1.2.2">1.2.2 Operation : L0 =(def) init("", 5000) </a></li>
+
+<li><a href="#sec-1.2.3">1.2.3 Oracle : </a></li>
+
+</ul>
+
+</li>
+
+<li><a href="#sec-1.3">1.3 Cas de test 1.3 : ObjetMarchand::testInitFail2 </a>
+
+<ul>
+
+<li><a href="#sec-1.3.1">1.3.1 Condition initiale : ∅ </a></li>
+
+<li><a href="#sec-1.3.2">1.3.2 Operation : L0 =(def) init("PEPITEOR", 0) </a></li>
+
+<li><a href="#sec-1.3.3">1.3.3 Oracle : </a></li>
+
+</ul>
+
+</li>
+
+<li><a href="#sec-1.4">1.4 Cas de test 2.1 : ObjetMarchand::testVendre </a>
+
+<ul>
+
+<li><a href="#sec-1.4.1">1.4.1 Condition initiale : L =(def) init("PEPITEOR", 5000) </a></li>
+
+<li><a href="#sec-1.4.2">1.4.2 Operation : L0 =(def) vendre(L) </a></li>
+
+<li><a href="#sec-1.4.3">1.4.3 Oracle : </a></li>
+
+</ul>
+
+</li>
+
+<li><a href="#sec-1.5">1.5 Cas de test 2.1 : ObjetMarchand::testVendre </a>
+
+<ul>
+
+<li><a href="#sec-1.5.1">1.5.1 Condition initiale : </a></li>
+
+<li><a href="#sec-1.5.2">1.5.2 Operation : L1 =(def) vendre(L0) </a></li>
+
+<li><a href="#sec-1.5.3">1.5.3 Oracle : </a></li>
+
+</ul>
+
+</li>
+
+</ul>
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+
+<div id="outline-container-1" class="outline-2">
+
+<h2 id="sec-1"><span class="section-number-2">1</span> Test ObjetMarchand </h2>
+
+<div class="outline-text-2" id="text-1">
+
+
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.1" class="outline-3">
+
+<h3 id="sec-1.1"><span class="section-number-3">1.1</span> Cas de test 1.1 : ObjetMarchand::testInit </h3>
+
+<div class="outline-text-3" id="text-1.1">
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.1.1" class="outline-4">
+
+<h4 id="sec-1.1.1"><span class="section-number-4">1.1.1</span> Condition initiale : ∅ </h4>
+
+<div class="outline-text-4" id="text-1.1.1">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.1.2" class="outline-4">
+
+<h4 id="sec-1.1.2"><span class="section-number-4">1.1.2</span> Operation : L0 =(def) init("PEPITEOR", 5000) </h4>
+
+<div class="outline-text-4" id="text-1.1.2">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.1.3" class="outline-4">
+
+<h4 id="sec-1.1.3"><span class="section-number-4">1.1.3</span> Oracle : </h4>
+
+<div class="outline-text-4" id="text-1.1.3">
+
+
+
+<ul>
+
+<li id="sec-1.1.3.1">nom(L0) = PEPITEOR <br/>
+
+</li>
+
+<li id="sec-1.1.3.2">prix(L0) = 5000 <br/>
+
+</li>
+
+<li id="sec-1.1.3.3">estVendu(L0) = false <br/>
+
+
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.2" class="outline-3">
+
+<h3 id="sec-1.2"><span class="section-number-3">1.2</span> Cas de test 1.2 : ObjetMarchand::testInitFail1 </h3>
+
+<div class="outline-text-3" id="text-1.2">
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.2.1" class="outline-4">
+
+<h4 id="sec-1.2.1"><span class="section-number-4">1.2.1</span> Condition initiale : ∅ </h4>
+
+<div class="outline-text-4" id="text-1.2.1">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.2.2" class="outline-4">
+
+<h4 id="sec-1.2.2"><span class="section-number-4">1.2.2</span> Operation : L0 =(def) init("", 5000) </h4>
+
+<div class="outline-text-4" id="text-1.2.2">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.2.3" class="outline-4">
+
+<h4 id="sec-1.2.3"><span class="section-number-4">1.2.3</span> Oracle : </h4>
+
+<div class="outline-text-4" id="text-1.2.3">
+
+
+
+<ul>
+
+<li id="sec-1.2.3.1">"" == "" <br/>
+
+</li>
+
+<li id="sec-1.2.3.2">#exception levee <br/>
+
+
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.3" class="outline-3">
+
+<h3 id="sec-1.3"><span class="section-number-3">1.3</span> Cas de test 1.3 : ObjetMarchand::testInitFail2 </h3>
+
+<div class="outline-text-3" id="text-1.3">
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.3.1" class="outline-4">
+
+<h4 id="sec-1.3.1"><span class="section-number-4">1.3.1</span> Condition initiale : ∅ </h4>
+
+<div class="outline-text-4" id="text-1.3.1">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.3.2" class="outline-4">
+
+<h4 id="sec-1.3.2"><span class="section-number-4">1.3.2</span> Operation : L0 =(def) init("PEPITEOR", 0) </h4>
+
+<div class="outline-text-4" id="text-1.3.2">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.3.3" class="outline-4">
+
+<h4 id="sec-1.3.3"><span class="section-number-4">1.3.3</span> Oracle : </h4>
+
+<div class="outline-text-4" id="text-1.3.3">
+
+
+
+<ul>
+
+<li id="sec-1.3.3.1">0 &lt;= 0 <br/>
+
+</li>
+
+<li id="sec-1.3.3.2">#exception levee <br/>
+
+
+
+
+
+
+
+
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.4" class="outline-3">
+
+<h3 id="sec-1.4"><span class="section-number-3">1.4</span> Cas de test 2.1 : ObjetMarchand::testVendre </h3>
+
+<div class="outline-text-3" id="text-1.4">
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.4.1" class="outline-4">
+
+<h4 id="sec-1.4.1"><span class="section-number-4">1.4.1</span> Condition initiale : L =(def) init("PEPITEOR", 5000) </h4>
+
+<div class="outline-text-4" id="text-1.4.1">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.4.2" class="outline-4">
+
+<h4 id="sec-1.4.2"><span class="section-number-4">1.4.2</span> Operation : L0 =(def) vendre(L) </h4>
+
+<div class="outline-text-4" id="text-1.4.2">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.4.3" class="outline-4">
+
+<h4 id="sec-1.4.3"><span class="section-number-4">1.4.3</span> Oracle : </h4>
+
+<div class="outline-text-4" id="text-1.4.3">
+
+
+
+<ul>
+
+<li id="sec-1.4.3.1">prix(L0) = 5000 <br/>
+
+</li>
+
+<li id="sec-1.4.3.2">estVendu(L0) = true <br/>
+
+
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.5" class="outline-3">
+
+<h3 id="sec-1.5"><span class="section-number-3">1.5</span> Cas de test 2.1 : ObjetMarchand::testVendre </h3>
+
+<div class="outline-text-3" id="text-1.5">
+
+
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.5.1" class="outline-4">
+
+<h4 id="sec-1.5.1"><span class="section-number-4">1.5.1</span> Condition initiale : </h4>
+
+<div class="outline-text-4" id="text-1.5.1">
+
+
+
+<ul>
+
+<li id="sec-1.5.1.1">L =(def) init("PEPITEOR", 5000) <br/>
+
+</li>
+
+<li id="sec-1.5.1.2">L0 =(def) vendre(L) <br/>
+
+</li>
+
+</ul>
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.5.2" class="outline-4">
+
+<h4 id="sec-1.5.2"><span class="section-number-4">1.5.2</span> Operation : L1 =(def) vendre(L0) </h4>
+
+<div class="outline-text-4" id="text-1.5.2">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="outline-container-1.5.3" class="outline-4">
+
+<h4 id="sec-1.5.3"><span class="section-number-4">1.5.3</span> Oracle : </h4>
+
+<div class="outline-text-4" id="text-1.5.3">
+
+
+
+<ul>
+
+<li id="sec-1.5.3.1">estVendu(L0) = true <br/>
+
+</li>
+
+<li id="sec-1.5.3.2">#exception levee <br/>
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="postamble">
+
+<p class="author"> Authors: Kevin Coquart, Quentin Bunel
+
+
+
+</p>
+
+<p class="date"> Date: 2014-04-18 12:57:47 CEST</p>
+
+<p class="creator">HTML generated by org-mode 6.33x in emacs 23</p>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
+
